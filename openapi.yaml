@@ -1,0 +1,50 @@
+openapi: '3.0.3'
+info:
+  title: ISE 2026 Backend API
+  description: Backend API for ISE 2026 — contract-first with oapi-codegen.
+  version: '1.0.0'
+
+servers:
+  - url: http://localhost:8080
+    description: Local development
+
+security: []
+
+paths:
+  /auth/register:
+    $ref: 'paths/auth.yaml#/register'
+  /auth/login:
+    $ref: 'paths/auth.yaml#/login'
+  /auth/refresh:
+    $ref: 'paths/auth.yaml#/refresh'
+
+components:
+  securitySchemes:
+    BearerAuth:
+      $ref: 'components/security-schemes/bearer-auth.yaml'
+
+  responses:
+    BadRequest:
+      $ref: 'components/responses/error.yaml#/BadRequest'
+    Unauthorized:
+      $ref: 'components/responses/error.yaml#/Unauthorized'
+    Conflict:
+      $ref: 'components/responses/error.yaml#/Conflict'
+    NotFound:
+      $ref: 'components/responses/error.yaml#/NotFound'
+    InternalServerError:
+      $ref: 'components/responses/error.yaml#/InternalServerError'
+
+  schemas:
+    ErrorResponse:
+      $ref: 'components/schemas/error-response.yaml'
+    RegisterRequest:
+      $ref: 'components/schemas/register-request.yaml'
+    LoginRequest:
+      $ref: 'components/schemas/login-request.yaml'
+    RefreshRequest:
+      $ref: 'components/schemas/refresh-request.yaml'
+    TokenResponse:
+      $ref: 'components/schemas/token-response.yaml'
+    UserResponse:
+      $ref: 'components/schemas/user-response.yaml'

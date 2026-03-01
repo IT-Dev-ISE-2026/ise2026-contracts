@@ -1,0 +1,64 @@
+register:
+  post:
+    operationId: registerUser
+    summary: Register a new user
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/register-request.yaml'
+    responses:
+      '201':
+        description: User created
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/user-response.yaml'
+      '400':
+        $ref: '../components/responses/error.yaml#/BadRequest'
+      '409':
+        $ref: '../components/responses/error.yaml#/Conflict'
+
+login:
+  post:
+    operationId: loginUser
+    summary: Login and get tokens
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/login-request.yaml'
+    responses:
+      '200':
+        description: Token pair
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/token-response.yaml'
+      '401':
+        $ref: '../components/responses/error.yaml#/Unauthorized'
+
+refresh:
+  post:
+    operationId: refreshToken
+    summary: Refresh access token
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/refresh-request.yaml'
+    responses:
+      '200':
+        description: New token pair
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/token-response.yaml'
+      '401':
+        $ref: '../components/responses/error.yaml#/Unauthorized'
