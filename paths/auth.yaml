@@ -17,9 +17,9 @@ register:
             schema:
               $ref: '../components/schemas/user-response.yaml'
       '400':
-        $ref: '../components/responses/error.yaml#/BadRequest'
+        $ref: '../components/responses/bad-request.yaml'
       '409':
-        $ref: '../components/responses/error.yaml#/Conflict'
+        $ref: '../components/responses/conflict.yaml'
 
 login:
   post:
@@ -40,7 +40,7 @@ login:
             schema:
               $ref: '../components/schemas/token-response.yaml'
       '401':
-        $ref: '../components/responses/error.yaml#/Unauthorized'
+        $ref: '../components/responses/unauthorized.yaml'
 
 refresh:
   post:
@@ -61,4 +61,4 @@ refresh:
             schema:
               $ref: '../components/schemas/token-response.yaml'
       '401':
-        $ref: '../components/responses/error.yaml#/Unauthorized'
+        $ref: '../components/responses/unauthorized.yaml'

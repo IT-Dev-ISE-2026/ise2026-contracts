@@ -23,17 +23,6 @@ components:
     BearerAuth:
       $ref: 'components/security-schemes/bearer-auth.yaml'
 
-  responses:
-    BadRequest:
-      $ref: 'components/responses/error.yaml#/BadRequest'
-    Unauthorized:
-      $ref: 'components/responses/error.yaml#/Unauthorized'
-    Conflict:
-      $ref: 'components/responses/error.yaml#/Conflict'
-    NotFound:
-      $ref: 'components/responses/error.yaml#/NotFound'
-    InternalServerError:
-      $ref: 'components/responses/error.yaml#/InternalServerError'
 
   schemas:
     ErrorResponse:
