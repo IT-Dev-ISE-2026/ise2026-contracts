@@ -17,6 +17,8 @@ paths:
     $ref: 'paths/auth.yaml#/login'
   /auth/refresh:
     $ref: 'paths/auth.yaml#/refresh'
+  /test/ping:
+    $ref: 'paths/test.yaml#/ping'
 
 components:
   securitySchemes:

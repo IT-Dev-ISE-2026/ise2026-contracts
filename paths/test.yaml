@@ -1,0 +1,18 @@
+ping:
+  get:
+    operationId: testPing
+    summary: Test endpoint for connectivity check
+    tags: [Test]
+    responses:
+      '200':
+        description: Pong response
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - message
+              properties:
+                message:
+                  type: string
+                  example: pong
