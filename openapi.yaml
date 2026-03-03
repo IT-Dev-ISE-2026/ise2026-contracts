@@ -24,18 +24,3 @@ components:
   securitySchemes:
     BearerAuth:
       $ref: 'components/security-schemes/bearer-auth.yaml'
-
-
-  schemas:
-    ErrorResponse:
-      $ref: 'components/schemas/error-response.yaml'
-    RegisterRequest:
-      $ref: 'components/schemas/register-request.yaml'
-    LoginRequest:
-      $ref: 'components/schemas/login-request.yaml'
-    RefreshRequest:
-      $ref: 'components/schemas/refresh-request.yaml'
-    TokenResponse:
-      $ref: 'components/schemas/token-response.yaml'
-    UserResponse:
-      $ref: 'components/schemas/user-response.yaml'

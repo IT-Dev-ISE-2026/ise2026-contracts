@@ -1,5 +1,0 @@
-description: Resource already exists
-content:
-  application/json:
-    schema:
-      $ref: '../schemas/error-response.yaml'

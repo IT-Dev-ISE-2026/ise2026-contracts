@@ -8,18 +8,76 @@ register:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/register-request.yaml'
+            type: object
+            required: [email, password]
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
+                minLength: 8
     responses:
       '201':
         description: User created
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/user-response.yaml'
+              type: object
+              required: [data, meta]
+              properties:
+                data:
+                  type: object
+                  required: [id, email, role, created_at]
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                    email:
+                      type: string
+                    role:
+                      type: string
+                    created_at:
+                      type: string
+                      format: date-time
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
       '400':
-        $ref: '../components/responses/bad-request.yaml'
+        description: Invalid request
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [error, meta]
+              properties:
+                error:
+                  type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
       '409':
-        $ref: '../components/responses/conflict.yaml'
+        description: Resource already exists
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [error, meta]
+              properties:
+                error:
+                  type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
 
 login:
   post:
@@ -31,16 +89,53 @@ login:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/login-request.yaml'
+            type: object
+            required: [email, password]
+            properties:
+              email:
+                type: string
+                format: email
+              password:
+                type: string
     responses:
       '200':
         description: Token pair
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/token-response.yaml'
+              type: object
+              required: [data, meta]
+              properties:
+                data:
+                  type: object
+                  required: [access_token, refresh_token]
+                  properties:
+                    access_token:
+                      type: string
+                    refresh_token:
+                      type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
       '401':
-        $ref: '../components/responses/unauthorized.yaml'
+        description: Invalid credentials or token
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [error, meta]
+              properties:
+                error:
+                  type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
 
 refresh:
   post:
@@ -52,13 +147,47 @@ refresh:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/refresh-request.yaml'
+            type: object
+            required: [refresh_token]
+            properties:
+              refresh_token:
+                type: string
     responses:
       '200':
         description: New token pair
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/token-response.yaml'
+              type: object
+              required: [data, meta]
+              properties:
+                data:
+                  type: object
+                  required: [access_token, refresh_token]
+                  properties:
+                    access_token:
+                      type: string
+                    refresh_token:
+                      type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
       '401':
-        $ref: '../components/responses/unauthorized.yaml'
+        description: Invalid credentials or token
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [error, meta]
+              properties:
+                error:
+                  type: string
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string

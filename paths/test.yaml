@@ -10,9 +10,18 @@ ping:
           application/json:
             schema:
               type: object
-              required:
-                - message
+              required: [data, meta]
               properties:
-                message:
-                  type: string
-                  example: pong
+                data:
+                  type: object
+                  required: [message]
+                  properties:
+                    message:
+                      type: string
+                      example: pong
+                meta:
+                  type: object
+                  required: [request_id]
+                  properties:
+                    request_id:
+                      type: string
