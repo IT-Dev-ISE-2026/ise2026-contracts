@@ -1,0 +1,26 @@
+{
+  "name": "ise2026-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "redocly bundle openapi.yaml -o dist/openapi.yaml",
+    "dev": "nodemon --ext yaml --watch paths --watch components --watch openapi.yaml --exec \"pnpm run bundle\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IT-Dev-ISE-2026/ise2026-contracts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IT-Dev-ISE-2026/ise2026-contracts/issues"
+  },
+  "homepage": "https://github.com/IT-Dev-ISE-2026/ise2026-contracts#readme",
+  "description": "",
+  "devDependencies": {
+    "@redocly/cli": "^2.20.3",
+    "nodemon": "^3.1.14"
+  }
+}

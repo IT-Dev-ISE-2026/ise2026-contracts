@@ -1,0 +1,224 @@
+openapi: 3.0.3
+info:
+  title: ISE 2026 Backend API
+  description: Backend API for ISE 2026 — contract-first with oapi-codegen.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development
+security: []
+paths:
+  /auth/register:
+    post:
+      operationId: registerUser
+      summary: Register a new user
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  minLength: 8
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - email
+                      - role
+                      - created_at
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      email:
+                        type: string
+                      role:
+                        type: string
+                      created_at:
+                        type: string
+                        format: date-time
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                  - request_id
+                properties:
+                  error:
+                    type: string
+                  request_id:
+                    type: string
+        '409':
+          description: Resource already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                  - request_id
+                properties:
+                  error:
+                    type: string
+                  request_id:
+                    type: string
+  /auth/login:
+    post:
+      operationId: loginUser
+      summary: Login and get tokens
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Token pair
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - access_token
+                      - refresh_token
+                    properties:
+                      access_token:
+                        type: string
+                      refresh_token:
+                        type: string
+        '401':
+          description: Invalid credentials or token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                  - request_id
+                properties:
+                  error:
+                    type: string
+                  request_id:
+                    type: string
+  /auth/refresh:
+    post:
+      operationId: refreshToken
+      summary: Refresh access token
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - refresh_token
+              properties:
+                refresh_token:
+                  type: string
+      responses:
+        '200':
+          description: New token pair
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - access_token
+                      - refresh_token
+                    properties:
+                      access_token:
+                        type: string
+                      refresh_token:
+                        type: string
+        '401':
+          description: Invalid credentials or token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - error
+                  - request_id
+                properties:
+                  error:
+                    type: string
+                  request_id:
+                    type: string
+  /test/ping:
+    get:
+      operationId: testPing
+      summary: Test endpoint for connectivity check
+      tags:
+        - Test
+      responses:
+        '200':
+          description: Pong response
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - message
+                    properties:
+                      message:
+                        type: string
+                        example: pong
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
