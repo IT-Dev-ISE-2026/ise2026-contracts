@@ -19,3 +19,7 @@ ping:
                     message:
                       type: string
                       example: pong
+            example:
+              data:
+                message: pong
+
