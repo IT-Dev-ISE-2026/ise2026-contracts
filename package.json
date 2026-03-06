@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "bundle": "redocly bundle openapi.yaml -o dist/openapi.yaml",
-    "dev": "nodemon --ext yaml --watch paths --watch components --watch openapi.yaml --exec \"pnpm run bundle\"",
+    "bundle": "redocly bundle src/openapi.yaml -o dist/openapi.yaml",
+    "dev": "nodemon --ext yaml --watch src --exec \"pnpm run bundle\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
