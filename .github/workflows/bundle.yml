@@ -1,0 +1,45 @@
+name: Bundle OpenAPI Spec
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bundle OpenAPI spec
+        run: pnpm run bundle
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest OpenAPI Spec
+          body: |
+            Auto-generated OpenAPI bundle from commit ${{ github.sha }}.
+            Updated at ${{ github.event.head_commit.timestamp }}.
+          files: dist/openapi.yaml
+          make_latest: true
