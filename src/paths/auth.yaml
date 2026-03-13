@@ -61,34 +61,34 @@ register:
           application/json:
             schema:
               type: object
-              required: [error, request_id]
+              required: [message, requestId]
               properties:
-                error:
+                message:
                   type: string
                   example: 'validation failed: password must be at least 8 characters'
-                request_id:
+                requestId:
                   type: string
                   example: req-abc123
             example:
-              error: 'validation failed: password must be at least 8 characters'
-              request_id: req-abc123
+              message: 'validation failed: password must be at least 8 characters'
+              requestId: req-abc123
       '409':
         description: Resource already exists
         content:
           application/json:
             schema:
               type: object
-              required: [error, request_id]
+              required: [message, requestId]
               properties:
-                error:
+                message:
                   type: string
                   example: email already registered
-                request_id:
+                requestId:
                   type: string
                   example: req-def456
             example:
-              error: email already registered
-              request_id: req-def456
+              message: email already registered
+              requestId: req-def456
 
 login:
   post:
@@ -142,17 +142,17 @@ login:
           application/json:
             schema:
               type: object
-              required: [error, request_id]
+              required: [message, requestId]
               properties:
-                error:
+                message:
                   type: string
                   example: invalid email or password
-                request_id:
+                requestId:
                   type: string
                   example: req-ghi789
             example:
-              error: invalid email or password
-              request_id: req-ghi789
+              message: invalid email or password
+              requestId: req-ghi789
 
 refresh:
   post:
@@ -201,14 +201,14 @@ refresh:
           application/json:
             schema:
               type: object
-              required: [error, request_id]
+              required: [message, requestId]
               properties:
-                error:
+                message:
                   type: string
                   example: refresh token expired or invalid
-                request_id:
+                requestId:
                   type: string
                   example: req-jkl012
             example:
-              error: refresh token expired or invalid
-              request_id: req-jkl012
+              message: refresh token expired or invalid
+              requestId: req-jkl012

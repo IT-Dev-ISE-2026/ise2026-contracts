@@ -1,0 +1,70 @@
+get-staff-by-id:
+  get:
+    operationId: getStaffById
+    summary: Get staff by ID
+    tags: [Staff]
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: Data ditemukan
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [id, name, prodi, isAccepted, dresscode]
+                  properties:
+                    id:
+                      type: string
+                      example: 1
+                    name:
+                      type: string
+                      example: John Doe
+                    prodi:
+                      type: string
+                      example: Sistem Informasi
+                    isAccepted:
+                      type: boolean
+                      example: true
+                    dresscode:
+                      type: string | null
+                      example: White Shirt
+            example:
+              data:
+                id: 1234567890
+                name: John Doe
+                prodi: Computer Science
+                isAccepted: true
+                dresscode: White Shirt
+      '404':
+        description: Data tidak ditemukan
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [message, requestId]
+                  properties:
+                    message:
+                      type: string
+                      example: Data registrasi staff tidak ditemukan
+                    requestId:
+                      type: string
+                      example: abc123
+            example:
+              data:
+                message: Data registrasi staff tidak ditemukan
+                requestId: abc123
+
+
