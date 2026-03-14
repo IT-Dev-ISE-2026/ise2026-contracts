@@ -3,12 +3,23 @@ info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
   version: '1.0.0'
+  contact:
+    name: IT Dev ISE!2026 Team
+    email: ise.itdev@gmail.com
 
 servers:
   - url: http://localhost:8080
     description: Local development
 
 security: []
+
+tags:
+  - name: Auth
+    description: Authentication and token management endpoints.
+  - name: Staff
+    description: Staff-related endpoints.
+  - name: Test
+    description: Test and health-check endpoints.
 
 paths:
   /test/ping:

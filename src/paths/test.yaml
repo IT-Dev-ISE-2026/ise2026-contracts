@@ -1,6 +1,7 @@
 ping:
   get:
     operationId: testPing
+    description: Test endpoint for connectivity check
     summary: Test endpoint for connectivity check
     tags: [Test]
     responses:

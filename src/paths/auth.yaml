@@ -1,6 +1,7 @@
 register:
   post:
     operationId: registerUser
+    description: Register a new user with email and password. Returns the created user data.
     summary: Register a new user
     tags: [Auth]
     requestBody:
@@ -23,7 +24,7 @@ register:
             email: user@example.com
             password: P@ssw0rd123
     responses:
-      '201':
+      "201":
         description: User created
         content:
           application/json:
@@ -48,14 +49,14 @@ register:
                     created_at:
                       type: string
                       format: date-time
-                      example: '2026-03-06T11:00:00Z'
+                      example: "2026-03-06T11:00:00Z"
             example:
               data:
                 id: 550e8400-e29b-41d4-a716-446655440000
                 email: user@example.com
                 role: participant
-                created_at: '2026-03-06T11:00:00Z'
-      '400':
+                created_at: "2026-03-06T11:00:00Z"
+      "400":
         description: Invalid request
         content:
           application/json:
@@ -65,14 +66,14 @@ register:
               properties:
                 message:
                   type: string
-                  example: 'validation failed: password must be at least 8 characters'
+                  example: "validation failed: password must be at least 8 characters"
                 requestId:
                   type: string
                   example: req-abc123
             example:
-              message: 'validation failed: password must be at least 8 characters'
+              message: "validation failed: password must be at least 8 characters"
               requestId: req-abc123
-      '409':
+      "409":
         description: Resource already exists
         content:
           application/json:
@@ -93,6 +94,7 @@ register:
 login:
   post:
     operationId: loginUser
+    description: Login with email and password. Returns access and refresh tokens.
     summary: Login and get tokens
     tags: [Auth]
     requestBody:
@@ -114,7 +116,7 @@ login:
             email: user@example.com
             password: P@ssw0rd123
     responses:
-      '200':
+      "200":
         description: Token pair
         content:
           application/json:
@@ -136,7 +138,7 @@ login:
               data:
                 access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
                 refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
-      '401':
+      "401":
         description: Invalid credentials or token
         content:
           application/json:
@@ -157,6 +159,7 @@ login:
 refresh:
   post:
     operationId: refreshToken
+    description: Refresh access token using a valid refresh token. Returns new access and refresh tokens.
     summary: Refresh access token
     tags: [Auth]
     requestBody:
@@ -173,7 +176,7 @@ refresh:
           example:
             refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
     responses:
-      '200':
+      "200":
         description: New token pair
         content:
           application/json:
@@ -195,7 +198,7 @@ refresh:
               data:
                 access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
                 refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.newtoken456
-      '401':
+      "401":
         description: Invalid credentials or token
         content:
           application/json:

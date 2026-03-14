@@ -1,6 +1,7 @@
 get-staff-by-id:
   get:
     operationId: getStaffById
+    description: Get staff registration data by ID. Returns staff details if found.
     summary: Get staff by ID
     tags: [Staff]
     parameters:
@@ -23,7 +24,7 @@ get-staff-by-id:
                   required: [id, name, prodi, isAccepted, dresscode]
                   properties:
                     id:
-                      type: string
+                      type: number
                       example: 1
                     name:
                       type: string
@@ -35,7 +36,8 @@ get-staff-by-id:
                       type: boolean
                       example: true
                     dresscode:
-                      type: string | null
+                      type: string
+                      nullable: true
                       example: White Shirt
             example:
               data:
