@@ -43,3 +43,16 @@ jobs:
             Updated at ${{ github.event.head_commit.timestamp }}.
           files: dist/openapi.yaml
           make_latest: true
+
+  notify:
+    needs: bundle
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Send Webhook Notification
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"Contracts have been updated. Don't forget to sync your local OpenAPI spec. <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>\n\n**Repository:** ${{ github.repository }}\n**Commit:** ${{ github.sha }}\n**Release:** https://github.com/${{ github.repository }}/releases/tag/latest\"}" \
+          $WEBHOOK_URL
