@@ -121,10 +121,11 @@ jobs:
     if: needs.semantic-release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
     steps:
-      - name: Send Webhook Notification
-        env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"Contracts have been updated to **v${{ needs.semantic-release.outputs.new_release_version }}**. Don't forget to sync your local OpenAPI spec. <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>\n\n**Repository:** ${{ github.repository }}\n**Commit:** ${{ github.sha }}\n**Release:** https://github.com/${{ github.repository }}/releases/tag/v${{ needs.semantic-release.outputs.new_release_version }}\"}" \
-          $WEBHOOK_URL
+      - name: Notify Discord
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.WEBHOOK_URL }}
+          content: "Contracts have been updated to **v${{ needs.semantic-release.outputs.new_release_version }}**! <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>"
+          title: "📜 OpenAPI Contracts Updated"
+          description: "New version **v${{ needs.semantic-release.outputs.new_release_version }}** is now available. Don't forget to sync your local OpenAPI spec."
+          color: 0xf1c40f

@@ -22,15 +22,15 @@ tags:
     description: Test and health-check endpoints.
 
 paths:
-  /test/ping:
+  /api/test/ping:
     $ref: 'paths/test.yaml#/ping'
-  /auth/register:
+  /api/auth/register:
     $ref: 'paths/auth.yaml#/register'
-  /auth/login:
+  /api/auth/login:
     $ref: 'paths/auth.yaml#/login'
-  /auth/refresh:
+  /api/auth/refresh:
     $ref: 'paths/auth.yaml#/refresh'
-  /staff/{id}:
+  /api/staff/{id}:
     $ref: 'paths/staff.yaml#/get-staff-by-id'
 
 components:
