@@ -3,8 +3,6 @@ name: Bundle OpenAPI Spec
 on:
   push:
     branches: [main]
-    paths:
-      - 'src/**'
 
 jobs:
   bundle-and-commit:
