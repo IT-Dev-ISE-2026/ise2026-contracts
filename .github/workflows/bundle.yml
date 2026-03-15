@@ -7,7 +7,31 @@ on:
       - 'src/**'
 
 jobs:
+  semantic-release:
+    name: Semantic Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Semantic Release
+        id: semantic
+        uses: cycjimmy/semantic-release-action@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   bundle:
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -15,6 +39,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: v${{ needs.semantic-release.outputs.new_release_version }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -33,26 +59,37 @@ jobs:
       - name: Bundle OpenAPI spec
         run: pnpm run bundle
 
-      - name: Upload to GitHub Release
+      - name: Upload to GitHub Versioned Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.semantic-release.outputs.new_release_version }}
+          name: v${{ needs.semantic-release.outputs.new_release_version }}
+          body: |
+            Auto-generated OpenAPI bundle for version v${{ needs.semantic-release.outputs.new_release_version }}.
+            Commit: ${{ github.sha }}
+          files: dist/openapi.yaml
+          make_latest: true
+
+      - name: Update Latest Release Tag
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
           name: Latest OpenAPI Spec
           body: |
-            Auto-generated OpenAPI bundle from commit ${{ github.sha }}.
-            Updated at ${{ github.event.head_commit.timestamp }}.
+            Latest stable OpenAPI bundle.
+            Current version: v${{ needs.semantic-release.outputs.new_release_version }}
           files: dist/openapi.yaml
-          make_latest: true
+          make_latest: false
 
   notify:
-    needs: bundle
+    needs: [semantic-release, bundle]
+    if: needs.semantic-release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
-    if: success()
     steps:
       - name: Send Webhook Notification
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"Contracts have been updated. Don't forget to sync your local OpenAPI spec. <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>\n\n**Repository:** ${{ github.repository }}\n**Commit:** ${{ github.sha }}\n**Release:** https://github.com/${{ github.repository }}/releases/tag/latest\"}" \
+          -d "{\"content\": \"Contracts have been updated to **v${{ needs.semantic-release.outputs.new_release_version }}**. Don't forget to sync your local OpenAPI spec. <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>\n\n**Repository:** ${{ github.repository }}\n**Commit:** ${{ github.sha }}\n**Release:** https://github.com/${{ github.repository }}/releases/tag/v${{ needs.semantic-release.outputs.new_release_version }}\"}" \
           $WEBHOOK_URL
