@@ -18,7 +18,7 @@ tags:
   - name: Test
     description: Test and health-check endpoints.
 paths:
-  /test/ping:
+  /api/test/ping:
     get:
       operationId: testPing
       description: Test endpoint for connectivity check
@@ -46,7 +46,7 @@ paths:
               example:
                 data:
                   message: pong
-  /auth/register:
+  /api/auth/register:
     post:
       operationId: registerUser
       description: Register a new user with email and password. Returns the created user data.
@@ -150,7 +150,7 @@ paths:
               example:
                 message: email already registered
                 requestId: req-def456
-  /auth/login:
+  /api/auth/login:
     post:
       operationId: loginUser
       description: Login with email and password. Returns access and refresh tokens.
@@ -222,7 +222,7 @@ paths:
               example:
                 message: invalid email or password
                 requestId: req-ghi789
-  /auth/refresh:
+  /api/auth/refresh:
     post:
       operationId: refreshToken
       description: Refresh access token using a valid refresh token. Returns new access and refresh tokens.
@@ -288,7 +288,7 @@ paths:
               example:
                 message: refresh token expired or invalid
                 requestId: req-jkl012
-  /staff/{id}:
+  /api/staff/{id}:
     get:
       operationId: getStaffById
       description: Get staff registration data by ID. Returns staff details if found.
