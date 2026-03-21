@@ -5,7 +5,8 @@
   "scripts": {
     "bundle": "redocly bundle src/openapi.yaml -o dist/openapi.yaml",
     "dev": "nodemon --ext yaml --watch src --exec \"pnpm run bundle\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "description": "",
   "devDependencies": {
     "@redocly/cli": "^2.20.3",
+    "husky": "^9.1.7",
     "nodemon": "^3.1.14"
   }
 }

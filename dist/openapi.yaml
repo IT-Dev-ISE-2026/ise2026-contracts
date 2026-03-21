@@ -15,16 +15,16 @@ tags:
     description: Authentication and token management endpoints.
   - name: Staff
     description: Staff-related endpoints.
-  - name: Test
-    description: Test and health-check endpoints.
+  - name: System
+    description: System check endpoints.
 paths:
-  /test/ping:
+  /sys/ping:
     get:
-      operationId: testPing
-      description: Test endpoint for connectivity check
-      summary: Test endpoint for connectivity check
+      operationId: sysPing
+      description: Endpoint for connectivity check
+      summary: Endpoint for connectivity check
       tags:
-        - Test
+        - System
       responses:
         '200':
           description: Pong response
@@ -46,7 +46,48 @@ paths:
               example:
                 data:
                   message: pong
-  /auth/register:
+  /sys/health:
+    get:
+      operationId: sysHealth
+      description: Endpoint for health check
+      summary: Endpoint for health check
+      tags:
+        - System
+      responses:
+        '200':
+          '503':
+            description: service unhealthy
+            content:
+              application/json:
+                schema:
+                  type: object
+                  required:
+                    - status
+                    - reason
+                  properties:
+                    status:
+                      type: string
+                      example: unhealthy
+                    reason:
+                      type: string
+                      example: database connection failed
+                example:
+                  status: unhealthy
+                  reason: database connection failed
+          description: service healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+              example:
+                status: healthy
+  /api/auth/register:
     post:
       operationId: registerUser
       description: Register a new user with email and password. Returns the created user data.
@@ -150,7 +191,7 @@ paths:
               example:
                 message: email already registered
                 requestId: req-def456
-  /auth/login:
+  /api/auth/login:
     post:
       operationId: loginUser
       description: Login with email and password. Returns access and refresh tokens.
@@ -222,7 +263,7 @@ paths:
               example:
                 message: invalid email or password
                 requestId: req-ghi789
-  /auth/refresh:
+  /api/auth/refresh:
     post:
       operationId: refreshToken
       description: Refresh access token using a valid refresh token. Returns new access and refresh tokens.
@@ -288,7 +329,7 @@ paths:
               example:
                 message: refresh token expired or invalid
                 requestId: req-jkl012
-  /staff/{id}:
+  /api/staff/{id}:
     get:
       operationId: getStaffById
       description: Get staff registration data by ID. Returns staff details if found.
