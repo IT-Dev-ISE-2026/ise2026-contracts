@@ -3,4 +3,13 @@ branches:
 plugins:
   - '@semantic-release/commit-analyzer'
   - '@semantic-release/release-notes-generator'
+  - - '@semantic-release/exec'
+    - prepareCmd: node scripts/sync-oas-version.cjs ${nextRelease.version}
+  - - '@semantic-release/npm'
+    - npmPublish: false
+  - - '@semantic-release/git'
+    - assets:
+        - package.json
+        - src/openapi.yaml
+      message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
   - '@semantic-release/github'
