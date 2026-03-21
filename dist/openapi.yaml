@@ -22,7 +22,7 @@ paths:
     get:
       operationId: sysPing
       description: Endpoint for connectivity check
-      summary: Endpoint for connectivity check
+      summary: Ping for connectivity check
       tags:
         - System
       responses:
@@ -50,12 +50,12 @@ paths:
     get:
       operationId: sysHealth
       description: Endpoint for health check
-      summary: Endpoint for health check
+      summary: Health check
       tags:
         - System
       responses:
         '200':
-          description: service healthy
+          description: Service healthy
           content:
             application/json:
               schema:
@@ -69,7 +69,7 @@ paths:
               example:
                 status: healthy
         '503':
-          description: service unhealthy
+          description: Service unhealthy
           content:
             application/json:
               schema:
