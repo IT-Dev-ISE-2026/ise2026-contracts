@@ -18,7 +18,7 @@ tags:
   - name: System
     description: System check endpoints.
 paths:
-  /sys/ping:
+  /api/sys/ping:
     get:
       operationId: sysPing
       description: Endpoint for connectivity check
@@ -46,7 +46,7 @@ paths:
               example:
                 data:
                   message: pong
-  /sys/health:
+  /api/sys/health:
     get:
       operationId: sysHealth
       description: Endpoint for health check
