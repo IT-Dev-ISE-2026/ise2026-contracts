@@ -55,25 +55,6 @@ paths:
         - System
       responses:
         '200':
-          '503':
-            description: service unhealthy
-            content:
-              application/json:
-                schema:
-                  type: object
-                  required:
-                    - status
-                    - reason
-                  properties:
-                    status:
-                      type: string
-                      example: unhealthy
-                    reason:
-                      type: string
-                      example: database connection failed
-                example:
-                  status: unhealthy
-                  reason: database connection failed
           description: service healthy
           content:
             application/json:
@@ -87,6 +68,25 @@ paths:
                     example: healthy
               example:
                 status: healthy
+        '503':
+          description: service unhealthy
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                  - reason
+                properties:
+                  status:
+                    type: string
+                    example: unhealthy
+                  reason:
+                    type: string
+                    example: database connection failed
+              example:
+                status: unhealthy
+                reason: database connection failed
   /api/auth/register:
     post:
       operationId: registerUser

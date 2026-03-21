@@ -46,20 +46,20 @@ health:
             example:
               status: healthy
 
-        '503':
-          description: service unhealthy
-          content:
-            application/json:
-              schema:
-                type: object
-                required: [status, reason]
-                properties:
-                  status:
-                    type: string
-                    example: unhealthy
-                  reason:
-                    type: string
-                    example: database connection failed
-              example:
-                status: unhealthy
-                reason: database connection failed
+      '503':
+        description: service unhealthy
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status, reason]
+              properties:
+                status:
+                  type: string
+                  example: unhealthy
+                reason:
+                  type: string
+                  example: database connection failed
+            example:
+              status: unhealthy
+              reason: database connection failed
