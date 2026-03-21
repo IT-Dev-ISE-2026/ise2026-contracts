@@ -1,0 +1,65 @@
+ping:
+  get:
+    operationId: sysPing
+    description: Endpoint for connectivity check
+    summary: Endpoint for connectivity check
+    tags: [System]
+    responses:
+      '200':
+        description: Pong response
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [message]
+                  properties:
+                    message:
+                      type: string
+                      example: pong
+            example:
+              data:
+                message: pong
+
+health:
+  get:
+    operationId: sysHealth
+    description: Endpoint for health check
+    summary: Endpoint for health check
+    tags: [System]
+    responses:
+      '200':
+        description: service healthy
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status:
+                  type: string
+                  example: healthy
+                  
+            example:
+              status: healthy
+
+        '503':
+          description: service unhealthy
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status, reason]
+                properties:
+                  status:
+                    type: string
+                    example: unhealthy
+                  reason:
+                    type: string
+                    example: database connection failed
+              example:
+                status: unhealthy
+                reason: database connection failed
