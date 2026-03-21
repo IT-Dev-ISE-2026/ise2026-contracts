@@ -69,8 +69,45 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  bundle-after-release:
+    name: Bundle After Release
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bundle OpenAPI spec
+        run: pnpm run bundle
+
+      - name: Commit and Push dist/openapi.yaml
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: bundle openapi spec after release [skip ci]"
+          file_pattern: 'dist/openapi.yaml'
+          branch: main
+
   publish-release:
-    needs: [semantic-release, bundle-and-commit]
+    needs: [semantic-release, bundle-and-commit, bundle-after-release]
     if: needs.semantic-release.outputs.new_release_published == 'true'
     runs-on: ubuntu-latest
     permissions:
@@ -130,7 +167,7 @@ jobs:
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.WEBHOOK_URL }}
-          content: "Contracts have been updated to **v${{ needs.semantic-release.outputs.new_release_version }}**! <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>"
+          content: "Bang, <@&${{ secrets.BACKEND_ROLE_ID }}> <@&${{ secrets.FRONTEND_ROLE_ID }}>! Ada update di file OAS nih, jangan lupa run `sync` ya!"
           title: "📜 OpenAPI Contracts Updated"
-          description: "New version **v${{ needs.semantic-release.outputs.new_release_version }}** is now available. Don't forget to sync your local OpenAPI spec."
+          description: "New version `v${{ needs.semantic-release.outputs.new_release_version }}` is now available. Please sync your local contracts and update your implementations accordingly."
           color: 0xf1c40f
