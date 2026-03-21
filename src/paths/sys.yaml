@@ -37,14 +37,18 @@ health:
           application/json:
             schema:
               type: object
-              required: [status]
+              required: [data]
               properties:
-                status:
-                  type: string
-                  example: healthy
-                  
+                data:
+                  type: object
+                  required: [status]
+                  properties:
+                    status:
+                      type: string
+                      example: healthy
             example:
-              status: healthy
+              data:
+                status: healthy
 
       '503':
         description: Service unhealthy
@@ -52,14 +56,19 @@ health:
           application/json:
             schema:
               type: object
-              required: [status, reason]
+              required: [data]
               properties:
-                status:
-                  type: string
-                  example: unhealthy
-                reason:
-                  type: string
-                  example: database connection failed
+                data:
+                  type: object
+                  required: [status, reason]
+                  properties:
+                    status:
+                      type: string
+                      example: unhealthy
+                    reason:
+                      type: string
+                      example: database connection failed
             example:
-              status: unhealthy
-              reason: database connection failed
+              data:
+                status: unhealthy
+                reason: database connection failed
