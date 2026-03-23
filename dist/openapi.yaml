@@ -379,9 +379,9 @@ paths:
                       name:
                         type: string
                         example: John Doe
-                      prodi:
+                      nrp:
                         type: string
-                        example: Sistem Informasi
+                        example: '1234567890'
                       isAccepted:
                         type: boolean
                         example: true
@@ -393,7 +393,7 @@ paths:
                 data:
                   id: 1234567890
                   name: John Doe
-                  prodi: Computer Science
+                  nrp: '1234567890'
                   isAccepted: true
                   dresscode: White Shirt
         '404':
