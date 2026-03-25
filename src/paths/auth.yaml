@@ -1,7 +1,7 @@
 register:
   post:
     operationId: registerUser
-    description: Register a new user with email and password. Returns the created user data.
+    description: Register a new user with name, email, and password. Returns the created user data.
     summary: Register a new user
     tags: [Auth]
     requestBody:
@@ -10,8 +10,11 @@ register:
         application/json:
           schema:
             type: object
-            required: [email, password]
+            required: [name, email, password]
             properties:
+              name:
+                type: string
+                example: John Doe
               email:
                 type: string
                 format: email
@@ -21,6 +24,7 @@ register:
                 minLength: 8
                 example: P@ssw0rd123
           example:
+            name: John Doe
             email: user@example.com
             password: P@ssw0rd123
     responses:
@@ -117,7 +121,13 @@ login:
             password: P@ssw0rd123
     responses:
       "200":
-        description: Token pair
+        description: Login successful. Access token is returned in the body, and refresh token is set as an HttpOnly cookie.
+        headers:
+          Set-Cookie:
+            description: Contains the refresh token. HttpOnly; Secure; SameSite=Lax
+            schema:
+              type: string
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
         content:
           application/json:
             schema:
@@ -126,20 +136,16 @@ login:
               properties:
                 data:
                   type: object
-                  required: [access_token, refresh_token]
+                  required: [access_token]
                   properties:
                     access_token:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
-                    refresh_token:
-                      type: string
-                      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
             example:
               data:
                 access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
-                refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
       "401":
-        description: Invalid credentials or token
+        description: Invalid credentials
         content:
           application/json:
             schema:
@@ -162,22 +168,22 @@ refresh:
     description: Refresh access token using a valid refresh token. Returns new access and refresh tokens.
     summary: Refresh access token
     tags: [Auth]
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [refresh_token]
-            properties:
-              refresh_token:
-                type: string
-                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
-          example:
-            refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.def456
+    parameters:
+      - in: cookie
+        name: refresh_token
+        required: true
+        schema:
+          type: string
+        description: The refresh token stored in an HttpOnly cookie.
     responses:
       "200":
-        description: New token pair
+        description: Token refreshed successfully. New access token is returned in the body, and a new refresh token may be set as an HttpOnly cookie.
+        headers:
+          Set-Cookie:
+            description: Contains the new refresh token. HttpOnly; Secure; SameSite=Lax
+            schema:
+              type: string
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
         content:
           application/json:
             schema:
@@ -186,18 +192,14 @@ refresh:
               properties:
                 data:
                   type: object
-                  required: [access_token, refresh_token]
+                  required: [access_token]
                   properties:
                     access_token:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
-                    refresh_token:
-                      type: string
-                      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.newtoken456
             example:
               data:
                 access_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
-                refresh_token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDE4Njk2MDB9.newtoken456
       "401":
         description: Invalid credentials or token
         content:
