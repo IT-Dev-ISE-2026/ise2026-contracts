@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
-  version: 1.0.8
+  version: 1.0.9
   contact:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
@@ -17,6 +17,8 @@ tags:
     description: Staff-related endpoints.
   - name: System
     description: System check endpoints.
+  - name: Users
+    description: User-related endpoints.
 paths:
   /api/sys/ping:
     get:
@@ -433,6 +435,150 @@ paths:
               example:
                 message: Gagal mengirim email. Silakan coba lagi.
                 requestId: req-xyz789
+  /api/users/me:
+    patch:
+      operationId: updateMe
+      description: Update the profile of the currently authenticated user.
+      summary: Update user profile
+      tags:
+        - Users
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  example: John Doe
+                phone_number:
+                  type: string
+                  minLength: 1
+                  example: '08123456789'
+                education_level:
+                  type: string
+                  enum:
+                    - SMA
+                    - Perguruan Tinggi
+                  example: Perguruan Tinggi
+                referral_source:
+                  type: string
+                  description: Sumber referal user mengetahui event. Bisa berisi pilihan predefined atau teks bebas (misal jika memilih 'Lainnya').
+                  example: Instagram
+            example:
+              name: John Doe
+              phone_number: '08123456789'
+              education_level: Perguruan Tinggi
+              referral_source: Instagram
+      responses:
+        '200':
+          description: Profile updated successfully. Returns the updated user profile.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                      - id
+                      - email
+                      - name
+                      - phone_number
+                      - education_level
+                      - referral_source
+                      - role
+                      - created_at
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        example: 550e8400-e29b-41d4-a716-446655440000
+                      email:
+                        type: string
+                        example: user@example.com
+                      name:
+                        type: string
+                        nullable: true
+                        example: John Doe
+                      phone_number:
+                        type: string
+                        nullable: true
+                        example: '08123456789'
+                      education_level:
+                        type: string
+                        nullable: true
+                        example: Perguruan Tinggi
+                      referral_source:
+                        type: string
+                        nullable: true
+                        example: Instagram
+                      role:
+                        type: string
+                        example: participant
+                      created_at:
+                        type: string
+                        format: date-time
+                        example: '2026-03-06T11:00:00Z'
+              example:
+                data:
+                  id: 550e8400-e29b-41d4-a716-446655440000
+                  email: user@example.com
+                  name: John Doe
+                  phone_number: '08123456789'
+                  education_level: Perguruan Tinggi
+                  referral_source: Instagram
+                  role: participant
+                  created_at: '2026-03-06T11:00:00Z'
+        '401':
+          description: Unauthorized. Invalid or missing access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - requestId
+                properties:
+                  message:
+                    type: string
+                    example: unauthorized
+                  requestId:
+                    type: string
+                    example: req-uvw123
+              example:
+                message: unauthorized
+                requestId: req-uvw123
+        '422':
+          description: Validation failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - errors
+                properties:
+                  message:
+                    type: string
+                    example: Validasi gagal.
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+              example:
+                message: Validasi gagal.
+                errors:
+                  education_level:
+                    - Field education_level harus salah satu dari: SMA, Perguruan Tinggi.
   /api/staff/{id}:
     get:
       operationId: getStaffById

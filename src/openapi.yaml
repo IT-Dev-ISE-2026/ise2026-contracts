@@ -2,7 +2,7 @@ openapi: '3.0.3'
 info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
-  version: '1.0.8'
+  version: '1.0.9'
   contact:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
@@ -20,6 +20,8 @@ tags:
     description: Staff-related endpoints.
   - name: System
     description: System check endpoints.
+  - name: Users
+    description: User-related endpoints.
 
 paths:
   /api/sys/ping:
@@ -34,6 +36,8 @@ paths:
     $ref: 'paths/auth.yaml#/refresh'
   /api/auth/email-verifications:
     $ref: 'paths/auth.yaml#/email-verifications'
+  /api/users/me:
+    $ref: 'paths/users.yaml#/update-me'
   /api/staff/{id}:
     $ref: 'paths/staff.yaml#/get-staff-by-id'
 
