@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
-  version: 1.0.7
+  version: 1.0.8
   contact:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
@@ -341,6 +341,98 @@ paths:
               example:
                 message: refresh token expired or invalid
                 requestId: req-jkl012
+  /api/auth/email-verifications:
+    post:
+      operationId: resendVerificationEmail
+      description: Resend verification email to a user who has not been verified yet. Public endpoint to avoid information disclosure.
+      summary: Resend verification email
+      tags:
+        - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+            example:
+              email: user@example.com
+      responses:
+        '200':
+          description: Verification email has been resent (or user not found - security measure).
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Email verifikasi telah dikirim ulang.
+              example:
+                message: Email verifikasi telah dikirim ulang.
+        '409':
+          description: Email already verified.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Email sudah terverifikasi.
+              example:
+                message: Email sudah terverifikasi.
+        '422':
+          description: Validation failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - errors
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+              example:
+                message: Validasi gagal.
+                errors:
+                  email:
+                    - Format email tidak valid.
+        '500':
+          description: Gagal mengirim email. Silakan coba lagi.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - requestId
+                properties:
+                  message:
+                    type: string
+                  requestId:
+                    type: string
+              example:
+                message: Gagal mengirim email. Silakan coba lagi.
+                requestId: req-xyz789
   /api/staff/{id}:
     get:
       operationId: getStaffById
