@@ -2,7 +2,7 @@ openapi: '3.0.3'
 info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
-  version: '1.1.0'
+  version: '1.1.1'
   contact:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
