@@ -45,7 +45,7 @@ update-me:
               properties:
                 data:
                   type: object
-                  required: [id, email, name, phone_number, education_level, referral_source, role, created_at]
+                  required: [id, email, name, phone_number, education_level, referral_source, permissions, created_at]
                   properties:
                     id:
                       type: string
@@ -70,9 +70,11 @@ update-me:
                       type: string
                       nullable: true
                       example: Instagram
-                    role:
-                      type: string
-                      example: participant
+                    permissions:
+                      type: array
+                      items:
+                        type: string
+                      example: ["user"]
                     created_at:
                       type: string
                       format: date-time
@@ -85,7 +87,7 @@ update-me:
                 phone_number: "08123456789"
                 education_level: Perguruan Tinggi
                 referral_source: Instagram
-                role: participant
+                permissions: ["user"]
                 created_at: "2026-03-06T11:00:00Z"
       "401":
         description: Unauthorized. Invalid or missing access token.

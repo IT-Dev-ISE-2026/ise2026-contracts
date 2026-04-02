@@ -149,7 +149,7 @@ paths:
                     required:
                       - id
                       - email
-                      - role
+                      - permissions
                       - created_at
                     properties:
                       id:
@@ -159,9 +159,12 @@ paths:
                       email:
                         type: string
                         example: user@example.com
-                      role:
-                        type: string
-                        example: participant
+                      permissions:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                          - user
                       created_at:
                         type: string
                         format: date-time
@@ -170,7 +173,8 @@ paths:
                 data:
                   id: 550e8400-e29b-41d4-a716-446655440000
                   email: user@example.com
-                  role: participant
+                  permissions:
+                    - user
                   created_at: '2026-03-06T11:00:00Z'
         '400':
           description: Invalid request
@@ -493,7 +497,7 @@ paths:
                       - phone_number
                       - education_level
                       - referral_source
-                      - role
+                      - permissions
                       - created_at
                     properties:
                       id:
@@ -519,9 +523,12 @@ paths:
                         type: string
                         nullable: true
                         example: Instagram
-                      role:
-                        type: string
-                        example: participant
+                      permissions:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                          - user
                       created_at:
                         type: string
                         format: date-time
@@ -534,7 +541,8 @@ paths:
                   phone_number: '08123456789'
                   education_level: Perguruan Tinggi
                   referral_source: Instagram
-                  role: participant
+                  permissions:
+                    - user
                   created_at: '2026-03-06T11:00:00Z'
         '401':
           description: Unauthorized. Invalid or missing access token.
