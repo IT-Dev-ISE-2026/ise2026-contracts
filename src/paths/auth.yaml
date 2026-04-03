@@ -383,3 +383,58 @@ verify-email:
                 value: https://ise-its.com/email/invalid
                 description: Pengalihan saat verifikasi gagal.
 
+forgot-password:
+  post:
+    operationId: forgotPassword
+    description: Send a reset password link to the user's email if it exists. Returns a generic success response to prevent user enumeration.
+    summary: Forgot password
+    tags: [Auth]
+    security: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [email]
+            properties:
+              email:
+                type: string
+                format: email
+                example: user@example.com
+    responses:
+      "200":
+        description: Generic success response.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: Link reset password telah dikirim (jika akun telah terdaftar).
+            example:
+              message: Link reset password telah dikirim (jika akun telah terdaftar).
+      "422":
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message, errors]
+              properties:
+                message:
+                  type: string
+                errors:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+            example:
+              message: Validasi gagal.
+              errors:
+                email:
+                  - Format email tidak valid.
+

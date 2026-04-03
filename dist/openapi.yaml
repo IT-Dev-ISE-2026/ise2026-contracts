@@ -347,6 +347,53 @@ paths:
               example:
                 message: refresh token expired or invalid
                 requestId: req-jkl012
+  /api/auth/logout:
+    post:
+      operationId: logoutUser
+      description: Logout and clear access and refresh tokens.
+      summary: Logout user
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Logout successful. The refresh token cookie is cleared.
+          headers:
+            Set-Cookie:
+              description: Clears the refresh token. HttpOnly; Secure; SameSite=Lax; Max-Age=0
+              schema:
+                type: string
+                example: refresh_token=; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Path=/
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: logout successful
+              example:
+                message: logout successful
+        '401':
+          description: Unauthorized - Invalid or expired token
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - requestId
+                properties:
+                  message:
+                    type: string
+                    example: session expired or invalid
+                  requestId:
+                    type: string
+                    example: req-mno345
+              example:
+                message: session expired or invalid
+                requestId: req-mno345
   /api/auth/email-verifications:
     post:
       operationId: resendVerificationEmail
@@ -439,6 +486,96 @@ paths:
               example:
                 message: Gagal mengirim email. Silakan coba lagi.
                 requestId: req-xyz789
+  /api/auth/verify-email:
+    get:
+      operationId: verifyEmail
+      description: Verify email of a user who has not been verified yet.
+      summary: Verify email
+      tags:
+        - Auth
+      security: []
+      parameters:
+        - in: query
+          name: token
+          required: true
+          schema:
+            type: string
+          description: The verification token sent to the user's email.
+      responses:
+        '302':
+          description: Redirect to frontend based on verification result.
+          headers:
+            Location:
+              description: Target URL.  Redirects to /email/verified on success. Redirects to /email/invalid on failure (e.g., invalid or expired token).
+              schema:
+                type: string
+                format: uri
+              examples:
+                success:
+                  value: https://ise-its.com/email/verified
+                  description: Pengalihan saat verifikasi berhasil.
+                failure:
+                  value: https://ise-its.com/email/invalid
+                  description: Pengalihan saat verifikasi gagal.
+  /api/auth/password/forgot:
+    post:
+      operationId: forgotPassword
+      description: Send a reset password link to the user's email if it exists. Returns a generic success response to prevent user enumeration.
+      summary: Forgot password
+      tags:
+        - Auth
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+      responses:
+        '200':
+          description: Generic success response.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Link reset password telah dikirim (jika akun telah terdaftar).
+              example:
+                message: Link reset password telah dikirim (jika akun telah terdaftar).
+        '422':
+          description: Validation failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                  - errors
+                properties:
+                  message:
+                    type: string
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: string
+              example:
+                message: Validasi gagal.
+                errors:
+                  email:
+                    - Format email tidak valid.
   /api/users/me:
     patch:
       operationId: updateMe
