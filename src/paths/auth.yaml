@@ -304,3 +304,38 @@ email-verifications:
             example:
               message: Gagal mengirim email. Silakan coba lagi.
               requestId: req-xyz789
+
+verify-email:
+  get:
+    operationId: verifyEmail
+    description: Verify email of a user who has not been verified yet. 
+    summary: Verify email
+    tags: [Auth]
+    security: []
+    parameters:
+      - in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        description: The verification token sent to the user's email.
+    responses:
+      "302":
+        description: Redirect to frontend based on verification result.
+        headers:
+          Location:
+            description: >-
+              Target URL. 
+              Redirects to /email/verified on success.
+              Redirects to /email/invalid on failure (e.g., invalid or expired token).
+            schema:
+              type: string
+              format: uri
+            examples:
+              success:
+                value: https://ise-its.com/email/verified
+                description: Pengalihan saat verifikasi berhasil.
+              failure:
+                value: https://ise-its.com/email/invalid
+                description: Pengalihan saat verifikasi gagal.
+
