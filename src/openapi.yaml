@@ -42,6 +42,8 @@ paths:
     $ref: 'paths/auth.yaml#/verify-email'
   /api/auth/password/forgot:
     $ref: 'paths/auth.yaml#/forgot-password'
+  /api/auth/password/reset:
+    $ref: 'paths/auth.yaml#/password-reset'
   /api/users/me:
     $ref: 'paths/users.yaml#/update-me'
   /api/staff/{id}:
