@@ -264,7 +264,7 @@ logout:
               message: session expired or invalid
               requestId: req-mno345
 
-email-verifications:
+email-resend:
   post:
     operationId: resendVerificationEmail
     description: Resend verification email to a user who has not been verified yet. Public endpoint to avoid information disclosure.
@@ -349,7 +349,7 @@ email-verifications:
               message: Gagal mengirim email. Silakan coba lagi.
               requestId: req-xyz789
 
-verify-email:
+email-verify:
   get:
     operationId: verifyEmail
     description: Verify email of a user who has not been verified yet. 

@@ -394,7 +394,7 @@ paths:
               example:
                 message: session expired or invalid
                 requestId: req-mno345
-  /api/auth/email-verifications:
+  /api/auth/email/resend:
     post:
       operationId: resendVerificationEmail
       description: Resend verification email to a user who has not been verified yet. Public endpoint to avoid information disclosure.
@@ -486,7 +486,7 @@ paths:
               example:
                 message: Gagal mengirim email. Silakan coba lagi.
                 requestId: req-xyz789
-  /api/auth/verify-email:
+  /api/auth/email/verify:
     get:
       operationId: verifyEmail
       description: Verify email of a user who has not been verified yet.

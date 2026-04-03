@@ -36,10 +36,10 @@ paths:
     $ref: 'paths/auth.yaml#/refresh'
   /api/auth/logout:
     $ref: 'paths/auth.yaml#/logout'
-  /api/auth/email-verifications:
-    $ref: 'paths/auth.yaml#/email-verifications'
-  /api/auth/verify-email:
-    $ref: 'paths/auth.yaml#/verify-email'
+  /api/auth/email/resend:
+    $ref: 'paths/auth.yaml#/email-resend'
+  /api/auth/email/verify:
+    $ref: 'paths/auth.yaml#/email-verify'
   /api/auth/password/forgot:
     $ref: 'paths/auth.yaml#/forgot-password'
   /api/auth/password/reset:
