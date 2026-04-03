@@ -45,7 +45,7 @@ paths:
   /api/auth/password/reset:
     $ref: 'paths/auth.yaml#/password-reset'
   /api/users/me:
-    $ref: 'paths/users.yaml#/update-me'
+    $ref: 'paths/users.yaml#/me'
   /api/staff/{id}:
     $ref: 'paths/staff.yaml#/get-staff-by-id'
 

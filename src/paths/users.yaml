@@ -1,4 +1,86 @@
-update-me:
+me:
+  get:
+    operationId: getMe
+    description: Get the profile of the currently authenticated user.
+    summary: Get user profile
+    tags: [Users]
+    security:
+      - BearerAuth: []
+    responses:
+      "200":
+        description: Returns the authenticated user's profile.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [id, email, name, phone_number, education_level, referral_source, permissions, created_at]
+                  properties:
+                    id:
+                      type: string
+                      format: uuid
+                      example: 550e8400-e29b-41d4-a716-446655440000
+                    email:
+                      type: string
+                      example: user@example.com
+                    name:
+                      type: string
+                      nullable: true
+                      example: John Doe
+                    phone_number:
+                      type: string
+                      nullable: true
+                      example: "08123456789"
+                    education_level:
+                      type: string
+                      nullable: true
+                      example: Perguruan Tinggi
+                    referral_source:
+                      type: array
+                      items:
+                        type: string
+                      nullable: true
+                      description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
+                      example: ["Instagram", "WhatsApp"]
+                    permissions:
+                      type: array
+                      items:
+                        type: string
+                      example: ["user"]
+                    created_at:
+                      type: string
+                      format: date-time
+                      example: "2026-03-06T11:00:00Z"
+            example:
+              data:
+                id: 550e8400-e29b-41d4-a716-446655440000
+                email: user@example.com
+                name: John Doe
+                phone_number: "08123456789"
+                education_level: Perguruan Tinggi
+                referral_source: ["Instagram", "WhatsApp"]
+                permissions: ["user"]
+                created_at: "2026-03-06T11:00:00Z"
+      "401":
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message, requestId]
+              properties:
+                message:
+                  type: string
+                  example: unauthorized
+                requestId:
+                  type: string
+                  example: req-uvw123
+            example:
+              message: unauthorized
+              requestId: req-uvw123
   patch:
     operationId: updateMe
     description: Update the profile of the currently authenticated user.
@@ -26,14 +108,16 @@ update-me:
                 enum: [SMA, Perguruan Tinggi]
                 example: Perguruan Tinggi
               referral_source:
-                type: string
-                description: Sumber referal user mengetahui event. Bisa berisi pilihan predefined atau teks bebas (misal jika memilih 'Lainnya').
-                example: Instagram
+                type: array
+                items:
+                  type: string
+                description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
+                example: ["Instagram", "WhatsApp"]
           example:
             name: John Doe
             phone_number: "08123456789"
             education_level: Perguruan Tinggi
-            referral_source: Instagram
+            referral_source: ["Instagram", "WhatsApp"]
     responses:
       "200":
         description: Profile updated successfully. Returns the updated user profile.
@@ -67,9 +151,12 @@ update-me:
                       nullable: true
                       example: Perguruan Tinggi
                     referral_source:
-                      type: string
+                      type: array
+                      items:
+                        type: string
                       nullable: true
-                      example: Instagram
+                      description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
+                      example: ["Instagram", "WhatsApp"]
                     permissions:
                       type: array
                       items:
@@ -86,7 +173,7 @@ update-me:
                 name: John Doe
                 phone_number: "08123456789"
                 education_level: Perguruan Tinggi
-                referral_source: Instagram
+                referral_source: ["Instagram", "WhatsApp"]
                 permissions: ["user"]
                 created_at: "2026-03-06T11:00:00Z"
       "401":
