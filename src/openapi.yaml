@@ -10,6 +10,10 @@ info:
 servers:
   - url: http://localhost:8080
     description: Local development
+  - url: https://dev.ise-its.com
+    description: Staging server
+  - url: https://www.ise-its.com
+    description: Production server
 
 security: []
 
