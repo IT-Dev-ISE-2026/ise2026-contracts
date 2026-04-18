@@ -53,3 +53,8 @@ components:
   securitySchemes:
     BearerAuth:
       $ref: 'components/security-schemes/bearer-auth.yaml'
+  schemas:
+    Error:
+      $ref: 'components/schemas/error.yaml'
+    User:
+      $ref: 'components/schemas/user.yaml'

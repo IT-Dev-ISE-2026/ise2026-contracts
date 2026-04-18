@@ -81,26 +81,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: object
-                    required:
-                      - status
-                      - reason
-                    properties:
-                      status:
-                        type: string
-                        example: unhealthy
-                      reason:
-                        type: string
-                        example: database connection failed
+                $ref: '#/components/schemas/error'
               example:
-                data:
-                  status: unhealthy
-                  reason: database connection failed
+                message: Service unhealthy
+                requestId: req-sys-123
+                errors:
+                  database:
+                    - connection failed
   /api/auth/register:
     post:
       operationId: registerUser
@@ -145,34 +132,12 @@ paths:
                   - data
                 properties:
                   data:
-                    type: object
-                    required:
-                      - id
-                      - email
-                      - permissions
-                      - created_at
-                    properties:
-                      id:
-                        type: string
-                        format: uuid
-                        example: 550e8400-e29b-41d4-a716-446655440000
-                      email:
-                        type: string
-                        example: user@example.com
-                      permissions:
-                        type: array
-                        items:
-                          type: string
-                        example:
-                          - user
-                      created_at:
-                        type: string
-                        format: date-time
-                        example: '2026-03-06T11:00:00Z'
+                    $ref: '#/components/schemas/user'
               example:
                 data:
                   id: 550e8400-e29b-41d4-a716-446655440000
                   email: user@example.com
+                  name: John Doe
                   permissions:
                     - user
                   created_at: '2026-03-06T11:00:00Z'
@@ -181,17 +146,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: 'validation failed: password must be at least 8 characters'
-                  requestId:
-                    type: string
-                    example: req-abc123
+                $ref: '#/components/schemas/error'
               example:
                 message: 'validation failed: password must be at least 8 characters'
                 requestId: req-abc123
@@ -200,17 +155,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: email already registered
-                  requestId:
-                    type: string
-                    example: req-def456
+                $ref: '#/components/schemas/error'
               example:
                 message: email already registered
                 requestId: req-def456
@@ -273,17 +218,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: invalid email or password
-                  requestId:
-                    type: string
-                    example: req-ghi789
+                $ref: '#/components/schemas/error'
               example:
                 message: invalid email or password
                 requestId: req-ghi789
@@ -300,6 +235,7 @@ paths:
           required: true
           schema:
             type: string
+            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
           description: The refresh token stored in an HttpOnly cookie.
       responses:
         '200':
@@ -333,17 +269,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: refresh token expired or invalid
-                  requestId:
-                    type: string
-                    example: req-jkl012
+                $ref: '#/components/schemas/error'
               example:
                 message: refresh token expired or invalid
                 requestId: req-jkl012
@@ -380,17 +306,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: session expired or invalid
-                  requestId:
-                    type: string
-                    example: req-mno345
+                $ref: '#/components/schemas/error'
               example:
                 message: session expired or invalid
                 requestId: req-mno345
@@ -429,62 +345,38 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Email verifikasi telah dikirim ulang.
+                    example: Verification email has been resent.
               example:
-                message: Email verifikasi telah dikirim ulang.
+                message: Verification email has been resent.
         '409':
           description: Email already verified.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                properties:
-                  message:
-                    type: string
-                    example: Email sudah terverifikasi.
+                $ref: '#/components/schemas/error'
               example:
-                message: Email sudah terverifikasi.
+                message: Email already verified.
+                requestId: req-resend-409
         '422':
           description: Validation failed.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - errors
-                properties:
-                  message:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Validasi gagal.
+                message: Validation failed.
                 errors:
                   email:
-                    - Format email tidak valid.
+                    - Invalid email format.
+                requestId: req-resend-422
         '500':
-          description: Gagal mengirim email. Silakan coba lagi.
+          description: Failed to send email.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                  requestId:
-                    type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Gagal mengirim email. Silakan coba lagi.
+                message: Failed to send email. Please try again later.
                 requestId: req-xyz789
   /api/auth/email/verify:
     get:
@@ -500,6 +392,7 @@ paths:
           required: true
           schema:
             type: string
+            example: 550e8400-e29b-41d4-a716-446655440000
           description: The verification token sent to the user's email.
       responses:
         '302':
@@ -513,10 +406,10 @@ paths:
               examples:
                 success:
                   value: https://ise-its.com/email/verified
-                  description: Pengalihan saat verifikasi berhasil.
+                  description: Redirect on successful verification.
                 failure:
                   value: https://ise-its.com/email/invalid
-                  description: Pengalihan saat verifikasi gagal.
+                  description: Redirect on failed verification.
   /api/auth/password/forgot:
     post:
       operationId: forgotPassword
@@ -550,32 +443,21 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Link reset password telah dikirim (jika akun telah terdaftar).
+                    example: Password reset link has been sent (if account exists).
               example:
-                message: Link reset password telah dikirim (jika akun telah terdaftar).
+                message: Password reset link has been sent (if account exists).
         '422':
           description: Validation failed.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - errors
-                properties:
-                  message:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Validasi gagal.
+                message: Validation failed.
+                requestId: req-forgot-422
                 errors:
                   email:
-                    - Format email tidak valid.
+                    - Invalid email format.
   /api/auth/password/reset:
     post:
       operationId: resetPassword
@@ -613,50 +495,30 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: Password berhasil direset.
+                    example: Password reset successful.
               example:
-                message: Password berhasil direset.
+                message: Password reset successful.
         '400':
           description: Invalid or expired token.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: Token tidak valid atau sudah kadaluarsa
-                  requestId:
-                    type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Token tidak valid atau sudah kadaluarsa
+                message: Invalid or expired token.
                 requestId: req-pqr567
         '422':
           description: Validation failed.
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - errors
-                properties:
-                  message:
-                    type: string
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Validasi gagal.
+                message: Validation failed.
+                requestId: req-reset-422
                 errors:
                   password:
-                    - Password minimal 8 karakter.
+                    - Password must be at least 8 characters long.
   /api/users/me:
     get:
       operationId: getMe
@@ -677,55 +539,7 @@ paths:
                   - data
                 properties:
                   data:
-                    type: object
-                    required:
-                      - id
-                      - email
-                      - name
-                      - phone_number
-                      - education_level
-                      - referral_source
-                      - permissions
-                      - created_at
-                    properties:
-                      id:
-                        type: string
-                        format: uuid
-                        example: 550e8400-e29b-41d4-a716-446655440000
-                      email:
-                        type: string
-                        example: user@example.com
-                      name:
-                        type: string
-                        nullable: true
-                        example: John Doe
-                      phone_number:
-                        type: string
-                        nullable: true
-                        example: '08123456789'
-                      education_level:
-                        type: string
-                        nullable: true
-                        example: Perguruan Tinggi
-                      referral_source:
-                        type: array
-                        items:
-                          type: string
-                        nullable: true
-                        description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
-                        example:
-                          - Instagram
-                          - WhatsApp
-                      permissions:
-                        type: array
-                        items:
-                          type: string
-                        example:
-                          - user
-                      created_at:
-                        type: string
-                        format: date-time
-                        example: '2026-03-06T11:00:00Z'
+                    $ref: '#/components/schemas/user'
               example:
                 data:
                   id: 550e8400-e29b-41d4-a716-446655440000
@@ -744,17 +558,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-                  requestId:
-                    type: string
-                    example: req-uvw123
+                $ref: '#/components/schemas/error'
               example:
                 message: unauthorized
                 requestId: req-uvw123
@@ -791,7 +595,7 @@ paths:
                   type: array
                   items:
                     type: string
-                  description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
+                  description: Source of how the user knows about the event.
                   example:
                     - Instagram
                     - WhatsApp
@@ -813,55 +617,7 @@ paths:
                   - data
                 properties:
                   data:
-                    type: object
-                    required:
-                      - id
-                      - email
-                      - name
-                      - phone_number
-                      - education_level
-                      - referral_source
-                      - permissions
-                      - created_at
-                    properties:
-                      id:
-                        type: string
-                        format: uuid
-                        example: 550e8400-e29b-41d4-a716-446655440000
-                      email:
-                        type: string
-                        example: user@example.com
-                      name:
-                        type: string
-                        nullable: true
-                        example: John Doe
-                      phone_number:
-                        type: string
-                        nullable: true
-                        example: '08123456789'
-                      education_level:
-                        type: string
-                        nullable: true
-                        example: Perguruan Tinggi
-                      referral_source:
-                        type: array
-                        items:
-                          type: string
-                        nullable: true
-                        description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
-                        example:
-                          - Instagram
-                          - WhatsApp
-                      permissions:
-                        type: array
-                        items:
-                          type: string
-                        example:
-                          - user
-                      created_at:
-                        type: string
-                        format: date-time
-                        example: '2026-03-06T11:00:00Z'
+                    $ref: '#/components/schemas/user'
               example:
                 data:
                   id: 550e8400-e29b-41d4-a716-446655440000
@@ -880,17 +636,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - requestId
-                properties:
-                  message:
-                    type: string
-                    example: unauthorized
-                  requestId:
-                    type: string
-                    example: req-uvw123
+                $ref: '#/components/schemas/error'
               example:
                 message: unauthorized
                 requestId: req-uvw123
@@ -899,25 +645,13 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - message
-                  - errors
-                properties:
-                  message:
-                    type: string
-                    example: Validasi gagal.
-                  errors:
-                    type: object
-                    additionalProperties:
-                      type: array
-                      items:
-                        type: string
+                $ref: '#/components/schemas/error'
               example:
-                message: Validasi gagal.
+                message: Validation failed.
+                requestId: req-update-me-422
                 errors:
                   education_level:
-                    - Field education_level harus salah satu dari: SMA, Perguruan Tinggi.
+                    - 'Field education_level must be one of: SMA, Perguruan Tinggi.'
   /api/staff/{id}:
     get:
       operationId: getStaffById
@@ -931,9 +665,11 @@ paths:
           required: true
           schema:
             type: string
+            example: '1'
+          description: Staff ID or identifier.
       responses:
         '200':
-          description: Data ditemukan
+          description: Staff data found
           content:
             application/json:
               schema:
@@ -951,14 +687,14 @@ paths:
                       - dresscode
                     properties:
                       id:
-                        type: number
-                        example: 1
+                        type: string
+                        example: '1'
                       name:
                         type: string
                         example: John Doe
-                      nrp:
+                      prodi:
                         type: string
-                        example: '1234567890'
+                        example: Informatika
                       isAccepted:
                         type: boolean
                         example: true
@@ -968,39 +704,94 @@ paths:
                         example: White Shirt
               example:
                 data:
-                  id: 1234567890
+                  id: '1'
                   name: John Doe
-                  nrp: '1234567890'
+                  prodi: Informatika
                   isAccepted: true
                   dresscode: White Shirt
         '404':
-          description: Data tidak ditemukan
+          description: Staff data not found
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - data
-                properties:
-                  data:
-                    type: object
-                    required:
-                      - message
-                      - requestId
-                    properties:
-                      message:
-                        type: string
-                        example: Data registrasi staff tidak ditemukan
-                      requestId:
-                        type: string
-                        example: abc123
+                $ref: '#/components/schemas/error'
               example:
-                data:
-                  message: Data registrasi staff tidak ditemukan
-                  requestId: abc123
+                message: Staff registration data not found
+                requestId: abc123
 components:
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    Error:
+      $ref: '#/components/schemas/error'
+    User:
+      $ref: '#/components/schemas/user'
+    error:
+      type: object
+      required:
+        - message
+        - requestId
+      properties:
+        message:
+          type: string
+          example: An error occurred
+        requestId:
+          type: string
+          example: req-123456
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          description: Validation errors if applicable
+    user:
+      type: object
+      required:
+        - id
+        - email
+        - permissions
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        name:
+          type: string
+          nullable: true
+          example: John Doe
+        phone_number:
+          type: string
+          nullable: true
+          example: '08123456789'
+        education_level:
+          type: string
+          nullable: true
+          example: Perguruan Tinggi
+        referral_source:
+          type: array
+          items:
+            type: string
+          nullable: true
+          description: Source of how the user knows about the event.
+          example:
+            - Instagram
+            - WhatsApp
+        permissions:
+          type: array
+          items:
+            type: string
+          example:
+            - user
+        created_at:
+          type: string
+          format: date-time
+          example: '2026-03-06T11:00:00Z'

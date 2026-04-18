@@ -55,20 +55,9 @@ health:
         content:
           application/json:
             schema:
-              type: object
-              required: [data]
-              properties:
-                data:
-                  type: object
-                  required: [status, reason]
-                  properties:
-                    status:
-                      type: string
-                      example: unhealthy
-                    reason:
-                      type: string
-                      example: database connection failed
+              $ref: '../components/schemas/error.yaml'
             example:
-              data:
-                status: unhealthy
-                reason: database connection failed
+              message: Service unhealthy
+              requestId: req-sys-123
+              errors:
+                database: ["connection failed"]

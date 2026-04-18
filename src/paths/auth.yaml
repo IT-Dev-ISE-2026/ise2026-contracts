@@ -37,29 +37,12 @@ register:
               required: [data]
               properties:
                 data:
-                  type: object
-                  required: [id, email, permissions, created_at]
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                      example: 550e8400-e29b-41d4-a716-446655440000
-                    email:
-                      type: string
-                      example: user@example.com
-                    permissions:
-                      type: array
-                      items:
-                        type: string
-                      example: ["user"]
-                    created_at:
-                      type: string
-                      format: date-time
-                      example: "2026-03-06T11:00:00Z"
+                  $ref: '../components/schemas/user.yaml'
             example:
               data:
                 id: 550e8400-e29b-41d4-a716-446655440000
                 email: user@example.com
+                name: John Doe
                 permissions: ["user"]
                 created_at: "2026-03-06T11:00:00Z"
       "400":
@@ -67,15 +50,7 @@ register:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: "validation failed: password must be at least 8 characters"
-                requestId:
-                  type: string
-                  example: req-abc123
+              $ref: '../components/schemas/error.yaml'
             example:
               message: "validation failed: password must be at least 8 characters"
               requestId: req-abc123
@@ -84,15 +59,7 @@ register:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: email already registered
-                requestId:
-                  type: string
-                  example: req-def456
+              $ref: '../components/schemas/error.yaml'
             example:
               message: email already registered
               requestId: req-def456
@@ -151,15 +118,7 @@ login:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: invalid email or password
-                requestId:
-                  type: string
-                  example: req-ghi789
+              $ref: '../components/schemas/error.yaml'
             example:
               message: invalid email or password
               requestId: req-ghi789
@@ -176,6 +135,7 @@ refresh:
         required: true
         schema:
           type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
         description: The refresh token stored in an HttpOnly cookie.
     responses:
       "200":
@@ -207,15 +167,7 @@ refresh:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: refresh token expired or invalid
-                requestId:
-                  type: string
-                  example: req-jkl012
+              $ref: '../components/schemas/error.yaml'
             example:
               message: refresh token expired or invalid
               requestId: req-jkl012
@@ -251,15 +203,7 @@ logout:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: session expired or invalid
-                requestId:
-                  type: string
-                  example: req-mno345
+              $ref: '../components/schemas/error.yaml'
             example:
               message: session expired or invalid
               requestId: req-mno345
@@ -296,57 +240,38 @@ email-resend:
               properties:
                 message:
                   type: string
-                  example: Email verifikasi telah dikirim ulang.
+                  example: Verification email has been resent.
             example:
-              message: Email verifikasi telah dikirim ulang.
+              message: Verification email has been resent.
       "409":
         description: Email already verified.
         content:
           application/json:
             schema:
-              type: object
-              required: [message]
-              properties:
-                message:
-                  type: string
-                  example: Email sudah terverifikasi.
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Email sudah terverifikasi.
+              message: Email already verified.
+              requestId: req-resend-409
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
-              type: object
-              required: [message, errors]
-              properties:
-                message:
-                  type: string
-                errors:
-                  type: object
-                  additionalProperties:
-                    type: array
-                    items:
-                      type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Validasi gagal.
+              message: Validation failed.
               errors:
                 email:
-                  - Format email tidak valid.
+                  - "Invalid email format."
+              requestId: req-resend-422
       "500":
-        description: Gagal mengirim email. Silakan coba lagi.
+        description: Failed to send email.
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                requestId:
-                  type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Gagal mengirim email. Silakan coba lagi.
+              message: Failed to send email. Please try again later.
               requestId: req-xyz789
 
 email-verify:
@@ -362,6 +287,7 @@ email-verify:
         required: true
         schema:
           type: string
+          example: 550e8400-e29b-41d4-a716-446655440000
         description: The verification token sent to the user's email.
     responses:
       "302":
@@ -378,10 +304,10 @@ email-verify:
             examples:
               success:
                 value: https://ise-its.com/email/verified
-                description: Pengalihan saat verifikasi berhasil.
+                description: Redirect on successful verification.
               failure:
                 value: https://ise-its.com/email/invalid
-                description: Pengalihan saat verifikasi gagal.
+                description: Redirect on failed verification.
 
 forgot-password:
   post:
@@ -413,30 +339,21 @@ forgot-password:
               properties:
                 message:
                   type: string
-                  example: Link reset password telah dikirim (jika akun telah terdaftar).
+                  example: Password reset link has been sent (if account exists).
             example:
-              message: Link reset password telah dikirim (jika akun telah terdaftar).
+              message: Password reset link has been sent (if account exists).
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
-              type: object
-              required: [message, errors]
-              properties:
-                message:
-                  type: string
-                errors:
-                  type: object
-                  additionalProperties:
-                    type: array
-                    items:
-                      type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Validasi gagal.
+              message: Validation failed.
+              requestId: req-forgot-422
               errors:
                 email:
-                  - Format email tidak valid.
+                  - "Invalid email format."
 
 password-reset:
   post:
@@ -471,44 +388,27 @@ password-reset:
               properties:
                 message:
                   type: string
-                  example: Password berhasil direset.
+                  example: Password reset successful.
             example:
-              message: Password berhasil direset.
+              message: Password reset successful.
       "400":
         description: Invalid or expired token.
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: Token tidak valid atau sudah kadaluarsa
-                requestId:
-                  type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Token tidak valid atau sudah kadaluarsa
+              message: Invalid or expired token.
               requestId: req-pqr567
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
-              type: object
-              required: [message, errors]
-              properties:
-                message:
-                  type: string
-                errors:
-                  type: object
-                  additionalProperties:
-                    type: array
-                    items:
-                      type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Validasi gagal.
+              message: Validation failed.
+              requestId: req-reset-422
               errors:
                 password:
-                  - Password minimal 8 karakter.
-
+                  - "Password must be at least 8 characters long."

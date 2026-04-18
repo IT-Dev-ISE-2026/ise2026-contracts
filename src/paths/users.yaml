@@ -16,44 +16,7 @@ me:
               required: [data]
               properties:
                 data:
-                  type: object
-                  required: [id, email, name, phone_number, education_level, referral_source, permissions, created_at]
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                      example: 550e8400-e29b-41d4-a716-446655440000
-                    email:
-                      type: string
-                      example: user@example.com
-                    name:
-                      type: string
-                      nullable: true
-                      example: John Doe
-                    phone_number:
-                      type: string
-                      nullable: true
-                      example: "08123456789"
-                    education_level:
-                      type: string
-                      nullable: true
-                      example: Perguruan Tinggi
-                    referral_source:
-                      type: array
-                      items:
-                        type: string
-                      nullable: true
-                      description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
-                      example: ["Instagram", "WhatsApp"]
-                    permissions:
-                      type: array
-                      items:
-                        type: string
-                      example: ["user"]
-                    created_at:
-                      type: string
-                      format: date-time
-                      example: "2026-03-06T11:00:00Z"
+                  $ref: '../components/schemas/user.yaml'
             example:
               data:
                 id: 550e8400-e29b-41d4-a716-446655440000
@@ -69,15 +32,7 @@ me:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: unauthorized
-                requestId:
-                  type: string
-                  example: req-uvw123
+              $ref: '../components/schemas/error.yaml'
             example:
               message: unauthorized
               requestId: req-uvw123
@@ -111,7 +66,7 @@ me:
                 type: array
                 items:
                   type: string
-                description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
+                description: Source of how the user knows about the event.
                 example: ["Instagram", "WhatsApp"]
           example:
             name: John Doe
@@ -128,44 +83,7 @@ me:
               required: [data]
               properties:
                 data:
-                  type: object
-                  required: [id, email, name, phone_number, education_level, referral_source, permissions, created_at]
-                  properties:
-                    id:
-                      type: string
-                      format: uuid
-                      example: 550e8400-e29b-41d4-a716-446655440000
-                    email:
-                      type: string
-                      example: user@example.com
-                    name:
-                      type: string
-                      nullable: true
-                      example: John Doe
-                    phone_number:
-                      type: string
-                      nullable: true
-                      example: "08123456789"
-                    education_level:
-                      type: string
-                      nullable: true
-                      example: Perguruan Tinggi
-                    referral_source:
-                      type: array
-                      items:
-                        type: string
-                      nullable: true
-                      description: Sumber referal user mengetahui event. Bisa memilih lebih dari satu.
-                      example: ["Instagram", "WhatsApp"]
-                    permissions:
-                      type: array
-                      items:
-                        type: string
-                      example: ["user"]
-                    created_at:
-                      type: string
-                      format: date-time
-                      example: "2026-03-06T11:00:00Z"
+                  $ref: '../components/schemas/user.yaml'
             example:
               data:
                 id: 550e8400-e29b-41d4-a716-446655440000
@@ -181,15 +99,7 @@ me:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, requestId]
-              properties:
-                message:
-                  type: string
-                  example: unauthorized
-                requestId:
-                  type: string
-                  example: req-uvw123
+              $ref: '../components/schemas/error.yaml'
             example:
               message: unauthorized
               requestId: req-uvw123
@@ -198,20 +108,10 @@ me:
         content:
           application/json:
             schema:
-              type: object
-              required: [message, errors]
-              properties:
-                message:
-                  type: string
-                  example: Validasi gagal.
-                errors:
-                  type: object
-                  additionalProperties:
-                    type: array
-                    items:
-                      type: string
+              $ref: '../components/schemas/error.yaml'
             example:
-              message: Validasi gagal.
+              message: Validation failed.
+              requestId: req-update-me-422
               errors:
                 education_level:
-                  - Field education_level harus salah satu dari: SMA, Perguruan Tinggi.
+                  - "Field education_level must be one of: SMA, Perguruan Tinggi."

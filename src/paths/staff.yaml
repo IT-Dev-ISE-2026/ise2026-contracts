@@ -10,9 +10,11 @@ get-staff-by-id:
         required: true
         schema:
           type: string
+          example: "1"
+        description: Staff ID or identifier.
     responses:
       '200':
-        description: Data ditemukan
+        description: Staff data found
         content:
           application/json:
             schema:
@@ -24,14 +26,14 @@ get-staff-by-id:
                   required: [id, name, prodi, isAccepted, dresscode]
                   properties:
                     id:
-                      type: number
-                      example: 1
+                      type: string
+                      example: "1"
                     name:
                       type: string
                       example: John Doe
-                    nrp:
+                    prodi:
                       type: string
-                      example: "1234567890"
+                      example: "Informatika"
                     isAccepted:
                       type: boolean
                       example: true
@@ -41,32 +43,17 @@ get-staff-by-id:
                       example: White Shirt
             example:
               data:
-                id: 1234567890
+                id: "1"
                 name: John Doe
-                nrp: "1234567890"
+                prodi: "Informatika"
                 isAccepted: true
                 dresscode: White Shirt
       '404':
-        description: Data tidak ditemukan
+        description: Staff data not found
         content:
           application/json:
             schema:
-              type: object
-              required: [data]
-              properties:
-                data:
-                  type: object
-                  required: [message, requestId]
-                  properties:
-                    message:
-                      type: string
-                      example: Data registrasi staff tidak ditemukan
-                    requestId:
-                      type: string
-                      example: abc123
+              $ref: '../components/schemas/error.yaml'
             example:
-              data:
-                message: Data registrasi staff tidak ditemukan
-                requestId: abc123
-
-
+              message: Staff registration data not found
+              requestId: abc123
