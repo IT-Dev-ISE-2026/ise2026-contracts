@@ -16,6 +16,8 @@ test-email-verification:
                 type: string
                 format: email
                 example: dev@example.com
+          example:
+            email: dev@example.com
     responses:
       '200':
         description: Verification simulation triggered
@@ -26,6 +28,11 @@ test-email-verification:
               properties:
                 message:
                   type: string
+            examples:
+              SuccessTrigger:
+                summary: Berhasil mentrigger simulasi
+                value:
+                  message: Simulation email verification for dev@example.com has been sent.
 
 test-orders:
   post:
@@ -38,8 +45,35 @@ test-orders:
     responses:
       '201':
         description: Order created
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                data:
+                  type: object
+            examples:
+              OrderCreated:
+                summary: Berhasil membuat order dummy
+                value:
+                  message: "Order created successfully"
+                  data:
+                    order_id: "ORD-TEST-123"
+                    status: "pending"
       '403':
         description: Forbidden - Requires user permission
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/error.yaml'
+            examples:
+              MissingPermission:
+                summary: User tidak memiliki permission 'user'
+                value:
+                  message: "forbidden: you do not have permission 'user'"
+                  requestId: req-test-403
 
 test-admin:
   get:
@@ -52,8 +86,30 @@ test-admin:
     responses:
       '200':
         description: Access granted
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+            examples:
+              AdminAccess:
+                summary: Akses admin diverifikasi
+                value:
+                  message: "Welcome Admin! Access granted."
       '403':
         description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/error.yaml'
+            examples:
+              NotAnAdmin:
+                summary: User bukan admin
+                value:
+                  message: "access denied: admin role required"
+                  requestId: req-admin-403
 
 test-admin-bionix:
   get:
@@ -66,6 +122,18 @@ test-admin-bionix:
     responses:
       '200':
         description: Access granted
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+            examples:
+              BionixReadAccess:
+                summary: Akses baca bionix diverifikasi
+                value:
+                  message: "Access granted for Bionix Read"
   post:
     operationId: testAdminBionixWrite
     description: Test Bionix admin write access.
@@ -76,4 +144,16 @@ test-admin-bionix:
     responses:
       '200':
         description: Access granted
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+            examples:
+              BionixWriteAccess:
+                summary: Akses tulis bionix diverifikasi
+                value:
+                  message: "Access granted for Bionix Write"
 

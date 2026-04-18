@@ -41,19 +41,36 @@ get-staff-by-id:
                       type: string
                       nullable: true
                       example: White Shirt
-            example:
-              data:
-                id: "1"
-                name: John Doe
-                prodi: "Informatika"
-                isAccepted: true
-                dresscode: White Shirt
+            examples:
+              StaffAccepted:
+                summary: Data staff yang dinyatakan diterima
+                value:
+                  data:
+                    id: "STF-2026-001"
+                    name: John Doe
+                    prodi: "Informatika"
+                    isAccepted: true
+                    dresscode: "White Shirt & Black Pants"
+              StaffRejected:
+                summary: Data staff yang tidak lolos seleksi
+                value:
+                  data:
+                    id: "STF-2026-999"
+                    name: Jane Smith
+                    prodi: "Sistem Informasi"
+                    isAccepted: false
+                    dresscode: null
       '404':
         description: Staff data not found
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: Staff registration data not found
-              requestId: abc123
+            examples:
+              NotFound:
+                summary: ID staff tidak terdaftar
+                value:
+                  message: Staff registration data not found
+                  requestId: abc123
+                  errors:
+                    id: ["invalid staff id format or not found"]

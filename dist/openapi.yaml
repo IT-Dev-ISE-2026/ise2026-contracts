@@ -49,9 +49,12 @@ paths:
                       message:
                         type: string
                         example: pong
-              example:
-                data:
-                  message: pong
+              examples:
+                StandardPong:
+                  summary: Response pong standar
+                  value:
+                    data:
+                      message: pong
   /api/sys/health:
     get:
       operationId: sysHealth
@@ -77,21 +80,36 @@ paths:
                       status:
                         type: string
                         example: healthy
-              example:
-                data:
-                  status: healthy
+              examples:
+                ServiceHealthy:
+                  summary: Semua sistem berjalan normal
+                  value:
+                    data:
+                      status: healthy
         '503':
           description: Service unhealthy
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: Service unhealthy
-                requestId: req-sys-123
-                errors:
-                  database:
-                    - connection failed
+              examples:
+                DatabaseDown:
+                  summary: Koneksi database terputus
+                  value:
+                    message: Service unhealthy
+                    requestId: req-sys-db-down
+                    errors:
+                      database:
+                        - connection failed
+                        - timeout after 5s
+                RedisDown:
+                  summary: Koneksi Redis terputus
+                  value:
+                    message: Service unhealthy
+                    requestId: req-sys-redis-down
+                    errors:
+                      redis:
+                        - 'dial tcp [::1]:6379: connect: connection refused'
   /api/auth/register:
     post:
       operationId: registerUser
@@ -544,28 +562,53 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/user'
-              example:
-                data:
-                  id: 550e8400-e29b-41d4-a716-446655440000
-                  email: user@example.com
-                  name: John Doe
-                  phone_number: '08123456789'
-                  education_level: Perguruan Tinggi
-                  referral_source:
-                    - Instagram
-                    - WhatsApp
-                  permissions:
-                    - user
-                  created_at: '2026-03-06T11:00:00Z'
+              examples:
+                UserProfileCollege:
+                  summary: Profil user (Mahasiswa)
+                  value:
+                    data:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      email: john.student@example.com
+                      name: John Student
+                      phone_number: '08123456789'
+                      education_level: Perguruan Tinggi
+                      referral_source:
+                        - Instagram
+                        - WhatsApp
+                      permissions:
+                        - user
+                      created_at: '2026-03-06T11:00:00Z'
+                UserProfileSchool:
+                  summary: Profil user (Siswa SMA)
+                  value:
+                    data:
+                      id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                      email: jane.school@example.com
+                      name: Jane School
+                      phone_number: '08987654321'
+                      education_level: SMA
+                      referral_source:
+                        - TikTok
+                      permissions:
+                        - user
+                      created_at: '2026-03-07T09:30:00Z'
         '401':
           description: Unauthorized. Invalid or missing access token.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: unauthorized
-                requestId: req-uvw123
+              examples:
+                TokenMissing:
+                  summary: Token JWT tidak disertakan
+                  value:
+                    message: unauthorized
+                    requestId: req-uvw123-missing
+                TokenExpired:
+                  summary: Token JWT sudah kadaluwarsa
+                  value:
+                    message: session expired
+                    requestId: req-uvw123-expired
     patch:
       operationId: updateMe
       description: Update the profile of the currently authenticated user.
@@ -603,13 +646,15 @@ paths:
                   example:
                     - Instagram
                     - WhatsApp
-            example:
-              name: John Doe
-              phone_number: '08123456789'
-              education_level: Perguruan Tinggi
-              referral_source:
-                - Instagram
-                - WhatsApp
+            examples:
+              UpdateName:
+                summary: Mengubah nama saja
+                value:
+                  name: John New Name
+              UpdateEducation:
+                summary: Mengubah tingkat pendidikan
+                value:
+                  education_level: SMA
       responses:
         '200':
           description: Profile updated successfully. Returns the updated user profile.
@@ -622,40 +667,57 @@ paths:
                 properties:
                   data:
                     $ref: '#/components/schemas/user'
-              example:
-                data:
-                  id: 550e8400-e29b-41d4-a716-446655440000
-                  email: user@example.com
-                  name: John Doe
-                  phone_number: '08123456789'
-                  education_level: Perguruan Tinggi
-                  referral_source:
-                    - Instagram
-                    - WhatsApp
-                  permissions:
-                    - user
-                  created_at: '2026-03-06T11:00:00Z'
+              examples:
+                UpdateSuccess:
+                  summary: Berhasil memperbarui profil
+                  value:
+                    data:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      email: john.student@example.com
+                      name: John New Name
+                      phone_number: '08123456789'
+                      education_level: SMA
+                      referral_source:
+                        - Instagram
+                        - WhatsApp
+                      permissions:
+                        - user
+                      created_at: '2026-03-06T11:00:00Z'
         '401':
           description: Unauthorized. Invalid or missing access token.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: unauthorized
-                requestId: req-uvw123
+              examples:
+                AuthFailed:
+                  summary: Autentikasi gagal
+                  value:
+                    message: unauthorized
+                    requestId: req-uvw456
         '422':
           description: Validation failed.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: Validation failed.
-                requestId: req-update-me-422
-                errors:
-                  education_level:
-                    - 'Field education_level must be one of: SMA, Perguruan Tinggi.'
+              examples:
+                InvalidEnum:
+                  summary: Nilai education_level tidak sesuai enum
+                  value:
+                    message: Validation failed.
+                    requestId: req-update-me-422-enum
+                    errors:
+                      education_level:
+                        - 'Field education_level must be one of: SMA, Perguruan Tinggi.'
+                EmptyName:
+                  summary: Nama dikirim kosong
+                  value:
+                    message: Validation failed.
+                    requestId: req-update-me-422-name
+                    errors:
+                      name:
+                        - Field name must be at least 1 character long.
   /api/staff/{id}:
     get:
       operationId: getStaffById
@@ -706,22 +768,40 @@ paths:
                         type: string
                         nullable: true
                         example: White Shirt
-              example:
-                data:
-                  id: '1'
-                  name: John Doe
-                  prodi: Informatika
-                  isAccepted: true
-                  dresscode: White Shirt
+              examples:
+                StaffAccepted:
+                  summary: Data staff yang dinyatakan diterima
+                  value:
+                    data:
+                      id: STF-2026-001
+                      name: John Doe
+                      prodi: Informatika
+                      isAccepted: true
+                      dresscode: White Shirt & Black Pants
+                StaffRejected:
+                  summary: Data staff yang tidak lolos seleksi
+                  value:
+                    data:
+                      id: STF-2026-999
+                      name: Jane Smith
+                      prodi: Sistem Informasi
+                      isAccepted: false
+                      dresscode: null
         '404':
           description: Staff data not found
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: Staff registration data not found
-                requestId: abc123
+              examples:
+                NotFound:
+                  summary: ID staff tidak terdaftar
+                  value:
+                    message: Staff registration data not found
+                    requestId: abc123
+                    errors:
+                      id:
+                        - invalid staff id format or not found
   /api/sys/permissions:
     post:
       operationId: setPermissions
@@ -757,6 +837,14 @@ paths:
                   example:
                     - admin
                     - user
+            examples:
+              SetAdmin:
+                summary: Memberikan hak akses Admin
+                value:
+                  email: dev@example.com
+                  permissions:
+                    - admin:bionix:read
+                    - user
       responses:
         '200':
           description: Permissions updated successfully
@@ -770,24 +858,35 @@ paths:
                   message:
                     type: string
                     example: Status privilege user dev@example.com berhasil di update!
+              examples:
+                UpdateSuccess:
+                  summary: Update berhasil dilakukan
+                  value:
+                    message: Status privilege user dev@example.com berhasil di update!
         '401':
           description: Unauthorized - Invalid or missing internal token
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: Kredensial tidak valid
-                requestId: internal-req-123
+              examples:
+                InvalidToken:
+                  summary: Token internal salah atau tidak ada
+                  value:
+                    message: Kredensial tidak valid
+                    requestId: internal-req-123
         '500':
           description: Failed to update permissions
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                message: Gagal update hak user
-                requestId: internal-req-456
+              examples:
+                UserNotFound:
+                  summary: Email user tidak ditemukan di database
+                  value:
+                    message: 'Gagal update hak user: user not found'
+                    requestId: internal-req-456
   /api/tests/email-verification:
     post:
       operationId: testEmailVerification
@@ -808,6 +907,8 @@ paths:
                   type: string
                   format: email
                   example: dev@example.com
+            example:
+              email: dev@example.com
       responses:
         '200':
           description: Verification simulation triggered
@@ -818,6 +919,11 @@ paths:
                 properties:
                   message:
                     type: string
+              examples:
+                SuccessTrigger:
+                  summary: Berhasil mentrigger simulasi
+                  value:
+                    message: Simulation email verification for dev@example.com has been sent.
   /api/tests/orders:
     post:
       operationId: testOrder
@@ -830,8 +936,35 @@ paths:
       responses:
         '201':
           description: Order created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: object
+              examples:
+                OrderCreated:
+                  summary: Berhasil membuat order dummy
+                  value:
+                    message: Order created successfully
+                    data:
+                      order_id: ORD-TEST-123
+                      status: pending
         '403':
           description: Forbidden - Requires user permission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                MissingPermission:
+                  summary: User tidak memiliki permission 'user'
+                  value:
+                    message: 'forbidden: you do not have permission ''user'''
+                    requestId: req-test-403
   /api/tests/admin:
     get:
       operationId: testAdminAccess
@@ -844,8 +977,30 @@ paths:
       responses:
         '200':
           description: Access granted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                AdminAccess:
+                  summary: Akses admin diverifikasi
+                  value:
+                    message: Welcome Admin! Access granted.
         '403':
           description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              examples:
+                NotAnAdmin:
+                  summary: User bukan admin
+                  value:
+                    message: 'access denied: admin role required'
+                    requestId: req-admin-403
   /api/tests/admin/bionix:
     get:
       operationId: testAdminBionixRead
@@ -858,6 +1013,18 @@ paths:
       responses:
         '200':
           description: Access granted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                BionixReadAccess:
+                  summary: Akses baca bionix diverifikasi
+                  value:
+                    message: Access granted for Bionix Read
     post:
       operationId: testAdminBionixWrite
       description: Test Bionix admin write access.
@@ -869,6 +1036,18 @@ paths:
       responses:
         '200':
           description: Access granted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                BionixWriteAccess:
+                  summary: Akses tulis bionix diverifikasi
+                  value:
+                    message: Access granted for Bionix Write
 components:
   securitySchemes:
     BearerAuth:

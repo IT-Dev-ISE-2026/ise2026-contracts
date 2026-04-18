@@ -17,25 +17,48 @@ me:
               properties:
                 data:
                   $ref: '../components/schemas/user.yaml'
-            example:
-              data:
-                id: 550e8400-e29b-41d4-a716-446655440000
-                email: user@example.com
-                name: John Doe
-                phone_number: "08123456789"
-                education_level: Perguruan Tinggi
-                referral_source: ["Instagram", "WhatsApp"]
-                permissions: ["user"]
-                created_at: "2026-03-06T11:00:00Z"
+            examples:
+              UserProfileCollege:
+                summary: Profil user (Mahasiswa)
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    email: john.student@example.com
+                    name: John Student
+                    phone_number: "08123456789"
+                    education_level: Perguruan Tinggi
+                    referral_source: ["Instagram", "WhatsApp"]
+                    permissions: ["user"]
+                    created_at: "2026-03-06T11:00:00Z"
+              UserProfileSchool:
+                summary: Profil user (Siswa SMA)
+                value:
+                  data:
+                    id: f47ac10b-58cc-4372-a567-0e02b2c3d479
+                    email: jane.school@example.com
+                    name: Jane School
+                    phone_number: "08987654321"
+                    education_level: SMA
+                    referral_source: ["TikTok"]
+                    permissions: ["user"]
+                    created_at: "2026-03-07T09:30:00Z"
       "401":
         description: Unauthorized. Invalid or missing access token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: unauthorized
-              requestId: req-uvw123
+            examples:
+              TokenMissing:
+                summary: Token JWT tidak disertakan
+                value:
+                  message: unauthorized
+                  requestId: req-uvw123-missing
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: session expired
+                  requestId: req-uvw123-expired
   patch:
     operationId: updateMe
     description: Update the profile of the currently authenticated user.
@@ -68,11 +91,15 @@ me:
                   type: string
                 description: Source of how the user knows about the event.
                 example: ["Instagram", "WhatsApp"]
-          example:
-            name: John Doe
-            phone_number: "08123456789"
-            education_level: Perguruan Tinggi
-            referral_source: ["Instagram", "WhatsApp"]
+          examples:
+            UpdateName:
+              summary: Mengubah nama saja
+              value:
+                name: John New Name
+            UpdateEducation:
+              summary: Mengubah tingkat pendidikan
+              value:
+                education_level: SMA
     responses:
       "200":
         description: Profile updated successfully. Returns the updated user profile.
@@ -84,34 +111,51 @@ me:
               properties:
                 data:
                   $ref: '../components/schemas/user.yaml'
-            example:
-              data:
-                id: 550e8400-e29b-41d4-a716-446655440000
-                email: user@example.com
-                name: John Doe
-                phone_number: "08123456789"
-                education_level: Perguruan Tinggi
-                referral_source: ["Instagram", "WhatsApp"]
-                permissions: ["user"]
-                created_at: "2026-03-06T11:00:00Z"
+            examples:
+              UpdateSuccess:
+                summary: Berhasil memperbarui profil
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    email: john.student@example.com
+                    name: John New Name
+                    phone_number: "08123456789"
+                    education_level: SMA
+                    referral_source: ["Instagram", "WhatsApp"]
+                    permissions: ["user"]
+                    created_at: "2026-03-06T11:00:00Z"
       "401":
         description: Unauthorized. Invalid or missing access token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: unauthorized
-              requestId: req-uvw123
+            examples:
+              AuthFailed:
+                summary: Autentikasi gagal
+                value:
+                  message: unauthorized
+                  requestId: req-uvw456
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: Validation failed.
-              requestId: req-update-me-422
-              errors:
-                education_level:
-                  - "Field education_level must be one of: SMA, Perguruan Tinggi."
+            examples:
+              InvalidEnum:
+                summary: Nilai education_level tidak sesuai enum
+                value:
+                  message: Validation failed.
+                  requestId: req-update-me-422-enum
+                  errors:
+                    education_level:
+                      - "Field education_level must be one of: SMA, Perguruan Tinggi."
+              EmptyName:
+                summary: Nama dikirim kosong
+                value:
+                  message: Validation failed.
+                  requestId: req-update-me-422-name
+                  errors:
+                    name:
+                      - "Field name must be at least 1 character long."

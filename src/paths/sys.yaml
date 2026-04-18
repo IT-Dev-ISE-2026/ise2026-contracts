@@ -20,9 +20,12 @@ ping:
                     message:
                       type: string
                       example: pong
-            example:
-              data:
-                message: pong
+            examples:
+              StandardPong:
+                summary: Response pong standar
+                value:
+                  data:
+                    message: pong
 
 health:
   get:
@@ -46,9 +49,12 @@ health:
                     status:
                       type: string
                       example: healthy
-            example:
-              data:
-                status: healthy
+            examples:
+              ServiceHealthy:
+                summary: Semua sistem berjalan normal
+                value:
+                  data:
+                    status: healthy
 
       '503':
         description: Service unhealthy
@@ -56,11 +62,21 @@ health:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: Service unhealthy
-              requestId: req-sys-123
-              errors:
-                database: ["connection failed"]
+            examples:
+              DatabaseDown:
+                summary: Koneksi database terputus
+                value:
+                  message: Service unhealthy
+                  requestId: req-sys-db-down
+                  errors:
+                    database: ["connection failed", "timeout after 5s"]
+              RedisDown:
+                summary: Koneksi Redis terputus
+                value:
+                  message: Service unhealthy
+                  requestId: req-sys-redis-down
+                  errors:
+                    redis: ["dial tcp [::1]:6379: connect: connection refused"]
 
 set-permissions:
   post:
@@ -92,6 +108,13 @@ set-permissions:
                 items:
                   type: string
                 example: ["admin", "user"]
+          examples:
+            SetAdmin:
+              summary: Memberikan hak akses Admin
+              value:
+                email: dev@example.com
+                permissions: ["admin:bionix:read", "user"]
+  
     responses:
       '200':
         description: Permissions updated successfully
@@ -104,21 +127,32 @@ set-permissions:
                 message:
                   type: string
                   example: Status privilege user dev@example.com berhasil di update!
+            examples:
+              UpdateSuccess:
+                summary: Update berhasil dilakukan
+                value:
+                  message: Status privilege user dev@example.com berhasil di update!
       '401':
         description: Unauthorized - Invalid or missing internal token
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: Kredensial tidak valid
-              requestId: internal-req-123
+            examples:
+              InvalidToken:
+                summary: Token internal salah atau tidak ada
+                value:
+                  message: Kredensial tidak valid
+                  requestId: internal-req-123
       '500':
         description: Failed to update permissions
         content:
           application/json:
             schema:
               $ref: '../components/schemas/error.yaml'
-            example:
-              message: Gagal update hak user
-              requestId: internal-req-456
+            examples:
+              UserNotFound:
+                summary: Email user tidak ditemukan di database
+                value:
+                  message: "Gagal update hak user: user not found"
+                  requestId: internal-req-456
