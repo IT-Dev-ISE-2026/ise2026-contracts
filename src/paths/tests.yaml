@@ -67,7 +67,7 @@ test-orders:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               MissingPermission:
                 summary: User tidak memiliki permission 'user'
@@ -103,7 +103,7 @@ test-admin:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotAnAdmin:
                 summary: User bukan admin

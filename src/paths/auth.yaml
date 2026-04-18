@@ -37,7 +37,7 @@ register:
               required: [data]
               properties:
                 data:
-                  $ref: '../components/schemas/user.yaml'
+                  $ref: '../components/schemas/ApiUser.yaml'
             example:
               data:
                 id: 550e8400-e29b-41d4-a716-446655440000
@@ -50,7 +50,7 @@ register:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: "validation failed: password must be at least 8 characters"
               requestId: req-abc123
@@ -59,7 +59,7 @@ register:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: email already registered
               requestId: req-def456
@@ -118,7 +118,7 @@ login:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: invalid email or password
               requestId: req-ghi789
@@ -167,7 +167,7 @@ refresh:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: refresh token expired or invalid
               requestId: req-jkl012
@@ -203,7 +203,7 @@ logout:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: session expired or invalid
               requestId: req-mno345
@@ -248,7 +248,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Email already verified.
               requestId: req-resend-409
@@ -257,7 +257,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Validation failed.
               errors:
@@ -269,7 +269,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Failed to send email. Please try again later.
               requestId: req-xyz789
@@ -347,7 +347,7 @@ forgot-password:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Validation failed.
               requestId: req-forgot-422
@@ -396,7 +396,7 @@ password-reset:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Invalid or expired token.
               requestId: req-pqr567
@@ -405,7 +405,7 @@ password-reset:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             example:
               message: Validation failed.
               requestId: req-reset-422

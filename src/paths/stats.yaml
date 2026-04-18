@@ -35,7 +35,7 @@ users:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
                 summary: User does not have admin:users:read permission

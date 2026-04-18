@@ -16,7 +16,7 @@ me:
               required: [data]
               properties:
                 data:
-                  $ref: '../components/schemas/user.yaml'
+                  $ref: '../components/schemas/ApiUser.yaml'
             examples:
               UserProfileCollege:
                 summary: Profil user (Mahasiswa)
@@ -47,7 +47,7 @@ me:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
                 summary: Token JWT tidak disertakan
@@ -110,7 +110,7 @@ me:
               required: [data]
               properties:
                 data:
-                  $ref: '../components/schemas/user.yaml'
+                  $ref: '../components/schemas/ApiUser.yaml'
             examples:
               UpdateSuccess:
                 summary: Berhasil memperbarui profil
@@ -129,7 +129,7 @@ me:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               AuthFailed:
                 summary: Autentikasi gagal
@@ -141,7 +141,7 @@ me:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidEnum:
                 summary: Nilai education_level tidak sesuai enum
@@ -180,7 +180,7 @@ list:
                 data:
                   type: array
                   items:
-                    $ref: '../components/schemas/user.yaml'
+                    $ref: '../components/schemas/ApiUser.yaml'
       "401":
         description: Unauthorized. Invalid or missing access token.
       "403":
@@ -188,7 +188,7 @@ list:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
                 summary: User does not have admin:users:read permission

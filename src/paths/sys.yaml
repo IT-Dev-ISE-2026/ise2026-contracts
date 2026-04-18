@@ -61,7 +61,7 @@ health:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               DatabaseDown:
                 summary: Koneksi database terputus
@@ -137,7 +137,7 @@ set-permissions:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidToken:
                 summary: Token internal salah atau tidak ada
@@ -149,7 +149,7 @@ set-permissions:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               UserNotFound:
                 summary: Email user tidak ditemukan di database

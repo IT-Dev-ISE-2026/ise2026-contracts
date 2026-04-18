@@ -65,7 +65,7 @@ get-staff-by-id:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/error.yaml'
+              $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotFound:
                 summary: ID staff tidak terdaftar

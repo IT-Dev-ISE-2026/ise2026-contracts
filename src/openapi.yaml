@@ -77,6 +77,6 @@ components:
       $ref: 'components/security-schemes/bearer-auth.yaml'
   schemas:
     Error:
-      $ref: 'components/schemas/error.yaml'
+      $ref: 'components/schemas/ApiError.yaml'
     User:
-      $ref: 'components/schemas/user.yaml'
+      $ref: 'components/schemas/ApiUser.yaml'
