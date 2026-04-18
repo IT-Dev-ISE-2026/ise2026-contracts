@@ -62,6 +62,10 @@ paths:
     $ref: 'paths/tests.yaml#/test-admin'
   /api/tests/admin/bionix:
     $ref: 'paths/tests.yaml#/test-admin-bionix'
+  /api/users:
+    $ref: 'paths/users.yaml#/list'
+  /api/stats/users:
+    $ref: 'paths/stats.yaml#/users'
 
 components:
   securitySchemes:
