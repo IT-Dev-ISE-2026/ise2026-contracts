@@ -1,0 +1,79 @@
+test-email-verification:
+  post:
+    operationId: testEmailVerification
+    description: Test email verification workflow
+    summary: Test email verification
+    tags: [Tests]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [email]
+            properties:
+              email:
+                type: string
+                format: email
+                example: dev@example.com
+    responses:
+      '200':
+        description: Verification simulation triggered
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+
+test-orders:
+  post:
+    operationId: testOrder
+    description: Create a dummy order for testing. Requires authentication and user permission.
+    summary: Test order
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    responses:
+      '201':
+        description: Order created
+      '403':
+        description: Forbidden - Requires user permission
+
+test-admin:
+  get:
+    operationId: testAdminAccess
+    description: Test admin access level. Requires authentication and admin permission.
+    summary: Test admin access
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Access granted
+      '403':
+        description: Forbidden
+
+test-admin-bionix:
+  get:
+    operationId: testAdminBionixRead
+    description: Test Bionix admin read access.
+    summary: Test Bionix admin read
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Access granted
+  post:
+    operationId: testAdminBionixWrite
+    description: Test Bionix admin write access.
+    summary: Test Bionix admin write
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Access granted
+

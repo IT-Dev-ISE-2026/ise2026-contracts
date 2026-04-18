@@ -19,6 +19,10 @@ tags:
     description: System check endpoints.
   - name: Users
     description: User-related endpoints.
+  - name: Internal
+    description: Internal developer tools.
+  - name: Tests
+    description: Simulation and tests endpoints.
 paths:
   /api/sys/ping:
     get:
@@ -718,6 +722,153 @@ paths:
               example:
                 message: Staff registration data not found
                 requestId: abc123
+  /api/sys/permissions:
+    post:
+      operationId: setPermissions
+      description: Internal tool to manually update user permissions. Requires X-Internal-Token header.
+      summary: Set user permissions (Internal)
+      tags:
+        - Internal
+      parameters:
+        - in: header
+          name: X-Internal-Token
+          required: true
+          schema:
+            type: string
+          description: Secret token for internal access.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - permissions
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: dev@example.com
+                permissions:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - admin
+                    - user
+      responses:
+        '200':
+          description: Permissions updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Status privilege user dev@example.com berhasil di update!
+        '401':
+          description: Unauthorized - Invalid or missing internal token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                message: Kredensial tidak valid
+                requestId: internal-req-123
+        '500':
+          description: Failed to update permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                message: Gagal update hak user
+                requestId: internal-req-456
+  /api/tests/email-verification:
+    post:
+      operationId: testEmailVerification
+      description: Test email verification workflow
+      summary: Test email verification
+      tags:
+        - Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: dev@example.com
+      responses:
+        '200':
+          description: Verification simulation triggered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/tests/orders:
+    post:
+      operationId: testOrder
+      description: Create a dummy order for testing. Requires authentication and user permission.
+      summary: Test order
+      tags:
+        - Tests
+      security:
+        - BearerAuth: []
+      responses:
+        '201':
+          description: Order created
+        '403':
+          description: Forbidden - Requires user permission
+  /api/tests/admin:
+    get:
+      operationId: testAdminAccess
+      description: Test admin access level. Requires authentication and admin permission.
+      summary: Test admin access
+      tags:
+        - Tests
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+        '403':
+          description: Forbidden
+  /api/tests/admin/bionix:
+    get:
+      operationId: testAdminBionixRead
+      description: Test Bionix admin read access.
+      summary: Test Bionix admin read
+      tags:
+        - Tests
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Access granted
+    post:
+      operationId: testAdminBionixWrite
+      description: Test Bionix admin write access.
+      summary: Test Bionix admin write
+      tags:
+        - Tests
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Access granted
 components:
   securitySchemes:
     BearerAuth:

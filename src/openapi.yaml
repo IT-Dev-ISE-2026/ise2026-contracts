@@ -22,6 +22,10 @@ tags:
     description: System check endpoints.
   - name: Users
     description: User-related endpoints.
+  - name: Internal
+    description: Internal developer tools.
+  - name: Tests
+    description: Simulation and tests endpoints.
 
 paths:
   /api/sys/ping:
@@ -48,6 +52,16 @@ paths:
     $ref: 'paths/users.yaml#/me'
   /api/staff/{id}:
     $ref: 'paths/staff.yaml#/get-staff-by-id'
+  /api/sys/permissions:
+    $ref: 'paths/sys.yaml#/set-permissions'
+  /api/tests/email-verification:
+    $ref: 'paths/tests.yaml#/test-email-verification'
+  /api/tests/orders:
+    $ref: 'paths/tests.yaml#/test-orders'
+  /api/tests/admin:
+    $ref: 'paths/tests.yaml#/test-admin'
+  /api/tests/admin/bionix:
+    $ref: 'paths/tests.yaml#/test-admin-bionix'
 
 components:
   securitySchemes:

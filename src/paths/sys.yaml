@@ -61,3 +61,64 @@ health:
               requestId: req-sys-123
               errors:
                 database: ["connection failed"]
+
+set-permissions:
+  post:
+    operationId: setPermissions
+    description: Internal tool to manually update user permissions. Requires X-Internal-Token header.
+    summary: Set user permissions (Internal)
+    tags: [Internal]
+    parameters:
+      - in: header
+        name: X-Internal-Token
+        required: true
+        schema:
+          type: string
+        description: Secret token for internal access.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [email, permissions]
+            properties:
+              email:
+                type: string
+                format: email
+                example: dev@example.com
+              permissions:
+                type: array
+                items:
+                  type: string
+                example: ["admin", "user"]
+    responses:
+      '200':
+        description: Permissions updated successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: Status privilege user dev@example.com berhasil di update!
+      '401':
+        description: Unauthorized - Invalid or missing internal token
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/error.yaml'
+            example:
+              message: Kredensial tidak valid
+              requestId: internal-req-123
+      '500':
+        description: Failed to update permissions
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/error.yaml'
+            example:
+              message: Gagal update hak user
+              requestId: internal-req-456
