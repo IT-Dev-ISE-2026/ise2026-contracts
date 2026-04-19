@@ -183,6 +183,19 @@ list:
           type: integer
           default: 10
           example: 10
+      - name: search
+        in: query
+        description: Search by name or email.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 'Sort by field, format: "field:asc,field:desc"'
+        schema:
+          type: string
+          examples:
+            - "name:asc"
+            - "email:desc"
     responses:
       "200":
         description: Returns a list of users with pagination metadata.
