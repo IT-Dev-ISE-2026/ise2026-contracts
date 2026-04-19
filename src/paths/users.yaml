@@ -168,9 +168,24 @@ list:
     tags: [Users]
     security:
       - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        description: Page number to retrieve.
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: limit
+        in: query
+        description: Number of items per page.
+        schema:
+          type: integer
+          default: 10
+          example: 10
     responses:
       "200":
-        description: Returns a list of users.
+        description: Returns a list of users with pagination metadata.
         content:
           application/json:
             schema:
@@ -178,9 +193,34 @@ list:
               required: [data]
               properties:
                 data:
-                  type: array
-                  items:
-                    $ref: '../components/schemas/ApiUser.yaml'
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiUser.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+            examples:
+              UserList:
+                summary: Berhasil mengambil daftar user
+                value:
+                  data:
+                    items:
+                      - id: 550e8400-e29b-41d4-a716-446655440000
+                        email: john.student@example.com
+                        name: John Student
+                        phone_number: "08123456789"
+                        education_level: Perguruan Tinggi
+                        referral_source: ["Instagram"]
+                        permissions: ["user"]
+                        created_at: "2026-03-06T11:00:00Z"
+                    meta:
+                      total_items: 1
+                      total_pages: 1
+                      current_page: 1
+                      limit: 10
       "401":
         description: Unauthorized. Invalid or missing access token.
       "403":
