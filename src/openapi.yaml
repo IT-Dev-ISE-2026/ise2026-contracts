@@ -7,14 +7,6 @@ info:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
 
-servers:
-  - url: http://localhost:8080
-    description: Local development
-  - url: https://dev.ise-its.com
-    description: Staging server
-  - url: https://www.ise-its.com
-    description: Production server
-
 security: []
 
 tags:
