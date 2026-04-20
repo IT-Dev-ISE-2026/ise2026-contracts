@@ -193,9 +193,11 @@ list:
         description: 'Sort by field, format: "field:asc,field:desc"'
         schema:
           type: string
-          examples:
-            - "name:asc"
-            - "email:desc"
+        examples:
+          SortByName:
+            value: "name:asc"
+          SortByEmail:
+            value: "email:desc"
     responses:
       "200":
         description: Returns a list of users with pagination metadata.
