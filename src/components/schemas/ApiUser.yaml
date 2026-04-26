@@ -1,40 +1,49 @@
 title: ApiUser
 type: object
-required: [id, email, permissions, created_at]
+required: [id, email, is_email_verified, permissions, created_at, updated_at]
 properties:
   id:
     type: string
     format: uuid
     example: "550e8400-e29b-41d4-a716-446655440000"
-  email:
-    type: string
-    format: email
-    example: "user@example.com"
   name:
     type: string
     nullable: true
     example: "John Doe"
+  email:
+    type: string
+    format: email
+    example: "user@example.com"
   phone_number:
     type: string
     nullable: true
     example: "08123456789"
   education_level:
     type: string
+    enum: [high_school, university, public]
     nullable: true
-    example: "Perguruan Tinggi"
+    example: university
   referral_source:
     type: array
     items:
       type: string
+      pattern: '^(instagram|tiktok|x|linkedin|website|partner|roadshow|friend|others: .+)$'
     nullable: true
-    description: "Source of how the user knows about the event."
-    example: ["Instagram", "WhatsApp"]
+    description: "Source of how the user knows about the event. Use 'others: [source]' for manual input."
+    example: ["instagram", "others: youtube"]
+  is_email_verified:
+    type: boolean
+    example: true
   permissions:
     type: array
     items:
       type: string
-    example: ["user"]
+    example: ["user", "admin"]
   created_at:
     type: string
     format: date-time
     example: "2026-03-06T11:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2026-03-06T12:00:00Z"

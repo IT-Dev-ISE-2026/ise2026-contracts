@@ -1,7 +1,7 @@
 me:
   get:
     operationId: getMe
-    description: Get the profile of the currently authenticated user. Requires `user` permission.
+    description: "[user] Get the profile of the currently authenticated user."
     summary: Get user profile
     tags: [Users]
     security:
@@ -18,30 +18,76 @@ me:
                 data:
                   $ref: '../components/schemas/ApiUser.yaml'
             examples:
-              UserProfileCollege:
-                summary: Profil user (Mahasiswa)
+              UserProfileFull:
+                summary: Profil user dengan data lengkap
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
-                    email: john.student@example.com
                     name: John Student
+                    email: john.student@example.com
                     phone_number: '08123456789'
                     education_level: university
-                    referral_source: ['Instagram', 'WhatsApp']
+                    referral_source: ['instagram', 'others: whatsapp']
+                    is_email_verified: true
                     permissions: ['user']
                     created_at: '2026-03-06T11:00:00Z'
-              UserProfileSchool:
-                summary: Profil user (Siswa SMA)
+                    updated_at: '2026-03-06T12:00:00Z'
+              UserProfileUnverifiedEmail:
+                summary: Profil user dengan email belum di verifikasi
                 value:
                   data:
-                    id: f47ac10b-58cc-4372-a567-0e02b2c3d479
-                    email: jane.school@example.com
-                    name: Jane School
-                    phone_number: '08987654321'
-                    education_level: high_school
-                    referral_source: ['TikTok']
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    name: John Student
+                    email: john.student@example.com
+                    phone_number: '08123456789'
+                    education_level: university
+                    referral_source: ['instagram', 'others: whatsapp']
+                    is_email_verified: false
                     permissions: ['user']
-                    created_at: '2026-03-07T09:30:00Z'
+                    created_at: '2026-03-06T11:00:00Z'
+                    updated_at: '2026-03-06T12:00:00Z'
+              UserProfileWithoutPhoneNumber:
+                summary: Profil user tanpa nomor telepon
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    name: John Student
+                    email: john.student@example.com
+                    phone_number: null
+                    education_level: university
+                    referral_source: ['instagram', 'others: whatsapp']
+                    is_email_verified: true
+                    permissions: ['user']
+                    created_at: '2026-03-06T11:00:00Z'
+                    updated_at: '2026-03-06T12:00:00Z'
+              UserProfileWithoutEducationLevel:
+                summary: Profil user dengan data lengkap
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    name: John Student
+                    email: john.student@example.com
+                    phone_number: '08123456789'
+                    education_level: null
+                    referral_source: ['instagram', 'others: whatsapp']
+                    is_email_verified: true
+                    permissions: ['user']
+                    created_at: '2026-03-06T11:00:00Z'
+                    updated_at: '2026-03-06T12:00:00Z'
+              UserProfileWithoutReferralSource:
+                summary: Profil user dengan data lengkap
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    name: John Student
+                    email: john.student@example.com
+                    phone_number: '08123456789'
+                    education_level: university
+                    referral_source: null
+                    is_email_verified: true
+                    permissions: ['user']
+                    created_at: '2026-03-06T11:00:00Z'
+                    updated_at: '2026-03-06T12:00:00Z'
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -52,16 +98,16 @@ me:
               TokenMissing:
                 summary: Token JWT tidak disertakan
                 value:
-                  message: unauthorized
+                  message: "Unauthorized access."
                   requestId: req-uvw123-missing
               TokenExpired:
                 summary: Token JWT sudah kadaluwarsa
                 value:
-                  message: session expired
+                  message: "Session has expired. Please login again."
                   requestId: req-uvw123-expired
   patch:
     operationId: updateMe
-    description: Update the profile of the currently authenticated user.
+    description: "[user] Update the profile of the currently authenticated user."
     summary: Update user profile
     tags: [Users]
     security:
@@ -89,8 +135,9 @@ me:
                 type: array
                 items:
                   type: string
-                description: Source of how the user knows about the event.
-                example: ['Instagram', 'WhatsApp', 'other: xxx']
+                  pattern: '^(instagram|tiktok|x|linkedin|website|partner|roadshow|friend|others: .+)$'
+                description: "Source of how the user knows about the event. Use 'others: [source]' for manual input."
+                example: ['instagram', 'others: whatsapp']
           examples:
             UpdateName:
               summary: Mengubah nama saja
@@ -117,13 +164,15 @@ me:
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
-                    email: john.student@example.com
                     name: John New Name
+                    email: john.student@example.com
                     phone_number: '08123456789'
                     education_level: university
-                    referral_source: ['Instagram', 'WhatsApp']
+                    referral_source: ['instagram', 'others: whatsapp']
+                    is_email_verified: true
                     permissions: ['user']
                     created_at: '2026-03-06T11:00:00Z'
+                    updated_at: '2026-03-06T12:00:00Z'
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -134,7 +183,7 @@ me:
               AuthFailed:
                 summary: Autentikasi gagal
                 value:
-                  message: unauthorized
+                  message: "Unauthorized access."
                   requestId: req-uvw456
       '422':
         description: Validation failed.
@@ -159,11 +208,10 @@ me:
                   errors:
                     name:
                       - 'Field name must be at least 1 character long.'
-
 list:
   get:
     operationId: listUsers
-    description: Get a list of all users. Requires `admin:users:read` permission.
+    description: "[admin:user:read] Get a list of all users."
     summary: Get all users
     tags: [Users]
     security:
@@ -198,6 +246,17 @@ list:
             value: 'name:asc'
           SortByEmail:
             value: 'email:desc'
+      - name: education_level
+        in: query
+        description: Filter by education level.
+        schema:
+          type: string
+          enum: [high_school, university, public]
+      - name: is_email_verified
+        in: query
+        description: Filter by email verification status.
+        schema:
+          type: boolean
     responses:
       '200':
         description: Returns a list of users with pagination metadata.
@@ -224,13 +283,15 @@ list:
                   data:
                     items:
                       - id: 550e8400-e29b-41d4-a716-446655440000
-                        email: john.student@example.com
                         name: John Student
+                        email: john.student@example.com
                         phone_number: '08123456789'
                         education_level: university
-                        referral_source: ['Instagram']
+                        referral_source: ['instagram']
+                        is_email_verified: true
                         permissions: ['user']
                         created_at: '2026-03-06T11:00:00Z'
+                        updated_at: '2026-03-06T12:00:00Z'
                     meta:
                       total_items: 1
                       total_pages: 1
@@ -238,6 +299,16 @@ list:
                       limit: 10
       '401':
         description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              AuthFailed:
+                summary: Autentikasi gagal
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-list-users-401
       '403':
         description: Forbidden. Insufficient permissions.
         content:
@@ -248,5 +319,5 @@ list:
               Forbidden:
                 summary: User does not have admin:users:read permission
                 value:
-                  message: forbidden
+                  message: "Access denied. Insufficient permissions."
                   requestId: req-xyz-403
