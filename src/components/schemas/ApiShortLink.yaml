@@ -27,10 +27,10 @@ properties:
         type: string
         format: email
         example: "admin@ise-its.com"
-  click_count:
+  clickCount:
     type: integer
     example: 142
-  created_at:
+  createdAt:
     type: string
     format: date-time
     example: "2026-03-01T12:00:00Z"
