@@ -30,7 +30,7 @@ get-event-by-slug:
                     id: 1
                     slug: "bionix"
                     name: "Bionix"
-                    price: 100000
+                    price: 0
                     isActive: true
                     timelines:
                       - id: 1
@@ -65,11 +65,7 @@ get-event-by-slug:
                         name: "Bionix Competition Grand Final"
                         date: "2027-01-01T00:00:00Z"
                         sequenceOrder: 8
-                    links:
-                      - id: 1
-                        name: "Guidebook Bionix"
-                        url: "https://ise-its.com/guidebook-bionix"
-                        slug: "bionix-competition-guidebook"
+                    links: []
                     subEvents:
                       - id: 2
                         slug: "bionix-competition"
@@ -78,55 +74,21 @@ get-event-by-slug:
                         isActive: true
                         links:
                           - id: 1
-                            name: "Guidebook Bionix"
+                            name: "Guidebook Bionix Competition"
                             url: "https://ise-its.com/guidebook-bionix"
                             slug: "bionix-competition-guidebook"
-                        timelines:
-                          - id: 1
-                            name: "Bionix Registration"
-                            date: "2026-05-01T00:00:00Z"
-                            sequenceOrder: 1
-              SuccessRise:
-                value:
-                  data:
-                    id: 4
-                    slug: "rise"
-                    name: "Rise Competition"
-                    price: 100000
-                    isActive: true
-                    timelines:
-                      - id: 1
-                        name: "Open Registration"
-                        date: "2026-06-01T00:00:00Z"
-                        sequenceOrder: 1
-                      - id: 2
-                        name: "Pre-Event"
-                        date: "2026-08-01T00:00:00Z"
-                        sequenceOrder: 2
+                        timelines: []
                       - id: 3
-                        name: "Preliminary Round"
-                        date: "2026-09-01T00:00:00Z"
-                        sequenceOrder: 3
-                      - id: 4 
-                        name: "Coaching Clinic"
-                        date: "2026-10-01T00:00:00Z"
-                        sequenceOrder: 4
-                      - id: 5
-                        name: "Semifinal Round"
-                        date: "2026-10-01T00:00:00Z"
-                        sequenceOrder: 5
-                      - id: 6
-                        name: "Mentoring 1 on 1"
-                        date: "2026-11-01T00:00:00Z"
-                        sequenceOrder: 6
-                      - id: 7
-                        name: "Final Round"
-                        date: "2026-12-01T00:00:00Z"
-                        sequenceOrder: 7
-                      - id: 8
-                        name: "Grand Final & Awarding"
-                        date: "2027-01-01T00:00:00Z"
-                        sequence_order: 8
+                        slug: "bionix-is-class"
+                        name: "Bionix IS Class"
+                        price: 100000
+                        isActive: true
+                        links:
+                          - id: 1
+                            name: "Guidebook Bionix IS Class"
+                            url: "https://ise-its.com/guidebook-bionix-is-class"
+                            slug: "bionix-is-class-guidebook"
+                        timelines: []
       "404":
         description: Event not found
         content:
