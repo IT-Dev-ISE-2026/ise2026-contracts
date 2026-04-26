@@ -4,7 +4,7 @@ required: [message, requestId]
 properties:
   message:
     type: string
-    example: "An error occurred"
+    example: "An error occurred."
   requestId:
     type: string
     example: "req-123456"
@@ -14,4 +14,4 @@ properties:
       type: array
       items:
         type: string
-    description: "Validation errors if applicable"
+    description: "Validation errors if applicable."
