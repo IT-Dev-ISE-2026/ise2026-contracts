@@ -1,0 +1,327 @@
+collection:
+  post:
+    operationId: createShortLink
+    description: "[admin] Create a new short link"
+    summary: Create short link
+    tags: [ShortLinks]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [short_code, original_url]
+            properties:
+              short_code:
+                type: string
+                example: "bionix"
+              original_url:
+                type: string
+                format: uri
+                example: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+          examples:
+            CreateShortLinkExample:
+              summary: Contoh payload pembuatan short link
+              value:
+                short_code: "bionix"
+                original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+    responses:
+      "201":
+        description: Short link created
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiShortLink.yaml'
+            examples:
+              SuccessCreateShortLink:
+                summary: Berhasil membuat short link baru
+                value:
+                  data:
+                    id: 1
+                    short_code: "bionix"
+                    original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+                    creator:
+                      id: "550e8400-e29b-41d4-a716-446655440000"
+                      name: "Admin ISE"
+                      email: "admin@ise-its.com"
+                    click_count: 0
+                    created_at: "2026-03-01T12:00:00Z"
+      "409":
+        description: Short code already exists
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              DuplicateCode:
+                summary: Short code sudah terpakai
+                value:
+                  message: "Short code 'bionix' is already in use."
+                  requestId: "req-xyz123"
+      "401":
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              TokenMissing:
+                summary: Token JWT tidak disertakan
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-xyz-401-missing
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: "Session expired."
+                  requestId: req-xyz-401-expired
+      "403":
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: User tidak memiliki izin akses
+                value:
+                  message: You don't have permission to access this feature.
+                  requestId: req-xyz-403
+      "422":
+        description: Validation failed
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationFailed:
+                summary: Format URL atau Short Code tidak valid
+                value:
+                  message: Validation failed.
+                  requestId: req-xyz456
+                  errors:
+                    original_url:
+                      - "Field original_url must be a valid URI"
+                    short_code:
+                      - "Field short_code must be alphanumeric"
+  get:
+    operationId: listShortLinks
+    description: "[admin] List all short links"
+    summary: List short links
+    tags: [ShortLinks]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        description: Page number to retrieve.
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: limit
+        in: query
+        description: Number of items per page.
+        schema:
+          type: integer
+          default: 10
+          example: 10
+      - name: search
+        in: query
+        description: Search by short_code or original_url.
+        schema:
+          type: string
+    responses:
+      "200":
+        description: List of short links with pagination metadata
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiShortLink.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+            examples:
+              SuccessList:
+                summary: Berhasil mengambil daftar short link
+                value:
+                  data:
+                    items:
+                      - id: 1
+                        short_code: "bionix"
+                        original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+                        creator:
+                          id: "550e8400-e29b-41d4-a716-446655440000"
+                          name: "Admin ISE"
+                          email: "admin@ise-its.com"
+                        click_count: 142
+                        created_at: "2026-03-01T12:00:00Z"
+                      - id: 2
+                        short_code: "guidebook"
+                        original_url: "https://drive.google.com/file/d/123/view"
+                        creator:
+                          id: "550e8400-e29b-41d4-a716-446655440000"
+                          name: "Dedy"
+                          email: "dedy@ise-its.com"
+                        click_count: 89
+                        created_at: "2026-03-01T12:00:00Z"
+                    meta:
+                      total_items: 2
+                      total_pages: 1
+                      current_page: 1
+                      limit: 10
+      "401":
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              TokenMissing:
+                summary: Token JWT tidak disertakan
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-xyz-401-missing
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: "Session expired."
+                  requestId: req-xyz-401-expired
+      "403":
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: User tidak memiliki izin akses
+                value:
+                  message: You don't have permission to access this feature.
+                  requestId: req-xyz-403
+item:
+  delete:
+    operationId: deleteShortLink
+    description: "[admin] Delete short link by id"
+    summary: Delete short link
+    tags: [ShortLinks]
+    security:
+      - BearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      "200":
+        description: Short link deleted
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: "Short link deleted successfully"
+            examples:
+              SuccessDeleteShortLink:
+                summary: Berhasil menghapus short link
+                value:
+                  message: "Short link deleted successfully"
+      "404":
+        description: Short link not found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFoundDelete:
+                summary: Short link tidak ditemukan
+                value:
+                  message: "Short link not found."
+                  requestId: "req-xyz123"
+      "401":
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              TokenMissing:
+                summary: Token JWT tidak disertakan
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-xyz-401-missing
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: "Session expired."
+                  requestId: req-xyz-401-expired
+      "403":
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: User tidak memiliki izin akses
+                value:
+                  message: You don't have permission to access this feature.
+                  requestId: req-xyz-403
+
+redirect:
+  get:
+    operationId: redirectShortLink
+    description: Redirect to the original URL by its short code and increment the click count
+    summary: Redirect short link
+    tags: [ShortLinks]
+    security: []
+    parameters:
+      - in: path
+        name: shortCode
+        required: true
+        schema:
+          type: string
+    responses:
+      "302":
+        description: Redirect to the original URL
+        headers:
+          Location:
+            description: The original URL destination
+            schema:
+              type: string
+              format: uri
+            examples:
+              RedirectExample:
+                summary: Contoh pengalihan ke URL asli
+                value: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+      "404":
+        description: Short link not found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFoundRedirect:
+                summary: Short link tidak ditemukan
+                value:
+                  message: "Short link not found."
+                  requestId: "req-xyz123"

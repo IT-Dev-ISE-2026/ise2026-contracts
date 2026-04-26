@@ -24,6 +24,8 @@ tags:
     description: Simulation and tests endpoints.
   - name: Events
     description: Event management and information endpoints.
+  - name: ShortLinks
+    description: URL Shortener management and redirection endpoints.
 
 paths:
   /api/sys/ping:
@@ -68,6 +70,12 @@ paths:
     $ref: 'paths/stats.yaml#/users'
   /api/events/{slug}:
     $ref: 'paths/events.yaml#/get-event-by-slug'
+  /api/short-links:
+    $ref: 'paths/short-links.yaml#/collection'
+  /api/short-links/{id}:
+    $ref: 'paths/short-links.yaml#/item'
+  /go/{shortCode}:
+    $ref: 'paths/short-links.yaml#/redirect'
 
 components:
   securitySchemes:

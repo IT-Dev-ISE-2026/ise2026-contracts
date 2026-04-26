@@ -1,0 +1,36 @@
+type: object
+required: [id, short_code, original_url, click_count, created_at, creator]
+properties:
+  id:
+    type: integer
+    example: 1
+  short_code:
+    type: string
+    example: "bionix"
+  original_url:
+    type: string
+    format: uri
+    example: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+  creator:
+    type: object
+    description: "Details of the user who created this short link"
+    required: [id, name, email]
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: "550e8400-e29b-41d4-a716-446655440000"
+      name:
+        type: string
+        example: "Admin ISE"
+      email:
+        type: string
+        format: email
+        example: "admin@ise-its.com"
+  click_count:
+    type: integer
+    example: 142
+  created_at:
+    type: string
+    format: date-time
+    example: "2026-03-01T12:00:00Z"
