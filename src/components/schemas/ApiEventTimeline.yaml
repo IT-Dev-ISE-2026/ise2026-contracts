@@ -1,5 +1,5 @@
 type: object
-required: [id, name, date, sequence_order]
+required: [id, name, date, sequenceOrder]
 properties:
   id:
     type: integer
@@ -11,6 +11,6 @@ properties:
     type: string
     format: date-time
     example: "2026-05-01T00:00:00Z"
-  sequence_order:
+  sequenceOrder:
     type: integer
     example: 1

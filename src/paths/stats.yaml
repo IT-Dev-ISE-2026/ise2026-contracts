@@ -18,13 +18,13 @@ users:
                 data:
                   type: object
                   properties:
-                    total_accounts:
+                    totalAccounts:
                       type: integer
                       example: 15
-                    total_users:
+                    totalUsers:
                       type: integer
                       example: 13
-                    total_admins:
+                    totalAdmins:
                       type: integer
                       example: 2
       "401":
@@ -39,5 +39,5 @@ users:
               Forbidden:
                 summary: User does not have admin:users:read permission
                 value:
-                  message: forbidden
+                  message: "Access denied. Insufficient permissions."
                   requestId: req-xyz-403

@@ -1,14 +1,14 @@
 type: object
-required: [total_items, total_pages, current_page, limit]
+required: [totalItems, totalPages, currentPage, limit]
 properties:
-  total_items:
+  totalItems:
     type: integer
     format: int64
     example: 100
-  total_pages:
+  totalPages:
     type: integer
     example: 10
-  current_page:
+  currentPage:
     type: integer
     example: 1
   limit:

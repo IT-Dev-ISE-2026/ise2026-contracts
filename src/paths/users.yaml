@@ -25,13 +25,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John Student
                     email: john.student@example.com
-                    phone_number: '08123456789'
-                    education_level: university
-                    referral_source: ['instagram', 'others: whatsapp']
-                    is_email_verified: true
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram', 'others: whatsapp']
+                    isEmailVerified: true
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
               UserProfileUnverifiedEmail:
                 summary: Profil user dengan email belum di verifikasi
                 value:
@@ -123,15 +123,15 @@ me:
                 type: string
                 minLength: 1
                 example: John Doe
-              phone_number:
+              phoneNumber:
                 type: string
                 minLength: 1
                 example: '08123456789'
-              education_level:
+              educationLevel:
                 type: string
                 enum: [high_school, university, public]
                 example: university
-              referral_source:
+              referralSource:
                 type: array
                 items:
                   type: string
@@ -146,7 +146,7 @@ me:
             UpdateEducation:
               summary: Mengubah tingkat pendidikan
               value:
-                education_level: university
+                educationLevel: university
     responses:
       '200':
         description: Profile updated successfully. Returns the updated user profile.
@@ -166,13 +166,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John New Name
                     email: john.student@example.com
-                    phone_number: '08123456789'
-                    education_level: university
-                    referral_source: ['instagram', 'others: whatsapp']
-                    is_email_verified: true
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram', 'others: whatsapp']
+                    isEmailVerified: true
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -193,13 +193,13 @@ me:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidEnum:
-                summary: Nilai education_level tidak sesuai enum
+                summary: Nilai educationLevel tidak sesuai enum
                 value:
                   message: Validation failed.
                   requestId: req-update-me-422-enum
                   errors:
-                    education_level:
-                      - 'Field education_level must be one of: high_school, university, public.'
+                    educationLevel:
+                      - 'Field educationLevel must be one of: high_school, university, public.'
               EmptyName:
                 summary: Nama dikirim kosong
                 value:
@@ -246,13 +246,13 @@ list:
             value: 'name:asc'
           SortByEmail:
             value: 'email:desc'
-      - name: education_level
+      - name: educationLevel
         in: query
         description: Filter by education level.
         schema:
           type: string
           enum: [high_school, university, public]
-      - name: is_email_verified
+      - name: isEmailVerified
         in: query
         description: Filter by email verification status.
         schema:
@@ -285,17 +285,17 @@ list:
                       - id: 550e8400-e29b-41d4-a716-446655440000
                         name: John Student
                         email: john.student@example.com
-                        phone_number: '08123456789'
-                        education_level: university
-                        referral_source: ['instagram']
-                        is_email_verified: true
+                        phoneNumber: '08123456789'
+                        educationLevel: university
+                        referralSource: ['instagram']
+                        isEmailVerified: true
                         permissions: ['user']
-                        created_at: '2026-03-06T11:00:00Z'
-                        updated_at: '2026-03-06T12:00:00Z'
+                        createdAt: '2026-03-06T11:00:00Z'
+                        updatedAt: '2026-03-06T12:00:00Z'
                     meta:
-                      total_items: 1
-                      total_pages: 1
-                      current_page: 1
+                      totalItems: 1
+                      totalPages: 1
+                      currentPage: 1
                       limit: 10
       '401':
         description: Unauthorized. Invalid or missing access token.

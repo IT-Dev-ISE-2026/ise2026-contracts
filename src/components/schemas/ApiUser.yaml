@@ -1,6 +1,6 @@
 title: ApiUser
 type: object
-required: [id, email, is_email_verified, permissions, created_at, updated_at]
+required: [id, email, isEmailVerified, permissions, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -14,16 +14,16 @@ properties:
     type: string
     format: email
     example: "user@example.com"
-  phone_number:
+  phoneNumber:
     type: string
     nullable: true
     example: "08123456789"
-  education_level:
+  educationLevel:
     type: string
     enum: [high_school, university, public]
     nullable: true
     example: university
-  referral_source:
+  referralSource:
     type: array
     items:
       type: string
@@ -31,7 +31,7 @@ properties:
     nullable: true
     description: "Source of how the user knows about the event. Use 'others: [source]' for manual input."
     example: ["instagram", "others: youtube"]
-  is_email_verified:
+  isEmailVerified:
     type: boolean
     example: true
   permissions:
@@ -39,11 +39,11 @@ properties:
     items:
       type: string
     example: ["user", "admin"]
-  created_at:
+  createdAt:
     type: string
     format: date-time
     example: "2026-03-06T11:00:00Z"
-  updated_at:
+  updatedAt:
     type: string
     format: date-time
     example: "2026-03-06T12:00:00Z"

@@ -31,51 +31,51 @@ get-event-by-slug:
                     slug: "bionix"
                     name: "Bionix"
                     price: 100000
-                    is_active: true
+                    isActive: true
                     timelines:
                       - id: 1
                         name: "IS Class Registration"
                         date: "2026-05-01T00:00:00Z"
-                        sequence_order: 1
+                        sequenceOrder: 1
                       - id: 2
                         name: "Bionix Competition Registration"
                         date: "2026-06-01T00:00:00Z"
-                        sequence_order: 2
+                        sequenceOrder: 2
                       - id: 3
                         name: "IS Class Starts"
                         date: "2026-08-01T00:00:00Z"
-                        sequence_order: 3
+                        sequenceOrder: 3
                       - id: 4 
                         name: "Try Out 1"
                         date: "2026-09-01T00:00:00Z"
-                        sequence_order: 4
+                        sequenceOrder: 4
                       - id: 5
                         name: "Try Out 2"
                         date: "2026-10-01T00:00:00Z"
-                        sequence_order: 5
+                        sequenceOrder: 5
                       - id: 6
                         name: "Bionix Competition Preliminary"
                         date: "2026-11-01T00:00:00Z"
-                        sequence_order: 6
+                        sequenceOrder: 6
                       - id: 7
                         name: "Bionix Competition Semifinal"
                         date: "2026-12-01T00:00:00Z"
-                        sequence_order: 7
+                        sequenceOrder: 7
                       - id: 8
                         name: "Bionix Competition Grand Final"
                         date: "2027-01-01T00:00:00Z"
-                        sequence_order: 8
+                        sequenceOrder: 8
                     links:
                       - id: 1
                         name: "Guidebook Bionix"
                         url: "https://ise-its.com/guidebook-bionix"
                         slug: "bionix-competition-guidebook"
-                    sub_events:
+                    subEvents:
                       - id: 2
                         slug: "bionix-competition"
                         name: "Bionix Competition"
                         price: 100000
-                        is_active: true
+                        isActive: true
                         links:
                           - id: 1
                             name: "Guidebook Bionix"
@@ -85,7 +85,7 @@ get-event-by-slug:
                           - id: 1
                             name: "Bionix Registration"
                             date: "2026-05-01T00:00:00Z"
-                            sequence_order: 1
+                            sequenceOrder: 1
               SuccessRise:
                 value:
                   data:
@@ -93,36 +93,36 @@ get-event-by-slug:
                     slug: "rise"
                     name: "Rise Competition"
                     price: 100000
-                    is_active: true
+                    isActive: true
                     timelines:
                       - id: 1
                         name: "Open Registration"
                         date: "2026-06-01T00:00:00Z"
-                        sequence_order: 1
+                        sequenceOrder: 1
                       - id: 2
                         name: "Pre-Event"
                         date: "2026-08-01T00:00:00Z"
-                        sequence_order: 2
+                        sequenceOrder: 2
                       - id: 3
                         name: "Preliminary Round"
                         date: "2026-09-01T00:00:00Z"
-                        sequence_order: 3
+                        sequenceOrder: 3
                       - id: 4 
                         name: "Coaching Clinic"
                         date: "2026-10-01T00:00:00Z"
-                        sequence_order: 4
+                        sequenceOrder: 4
                       - id: 5
                         name: "Semifinal Round"
                         date: "2026-10-01T00:00:00Z"
-                        sequence_order: 5
+                        sequenceOrder: 5
                       - id: 6
                         name: "Mentoring 1 on 1"
                         date: "2026-11-01T00:00:00Z"
-                        sequence_order: 6
+                        sequenceOrder: 6
                       - id: 7
                         name: "Final Round"
                         date: "2026-12-01T00:00:00Z"
-                        sequence_order: 7
+                        sequenceOrder: 7
                       - id: 8
                         name: "Grand Final & Awarding"
                         date: "2027-01-01T00:00:00Z"

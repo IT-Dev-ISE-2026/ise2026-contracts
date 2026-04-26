@@ -12,12 +12,12 @@ collection:
         application/json:
           schema:
             type: object
-            required: [short_code, original_url]
+            required: [shortCode, originalUrl]
             properties:
-              short_code:
+              shortCode:
                 type: string
                 example: "bionix"
-              original_url:
+              originalUrl:
                 type: string
                 format: uri
                 example: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
@@ -25,8 +25,8 @@ collection:
             CreateShortLinkExample:
               summary: Contoh payload pembuatan short link
               value:
-                short_code: "bionix"
-                original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+                shortCode: "bionix"
+                originalUrl: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
     responses:
       "201":
         description: Short link created
@@ -44,14 +44,14 @@ collection:
                 value:
                   data:
                     id: 1
-                    short_code: "bionix"
-                    original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+                    shortCode: "bionix"
+                    originalUrl: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
                     creator:
                       id: "550e8400-e29b-41d4-a716-446655440000"
                       name: "Admin ISE"
                       email: "admin@ise-its.com"
-                    click_count: 0
-                    created_at: "2026-03-01T12:00:00Z"
+                    clickCount: 0
+                    createdAt: "2026-03-01T12:00:00Z"
       "409":
         description: Short code already exists
         content:
@@ -106,10 +106,10 @@ collection:
                   message: Validation failed.
                   requestId: req-xyz456
                   errors:
-                    original_url:
-                      - "Field original_url must be a valid URI"
-                    short_code:
-                      - "Field short_code must be alphanumeric"
+                    originalUrl:
+                      - "Field originalUrl must be a valid URI"
+                    shortCode:
+                      - "Field shortCode must be alphanumeric"
   get:
     operationId: listShortLinks
     description: "[admin] List all short links"
@@ -163,27 +163,27 @@ collection:
                   data:
                     items:
                       - id: 1
-                        short_code: "bionix"
-                        original_url: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
+                        shortCode: "bionix"
+                        originalUrl: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
                         creator:
                           id: "550e8400-e29b-41d4-a716-446655440000"
                           name: "Admin ISE"
                           email: "admin@ise-its.com"
-                        click_count: 142
-                        created_at: "2026-03-01T12:00:00Z"
+                        clickCount: 142
+                        createdAt: "2026-03-01T12:00:00Z"
                       - id: 2
-                        short_code: "guidebook"
-                        original_url: "https://drive.google.com/file/d/123/view"
+                        shortCode: "guidebook"
+                        originalUrl: "https://drive.google.com/file/d/123/view"
                         creator:
                           id: "550e8400-e29b-41d4-a716-446655440000"
                           name: "Dedy"
                           email: "dedy@ise-its.com"
-                        click_count: 89
-                        created_at: "2026-03-01T12:00:00Z"
+                        clickCount: 89
+                        createdAt: "2026-03-01T12:00:00Z"
                     meta:
-                      total_items: 2
-                      total_pages: 1
-                      current_page: 1
+                      totalItems: 2
+                      totalPages: 1
+                      currentPage: 1
                       limit: 10
       "401":
         description: Unauthorized. Invalid or missing access token.

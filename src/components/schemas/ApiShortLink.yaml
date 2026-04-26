@@ -1,13 +1,13 @@
 type: object
-required: [id, short_code, original_url, click_count, created_at, creator]
+required: [id, shortCode, originalUrl, clickCount, createdAt, creator]
 properties:
   id:
     type: integer
     example: 1
-  short_code:
+  shortCode:
     type: string
     example: "bionix"
-  original_url:
+  originalUrl:
     type: string
     format: uri
     example: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
