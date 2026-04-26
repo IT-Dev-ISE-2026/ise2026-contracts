@@ -1,3 +1,2 @@
 export npm_config_loglevel=error
-# pnpm run bundle
-# git add dist/openapi.yaml
+pnpm validate
