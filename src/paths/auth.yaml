@@ -10,7 +10,7 @@ register:
         application/json:
           schema:
             type: object
-            required: [name, email, password]
+            required: [email, password]
             properties:
               name:
                 type: string

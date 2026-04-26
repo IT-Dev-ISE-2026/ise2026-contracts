@@ -1,0 +1,22 @@
+type: object
+required: [id, slug, name, price, is_active, timelines]
+properties:
+  id:
+    type: integer
+    example: 1
+  slug:
+    type: string
+    example: bionix
+  name:
+    type: string
+    example: Bionix Competition
+  price:
+    type: integer
+    example: 100000
+  is_active:
+    type: boolean
+    example: true
+  timelines:
+    type: array
+    items:
+      $ref: './ApiEventTimeline.yaml'

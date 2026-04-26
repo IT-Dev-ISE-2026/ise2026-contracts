@@ -1,0 +1,117 @@
+get-event-by-slug:
+  get:
+    operationId: getEventBySlug
+    description: Get event details including its timelines by event slug.
+    summary: Get event by slug
+    tags: [Events]
+    security: []
+    parameters:
+      - in: path
+        name: slug
+        required: true
+        schema:
+          type: string
+        description: The slug of the event (e.g., bionix, rise)
+    responses:
+      "200":
+        description: Event details found
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiEvent.yaml'
+            examples:
+              SuccessBionix:
+                value:
+                  data:
+                    id: 1
+                    slug: "bionix"
+                    name: "Bionix Competition"
+                    price: 100000
+                    is_active: true
+                    timelines:
+                      - id: 1
+                        name: "IS Class Registration"
+                        date: "2026-05-01T00:00:00Z"
+                        sequence_order: 1
+                      - id: 2
+                        name: "Bionix Competition Registration"
+                        date: "2026-06-01T00:00:00Z"
+                        sequence_order: 2
+                      - id: 3
+                        name: "IS Class Starts"
+                        date: "2026-08-01T00:00:00Z"
+                        sequence_order: 3
+                      - id: 4 
+                        name: "Try Out 1"
+                        date: "2026-09-01T00:00:00Z"
+                        sequence_order: 4
+                      - id: 5
+                        name: "Try Out 2"
+                        date: "2026-10-01T00:00:00Z"
+                        sequence_order: 5
+                      - id: 6
+                        name: "Bionix Competition Preliminary"
+                        date: "2026-11-01T00:00:00Z"
+                        sequence_order: 6
+                      - id: 7
+                        name: "Bionix Competition Semifinal"
+                        date: "2026-12-01T00:00:00Z"
+                        sequence_order: 7
+                      - id: 8
+                        name: "Bionix Competition Grand Final"
+                        date: "2027-01-01T00:00:00Z"
+                        sequence_order: 8
+              SuccessRise:
+                value:
+                  data:
+                    id: 2
+                    slug: "rise"
+                    name: "Rise Competition"
+                    price: 100000
+                    is_active: true
+                    timelines:
+                      - id: 1
+                        name: "Open Registration"
+                        date: "2026-06-01T00:00:00Z"
+                        sequence_order: 1
+                      - id: 2
+                        name: "Pre-Event"
+                        date: "2026-08-01T00:00:00Z"
+                        sequence_order: 2
+                      - id: 3
+                        name: "Preliminary Round"
+                        date: "2026-09-01T00:00:00Z"
+                        sequence_order: 3
+                      - id: 4 
+                        name: "Coaching Clinic"
+                        date: "2026-10-01T00:00:00Z"
+                        sequence_order: 4
+                      - id: 5
+                        name: "Semifinal Round"
+                        date: "2026-10-01T00:00:00Z"
+                        sequence_order: 5
+                      - id: 6
+                        name: "Mentoring 1 on 1"
+                        date: "2026-11-01T00:00:00Z"
+                        sequence_order: 6
+                      - id: 7
+                        name: "Final Round"
+                        date: "2026-12-01T00:00:00Z"
+                        sequence_order: 7
+                      - id: 8
+                        name: "Grand Final & Awarding"
+                        date: "2027-01-01T00:00:00Z"
+                        sequence_order: 8
+      "404":
+        description: Event not found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            example:
+              message: "event not found"
+              requestId: req-abc123
