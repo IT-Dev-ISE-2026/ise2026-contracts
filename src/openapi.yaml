@@ -86,3 +86,5 @@ components:
       $ref: 'components/schemas/ApiError.yaml'
     User:
       $ref: 'components/schemas/ApiUser.yaml'
+    Event:
+      $ref: 'components/schemas/ApiEvent.yaml'

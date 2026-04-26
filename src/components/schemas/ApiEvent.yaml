@@ -31,4 +31,4 @@ properties:
   sub_events:
     type: array
     items:
-      $ref: '#'
+      $ref: './ApiEvent.yaml'
