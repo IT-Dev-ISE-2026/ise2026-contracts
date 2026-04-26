@@ -1,0 +1,16 @@
+type: object
+required: [id, name, url, slug]
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: Guidebook Bionix
+  url:
+    type: string
+    format: uri
+    example: https://ise-its.com/guidebook-bionix
+  slug:
+    type: string
+    example: bionix-competition-guidebook

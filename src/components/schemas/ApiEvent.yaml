@@ -1,9 +1,13 @@
 type: object
-required: [id, slug, name, price, is_active, timelines]
+required: [id, slug, name, price, is_active, timelines, links]
 properties:
   id:
     type: integer
     example: 1
+  parent_id:
+    type: integer
+    nullable: true
+    example: null
   slug:
     type: string
     example: bionix
@@ -20,3 +24,11 @@ properties:
     type: array
     items:
       $ref: './ApiEventTimeline.yaml'
+  links:
+    type: array
+    items:
+      $ref: './ApiEventLink.yaml'
+  sub_events:
+    type: array
+    items:
+      $ref: '#'

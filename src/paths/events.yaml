@@ -29,7 +29,7 @@ get-event-by-slug:
                   data:
                     id: 1
                     slug: "bionix"
-                    name: "Bionix Competition"
+                    name: "Bionix"
                     price: 100000
                     is_active: true
                     timelines:
@@ -65,10 +65,31 @@ get-event-by-slug:
                         name: "Bionix Competition Grand Final"
                         date: "2027-01-01T00:00:00Z"
                         sequence_order: 8
+                    links:
+                      - id: 1
+                        name: "Guidebook Bionix"
+                        url: "https://ise-its.com/guidebook-bionix"
+                        slug: "bionix-competition-guidebook"
+                    sub_events:
+                      - id: 2
+                        slug: "bionix-competition"
+                        name: "Bionix Competition"
+                        price: 100000
+                        is_active: true
+                        links:
+                          - id: 1
+                            name: "Guidebook Bionix"
+                            url: "https://ise-its.com/guidebook-bionix"
+                            slug: "bionix-competition-guidebook"
+                        timelines:
+                          - id: 1
+                            name: "Bionix Registration"
+                            date: "2026-05-01T00:00:00Z"
+                            sequence_order: 1
               SuccessRise:
                 value:
                   data:
-                    id: 2
+                    id: 4
                     slug: "rise"
                     name: "Rise Competition"
                     price: 100000
