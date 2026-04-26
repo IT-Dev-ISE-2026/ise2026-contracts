@@ -16,6 +16,9 @@ properties:
     example: "user@example.com"
   phoneNumber:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
     example: "08123456789"
   educationLevel:
