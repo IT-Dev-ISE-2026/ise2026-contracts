@@ -61,7 +61,7 @@ me:
                     created_at: '2026-03-06T11:00:00Z'
                     updated_at: '2026-03-06T12:00:00Z'
               UserProfileWithoutEducationLevel:
-                summary: Profil user dengan data lengkap
+                summary: Profil user tanpa tingkat pendidikan
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -75,7 +75,7 @@ me:
                     created_at: '2026-03-06T11:00:00Z'
                     updated_at: '2026-03-06T12:00:00Z'
               UserProfileWithoutReferralSource:
-                summary: Profil user dengan data lengkap
+                summary: Profil user tanpa sumber referral
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
