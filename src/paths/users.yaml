@@ -39,13 +39,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John Student
                     email: john.student@example.com
-                    phone_number: '08123456789'
-                    education_level: university
-                    referral_source: ['instagram', 'others: whatsapp']
-                    is_email_verified: false
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram', 'others: whatsapp']
+                    isEmailVerified: false
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutPhoneNumber:
                 summary: Profil user tanpa nomor telepon
                 value:
@@ -53,13 +53,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John Student
                     email: john.student@example.com
-                    phone_number: null
-                    education_level: university
-                    referral_source: ['instagram', 'others: whatsapp']
-                    is_email_verified: true
+                    phoneNumber: null
+                    educationLevel: university
+                    referralSource: ['instagram', 'others: whatsapp']
+                    isEmailVerified: true
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutEducationLevel:
                 summary: Profil user tanpa tingkat pendidikan
                 value:
@@ -67,13 +67,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John Student
                     email: john.student@example.com
-                    phone_number: '08123456789'
-                    education_level: null
-                    referral_source: ['instagram', 'others: whatsapp']
-                    is_email_verified: true
+                    phoneNumber: '08123456789'
+                    educationLevel: null
+                    referralSource: ['instagram', 'others: whatsapp']
+                    isEmailVerified: true
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutReferralSource:
                 summary: Profil user tanpa sumber referral
                 value:
@@ -81,13 +81,13 @@ me:
                     id: 550e8400-e29b-41d4-a716-446655440000
                     name: John Student
                     email: john.student@example.com
-                    phone_number: '08123456789'
-                    education_level: university
-                    referral_source: null
-                    is_email_verified: true
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: null
+                    isEmailVerified: true
                     permissions: ['user']
-                    created_at: '2026-03-06T11:00:00Z'
-                    updated_at: '2026-03-06T12:00:00Z'
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T12:00:00Z'
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -149,7 +149,7 @@ me:
                 educationLevel: university
     responses:
       '200':
-        description: Profile updated successfully. Returns the updated user profile.
+        description: Profile updated successfully.
         content:
           application/json:
             schema:
@@ -180,11 +180,16 @@ me:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
-              AuthFailed:
-                summary: Autentikasi gagal
+              TokenMissing:
+                summary: Token JWT tidak disertakan
                 value:
                   message: "Unauthorized access."
                   requestId: req-uvw456
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: "Session has expired. Please login again."
+                  requestId: req-uvw456-expired
       '422':
         description: Validation failed.
         content:
@@ -304,11 +309,16 @@ list:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
-              AuthFailed:
-                summary: Autentikasi gagal
+              TokenMissing:
+                summary: Token JWT tidak disertakan
                 value:
                   message: "Unauthorized access."
                   requestId: req-list-users-401
+              TokenExpired:
+                summary: Token JWT sudah kadaluwarsa
+                value:
+                  message: "Session has expired. Please login again."
+                  requestId: req-list-users-401-expired
       '403':
         description: Forbidden. Insufficient permissions.
         content:
