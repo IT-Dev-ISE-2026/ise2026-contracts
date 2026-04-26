@@ -126,7 +126,7 @@ get-event-by-slug:
                       - id: 8
                         name: "Grand Final & Awarding"
                         date: "2027-01-01T00:00:00Z"
-                        sequence_order: 8
+                        sequenceOrder: 8
       "404":
         description: Event not found
         content:

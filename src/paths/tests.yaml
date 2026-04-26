@@ -60,7 +60,7 @@ test-orders:
                 value:
                   message: "Order created successfully"
                   data:
-                    order_id: "ORD-TEST-123"
+                    orderId: "ORD-TEST-123"
                     status: "pending"
       '403':
         description: Forbidden - Requires user permission
