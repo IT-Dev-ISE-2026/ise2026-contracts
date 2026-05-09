@@ -290,24 +290,29 @@ email-verify:
           example: 550e8400-e29b-41d4-a716-446655440000
         description: The verification token sent to the user's email.
     responses:
-      "302":
-        description: Redirect to frontend based on verification result.
-        headers:
-          Location:
-            description: >-
-              Target URL. 
-              Redirects to /email/verified on success.
-              Redirects to /email/invalid on failure (e.g., invalid or expired token).
+      "200":
+        description: Email successfully verified.
+        content:
+          application/json:
             schema:
-              type: string
-              format: uri
-            examples:
-              success:
-                value: https://ise-its.com/email/verified
-                description: Redirect on successful verification.
-              failure:
-                value: https://ise-its.com/email/invalid
-                description: Redirect on failed verification.
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: Email successfully verified.
+            example:
+              message: Email successfully verified.
+      "400":
+        description: Invalid or expired token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            example:
+              message: Invalid or expired token.
+              requestId: req-verify-400
+
 
 forgot-password:
   post:
