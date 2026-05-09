@@ -23,7 +23,7 @@ get-staff-by-id:
               properties:
                 data:
                   type: object
-                  required: [id, name, prodi, isAccepted, dresscode]
+                  required: [id, name, isAccepted, dresscode]
                   properties:
                     id:
                       type: string
@@ -31,9 +31,6 @@ get-staff-by-id:
                     name:
                       type: string
                       example: John Doe
-                    prodi:
-                      type: string
-                      example: "Informatika"
                     isAccepted:
                       type: boolean
                       example: true
@@ -48,7 +45,6 @@ get-staff-by-id:
                   data:
                     id: "STF-2026-001"
                     name: John Doe
-                    prodi: "Informatika"
                     isAccepted: true
                     dresscode: "White Shirt & Black Pants"
               StaffRejected:
@@ -57,7 +53,6 @@ get-staff-by-id:
                   data:
                     id: "STF-2026-999"
                     name: Jane Smith
-                    prodi: "Sistem Informasi"
                     isAccepted: false
                     dresscode: null
       '404':
