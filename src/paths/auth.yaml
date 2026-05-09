@@ -52,8 +52,8 @@ register:
                     permissions: ["user"]
                     createdAt: "2026-03-06T11:00:00Z"
                   message: "User registered successfully."
-      "400":
-        description: Invalid request
+      "422":
+        description: Validation failed
         content:
           application/json:
             schema:
@@ -62,8 +62,11 @@ register:
               ValidationError:
                 summary: Password too short
                 value:
-                  message: "Validation failed: password must be at least 8 characters."
+                  message: "Validation failed."
                   requestId: req-abc123
+                  errors:
+                    password:
+                      - "Password must be at least 8 characters long."
       "409":
         description: Resource already exists
         content:
@@ -145,6 +148,21 @@ login:
                 value:
                   message: "Invalid email or password."
                   requestId: req-ghi789
+      "422":
+        description: Validation failed
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Invalid email format
+                value:
+                  message: "Validation failed."
+                  requestId: req-login-422
+                  errors:
+                    email:
+                      - "Invalid email format."
 
 refresh:
   post:
@@ -364,7 +382,6 @@ email-verify:
                   message: Invalid or expired token.
                   requestId: req-verify-400
 
-
 forgot-password:
   post:
     operationId: forgotPassword
@@ -395,12 +412,12 @@ forgot-password:
               properties:
                 message:
                   type: string
-                  example: Password reset link has been sent (if account exists).
+                  example: Password reset link has been sent.
             examples:
               ForgotSuccess:
                 summary: Reset link sent
                 value:
-                  message: Password reset link has been sent (if account exists).
+                  message: Password reset link has been sent.
       "422":
         description: Validation failed.
         content:
