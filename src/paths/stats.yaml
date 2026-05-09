@@ -27,6 +27,14 @@ users:
                     totalAdmins:
                       type: integer
                       example: 2
+            examples:
+              SuccessStats:
+                summary: User statistics overview
+                value:
+                  data:
+                    totalAccounts: 15
+                    totalUsers: 13
+                    totalAdmins: 2
       "401":
         description: Unauthorized. Invalid or missing access token.
       "403":
@@ -37,7 +45,7 @@ users:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
-                summary: User does not have admin:users:read permission
+                summary: Insufficient permissions
                 value:
                   message: "Access denied. Insufficient permissions."
                   requestId: req-xyz-403

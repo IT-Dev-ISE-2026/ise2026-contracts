@@ -38,31 +38,40 @@ register:
               properties:
                 data:
                   $ref: '../components/schemas/ApiUser.yaml'
-            example:
-              data:
-                id: 550e8400-e29b-41d4-a716-446655440000
-                email: user@example.com
-                name: John Doe
-                permissions: ["user"]
-                createdAt: "2026-03-06T11:00:00Z"
+            examples:
+              RegistrationSuccess:
+                summary: User registered successfully
+                value:
+                  data:
+                    id: 550e8400-e29b-41d4-a716-446655440000
+                    email: user@example.com
+                    name: John Doe
+                    permissions: ["user"]
+                    createdAt: "2026-03-06T11:00:00Z"
       "400":
         description: Invalid request
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: "validation failed: password must be at least 8 characters"
-              requestId: req-abc123
+            examples:
+              ValidationError:
+                summary: Password too short
+                value:
+                  message: "Validation failed: password must be at least 8 characters."
+                  requestId: req-abc123
       "409":
         description: Resource already exists
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: email already registered
-              requestId: req-def456
+            examples:
+              DuplicateEmail:
+                summary: Email already exists
+                value:
+                  message: Email already registered. Try to login instead.
+                  requestId: req-def456
 
 login:
   post:
@@ -110,18 +119,24 @@ login:
                     accessToken:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
-            example:
-              data:
-                accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
+            examples:
+              LoginSuccess:
+                summary: Login successful
+                value:
+                  data:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
       "401":
         description: Invalid credentials
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: invalid email or password
-              requestId: req-ghi789
+            examples:
+              InvalidCredentials:
+                summary: Wrong email or password
+                value:
+                  message: "Invalid email or password."
+                  requestId: req-ghi789
 
 refresh:
   post:
@@ -159,18 +174,24 @@ refresh:
                     accessToken:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
-            example:
-              data:
-                accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
+            examples:
+              RefreshSuccess:
+                summary: Token refreshed successfully
+                value:
+                  data:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
       "401":
         description: Invalid credentials or token
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: refresh token expired or invalid
-              requestId: req-jkl012
+            examples:
+              TokenInvalid:
+                summary: Refresh token expired
+                value:
+                  message: "Refresh token expired or invalid."
+                  requestId: req-jkl012
 
 logout:
   post:
@@ -195,18 +216,21 @@ logout:
               properties:
                 message:
                   type: string
-                  example: logout successful
+                  example: "Logout successful."
             example:
-              message: logout successful
+              message: "Logout successful."
       "401":
         description: Unauthorized - Invalid or expired token
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: session expired or invalid
-              requestId: req-mno345
+            examples:
+              SessionExpired:
+                summary: User session invalid
+                value:
+                  message: "Session expired or invalid."
+                  requestId: req-mno345
 
 email-resend:
   post:
@@ -241,17 +265,23 @@ email-resend:
                 message:
                   type: string
                   example: Verification email has been resent.
-            example:
-              message: Verification email has been resent.
+            examples:
+              ResendSuccess:
+                summary: Verification email sent
+                value:
+                  message: Verification email has been resent.
       "409":
         description: Email already verified.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Email already verified.
-              requestId: req-resend-409
+            examples:
+              AlreadyVerified:
+                summary: Account already verified
+                value:
+                  message: Email already verified. Please try to login.
+                  requestId: req-resend-409
       "422":
         description: Validation failed.
         content:
@@ -270,9 +300,12 @@ email-resend:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Failed to send email. Please try again later.
-              requestId: req-xyz789
+            examples:
+              ResendFailed:
+                summary: Internal server error
+                value:
+                  message: Failed to send email. Please try again later.
+                  requestId: req-xyz789
 
 email-verify:
   get:
@@ -301,17 +334,23 @@ email-verify:
                 message:
                   type: string
                   example: Email successfully verified.
-            example:
-              message: Email successfully verified.
+            examples:
+              VerificationSuccess:
+                summary: Email verified successfully
+                value:
+                  message: Email successfully verified.
       "400":
         description: Invalid or expired token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Invalid or expired token.
-              requestId: req-verify-400
+            examples:
+              InvalidToken:
+                summary: Token invalid or expired
+                value:
+                  message: Invalid or expired token.
+                  requestId: req-verify-400
 
 
 forgot-password:
@@ -345,20 +384,26 @@ forgot-password:
                 message:
                   type: string
                   example: Password reset link has been sent (if account exists).
-            example:
-              message: Password reset link has been sent (if account exists).
+            examples:
+              ForgotSuccess:
+                summary: Reset link sent
+                value:
+                  message: Password reset link has been sent (if account exists).
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Validation failed.
-              requestId: req-forgot-422
-              errors:
-                email:
-                  - "Invalid email format."
+            examples:
+              ValidationError:
+                summary: Invalid email format
+                value:
+                  message: Validation failed.
+                  requestId: req-forgot-422
+                  errors:
+                    email:
+                      - "Invalid email format."
 
 password-reset:
   post:
@@ -394,29 +439,38 @@ password-reset:
                 message:
                   type: string
                   example: Password reset successful.
-            example:
-              message: Password reset successful.
+            examples:
+              ResetSuccess:
+                summary: Password reset successfully
+                value:
+                  message: Password reset successful.
       "400":
         description: Invalid or expired token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Invalid or expired token.
-              requestId: req-pqr567
+            examples:
+              InvalidToken:
+                summary: Token invalid or expired
+                value:
+                  message: Invalid or expired token.
+                  requestId: req-pqr567
       "422":
         description: Validation failed.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: Validation failed.
-              requestId: req-reset-422
-              errors:
-                password:
-                  - "Password must be at least 8 characters long."
+            examples:
+              ValidationError:
+                summary: Password too short
+                value:
+                  message: "Validation failed."
+                  requestId: req-reset-422
+                  errors:
+                    password:
+                      - "Password must be at least 8 characters long."
 
 password-reset-validate:
   get:
@@ -444,15 +498,18 @@ password-reset-validate:
               properties:
                 message:
                   type: string
-                  example: token valid
+                  example: "Token is valid."
             example:
-              message: token valid
+              message: "Token is valid."
       "400":
         description: Invalid or expired token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: token sudah kadaluarsa atau tidak valid.
-              requestId: req-val-400
+            examples:
+              TokenExpired:
+                summary: Reset token has expired
+                value:
+                  message: "Reset token is invalid or has expired."
+                  requestId: req-val-400

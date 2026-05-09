@@ -30,7 +30,7 @@ test-email-verification:
                   type: string
             examples:
               SuccessTrigger:
-                summary: Berhasil mentrigger simulasi
+                summary: Simulation Triggered
                 value:
                   message: Simulation email verification for dev@example.com has been sent.
 
@@ -56,9 +56,9 @@ test-orders:
                   type: object
             examples:
               OrderCreated:
-                summary: Berhasil membuat order dummy
+                summary: Order Created Successfully
                 value:
-                  message: "Order created successfully"
+                  message: "Order created successfully."
                   data:
                     orderId: "ORD-TEST-123"
                     status: "pending"
@@ -70,9 +70,9 @@ test-orders:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               MissingPermission:
-                summary: User tidak memiliki permission 'user'
+                summary: Missing 'user' Permission
                 value:
-                  message: "forbidden: you do not have permission 'user'"
+                  message: "Forbidden: You do not have permission 'user'."
                   requestId: req-test-403
 
 test-admin:
@@ -95,7 +95,7 @@ test-admin:
                   type: string
             examples:
               AdminAccess:
-                summary: Akses admin diverifikasi
+                summary: Admin Access Granted
                 value:
                   message: "Welcome Admin! Access granted."
       '403':
@@ -106,9 +106,9 @@ test-admin:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotAnAdmin:
-                summary: User bukan admin
+                summary: "Access Denied: Not Admin"
                 value:
-                  message: "access denied: admin role required"
+                  message: "Access denied: admin role required."
                   requestId: req-admin-403
 
 test-admin-bionix:
@@ -131,9 +131,9 @@ test-admin-bionix:
                   type: string
             examples:
               BionixReadAccess:
-                summary: Akses baca bionix diverifikasi
+                summary: Bionix Read Access Granted
                 value:
-                  message: "Access granted for Bionix Read"
+                  message: "Access granted for Bionix Read."
   post:
     operationId: testAdminBionixWrite
     description: Test Bionix admin write access.
@@ -153,6 +153,6 @@ test-admin-bionix:
                   type: string
             examples:
               BionixWriteAccess:
-                summary: Akses tulis bionix diverifikasi
+                summary: Bionix Write Access Granted
                 value:
-                  message: "Access granted for Bionix Write"
+                  message: "Access granted for Bionix Write."

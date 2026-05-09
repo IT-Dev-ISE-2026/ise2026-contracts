@@ -43,7 +43,7 @@ get-staff-by-id:
                       example: White Shirt
             examples:
               StaffAccepted:
-                summary: Data staff yang dinyatakan diterima
+                summary: Staff data - Accepted
                 value:
                   data:
                     id: "STF-2026-001"
@@ -52,7 +52,7 @@ get-staff-by-id:
                     isAccepted: true
                     dresscode: "White Shirt & Black Pants"
               StaffRejected:
-                summary: Data staff yang tidak lolos seleksi
+                summary: Staff data - Rejected
                 value:
                   data:
                     id: "STF-2026-999"
@@ -68,9 +68,9 @@ get-staff-by-id:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotFound:
-                summary: ID staff tidak terdaftar
+                summary: Staff not found
                 value:
-                  message: Staff registration data not found
+                  message: "Staff registration data not found."
                   requestId: abc123
                   errors:
                     id: ["invalid staff id format or not found"]

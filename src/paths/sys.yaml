@@ -19,13 +19,13 @@ ping:
                   properties:
                     message:
                       type: string
-                      example: pong
+                      example: "Pong."
             examples:
               StandardPong:
-                summary: Response pong standar
+                summary: Standard Pong Response
                 value:
                   data:
-                    message: pong
+                    message: "Pong."
 
 health:
   get:
@@ -48,13 +48,13 @@ health:
                   properties:
                     status:
                       type: string
-                      example: healthy
+                      example: "Healthy."
             examples:
               ServiceHealthy:
-                summary: Semua sistem berjalan normal
+                summary: All Systems Operational
                 value:
                   data:
-                    status: healthy
+                    status: "Healthy."
 
       '503':
         description: Service unhealthy
@@ -64,16 +64,16 @@ health:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               DatabaseDown:
-                summary: Koneksi database terputus
+                summary: Database Connection Error
                 value:
-                  message: Service unhealthy
+                  message: "Service unhealthy."
                   requestId: req-sys-db-down
                   errors:
                     database: ["connection failed", "timeout after 5s"]
               RedisDown:
-                summary: Koneksi Redis terputus
+                summary: Redis Connection Error
                 value:
-                  message: Service unhealthy
+                  message: "Service unhealthy."
                   requestId: req-sys-redis-down
                   errors:
                     redis: ["dial tcp [::1]:6379: connect: connection refused"]
@@ -110,7 +110,7 @@ set-permissions:
                 example: ["admin", "user"]
           examples:
             SetAdmin:
-              summary: Memberikan hak akses Admin
+              summary: Assign Admin Permissions
               value:
                 email: dev@example.com
                 permissions: ["admin:bionix:read", "user"]
@@ -126,12 +126,12 @@ set-permissions:
               properties:
                 message:
                   type: string
-                  example: Status privilege user dev@example.com berhasil di update!
+                  example: "User permissions updated successfully."
             examples:
               UpdateSuccess:
-                summary: Update berhasil dilakukan
+                summary: Permission Update Successful
                 value:
-                  message: Status privilege user dev@example.com berhasil di update!
+                  message: "User permissions updated successfully."
       '401':
         description: Unauthorized - Invalid or missing internal token
         content:
@@ -140,9 +140,9 @@ set-permissions:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidToken:
-                summary: Token internal salah atau tidak ada
+                summary: Invalid Internal Token
                 value:
-                  message: Kredensial tidak valid
+                  message: "Invalid credentials."
                   requestId: internal-req-123
       '500':
         description: Failed to update permissions
@@ -152,7 +152,7 @@ set-permissions:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               UserNotFound:
-                summary: Email user tidak ditemukan di database
+                summary: User Not Found
                 value:
-                  message: "Gagal update hak user: user not found"
+                  message: "Failed to update user permissions: User not found."
                   requestId: internal-req-456

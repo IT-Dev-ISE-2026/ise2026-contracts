@@ -23,7 +23,7 @@ collection:
                 example: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
           examples:
             CreateShortLinkExample:
-              summary: Contoh payload pembuatan short link
+              summary: "Short Link Payload Example"
               value:
                 shortCode: "bionix"
                 originalUrl: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
@@ -40,7 +40,7 @@ collection:
                   $ref: '../components/schemas/ApiShortLink.yaml'
             examples:
               SuccessCreateShortLink:
-                summary: Berhasil membuat short link baru
+                summary: Short Link Created Successfully
                 value:
                   data:
                     id: 1
@@ -60,7 +60,7 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               DuplicateCode:
-                summary: Short code sudah terpakai
+                summary: Short Code Already Taken
                 value:
                   message: "Short code 'bionix' is already in use."
                   requestId: "req-xyz123"
@@ -72,14 +72,14 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-xyz-401-missing
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: "Expired JWT Token"
                 value:
-                  message: "Session expired."
+                  message: "Session expired. Please login again."
                   requestId: req-xyz-401-expired
       "403":
         description: Forbidden. Insufficient permissions.
@@ -89,9 +89,9 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
-                summary: User tidak memiliki izin akses
+                summary: "Access Denied: Insufficient Permissions"
                 value:
-                  message: You don't have permission to access this feature.
+                  message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
       "422":
         description: Validation failed
@@ -101,7 +101,7 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               ValidationFailed:
-                summary: Format URL atau Short Code tidak valid
+                summary: Invalid URL or Short Code
                 value:
                   message: Validation failed.
                   requestId: req-xyz456
@@ -158,7 +158,7 @@ collection:
                       $ref: '../components/schemas/ApiPaginationMeta.yaml'
             examples:
               SuccessList:
-                summary: Berhasil mengambil daftar short link
+                summary: Short Link List Retrieved Successfully
                 value:
                   data:
                     items:
@@ -193,14 +193,14 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-xyz-401-missing
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: "Expired JWT Token"
                 value:
-                  message: "Session expired."
+                  message: "Session expired. Please login again."
                   requestId: req-xyz-401-expired
       "403":
         description: Forbidden. Insufficient permissions.
@@ -210,9 +210,9 @@ collection:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
-                summary: User tidak memiliki izin akses
+                summary: "Access Denied: Insufficient Permissions"
                 value:
-                  message: You don't have permission to access this feature.
+                  message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
 item:
   delete:
@@ -239,12 +239,12 @@ item:
               properties:
                 message:
                   type: string
-                  example: "Short link deleted successfully"
+                  example: "Short link deleted successfully."
             examples:
               SuccessDeleteShortLink:
-                summary: Berhasil menghapus short link
+                summary: Short Link Deleted Successfully
                 value:
-                  message: "Short link deleted successfully"
+                  message: "Short link deleted successfully."
       "404":
         description: Short link not found
         content:
@@ -253,7 +253,7 @@ item:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotFoundDelete:
-                summary: Short link tidak ditemukan
+                summary: Short Link Not Found
                 value:
                   message: "Short link not found."
                   requestId: "req-xyz123"
@@ -265,14 +265,14 @@ item:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-xyz-401-missing
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: "Expired JWT Token"
                 value:
-                  message: "Session expired."
+                  message: "Session expired. Please login again."
                   requestId: req-xyz-401-expired
       "403":
         description: Forbidden. Insufficient permissions.
@@ -282,9 +282,9 @@ item:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
-                summary: User tidak memiliki izin akses
+                summary: "Access Denied: Insufficient Permissions"
                 value:
-                  message: You don't have permission to access this feature.
+                  message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
 
 redirect:
@@ -311,7 +311,7 @@ redirect:
               format: uri
             examples:
               RedirectExample:
-                summary: Contoh pengalihan ke URL asli
+                summary: Redirection Example
                 value: "https://docs.google.com/forms/d/e/1FAIpQLS/viewform"
       "404":
         description: Short link not found
@@ -321,7 +321,7 @@ redirect:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               NotFoundRedirect:
-                summary: Short link tidak ditemukan
+                summary: Short Link Not Found
                 value:
                   message: "Short link not found."
                   requestId: "req-xyz123"

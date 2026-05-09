@@ -19,7 +19,7 @@ me:
                   $ref: '../components/schemas/ApiUser.yaml'
             examples:
               UserProfileFull:
-                summary: Profil user dengan data lengkap
+                summary: Complete User Profile
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -33,7 +33,7 @@ me:
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
               UserProfileUnverifiedEmail:
-                summary: Profil user dengan email belum di verifikasi
+                summary: Unverified Email Profile
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -47,7 +47,7 @@ me:
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutPhoneNumber:
-                summary: Profil user tanpa nomor telepon
+                summary: Profile Missing Phone Number
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -61,7 +61,7 @@ me:
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutEducationLevel:
-                summary: Profil user tanpa tingkat pendidikan
+                summary: Profile Missing Education Level
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -75,7 +75,7 @@ me:
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
               UserProfileWithoutReferralSource:
-                summary: Profil user tanpa sumber referral
+                summary: Profile Missing Referral Source
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -96,12 +96,12 @@ me:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-uvw123-missing
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: Expired JWT Token
                 value:
                   message: "Session has expired. Please login again."
                   requestId: req-uvw123-expired
@@ -142,11 +142,11 @@ me:
                 example: ['instagram', 'others: whatsapp']
           examples:
             UpdateName:
-              summary: Mengubah nama saja
+              summary: Update Name Only
               value:
                 name: John New Name
             UpdateEducation:
-              summary: Mengubah tingkat pendidikan
+              summary: Update Education Level Only
               value:
                 educationLevel: university
     responses:
@@ -162,7 +162,7 @@ me:
                   $ref: '../components/schemas/ApiUser.yaml'
             examples:
               UpdateSuccess:
-                summary: Berhasil memperbarui profil
+                summary: Profile Updated Successfully
                 value:
                   data:
                     id: 550e8400-e29b-41d4-a716-446655440000
@@ -183,12 +183,12 @@ me:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-uvw456
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: Expired JWT Token
                 value:
                   message: "Session has expired. Please login again."
                   requestId: req-uvw456-expired
@@ -200,7 +200,7 @@ me:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidEnum:
-                summary: Nilai educationLevel tidak sesuai enum
+                summary: Invalid Education Level Value
                 value:
                   message: Validation failed.
                   requestId: req-update-me-422-enum
@@ -208,7 +208,7 @@ me:
                     educationLevel:
                       - 'Field educationLevel must be one of: high_school, university, public.'
               EmptyName:
-                summary: Nama dikirim kosong
+                summary: Empty Name Error
                 value:
                   message: Validation failed.
                   requestId: req-update-me-422-name
@@ -285,7 +285,7 @@ list:
                       $ref: '../components/schemas/ApiPaginationMeta.yaml'
             examples:
               UserList:
-                summary: Berhasil mengambil daftar user
+                summary: User List Retrieved Successfully
                 value:
                   data:
                     items:
@@ -312,12 +312,12 @@ list:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               TokenMissing:
-                summary: Token JWT tidak disertakan
+                summary: Missing JWT Token
                 value:
                   message: "Unauthorized access."
                   requestId: req-list-users-401
               TokenExpired:
-                summary: Token JWT sudah kadaluwarsa
+                summary: Expired JWT Token
                 value:
                   message: "Session has expired. Please login again."
                   requestId: req-list-users-401-expired
@@ -329,7 +329,7 @@ list:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               Forbidden:
-                summary: User does not have admin:users:read permission
+                summary: "Access Denied: Insufficient permissions"
                 value:
                   message: "Access denied. Insufficient permissions."
                   requestId: req-xyz-403

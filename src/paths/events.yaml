@@ -25,6 +25,7 @@ get-event-by-slug:
                   $ref: '../components/schemas/ApiEvent.yaml'
             examples:
               SuccessBionix:
+                summary: Bionix event details
                 value:
                   data:
                     id: 1
@@ -95,6 +96,9 @@ get-event-by-slug:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
-            example:
-              message: "event not found"
-              requestId: req-abc123
+            examples:
+              EventNotFound:
+                summary: Event not found
+                value:
+                  message: "Event not found."
+                  requestId: req-abc123
