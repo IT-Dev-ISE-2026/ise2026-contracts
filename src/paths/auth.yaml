@@ -34,10 +34,13 @@ register:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   $ref: '../components/schemas/ApiUser.yaml'
+                message:
+                  type: string
+                  example: "User registered successfully."
             examples:
               RegistrationSuccess:
                 summary: User registered successfully
@@ -48,6 +51,7 @@ register:
                     name: John Doe
                     permissions: ["user"]
                     createdAt: "2026-03-06T11:00:00Z"
+                  message: "User registered successfully."
       "400":
         description: Invalid request
         content:
@@ -110,7 +114,7 @@ login:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   type: object
@@ -119,12 +123,16 @@ login:
                     accessToken:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
+                message:
+                  type: string
+                  example: "Login successful. Welcome back!"
             examples:
               LoginSuccess:
                 summary: Login successful
                 value:
                   data:
                     accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
+                  message: "Login successful. Welcome back!"
       "401":
         description: Invalid credentials
         content:
@@ -165,7 +173,7 @@ refresh:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   type: object
@@ -174,12 +182,16 @@ refresh:
                     accessToken:
                       type: string
                       example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
+                message:
+                  type: string
+                  example: "Token refreshed successfully."
             examples:
               RefreshSuccess:
                 summary: Token refreshed successfully
                 value:
                   data:
                     accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.newtoken123
+                  message: "Token refreshed successfully."
       "401":
         description: Invalid credentials or token
         content:

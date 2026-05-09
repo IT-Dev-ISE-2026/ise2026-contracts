@@ -13,10 +13,13 @@ me:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   $ref: '../components/schemas/ApiUser.yaml'
+                message:
+                  type: string
+                  example: "User profile retrieved successfully."
             examples:
               UserProfileFull:
                 summary: Complete User Profile
@@ -32,6 +35,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "User profile retrieved successfully."
               UserProfileUnverifiedEmail:
                 summary: Unverified Email Profile
                 value:
@@ -46,6 +50,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "User profile retrieved successfully."
               UserProfileWithoutPhoneNumber:
                 summary: Profile Missing Phone Number
                 value:
@@ -60,6 +65,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "User profile retrieved successfully."
               UserProfileWithoutEducationLevel:
                 summary: Profile Missing Education Level
                 value:
@@ -74,6 +80,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "User profile retrieved successfully."
               UserProfileWithoutReferralSource:
                 summary: Profile Missing Referral Source
                 value:
@@ -88,6 +95,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "User profile retrieved successfully."
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -156,10 +164,13 @@ me:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   $ref: '../components/schemas/ApiUser.yaml'
+                message:
+                  type: string
+                  example: "Profile updated successfully."
             examples:
               UpdateSuccess:
                 summary: Profile Updated Successfully
@@ -175,6 +186,7 @@ me:
                     permissions: ['user']
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
+                  message: "Profile updated successfully."
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:

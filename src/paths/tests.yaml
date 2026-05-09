@@ -25,6 +25,7 @@ test-email-verification:
           application/json:
             schema:
               type: object
+              required: [message]
               properties:
                 message:
                   type: string
@@ -49,6 +50,7 @@ test-orders:
           application/json:
             schema:
               type: object
+              required: [message, data]
               properties:
                 message:
                   type: string
@@ -90,6 +92,7 @@ test-admin:
           application/json:
             schema:
               type: object
+              required: [message]
               properties:
                 message:
                   type: string
@@ -126,6 +129,7 @@ test-admin-bionix:
           application/json:
             schema:
               type: object
+              required: [message]
               properties:
                 message:
                   type: string
@@ -148,6 +152,7 @@ test-admin-bionix:
           application/json:
             schema:
               type: object
+              required: [message]
               properties:
                 message:
                   type: string

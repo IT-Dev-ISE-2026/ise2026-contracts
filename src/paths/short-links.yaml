@@ -34,14 +34,18 @@ collection:
           application/json:
             schema:
               type: object
-              required: [data]
+              required: [data, message]
               properties:
                 data:
                   $ref: '../components/schemas/ApiShortLink.yaml'
+                message:
+                  type: string
+                  example: "Short link created successfully."
             examples:
               SuccessCreateShortLink:
                 summary: Short Link Created Successfully
                 value:
+                  message: "Short link created successfully."
                   data:
                     id: 1
                     shortCode: "bionix"
