@@ -448,9 +448,9 @@ item:
                   message: "Access denied. Insufficient permissions."
                   requestId: req-get-403
 
-  put:
-    operationId: updateVoucher
-    description: "[admin:{slug}:voucher:write] Update an existing voucher."
+  patch:
+    operationId: patchVoucher
+    description: "[admin:{slug}:voucher:write] Update an existing voucher. Code is immutable and cannot be changed."
     summary: Update voucher
     tags: [Vouchers]
     security:
@@ -474,11 +474,6 @@ item:
           schema:
             type: object
             properties:
-              code:
-                type: string
-                minLength: 3
-                maxLength: 255
-                example: SURABAYA-UPDATED
               discountAmount:
                 type: integer
                 minimum: 0
@@ -527,7 +522,7 @@ item:
                       id: 550e8400-e29b-41d4-a716-446655440000
                       name: Admin ISE
                       email: admin@ise-its.com
-                    code: SURABAYA-UPDATED
+                    code: SURABAYA
                     discountAmount: 15000
                     quota: 100
                     usedCount: 5
