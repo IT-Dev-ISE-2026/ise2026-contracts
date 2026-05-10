@@ -1,3 +1,4 @@
+title: ApiPaginationMeta
 type: object
 required: [totalItems, totalPages, currentPage, limit]
 properties:

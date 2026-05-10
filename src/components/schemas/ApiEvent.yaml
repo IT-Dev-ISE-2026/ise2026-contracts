@@ -1,3 +1,4 @@
+title: ApiEvent
 type: object
 required: [id, slug, name, price, isActive, timelines, links]
 properties:

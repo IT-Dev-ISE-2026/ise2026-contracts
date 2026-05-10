@@ -26,6 +26,8 @@ tags:
     description: Event management and information endpoints.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
+  - name: Vouchers
+    description: Voucher management endpoints for events.
 
 paths:
   /api/sys/ping:
@@ -76,6 +78,14 @@ paths:
     $ref: 'paths/short-links.yaml#/item'
   /go/{shortCode}:
     $ref: 'paths/short-links.yaml#/redirect'
+  /api/vouchers:
+    $ref: 'paths/vouchers.yaml#/collection'
+  /api/vouchers/verify:
+    $ref: 'paths/vouchers.yaml#/verify'
+  /api/vouchers/check-availability:
+    $ref: 'paths/vouchers.yaml#/check-availability'
+  /api/vouchers/{id}:
+    $ref: 'paths/vouchers.yaml#/item'
 
 components:
   securitySchemes:
@@ -88,3 +98,7 @@ components:
       $ref: 'components/schemas/ApiUser.yaml'
     Event:
       $ref: 'components/schemas/ApiEvent.yaml'
+    ShortLink:
+      $ref: 'components/schemas/ApiShortLink.yaml'
+    Voucher:
+      $ref: 'components/schemas/ApiVoucher.yaml'

@@ -1,3 +1,4 @@
+title: ApiShortLink
 type: object
 required: [id, shortCode, originalUrl, clickCount, createdAt, creator]
 properties:

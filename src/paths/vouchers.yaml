@@ -1,0 +1,735 @@
+collection:
+  get:
+    operationId: listVouchers
+    description: "[admin:bionix:voucher:read] Get a list of all vouchers."
+    summary: List vouchers
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - name: eventId
+        in: query
+        schema:
+          type: integer
+      - name: code
+        in: query
+        schema:
+          type: string
+      - name: isActive
+        in: query
+        schema:
+          type: boolean
+    responses:
+      '200':
+        description: Returns a list of vouchers.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiVoucher.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+                message:
+                  type: string
+                  example: "Vouchers retrieved successfully."
+            examples:
+              VoucherList:
+                summary: Sample Voucher List
+                value:
+                  data:
+                    items:
+                      - id: 1
+                        eventId: 2
+                        createdBy:
+                          id: 550e8400-e29b-41d4-a716-446655440000
+                          name: Admin ISE
+                          email: admin@ise-its.com
+                        code: SURABAYA
+                        discountAmount: 10000
+                        quota: 50
+                        usedCount: 5
+                        activatedAt: '2026-03-06T11:00:00Z'
+                        expiredAt: '2026-04-06T11:00:00Z'
+                        isActive: true
+                        allowDp: true
+                        createdAt: '2026-03-06T11:00:00Z'
+                        updatedAt: '2026-03-06T11:00:00Z'
+                    meta:
+                      totalItems: 1
+                      totalPages: 1
+                      currentPage: 1
+                      limit: 10
+                  message: "Vouchers retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-list-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-list-403
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request. Invalid query parameters."
+                  requestId: req-list-400
+
+  post:
+    operationId: createVoucher
+    description: "[admin:bionix:voucher:write] Create a new voucher."
+    summary: Create voucher
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [eventId, code, discountAmount]
+            properties:
+              eventId:
+                type: integer
+                description: ID of the event this voucher belongs to.
+                example: 2
+              code:
+                type: string
+                description: Unique voucher code.
+                minLength: 3
+                maxLength: 255
+                example: SURABAYA
+              discountAmount:
+                type: integer
+                description: Absolute discount amount in IDR.
+                minimum: 0
+                example: 10000
+              quota:
+                type: integer
+                nullable: true
+                description: Maximum number of uses. Null means unlimited.
+                minimum: 1
+                example: 50
+              activatedAt:
+                type: string
+                format: date-time
+                nullable: true
+                description: The date and time when the voucher becomes active.
+              expiredAt:
+                type: string
+                format: date-time
+                nullable: true
+                description: The date and time when the voucher expires.
+              isActive:
+                type: boolean
+                default: false
+                description: Whether the voucher is currently active.
+              allowDp:
+                type: boolean
+                default: false
+                description: Whether this voucher can be used for DP (Down Payment) orders.
+    responses:
+      '201':
+        description: Voucher created successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiVoucher.yaml'
+                message:
+                  type: string
+                  example: "Voucher created successfully."
+            examples:
+              CreateSuccess:
+                summary: Voucher created
+                value:
+                  data:
+                    id: 1
+                    eventId: 2
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
+                    code: SURABAYA
+                    discountAmount: 10000
+                    quota: 50
+                    usedCount: 0
+                    isActive: false
+                    allowDp: false
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T11:00:00Z'
+                  message: "Voucher created successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-create-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-create-403
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation failed
+                value:
+                  message: "Validation failed."
+                  requestId: req-create-422
+                  errors:
+                    code:
+                      - "Voucher code already exists."
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request. Invalid payload."
+                  requestId: req-create-400
+
+verify:
+  get:
+    operationId: verifyVoucher
+    description: "[user] Verify a voucher code for a specific event."
+    summary: Verify voucher
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: code
+        in: query
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+      - name: eventId
+        in: query
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Voucher is valid. Returns discount information.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [code, discountAmount, allowDp]
+                  properties:
+                    code:
+                      type: string
+                    discountAmount:
+                      type: integer
+                    allowDp:
+                      type: boolean
+                message:
+                  type: string
+                  example: "Voucher is valid."
+            examples:
+              VerifySuccess:
+                summary: Voucher is valid
+                value:
+                  data:
+                    code: SURABAYA
+                    discountAmount: 10000
+                    allowDp: true
+                  message: "Voucher is valid."
+      '400':
+        description: Voucher is invalid or expired.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              InvalidVoucher:
+                summary: Voucher invalid
+                value:
+                  message: "Voucher is invalid or has expired."
+                  requestId: req-verify-400
+      '404':
+        description: Voucher not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Voucher not found
+                value:
+                  message: "Voucher code not found for this event."
+                  requestId: req-verify-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access. Please login."
+                  requestId: req-verify-401
+
+check-availability:
+  get:
+    operationId: checkVoucherAvailability
+    description: "[admin:bionix:voucher:write] Check if a voucher code is available (not used by another active voucher)."
+    summary: Check voucher availability
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: code
+        in: query
+        required: true
+        schema:
+          type: string
+          minLength: 3
+          maxLength: 255
+    responses:
+      '200':
+        description: Availability check result.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [isAvailable]
+                  properties:
+                    isAvailable:
+                      type: boolean
+                      example: true
+                message:
+                  type: string
+                  example: "Voucher code availability checked."
+            examples:
+              Available:
+                summary: Code is available
+                value:
+                  data:
+                    isAvailable: true
+                  message: "Voucher code availability checked."
+              NotAvailable:
+                summary: Code is taken
+                value:
+                  data:
+                    isAvailable: false
+                  message: "Voucher code availability checked."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-check-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-check-403
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request. Invalid query parameters."
+                  requestId: req-check-400
+
+item:
+  get:
+    operationId: getVoucherById
+    description: "[admin:bionix:voucher:read] Get a voucher by ID."
+    summary: Get voucher
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Returns the voucher details.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiVoucher.yaml'
+                message:
+                  type: string
+                  example: "Voucher retrieved successfully."
+            examples:
+              VoucherDetail:
+                summary: Voucher details
+                value:
+                  data:
+                    id: 1
+                    eventId: 2
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
+                    code: SURABAYA
+                    discountAmount: 10000
+                    quota: 50
+                    usedCount: 5
+                    activatedAt: '2026-03-06T11:00:00Z'
+                    expiredAt: '2026-04-06T11:00:00Z'
+                    isActive: true
+                    allowDp: true
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-06T11:00:00Z'
+                  message: "Voucher retrieved successfully."
+      '404':
+        description: Voucher not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Voucher not found
+                value:
+                  message: "Voucher not found."
+                  requestId: req-get-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-get-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-get-403
+
+  put:
+    operationId: updateVoucher
+    description: "[admin:bionix:voucher:write] Update an existing voucher."
+    summary: Update voucher
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              eventId:
+                type: integer
+                example: 2
+              code:
+                type: string
+                minLength: 3
+                maxLength: 255
+                example: SURABAYA-UPDATED
+              discountAmount:
+                type: integer
+                minimum: 0
+                example: 15000
+              quota:
+                type: integer
+                nullable: true
+                minimum: 1
+                example: 100
+              activatedAt:
+                type: string
+                format: date-time
+                nullable: true
+              expiredAt:
+                type: string
+                format: date-time
+                nullable: true
+              isActive:
+                type: boolean
+                example: true
+              allowDp:
+                type: boolean
+                example: true
+    responses:
+      '200':
+        description: Voucher updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiVoucher.yaml'
+                message:
+                  type: string
+                  example: "Voucher updated successfully."
+            examples:
+              UpdateSuccess:
+                summary: Voucher updated
+                value:
+                  data:
+                    id: 1
+                    eventId: 2
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
+                    code: SURABAYA-UPDATED
+                    discountAmount: 15000
+                    quota: 100
+                    usedCount: 5
+                    activatedAt: '2026-03-06T11:00:00Z'
+                    expiredAt: '2026-04-06T11:00:00Z'
+                    isActive: true
+                    allowDp: true
+                    createdAt: '2026-03-06T11:00:00Z'
+                    updatedAt: '2026-03-07T11:00:00Z'
+                  message: "Voucher updated successfully."
+      '404':
+        description: Voucher not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Voucher not found
+                value:
+                  message: "Voucher not found."
+                  requestId: req-update-404
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation error
+                value:
+                  message: "Validation failed."
+                  requestId: req-update-422
+                  errors:
+                    code:
+                      - "Voucher code is too short."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-update-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-update-403
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request. Invalid payload."
+                  requestId: req-update-400
+
+  delete:
+    operationId: deleteVoucher
+    description: "[admin:bionix:voucher:write] Delete a voucher."
+    summary: Delete voucher
+    tags: [Vouchers]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    responses:
+      '200':
+        description: Voucher deleted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: "Voucher deleted successfully."
+            examples:
+              DeleteSuccess:
+                summary: Voucher deleted
+                value:
+                  message: "Voucher deleted successfully."
+      '404':
+        description: Voucher not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Voucher not found
+                value:
+                  message: "Voucher not found."
+                  requestId: req-delete-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-delete-401
+      '403':
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-delete-403
