@@ -59,7 +59,10 @@ collection:
                     items:
                       - id: 1
                         eventId: 2
-                        createdBy: 550e8400-e29b-41d4-a716-446655440000
+                        createdBy:
+                          id: 550e8400-e29b-41d4-a716-446655440000
+                          name: Admin ISE
+                          email: admin@ise-its.com
                         code: SURABAYA
                         discountAmount: 10000
                         quota: 50
@@ -188,7 +191,10 @@ collection:
                   data:
                     id: 1
                     eventId: 2
-                    createdBy: 550e8400-e29b-41d4-a716-446655440000
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
                     code: SURABAYA
                     discountAmount: 10000
                     quota: 50
@@ -458,7 +464,10 @@ item:
                   data:
                     id: 1
                     eventId: 2
-                    createdBy: 550e8400-e29b-41d4-a716-446655440000
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
                     code: SURABAYA
                     discountAmount: 10000
                     quota: 50
@@ -579,7 +588,10 @@ item:
                   data:
                     id: 1
                     eventId: 2
-                    createdBy: 550e8400-e29b-41d4-a716-446655440000
+                    createdBy:
+                      id: 550e8400-e29b-41d4-a716-446655440000
+                      name: Admin ISE
+                      email: admin@ise-its.com
                     code: SURABAYA-UPDATED
                     discountAmount: 15000
                     quota: 100
