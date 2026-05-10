@@ -1,15 +1,14 @@
 title: ApiVoucher
 type: object
-required: [id, eventId, createdBy, code, discountAmount, usedCount, isActive, allowDp, createdAt, updatedAt]
+required: [id, eventSlug, createdBy, code, discountAmount, usedCount, isActive, allowDp, createdAt, updatedAt]
 properties:
   id:
     type: integer
     format: int32
     example: 1
-  eventId:
-    type: integer
-    format: int32
-    example: 2
+  eventSlug:
+    type: string
+    example: bionix-competition
   createdBy:
     type: object
     description: "Details of the admin who created this voucher"

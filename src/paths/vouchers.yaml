@@ -1,7 +1,7 @@
 collection:
   get:
     operationId: listVouchers
-    description: "[admin:bionix:voucher:read] Get a list of all vouchers."
+    description: "[admin:{slug}:voucher:read] Get a list of all vouchers for a specific event."
     summary: List vouchers
     tags: [Vouchers]
     security:
@@ -17,10 +17,12 @@ collection:
         schema:
           type: integer
           default: 10
-      - name: eventId
+      - name: eventSlug
         in: query
+        required: true
         schema:
-          type: integer
+          type: string
+        description: The slug of the event to filter vouchers.
       - name: code
         in: query
         schema:
@@ -58,7 +60,7 @@ collection:
                   data:
                     items:
                       - id: 1
-                        eventId: 2
+                        eventSlug: bionix-competition
                         createdBy:
                           id: 550e8400-e29b-41d4-a716-446655440000
                           name: Admin ISE
@@ -118,7 +120,7 @@ collection:
 
   post:
     operationId: createVoucher
-    description: "[admin:bionix:voucher:write] Create a new voucher."
+    description: "[admin:{slug}:voucher:write] Create a new voucher for a specific event."
     summary: Create voucher
     tags: [Vouchers]
     security:
@@ -129,12 +131,12 @@ collection:
         application/json:
           schema:
             type: object
-            required: [eventId, code, discountAmount]
+            required: [eventSlug, code, discountAmount]
             properties:
-              eventId:
-                type: integer
-                description: ID of the event this voucher belongs to.
-                example: 2
+              eventSlug:
+                type: string
+                description: Slug of the event this voucher belongs to.
+                example: bionix-competition
               code:
                 type: string
                 description: Unique voucher code.
@@ -190,7 +192,7 @@ collection:
                 value:
                   data:
                     id: 1
-                    eventId: 2
+                    eventSlug: bionix-competition
                     createdBy:
                       id: 550e8400-e29b-41d4-a716-446655440000
                       name: Admin ISE
@@ -259,7 +261,7 @@ collection:
 verify:
   get:
     operationId: verifyVoucher
-    description: "[user] Verify a voucher code for a specific event."
+    description: "[user] Verify a voucher code for a specific event slug."
     summary: Verify voucher
     tags: [Vouchers]
     security:
@@ -271,11 +273,12 @@ verify:
         schema:
           type: string
           maxLength: 255
-      - name: eventId
+      - name: eventSlug
         in: query
         required: true
         schema:
-          type: integer
+          type: string
+        description: The slug of the event.
     responses:
       '200':
         description: Voucher is valid. Returns discount information.
@@ -315,10 +318,15 @@ verify:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
               InvalidVoucher:
-                summary: Voucher invalid
+                summary: Voucher invalid or expired
                 value:
                   message: "Voucher is invalid or has expired."
                   requestId: req-verify-400
+              QuotaExhausted:
+                summary: Voucher quota full
+                value:
+                  message: "Voucher quota has been exhausted."
+                  requestId: req-verify-400-quota
       '404':
         description: Voucher not found.
         content:
@@ -344,95 +352,10 @@ verify:
                   message: "Unauthorized access. Please login."
                   requestId: req-verify-401
 
-check-availability:
-  get:
-    operationId: checkVoucherAvailability
-    description: "[admin:bionix:voucher:write] Check if a voucher code is available (not used by another active voucher)."
-    summary: Check voucher availability
-    tags: [Vouchers]
-    security:
-      - BearerAuth: []
-    parameters:
-      - name: code
-        in: query
-        required: true
-        schema:
-          type: string
-          minLength: 3
-          maxLength: 255
-    responses:
-      '200':
-        description: Availability check result.
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [data, message]
-              properties:
-                data:
-                  type: object
-                  required: [isAvailable]
-                  properties:
-                    isAvailable:
-                      type: boolean
-                      example: true
-                message:
-                  type: string
-                  example: "Voucher code availability checked."
-            examples:
-              Available:
-                summary: Code is available
-                value:
-                  data:
-                    isAvailable: true
-                  message: "Voucher code availability checked."
-              NotAvailable:
-                summary: Code is taken
-                value:
-                  data:
-                    isAvailable: false
-                  message: "Voucher code availability checked."
-      '401':
-        description: Unauthorized.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              Unauthorized:
-                summary: Unauthorized
-                value:
-                  message: "Unauthorized access."
-                  requestId: req-check-401
-      '403':
-        description: Forbidden.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              Forbidden:
-                summary: Forbidden
-                value:
-                  message: "Access denied. Insufficient permissions."
-                  requestId: req-check-403
-      '400':
-        description: Bad request.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              BadRequest:
-                summary: Bad request
-                value:
-                  message: "Bad request. Invalid query parameters."
-                  requestId: req-check-400
-
 item:
   get:
     operationId: getVoucherById
-    description: "[admin:bionix:voucher:read] Get a voucher by ID."
+    description: "[admin:{slug}:voucher:read] Get a voucher by ID."
     summary: Get voucher
     tags: [Vouchers]
     security:
@@ -463,7 +386,7 @@ item:
                 value:
                   data:
                     id: 1
-                    eventId: 2
+                    eventSlug: bionix-competition
                     createdBy:
                       id: 550e8400-e29b-41d4-a716-446655440000
                       name: Admin ISE
@@ -518,7 +441,7 @@ item:
 
   put:
     operationId: updateVoucher
-    description: "[admin:bionix:voucher:write] Update an existing voucher."
+    description: "[admin:{slug}:voucher:write] Update an existing voucher."
     summary: Update voucher
     tags: [Vouchers]
     security:
@@ -536,9 +459,9 @@ item:
           schema:
             type: object
             properties:
-              eventId:
-                type: integer
-                example: 2
+              eventSlug:
+                type: string
+                example: bionix-competition
               code:
                 type: string
                 minLength: 3
@@ -587,7 +510,7 @@ item:
                 value:
                   data:
                     id: 1
-                    eventId: 2
+                    eventSlug: bionix-competition
                     createdBy:
                       id: 550e8400-e29b-41d4-a716-446655440000
                       name: Admin ISE
@@ -669,7 +592,7 @@ item:
 
   delete:
     operationId: deleteVoucher
-    description: "[admin:bionix:voucher:write] Delete a voucher."
+    description: "[admin:{slug}:voucher:write] Delete a voucher."
     summary: Delete voucher
     tags: [Vouchers]
     security:
