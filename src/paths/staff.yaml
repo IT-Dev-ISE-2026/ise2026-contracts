@@ -10,7 +10,7 @@ get-staff-by-id:
         required: true
         schema:
           type: string
-          example: "1"
+          example: "5025211001"
         description: Staff ID or identifier.
     responses:
       '200':
@@ -69,3 +69,15 @@ get-staff-by-id:
                   requestId: abc123
                   errors:
                     id: ["invalid staff id format or not found"]
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-staff

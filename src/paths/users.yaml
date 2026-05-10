@@ -113,6 +113,18 @@ me:
                 value:
                   message: "Session has expired. Please login again."
                   requestId: req-uvw123-expired
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-me-get
   patch:
     operationId: updateMe
     description: "[user] Update the profile of the currently authenticated user."
@@ -227,6 +239,18 @@ me:
                   errors:
                     name:
                       - 'Field name must be at least 1 character long.'
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-me-patch
 list:
   get:
     operationId: listUsers
@@ -345,3 +369,15 @@ list:
                 value:
                   message: "Access denied. Insufficient permissions."
                   requestId: req-xyz-403
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-list

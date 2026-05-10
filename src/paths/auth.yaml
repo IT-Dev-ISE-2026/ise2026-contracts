@@ -22,6 +22,7 @@ register:
               password:
                 type: string
                 minLength: 8
+                maxLength: 72
                 example: P@ssw0rd123
           example:
             name: John Doe
@@ -79,6 +80,18 @@ register:
                 value:
                   message: Email already registered. Try to login instead.
                   requestId: req-def456
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-register
 
 login:
   post:
@@ -100,6 +113,8 @@ login:
                 example: user@example.com
               password:
                 type: string
+                minLength: 8
+                maxLength: 72
                 example: P@ssw0rd123
           example:
             email: user@example.com
@@ -163,6 +178,18 @@ login:
                   errors:
                     email:
                       - "Invalid email format."
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-login
 
 refresh:
   post:
@@ -222,6 +249,18 @@ refresh:
                 value:
                   message: "Refresh token expired or invalid."
                   requestId: req-jkl012
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-123
 
 logout:
   post:
@@ -455,6 +494,7 @@ password-reset:
               password:
                 type: string
                 minLength: 8
+                maxLength: 72
                 example: NewP@ssw0rd123
     responses:
       "200":

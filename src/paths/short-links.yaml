@@ -97,6 +97,18 @@ collection:
                 value:
                   message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-create-sl
       "422":
         description: Validation failed
         content:
@@ -218,6 +230,18 @@ collection:
                 value:
                   message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-list-sl
 item:
   delete:
     operationId: deleteShortLink
@@ -290,6 +314,18 @@ item:
                 value:
                   message: "You do not have permission to access this feature."
                   requestId: req-xyz-403
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-bad-delete-sl
 
 redirect:
   get:
