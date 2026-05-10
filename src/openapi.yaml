@@ -66,6 +66,8 @@ paths:
     $ref: 'paths/tests.yaml#/test-admin'
   /api/tests/admin/bionix:
     $ref: 'paths/tests.yaml#/test-admin-bionix'
+  /api/tests/events/{slug}/vouchers:
+    $ref: 'paths/tests.yaml#/test-voucher-guard'
   /api/users:
     $ref: 'paths/users.yaml#/list'
   /api/stats/users:
