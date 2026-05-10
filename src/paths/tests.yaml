@@ -161,3 +161,65 @@ test-admin-bionix:
                 summary: Bionix Write Access Granted
                 value:
                   message: "Access granted for Bionix Write."
+
+test-voucher-guard:
+  get:
+    operationId: testVoucherGuardRead
+    description: Test dynamic voucher read permission for an event slug.
+    summary: Test Voucher Guard Read
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        example: bionix-competition
+    responses:
+      '200':
+        description: Access granted
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+            examples:
+              VoucherReadAccess:
+                summary: Voucher Read Access Granted
+                value:
+                  message: "Access granted to READ vouchers for event: bionix-competition"
+  post:
+    operationId: testVoucherGuardWrite
+    description: Test dynamic voucher write permission for an event slug.
+    summary: Test Voucher Guard Write
+    tags: [Tests]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        example: bionix-competition
+    responses:
+      '200':
+        description: Access granted
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+            examples:
+              VoucherWriteAccess:
+                summary: Voucher Write Access Granted
+                value:
+                  message: "Access granted to WRITE vouchers for event: bionix-competition"
