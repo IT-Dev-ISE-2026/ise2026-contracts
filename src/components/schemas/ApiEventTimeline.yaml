@@ -1,3 +1,4 @@
+title: ApiEventTimeline
 type: object
 required: [id, name, date, sequenceOrder]
 properties:

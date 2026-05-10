@@ -1,3 +1,4 @@
+title: ApiEventLink
 type: object
 required: [id, name, url, slug]
 properties:
