@@ -17,12 +17,12 @@ collection:
         schema:
           type: integer
           default: 10
-      - name: eventSlug
-        in: query
+      - name: slug
+        in: path
         required: true
         schema:
           type: string
-        description: The slug of the event to filter vouchers.
+        description: The slug of the event.
       - name: code
         in: query
         schema:
@@ -125,18 +125,21 @@ collection:
     tags: [Vouchers]
     security:
       - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
     requestBody:
       required: true
       content:
         application/json:
           schema:
             type: object
-            required: [eventSlug, code, discountAmount]
+            required: [code, discountAmount]
             properties:
-              eventSlug:
-                type: string
-                description: Slug of the event this voucher belongs to.
-                example: bionix-competition
               code:
                 type: string
                 description: Unique voucher code.
@@ -267,18 +270,18 @@ verify:
     security:
       - BearerAuth: []
     parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
       - name: code
         in: query
         required: true
         schema:
           type: string
           maxLength: 255
-      - name: eventSlug
-        in: query
-        required: true
-        schema:
-          type: string
-        description: The slug of the event.
     responses:
       '200':
         description: Voucher is valid. Returns discount information.
@@ -361,6 +364,12 @@ item:
     security:
       - BearerAuth: []
     parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
       - name: id
         in: path
         required: true
@@ -447,6 +456,12 @@ item:
     security:
       - BearerAuth: []
     parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
       - name: id
         in: path
         required: true
@@ -459,9 +474,6 @@ item:
           schema:
             type: object
             properties:
-              eventSlug:
-                type: string
-                example: bionix-competition
               code:
                 type: string
                 minLength: 3
@@ -598,6 +610,12 @@ item:
     security:
       - BearerAuth: []
     parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
       - name: id
         in: path
         required: true

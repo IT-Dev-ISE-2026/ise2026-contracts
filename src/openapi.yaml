@@ -78,11 +78,11 @@ paths:
     $ref: 'paths/short-links.yaml#/item'
   /go/{shortCode}:
     $ref: 'paths/short-links.yaml#/redirect'
-  /api/vouchers:
+  /api/events/{slug}/vouchers:
     $ref: 'paths/vouchers.yaml#/collection'
-  /api/vouchers/verify:
+  /api/events/{slug}/vouchers/verify:
     $ref: 'paths/vouchers.yaml#/verify'
-  /api/vouchers/{id}:
+  /api/events/{slug}/vouchers/{id}:
     $ref: 'paths/vouchers.yaml#/item'
 
 components:
