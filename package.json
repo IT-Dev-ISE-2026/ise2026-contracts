@@ -1,6 +1,6 @@
 {
   "name": "ise2026-contracts",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "main": "index.js",
   "scripts": {
     "bundle": "redocly bundle src/openapi.yaml -o dist/openapi.yaml",
