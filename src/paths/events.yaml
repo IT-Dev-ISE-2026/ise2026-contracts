@@ -102,3 +102,78 @@ get-event-by-slug:
                 value:
                   message: "Event not found."
                   requestId: req-abc123
+
+stats:
+  get:
+    operationId: getEventStatsBySlug
+    description: Get registration statistics for a specific event. Requires `admin:{slug}:read` permission.
+    summary: Get event registration statistics
+    tags: [Stats]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
+        example: bionix-competition
+    responses:
+      "200":
+        description: Returns event registration statistics.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [totalRegistrants]
+                  properties:
+                    totalRegistrants:
+                      type: integer
+                      example: 150
+            examples:
+              SuccessStats:
+                summary: Event statistics
+                value:
+                  data:
+                    totalRegistrants: 150
+      "404":
+        description: Event slug not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Slug not found
+                value:
+                  message: "event slug not found in statistics"
+                  requestId: req-events-stats-404
+      "401":
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-events-stats-401
+      "403":
+        description: Forbidden.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions (Requires admin:{slug}:read)."
+                  requestId: req-events-stats-403

@@ -381,3 +381,65 @@ list:
                 value:
                   message: "Bad request."
                   requestId: req-bad-list
+
+stats:
+  get:
+    operationId: getUsersStats
+    description: Get user statistics. Requires `admin:users:read` permission.
+    summary: Get user statistics
+    tags: [Stats]
+    security:
+      - BearerAuth: []
+    responses:
+      "200":
+        description: Returns user statistics.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  properties:
+                    totalAccounts:
+                      type: integer
+                      example: 15
+                    totalUsers:
+                      type: integer
+                      example: 13
+                    totalAdmins:
+                      type: integer
+                      example: 2
+            examples:
+              SuccessStats:
+                summary: User statistics overview
+                value:
+                  data:
+                    totalAccounts: 15
+                    totalUsers: 13
+                    totalAdmins: 2
+      "401":
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-users-stats-401
+      "403":
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: req-users-stats-403

@@ -16,6 +16,8 @@ tags:
     description: Staff-related endpoints.
   - name: System
     description: System check endpoints.
+  - name: Stats
+    description: Analytical and statistical endpoints.
   - name: Users
     description: User-related endpoints.
   - name: Internal
@@ -70,8 +72,10 @@ paths:
     $ref: 'paths/tests.yaml#/test-voucher-guard'
   /api/users:
     $ref: 'paths/users.yaml#/list'
-  /api/stats/users:
-    $ref: 'paths/stats.yaml#/users'
+  /api/users/stats:
+    $ref: 'paths/users.yaml#/stats'
+  /api/events/{slug}/stats:
+    $ref: 'paths/events.yaml#/stats'
   /api/events/{slug}:
     $ref: 'paths/events.yaml#/get-event-by-slug'
   /api/short-links:
