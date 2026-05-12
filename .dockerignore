@@ -4,4 +4,3 @@ node_modules
 .husky
 .temp
 dist
-pnpm-lock.yaml
