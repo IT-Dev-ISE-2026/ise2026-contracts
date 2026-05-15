@@ -1,0 +1,121 @@
+get-presigned-url:
+  post:
+    operationId: getEventUploadPresignedUrl
+    summary: "[user] Get a presigned URL for file upload"
+    description: |
+      Returns a presigned URL that can be used to upload a file directly to the object storage (R2/MinIO).
+      The file will be uploaded using an HTTP PUT request to the returned `uploadUrl`.
+      The `key` returned should be used in subsequent requests to link the file to a database record.
+    tags: [Uploads]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event (e.g., bionix-competition).
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [filename, contentType, size]
+            properties:
+              filename:
+                type: string
+                description: "The original name of the file."
+                example: "bukti-pembayaran.jpg"
+              contentType:
+                type: string
+                description: "The MIME type of the file. This must be sent as the Content-Type header when uploading."
+                example: "image/jpeg"
+              size:
+                type: integer
+                format: int64
+                description: "The exact size of the file in bytes. The presigned URL will be locked to this exact size."
+                maximum: 5242880
+                example: 1048576
+    responses:
+      "200":
+        description: Presigned URL generated successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [uploadUrl, key]
+              properties:
+                uploadUrl:
+                  type: string
+                  format: uri
+                  description: "The presigned URL to which the file should be uploaded via HTTP PUT."
+                  example: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
+                key:
+                  type: string
+                  description: "The unique object key/path assigned to the file. Use this key in subsequent API calls to reference the uploaded file."
+                  example: "temp/uuid-file.jpg"
+                publicUrl:
+                  type: string
+                  format: uri
+                  description: "The public URL where the file can be accessed (only if the file is public)."
+                  example: "https://cdn.example.com/temp/uuid-file.jpg"
+            examples:
+              PresignedUrlGenerated:
+                summary: Presigned URL successfully generated
+                value:
+                  uploadUrl: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
+                  key: "temp/uuid-file.jpg"
+                  publicUrl: "https://cdn.example.com/temp/uuid-file.jpg"
+      "400":
+        description: Invalid request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+            examples:
+              InvalidParameters:
+                summary: Invalid request parameters
+                value:
+                  message: "Validation failed."
+                  requestId: "req-upload-400"
+                  errors:
+                    contentType:
+                      - "Invalid MIME type."
+      "401":
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized."
+                  requestId: "req-upload-401"
+      "403":
+        description: Forbidden (insufficient permissions for event)
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions to upload for event 'bionix-competition'."
+                  requestId: "req-upload-403"
+      "500":
+        description: Internal server error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+            examples:
+              InternalError:
+                summary: Internal server error
+                value:
+                  message: "Internal server error."
+                  requestId: "req-upload-500"
