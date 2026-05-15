@@ -36,6 +36,7 @@ get-presigned-url:
                 type: integer
                 format: int64
                 description: "The exact size of the file in bytes. The presigned URL will be locked to this exact size."
+                maximum: 5242880
                 example: 1048576
     responses:
       "200":
