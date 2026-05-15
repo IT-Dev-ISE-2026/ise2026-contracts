@@ -127,7 +127,7 @@ login:
             description: Contains the refresh token. HttpOnly; Secure; SameSite=Lax
             schema:
               type: string
-              example: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
         content:
           application/json:
             schema:
@@ -199,7 +199,7 @@ refresh:
     tags: [Auth]
     parameters:
       - in: cookie
-        name: refreshToken
+        name: refresh_token
         required: true
         schema:
           type: string
@@ -213,7 +213,7 @@ refresh:
             description: Contains the new refresh token. HttpOnly; Secure; SameSite=Lax
             schema:
               type: string
-              example: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
         content:
           application/json:
             schema:
@@ -276,7 +276,7 @@ logout:
             description: Clears the refresh token. HttpOnly; Secure; SameSite=Lax; Max-Age=0
             schema:
               type: string
-              example: refreshToken=; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Path=/
+              example: refresh_token=; HttpOnly; Secure; SameSite=Lax; Max-Age=0; Path=/
         content:
           application/json:
             schema:
