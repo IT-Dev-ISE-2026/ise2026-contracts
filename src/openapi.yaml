@@ -30,6 +30,9 @@ tags:
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
     description: Voucher management endpoints for events.
+  - name: Uploads
+    description: File upload and storage management endpoints.
+
 
 paths:
   /api/sys/ping:
@@ -90,6 +93,9 @@ paths:
     $ref: 'paths/vouchers.yaml#/verify'
   /api/events/{slug}/vouchers/{id}:
     $ref: 'paths/vouchers.yaml#/item'
+  /api/events/{slug}/uploads/presigned-url:
+    $ref: 'paths/uploads.yaml#/get-presigned-url'
+
 
 components:
   securitySchemes:
@@ -106,3 +112,4 @@ components:
       $ref: 'components/schemas/ApiShortLink.yaml'
     Voucher:
       $ref: 'components/schemas/ApiVoucher.yaml'
+
