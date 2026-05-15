@@ -4,10 +4,12 @@ required: [filename, contentType, size]
 properties:
   filename:
     type: string
+    maxLength: 255
     description: "The original name of the file."
     example: "bukti-pembayaran.jpg"
   contentType:
     type: string
+    maxLength: 100
     description: "The MIME type of the file. This must be sent as the Content-Type header when uploading."
     example: "image/jpeg"
   size:

@@ -21,7 +21,7 @@ get-presigned-url:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/UploadPresignedUrlRequest.yaml'
+            $ref: '../components/schemas/ApiUploadPresignedUrl.yaml'
     responses:
       "200":
         description: Presigned URL generated successfully
