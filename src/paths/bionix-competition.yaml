@@ -150,7 +150,6 @@ registrations-draft:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-draft-401"
-
   get:
     operationId: getMyBionixDraft
     summary: Get current user's Bionix draft
@@ -192,7 +191,6 @@ registrations-draft:
                   message: "You don't have any saved draft for Bionix Competition."
                   requestId: "req-bionix-draft-404"
 
-
 registrations-me:
   get:
     operationId: getMyBionixRegistration
@@ -216,8 +214,8 @@ registrations-me:
                 message:
                   type: string
             examples:
-              RegistrationRetrieved:
-                summary: Registration Found
+              PendingReview:
+                summary: Registration Pending Review
                 value:
                   data:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
@@ -249,6 +247,105 @@ registrations-me:
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
+              Approved:
+                summary: Registration Approved
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardPath: "bionix-competition/ade1e466/id/7a1b.jpg"
+                    leaderPosterProofPath: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+                    leaderInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+                    leaderTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+                    leaderTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardPath: "bionix-competition/ade1e466/id/2f6a.jpg"
+                    memberPosterProofPath: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+                    memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+                    memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+                    memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+                    status: "approved"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+              RevisionRequested:
+                summary: Revision Requested
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardPath: "bionix-competition/ade1e466/id/7a1b.jpg"
+                    leaderPosterProofPath: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+                    leaderInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+                    leaderTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+                    leaderTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardPath: "bionix-competition/ade1e466/id/2f6a.jpg"
+                    memberPosterProofPath: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+                    memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+                    memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+                    memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+                    status: "revision_requested"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T11:00:00Z"
+                  message: "Registration retrieved successfully."
+              Rejected:
+                summary: Registration Rejected
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardPath: "bionix-competition/ade1e466/id/7a1b.jpg"
+                    leaderPosterProofPath: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+                    leaderInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+                    leaderTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+                    leaderTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardPath: "bionix-competition/ade1e466/id/2f6a.jpg"
+                    memberPosterProofPath: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+                    memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+                    memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+                    memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+                    status: "rejected"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T12:00:00Z"
+                  message: "Registration retrieved successfully."
 
       '404':
         description: Registration not found.
@@ -274,7 +371,6 @@ registrations-me:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-me-get-401"
-
   patch:
     operationId: updateMyBionixRegistration
     summary: Update Bionix registration
@@ -308,7 +404,33 @@ registrations-me:
                 value:
                   data:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     teamName: "Hengker Keputih Revised"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardPath: "bionix-competition/ade1e466/id/7a1b.jpg"
+                    leaderPosterProofPath: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+                    leaderInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+                    leaderTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+                    leaderTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardPath: "bionix-competition/ade1e466/id/2f6a.jpg"
+                    memberPosterProofPath: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+                    memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+                    memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+                    memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+                    status: "pending_review"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T15:00:00Z"
                   message: "Registration updated successfully."
       '401':
         description: Unauthorized. Invalid or missing access token.
@@ -322,7 +444,6 @@ registrations-me:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-me-patch-401"
-
       '403':
         description: Forbidden. Registration cannot be updated in current status.
         content:
@@ -392,4 +513,3 @@ check-team:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-check-401"
-
