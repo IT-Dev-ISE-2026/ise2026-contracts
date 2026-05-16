@@ -57,7 +57,7 @@ registrations:
                     memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
                     memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
                     memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
-                    status: "pending_review"
+                    status: "pending_payment"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration submitted successfully."
@@ -243,12 +243,12 @@ registrations-me:
                     memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
                     memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
                     memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
-                    status: "pending_review"
+                    status: "pending_payment"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
-              Approved:
-                summary: Registration Approved
+              Verified:
+                summary: Registration Verified
                 value:
                   data:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
@@ -276,10 +276,11 @@ registrations-me:
                     memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
                     memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
                     memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
-                    status: "approved"
+                    status: "verified"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
                   message: "Registration retrieved successfully."
+
               RevisionRequested:
                 summary: Revision Requested
                 value:
@@ -428,7 +429,7 @@ registrations-me:
                     memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
                     memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
                     memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
-                    status: "pending_review"
+                    status: "pending_payment"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T15:00:00Z"
                   message: "Registration updated successfully."

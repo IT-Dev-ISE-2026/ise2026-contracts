@@ -94,9 +94,10 @@ properties:
 
   status:
     type: string
-    enum: [approved, rejected, pending_review, revision_requested]
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
     readOnly: true
-    example: pending_review
+    example: pending_payment
+
   createdAt:
     type: string
     format: date-time
