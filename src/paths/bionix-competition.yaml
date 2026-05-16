@@ -3,7 +3,8 @@ registrations:
     operationId: submitBionixRegistration
     summary: Submit Bionix Competition registration
     description: "[user] Register a team for the Bionix Competition. Requires authenticated user. All file paths must start with temp/."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     requestBody:
@@ -105,7 +106,8 @@ registrations-draft:
     operationId: saveBionixDraft
     summary: Save Bionix registration draft
     description: "[user] Save or overwrite a draft of the Bionix Competition registration form. All fields are optional. File paths must start with temp/."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     requestBody:
@@ -142,7 +144,8 @@ registrations-draft:
     operationId: getMyBionixDraft
     summary: Get current user's Bionix draft
     description: "[user] Retrieve the autosaved Bionix registration draft."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     responses:
@@ -173,7 +176,8 @@ registrations-me:
     operationId: getMyBionixRegistration
     summary: Get current user's Bionix registration
     description: "[user] Retrieve the Bionix Competition registration details for the authenticated user."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     responses:
@@ -217,7 +221,8 @@ registrations-me:
     operationId: updateMyBionixRegistration
     summary: Update Bionix registration
     description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     requestBody:
@@ -267,7 +272,8 @@ check-team:
     operationId: checkBionixTeamName
     summary: Check team name availability
     description: "[user] Check if a team name is already taken for Bionix Competition."
-    tags: [Events]
+    tags: ["Events/Bionix Competition"]
+
     security:
       - BearerAuth: []
     parameters:

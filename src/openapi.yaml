@@ -26,6 +26,8 @@ tags:
     description: Simulation and tests endpoints.
   - name: Events
     description: Event management and information endpoints.
+  - name: Events/Bionix Competition
+    description: Registration and management endpoints for Bionix Competition.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
