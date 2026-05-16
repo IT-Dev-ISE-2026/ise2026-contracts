@@ -98,7 +98,7 @@ registrations:
               TeamNameTaken:
                 summary: Team Name Already Exists
                 value:
-                  message: "Team name already registered."
+                  message: "Team name is already taken. Please choose another team name."
                   requestId: "req-bionix-sub-409"
 
 registrations-draft:
@@ -139,7 +139,18 @@ registrations-draft:
                     updatedAt: "2026-05-16T09:00:00Z"
                   message: "Draft saved successfully."
       '401':
-        description: Unauthorized.
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-draft-401"
+
   get:
     operationId: getMyBionixDraft
     summary: Get current user's Bionix draft
@@ -170,6 +181,17 @@ registrations-draft:
                   message: "Draft retrieved successfully."
       '404':
         description: Draft not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Draft Not Found
+                value:
+                  message: "You don't have any saved draft for Bionix Competition."
+                  requestId: "req-bionix-draft-404"
+
 
 registrations-me:
   get:
@@ -216,7 +238,18 @@ registrations-me:
                   message: "You haven't registered for Bionix Competition yet."
                   requestId: "req-bionix-me-404"
       '401':
-        description: Unauthorized.
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-me-get-401"
+
   patch:
     operationId: updateMyBionixRegistration
     summary: Update Bionix registration
@@ -253,7 +286,18 @@ registrations-me:
                     teamName: "Hengker Keputih Revised"
                   message: "Registration updated successfully."
       '401':
-        description: Unauthorized.
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-me-patch-401"
+
       '403':
         description: Forbidden. Registration cannot be updated in current status.
         content:
@@ -312,4 +356,15 @@ check-team:
                   data:
                     isAvailable: false
       '401':
-        description: Unauthorized.
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-check-401"
+
