@@ -95,6 +95,16 @@ paths:
     $ref: 'paths/vouchers.yaml#/item'
   /api/events/{slug}/uploads/presigned-url:
     $ref: 'paths/uploads.yaml#/get-presigned-url'
+  /api/events/bionix-competition/registrations:
+    $ref: 'paths/bionix-competition.yaml#/registrations'
+  /api/events/bionix-competition/registrations/draft:
+    $ref: 'paths/bionix-competition.yaml#/registrations-draft'
+  /api/events/bionix-competition/registrations/me:
+    $ref: 'paths/bionix-competition.yaml#/registrations-me'
+  /api/events/bionix-competition/registrations/check-team:
+    $ref: 'paths/bionix-competition.yaml#/check-team'
+  /api/sys/cities:
+    $ref: 'paths/sys.yaml#/list-cities'
 
 
 components:
@@ -104,6 +114,8 @@ components:
   schemas:
     Error:
       $ref: 'components/schemas/ApiError.yaml'
+    City:
+      $ref: 'components/schemas/ApiCity.yaml'
     User:
       $ref: 'components/schemas/ApiUser.yaml'
     Event:
@@ -112,4 +124,11 @@ components:
       $ref: 'components/schemas/ApiShortLink.yaml'
     Voucher:
       $ref: 'components/schemas/ApiVoucher.yaml'
-
+    BionixCompetitionRegistrationRequest:
+      $ref: 'components/schemas/ApiBionixCompetitionRegistrationRequest.yaml'
+    BionixCompetitionRegistrationResponse:
+      $ref: 'components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+    BionixCompetitionRegistrationDraftRequest:
+      $ref: 'components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml'
+    BionixCompetitionRegistrationDraftResponse:
+      $ref: 'components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml'

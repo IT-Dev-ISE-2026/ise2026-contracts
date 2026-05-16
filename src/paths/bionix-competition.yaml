@@ -1,0 +1,309 @@
+registrations:
+  post:
+    operationId: submitBionixRegistration
+    summary: Submit Bionix Competition registration
+    description: "[user] Register a team for the Bionix Competition. Requires authenticated user. All file paths must start with temp/."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixCompetitionRegistrationRequest.yaml'
+    responses:
+      '201':
+        description: Registration submitted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+                  example: "Registration submitted successfully."
+            examples:
+              RegistrationSuccess:
+                summary: Successful Registration
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardPath: "bionix-competition/ade1e466/id/7a1b.jpg"
+                    leaderPosterProofPath: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+                    leaderInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+                    leaderTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+                    leaderTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardPath: "bionix-competition/ade1e466/id/2f6a.jpg"
+                    memberPosterProofPath: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+                    memberInstagramProofPath: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+                    memberTiktokProofPath: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+                    memberTwibbonProofPath: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+                    status: "pending_review"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration submitted successfully."
+      '400':
+        description: Bad request. Validation failed or missing fields.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-sub-400"
+                  errors:
+                    teamName: ["teamName is a required field"]
+                    isAgreed: ["isAgreed must be true"]
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-sub-401"
+      '409':
+        description: Conflict. Team name, email, or phone already registered.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              TeamNameTaken:
+                summary: Team Name Already Exists
+                value:
+                  message: "Team name already registered."
+                  requestId: "req-bionix-sub-409"
+
+registrations-draft:
+  put:
+    operationId: saveBionixDraft
+    summary: Save Bionix registration draft
+    description: "[user] Save or overwrite a draft of the Bionix Competition registration form. All fields are optional. File paths must start with temp/."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml'
+    responses:
+      '200':
+        description: Draft saved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml'
+                message:
+                  type: string
+                  example: "Draft saved successfully."
+            examples:
+              DraftPartialSuccess:
+                summary: Partial Draft Saved
+                value:
+                  data:
+                    teamName: "Hengker Keputih"
+                    updatedAt: "2026-05-16T09:00:00Z"
+                  message: "Draft saved successfully."
+      '401':
+        description: Unauthorized.
+  get:
+    operationId: getMyBionixDraft
+    summary: Get current user's Bionix draft
+    description: "[user] Retrieve the autosaved Bionix registration draft."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Draft retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml'
+                message:
+                  type: string
+            examples:
+              DraftFound:
+                summary: Draft Found
+                value:
+                  data:
+                    teamName: "Hengker Keputih"
+                  message: "Draft retrieved successfully."
+      '404':
+        description: Draft not found.
+
+registrations-me:
+  get:
+    operationId: getMyBionixRegistration
+    summary: Get current user's Bionix registration
+    description: "[user] Retrieve the Bionix Competition registration details for the authenticated user."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Registration details retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              RegistrationRetrieved:
+                summary: Registration Found
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    status: "pending_review"
+                    # ... other fields
+                  message: "Registration retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Not Found
+                value:
+                  message: "You haven't registered for Bionix Competition yet."
+                  requestId: "req-bionix-me-404"
+      '401':
+        description: Unauthorized.
+  patch:
+    operationId: updateMyBionixRegistration
+    summary: Update Bionix registration
+    description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixCompetitionRegistrationRequest.yaml'
+    responses:
+      '200':
+        description: Registration updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              UpdateSuccess:
+                summary: Registration Updated
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih Revised"
+                  message: "Registration updated successfully."
+      '401':
+        description: Unauthorized.
+      '403':
+        description: Forbidden. Registration cannot be updated in current status.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ForbiddenUpdate:
+                summary: Cannot Update Approved Registration
+                value:
+                  message: "Registration cannot be updated because it is already approved."
+                  requestId: "req-bionix-up-403"
+
+check-team:
+  get:
+    operationId: checkBionixTeamName
+    summary: Check team name availability
+    description: "[user] Check if a team name is already taken for Bionix Competition."
+    tags: [Events]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: name
+        in: query
+        required: true
+        description: Team name to check.
+        schema:
+          type: string
+          minLength: 3
+    responses:
+      '200':
+        description: Availability status retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [isAvailable]
+                  properties:
+                    isAvailable:
+                      type: boolean
+                      example: true
+            examples:
+              Available:
+                summary: Team Name Available
+                value:
+                  data:
+                    isAvailable: true
+              Taken:
+                summary: Team Name Already Taken
+                value:
+                  data:
+                    isAvailable: false
+      '401':
+        description: Unauthorized.

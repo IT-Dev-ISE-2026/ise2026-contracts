@@ -1,0 +1,109 @@
+title: ApiBionixCompetitionRegistrationResponse
+type: object
+required: [id, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderInstagramProofPath, leaderTiktokProofPath, leaderTwibbonProofPath, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardPath, memberPosterProofPath, memberInstagramProofPath, memberTiktokProofPath, memberTwibbonProofPath, status, createdAt, updatedAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  userId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+  
+  # Team Identity
+  teamName:
+    type: string
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    example: true
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    example: "08123456789"
+  leaderStudentCardPath:
+    type: string
+    example: "bionix-competition/ade1e466/id/7a1b.jpg"
+  leaderPosterProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/poster-proof/8b2c.jpg"
+  leaderInstagramProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/instagram-proof/9c3d.jpg"
+  leaderTiktokProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/tiktok-proof/0d4e.jpg"
+  leaderTwibbonProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/twibbon-proof/1e5f.jpg"
+
+  # Member Identity
+  memberName:
+    type: string
+    example: "Budi"
+  memberCityId:
+    type: integer
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    example: "08123456780"
+  memberStudentCardPath:
+    type: string
+    example: "bionix-competition/ade1e466/id/2f6a.jpg"
+  memberPosterProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/poster-proof/3g7b.jpg"
+  memberInstagramProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/instagram-proof/4h8c.jpg"
+  memberTiktokProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/tiktok-proof/5i9d.jpg"
+  memberTwibbonProofPath:
+    type: string
+    example: "bionix-competition/ade1e466/twibbon-proof/6j0e.jpg"
+
+  status:
+    type: string
+    enum: [approved, rejected, pending_review, revision_requested]
+    readOnly: true
+    example: pending_review
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T08:00:00Z"
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T09:00:00Z"

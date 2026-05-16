@@ -156,3 +156,38 @@ set-permissions:
                 value:
                   message: "Failed to update user permissions: User not found."
                   requestId: internal-req-456
+
+list-cities:
+  get:
+    operationId: listCities
+    summary: Get list of cities
+    description: "Get master data of cities for registration forms. No authentication required."
+    tags: [System]
+    parameters:
+      - name: search
+        in: query
+        description: Search by city name.
+        schema:
+          type: string
+    responses:
+      '200':
+        description: List of cities retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiCity.yaml'
+            examples:
+              CityList:
+                summary: Sample City List
+                value:
+                  data:
+                    - id: 1
+                      name: "Surabaya"
+                    - id: 2
+                      name: "Jakarta Selatan"

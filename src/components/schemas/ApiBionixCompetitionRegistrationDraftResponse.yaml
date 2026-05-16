@@ -1,0 +1,109 @@
+title: ApiBionixCompetitionRegistrationDraftResponse
+type: object
+properties:
+  teamName:
+    type: string
+    nullable: true
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    nullable: true
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    nullable: true
+    example: true
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    nullable: true
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    nullable: true
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    nullable: true
+    example: "08123456789"
+  leaderStudentCardPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/id/7a1b.jpg"
+  leaderPosterProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/poster-proof/8b2c.jpg"
+  leaderInstagramProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/instagram-proof/9c3d.jpg"
+  leaderTiktokProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/tiktok-proof/0d4e.jpg"
+  leaderTwibbonProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/twibbon-proof/1e5f.jpg"
+
+  # Member Identity
+  memberName:
+    type: string
+    nullable: true
+    example: "Budi"
+  memberCityId:
+    type: integer
+    nullable: true
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    nullable: true
+    example: "08123456780"
+  memberStudentCardPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/id/2f6a.jpg"
+  memberPosterProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/poster-proof/3g7b.jpg"
+  memberInstagramProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/instagram-proof/4h8c.jpg"
+  memberTiktokProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/tiktok-proof/5i9d.jpg"
+  memberTwibbonProofPath:
+    type: string
+    nullable: true
+    example: "bionix-competition/draft/twibbon-proof/6j0e.jpg"
+  
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T09:00:00Z"

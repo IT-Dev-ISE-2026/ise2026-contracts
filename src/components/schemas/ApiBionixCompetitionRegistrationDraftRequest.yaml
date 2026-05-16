@@ -1,0 +1,113 @@
+title: ApiBionixCompetitionRegistrationDraftRequest
+type: object
+properties:
+  teamName:
+    type: string
+    nullable: true
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    nullable: true
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    nullable: true
+    example: true
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    nullable: true
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    nullable: true
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    nullable: true
+    example: "08123456789"
+  leaderStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-id-7a1b.jpg"
+  leaderPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-poster-8b2c.jpg"
+  leaderInstagramProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-ig-9c3d.jpg"
+  leaderTiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-tt-0d4e.jpg"
+  leaderTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-tw-1e5f.jpg"
+
+  # Member Identity
+  memberName:
+    type: string
+    nullable: true
+    example: "Budi"
+  memberCityId:
+    type: integer
+    nullable: true
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    nullable: true
+    example: "08123456780"
+  memberStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-id-2f6a.jpg"
+  memberPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-poster-3g7b.jpg"
+  memberInstagramProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-ig-4h8c.jpg"
+  memberTiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-tt-5i9d.jpg"
+  memberTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+    example: "temp/ade1e466-tw-6j0e.jpg"
