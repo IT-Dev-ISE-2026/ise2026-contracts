@@ -62,7 +62,19 @@ registrations:
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration submitted successfully."
       '400':
-        description: Bad request. Validation failed or missing fields.
+        description: Bad request. Syntax error or invalid format.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad Request
+                value:
+                  message: "Invalid request format."
+                  requestId: "req-bionix-sub-400"
+      '422':
+        description: Unprocessable Entity. Validation failed.
         content:
           application/json:
             schema:
@@ -72,10 +84,11 @@ registrations:
                 summary: Validation Failed
                 value:
                   message: "Validation failed."
-                  requestId: "req-bionix-sub-400"
+                  requestId: "req-bionix-sub-422"
                   errors:
                     teamName: ["teamName is a required field"]
                     isAgreed: ["isAgreed must be true"]
+
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -150,6 +163,21 @@ registrations-draft:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-draft-401"
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-draft-422"
+                  errors:
+                    leaderEmail: ["leaderEmail must be a valid email"]
+
   get:
     operationId: getMyBionixDraft
     summary: Get current user's Bionix draft
@@ -447,6 +475,21 @@ registrations-me:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-me-patch-401"
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-me-422"
+                  errors:
+                    teamName: ["teamName is already taken"]
+
       '403':
         description: Forbidden. Registration cannot be updated in current status.
         content:
