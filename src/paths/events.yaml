@@ -55,7 +55,7 @@ get-event-by-slug:
                         date: "2026-10-01T00:00:00Z"
                         sequenceOrder: 5
                       - id: 6
-                        name: "Bionix Competition Preliminary"
+                        name: "Bionix Competition Penyisihan"
                         date: "2026-11-01T00:00:00Z"
                         sequenceOrder: 6
                       - id: 7

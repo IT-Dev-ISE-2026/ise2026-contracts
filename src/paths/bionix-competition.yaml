@@ -58,6 +58,7 @@ registrations:
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
                     status: "pending_payment"
+                    stage: null
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration submitted successfully."
@@ -244,6 +245,40 @@ registrations-me:
                 message:
                   type: string
             examples:
+              PendingPayment:
+                summary: Registration Pending Payment
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    status: "pending_payment"
+                    stage: null
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
               PendingReview:
                 summary: Registration Pending Review
                 value:
@@ -273,12 +308,13 @@ registrations-me:
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
-                    status: "pending_payment"
+                    status: "pending_review"
+                    stage: null
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
-              Verified:
-                summary: Registration Verified
+              VerifiedPenyisihan:
+                summary: Registration Verified - Penyisihan
                 value:
                   data:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
@@ -307,10 +343,78 @@ registrations-me:
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
                     status: "verified"
+                    stage: "penyisihan"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
                   message: "Registration retrieved successfully."
-
+              VerifiedSemifinal:
+                summary: Registration Verified - Semifinal
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    status: "verified"
+                    stage: "semifinal"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+              VerifiedFinal:
+                summary: Registration Verified - Final
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                    status: "verified"
+                    stage: "final"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
               RevisionRequested:
                 summary: Revision Requested
                 value:
@@ -341,6 +445,7 @@ registrations-me:
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
                     status: "revision_requested"
+                    stage: null
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T11:00:00Z"
                   message: "Registration retrieved successfully."
@@ -374,6 +479,7 @@ registrations-me:
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
                     status: "rejected"
+                    stage: null
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T12:00:00Z"
                   message: "Registration retrieved successfully."
@@ -460,6 +566,7 @@ registrations-me:
                     memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
                     memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
                     status: "pending_payment"
+                    stage: null
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T15:00:00Z"
                   message: "Registration updated successfully."

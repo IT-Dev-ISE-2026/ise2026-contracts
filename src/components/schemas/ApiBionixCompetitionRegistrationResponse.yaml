@@ -1,6 +1,6 @@
 title: ApiBionixCompetitionRegistrationResponse
 type: object
-required: [id, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderInstagramProofUrl, leaderTiktokProofUrl, leaderTwibbonProofUrl, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardUrl, memberPosterProofUrl, memberInstagramProofUrl, memberTiktokProofUrl, memberTwibbonProofUrl, status, createdAt, updatedAt]
+required: [id, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderInstagramProofUrl, leaderTiktokProofUrl, leaderTwibbonProofUrl, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardUrl, memberPosterProofUrl, memberInstagramProofUrl, memberTiktokProofUrl, memberTwibbonProofUrl, status, stage, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -117,6 +117,12 @@ properties:
     enum: [pending_payment, pending_review, revision_requested, verified, rejected]
     readOnly: true
     example: pending_payment
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    nullable: true
+    readOnly: true
+    example: null
   createdAt:
     type: string
     format: date-time
