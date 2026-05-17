@@ -35,37 +35,49 @@ get-event-by-slug:
                     isActive: true
                     timelines:
                       - id: 1
-                        name: "IS Class Registration"
-                        date: "2026-05-01T00:00:00Z"
-                        sequenceOrder: 1
+                        slug: "bionix-competition-registration-opens"
+                        name: "Pendaftaran Bionix Competition Dibuka"
+                        date: "2026-07-01T00:00:00Z"
                       - id: 2
-                        name: "Bionix Competition Registration"
-                        date: "2026-06-01T00:00:00Z"
-                        sequenceOrder: 2
+                        slug: "bionix-is-class-registration-opens"
+                        name: "Pendaftaran IS Class Dibuka"
+                        date: "2026-07-01T00:00:00Z"
                       - id: 3
-                        name: "IS Class Starts"
-                        date: "2026-08-01T00:00:00Z"
-                        sequenceOrder: 3
-                      - id: 4 
-                        name: "Try Out 1"
-                        date: "2026-09-01T00:00:00Z"
-                        sequenceOrder: 4
+                        slug: "bionix-is-class-registration-closes"
+                        name: "Pendaftaran IS Class Ditutup"
+                        date: "2026-08-23T23:59:59Z"
+                      - id: 4
+                        slug: "bionix-competition-registration-closes"
+                        name: "Pendaftaran Bionix Competition Ditutup"
+                        date: "2026-09-13T23:59:59Z"
                       - id: 5
-                        name: "Try Out 2"
-                        date: "2026-10-01T00:00:00Z"
-                        sequenceOrder: 5
+                        slug: "bionix-is-class-event-starts"
+                        name: "IS Class Dimulai"
+                        date: "2026-09-05T00:00:00Z"
                       - id: 6
-                        name: "Bionix Competition Penyisihan"
-                        date: "2026-11-01T00:00:00Z"
-                        sequenceOrder: 6
+                        slug: "bionix-is-class-event-ends"
+                        name: "IS Class Berakhir"
+                        date: "2026-09-06T23:59:59Z"
                       - id: 7
-                        name: "Bionix Competition Semifinal"
-                        date: "2026-12-01T00:00:00Z"
-                        sequenceOrder: 7
+                        slug: "bionix-competition-tryout-1-starts"
+                        name: "Try Out 1"
+                        date: "2026-09-13T00:00:00Z"
                       - id: 8
-                        name: "Bionix Competition Grand Final"
-                        date: "2027-01-01T00:00:00Z"
-                        sequenceOrder: 8
+                        slug: "bionix-competition-tryout-2-starts"
+                        name: "Try Out 2"
+                        date: "2026-09-20T00:00:00Z"
+                      - id: 9
+                        slug: "bionix-competition-penyisihan-starts"
+                        name: "Penyisihan Bionix Competition"
+                        date: "2026-09-27T00:00:00Z"
+                      - id: 10
+                        slug: "bionix-competition-semifinal-starts"
+                        name: "Semifinal Bionix Competition"
+                        date: "2026-10-31T00:00:00Z"
+                      - id: 11
+                        slug: "bionix-competition-final-starts"
+                        name: "Final Bionix Competition"
+                        date: "2026-11-01T00:00:00Z"
                     links: []
                     subEvents:
                       - id: 2
@@ -78,7 +90,35 @@ get-event-by-slug:
                             name: "Guidebook Bionix Competition"
                             url: "https://ise-its.com/guidebook-bionix"
                             slug: "bionix-competition-guidebook"
-                        timelines: []
+                        timelines:
+                          - id: 1
+                            slug: "bionix-competition-registration-opens"
+                            name: "Pendaftaran Bionix Competition Dibuka"
+                            date: "2026-07-01T00:00:00Z"
+                          - id: 4
+                            slug: "bionix-competition-registration-closes"
+                            name: "Pendaftaran Bionix Competition Ditutup"
+                            date: "2026-09-13T23:59:59Z"
+                          - id: 7
+                            slug: "bionix-competition-tryout-1-starts"
+                            name: "Try Out 1"
+                            date: "2026-09-13T00:00:00Z"
+                          - id: 8
+                            slug: "bionix-competition-tryout-2-starts"
+                            name: "Try Out 2"
+                            date: "2026-09-20T00:00:00Z"
+                          - id: 9
+                            slug: "bionix-competition-penyisihan-starts"
+                            name: "Penyisihan Bionix Competition"
+                            date: "2026-09-27T00:00:00Z"
+                          - id: 10
+                            slug: "bionix-competition-semifinal-starts"
+                            name: "Semifinal Bionix Competition"
+                            date: "2026-10-31T00:00:00Z"
+                          - id: 11
+                            slug: "bionix-competition-final-starts"
+                            name: "Final Bionix Competition"
+                            date: "2026-11-01T00:00:00Z"
                       - id: 3
                         slug: "bionix-is-class"
                         name: "Bionix IS Class"
@@ -89,7 +129,23 @@ get-event-by-slug:
                             name: "Guidebook Bionix IS Class"
                             url: "https://ise-its.com/guidebook-bionix-is-class"
                             slug: "bionix-is-class-guidebook"
-                        timelines: []
+                        timelines:
+                          - id: 2
+                            slug: "bionix-is-class-registration-opens"
+                            name: "Pendaftaran IS Class Dibuka"
+                            date: "2026-07-01T00:00:00Z"
+                          - id: 3
+                            slug: "bionix-is-class-registration-closes"
+                            name: "Pendaftaran IS Class Ditutup"
+                            date: "2026-08-23T23:59:59Z"
+                          - id: 5
+                            slug: "bionix-is-class-event-starts"
+                            name: "IS Class Dimulai"
+                            date: "2026-09-05T00:00:00Z"
+                          - id: 6
+                            slug: "bionix-is-class-event-ends"
+                            name: "IS Class Berakhir"
+                            date: "2026-09-06T23:59:59Z"
       "404":
         description: Event not found
         content:
@@ -175,5 +231,5 @@ stats:
               Forbidden:
                 summary: Insufficient permissions
                 value:
-                  message: "Access denied. Insufficient permissions (Requires admin:{slug}:read)."
+                  message: "Access denied. Insufficient permissions."
                   requestId: req-events-stats-403
