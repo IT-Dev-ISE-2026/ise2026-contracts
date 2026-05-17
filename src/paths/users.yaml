@@ -95,6 +95,321 @@ me:
                     createdAt: '2026-03-06T11:00:00Z'
                     updatedAt: '2026-03-06T12:00:00Z'
                   message: "User profile retrieved successfully."
+              UserProfileAdmin:
+                summary: Administrator Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000001
+                    name: Super Administrator
+                    email: admin@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminUserRead:
+                summary: Admin User Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000002
+                    name: Staff Admin
+                    email: staff@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:user:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminShortenlinkRead:
+                summary: Admin Shortlink Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000003
+                    name: Shortlink Admin
+                    email: shortlink@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:shortenlink:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminShortenlinkWrite:
+                summary: Admin Shortlink Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000003
+                    name: Shortlink Admin
+                    email: shortlink@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:shortenlink:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminShortenlinkOwn:
+                summary: Admin Shortlink Owner Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000003
+                    name: Shortlink Admin
+                    email: shortlink@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:shortenlink:own']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixCompetitionRead:
+                summary: Admin Bionix Competition Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-competition:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixCompetitionWrite:
+                summary: Admin Bionix Competition Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-competition:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixCompetitionVoucherRead:
+                summary: Admin Bionix Competition Voucher Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-competition:voucher:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixCompetitionVoucherWrite:
+                summary: Admin Bionix Competition Voucher Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-competition:voucher:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixIsClassRead:
+                summary: Admin Bionix IS Class Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-isclass:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixIsClassWrite:
+                summary: Admin Bionix IS Class Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-isclass:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixIsClassVoucherRead:
+                summary: Admin Bionix IS Class Voucher Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-isclass:voucher:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminBionixIsClassVoucherWrite:
+                summary: Admin Bionix IS Class Voucher Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000004
+                    name: Bionix Admin
+                    email: bionix@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:bionix-isclass:voucher:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminRiseRead:
+                summary: Admin Rise Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000005
+                    name: Rise Admin
+                    email: rise@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:rise:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminRiseWrite:
+                summary: Admin Rise Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000005
+                    name: Rise Admin
+                    email: rise@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:rise:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminRiseVoucherRead:
+                summary: Admin Rise Voucher Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000005
+                    name: Rise Admin
+                    email: rise@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:rise:voucher:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminRiseVoucherWrite:
+                summary: Admin Rise Voucher Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000005
+                    name: Rise Admin
+                    email: rise@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:rise:voucher:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminIsacRead:
+                summary: Admin ISAC Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000006
+                    name: ISAC Admin
+                    email: isac@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:isac:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminIsacWrite:
+                summary: Admin ISAC Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000006
+                    name: ISAC Admin
+                    email: isac@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:isac:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminIsacVoucherRead:
+                summary: Admin ISAC Voucher Read Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000006
+                    name: ISAC Admin
+                    email: isac@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:isac:voucher:read']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
+              UserProfileAdminIsacVoucherWrite:
+                summary: Admin ISAC Voucher Write Profile
+                value:
+                  data:
+                    id: 00000000-0000-0000-0000-000000000006
+                    name: ISAC Admin
+                    email: isac@ise-its.com
+                    phoneNumber: '08123456789'
+                    educationLevel: university
+                    referralSource: ['instagram']
+                    isEmailVerified: true
+                    permissions: ['admin:isac:voucher:write']
+                    createdAt: '2026-01-01T00:00:00Z'
+                    updatedAt: '2026-01-01T00:00:00Z'
+                  message: "User profile retrieved successfully."
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
