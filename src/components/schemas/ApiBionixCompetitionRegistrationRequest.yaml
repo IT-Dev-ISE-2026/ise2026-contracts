@@ -1,6 +1,6 @@
 title: ApiBionixCompetitionRegistrationRequest
 type: object
-required: [teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderInstagramProofPath, leaderTiktokProofPath, leaderTwibbonProofPath, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardPath, memberPosterProofPath, memberInstagramProofPath, memberTiktokProofPath, memberTwibbonProofPath]
+required: [teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderInstagramProofPath, leaderTiktokProofPath, leaderTwibbonProofPath, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardPath, memberPosterProofPath, memberInstagramProofPath, memberTiktokProofPath, memberTwibbonProofPath, paymentPlan]
 properties:
   # Team Identity
   teamName:
@@ -101,3 +101,14 @@ properties:
     pattern: "^temp/.+$"
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-tw-6j0e.jpg"
+  
+  # Payment Details
+  voucherCode:
+    type: string
+    example: "ISEJAYA2026"
+    description: "Optional voucher code for discount."
+  paymentPlan:
+    type: string
+    enum: [dp, full]
+    example: "dp"
+    description: "Choose payment scheme: 'dp' for Down Payment, 'full' for full payment."

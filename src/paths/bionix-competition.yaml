@@ -30,6 +30,15 @@ registrations:
                     payment:
                       type: object
                       properties:
+                        amount:
+                          type: integer
+                          description: "Amount to be paid for this sequence (in IDR)."
+                        sequence:
+                          type: integer
+                          description: "Payment sequence (1 for DP, 2 for pelunasan, etc.)"
+                        paymentDeadline:
+                          type: string
+                          format: date-time
                         snapToken:
                           type: string
                         redirectUrl:
@@ -73,6 +82,9 @@ registrations:
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
                     payment:
+                      amount: 50000
+                      sequence: 1
+                      paymentDeadline: "2026-05-17T08:00:00Z"
                       snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
                       redirectUrl: "https://app.sandbox.midtrans.com/snap/v2/vtweb/8687a100-84a1-42cb-b72e-d00922849568"
                   message: "Registration submitted successfully."
@@ -129,112 +141,7 @@ registrations:
                   message: "Team name is already taken. Please choose another team name."
                   requestId: "req-bionix-sub-409"
 
-registrations-draft:
-  put:
-    operationId: saveBionixDraft
-    summary: Save Bionix registration draft
-    description: "[user] Save or overwrite a draft of the Bionix Competition registration form. All fields are optional. File paths must start with temp/."
-    tags: ["Events/Bionix Competition"]
 
-    security:
-      - BearerAuth: []
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml'
-    responses:
-      '200':
-        description: Draft saved successfully.
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [data, message]
-              properties:
-                data:
-                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml'
-                message:
-                  type: string
-                  example: "Draft saved successfully."
-            examples:
-              DraftPartialSuccess:
-                summary: Partial Draft Saved
-                value:
-                  data:
-                    teamName: "Hengker Keputih"
-                    updatedAt: "2026-05-16T09:00:00Z"
-                  message: "Draft saved successfully."
-      '401':
-        description: Unauthorized. Invalid or missing access token.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              Unauthorized:
-                summary: Token Missing or Invalid
-                value:
-                  message: "Unauthorized access."
-                  requestId: "req-bionix-draft-401"
-      '422':
-        description: Unprocessable Entity. Validation failed.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              ValidationError:
-                summary: Validation Failed
-                value:
-                  message: "Validation failed."
-                  requestId: "req-bionix-draft-422"
-                  errors:
-                    leaderEmail: ["leaderEmail must be a valid email"]
-
-  get:
-    operationId: getMyBionixDraft
-    summary: Get current user's Bionix draft
-    description: "[user] Retrieve the autosaved Bionix registration draft."
-    tags: ["Events/Bionix Competition"]
-
-    security:
-      - BearerAuth: []
-    responses:
-      '200':
-        description: Draft retrieved.
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [data, message]
-              properties:
-                data:
-                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml'
-                message:
-                  type: string
-            examples:
-              DraftFound:
-                summary: Draft Found
-                value:
-                  data:
-                    teamName: "Hengker Keputih"
-                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg?..."
-                  message: "Draft retrieved successfully."
-
-      '404':
-        description: Draft not found.
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
-            examples:
-              NotFound:
-                summary: Draft Not Found
-                value:
-                  message: "You don't have any saved draft for Bionix Competition."
-                  requestId: "req-bionix-draft-404"
 
 registrations-me:
   get:

@@ -98,8 +98,8 @@ paths:
     $ref: "paths/uploads.yaml#/get-presigned-url"
   /api/events/bionix-competition/registrations:
     $ref: "paths/bionix-competition.yaml#/registrations"
-  /api/events/bionix-competition/registrations/draft:
-    $ref: "paths/bionix-competition.yaml#/registrations-draft"
+  /api/events/{slug}/registrations/draft:
+    $ref: "paths/events.yaml#/registrations-draft"
   /api/events/bionix-competition/registrations/me:
     $ref: "paths/bionix-competition.yaml#/registrations-me"
   /api/events/bionix-competition/registrations/check-team:

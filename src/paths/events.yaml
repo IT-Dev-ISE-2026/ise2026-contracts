@@ -233,3 +233,76 @@ stats:
                 value:
                   message: "Access denied. Insufficient permissions."
                   requestId: req-events-stats-403
+
+registrations-draft:
+  put:
+    operationId: saveEventRegistrationDraft
+    summary: Save event registration draft
+    description: "[user] Save or overwrite a draft of an event registration form. Payload can be any JSON object."
+    tags: ["Events"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            additionalProperties: true
+    responses:
+      '200':
+        description: Draft saved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  additionalProperties: true
+                message:
+                  type: string
+                  example: "Draft saved successfully."
+  get:
+    operationId: getEventRegistrationDraft
+    summary: Get event registration draft
+    description: "[user] Get a previously saved draft for an event registration."
+    tags: ["Events"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
+    responses:
+      '200':
+        description: Draft retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  additionalProperties: true
+                message:
+                  type: string
+                  example: "Draft retrieved successfully."
+      '404':
+        description: Draft not found
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
