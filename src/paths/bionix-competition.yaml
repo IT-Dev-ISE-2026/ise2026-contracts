@@ -23,7 +23,17 @@ registrations:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                  type: object
+                  properties:
+                    registration:
+                      $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                    payment:
+                      type: object
+                      properties:
+                        snapToken:
+                          type: string
+                        redirectUrl:
+                          type: string
                 message:
                   type: string
                   example: "Registration submitted successfully."
@@ -32,35 +42,39 @@ registrations:
                 summary: Successful Registration
                 value:
                   data:
-                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
-                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
-                    teamName: "Hengker Keputih"
-                    schoolName: "SMA Negeri 1 Surabaya"
-                    isAgreed: true
-                    leaderName: "Andi"
-                    leaderCityId: 1
-                    leaderGrade: "grade_12"
-                    leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
-                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
-                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
-                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
-                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
-                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
-                    memberName: "Budi"
-                    memberCityId: 1
-                    memberGrade: "grade_12"
-                    memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
-                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
-                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
-                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
-                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
-                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
-                    status: "pending_payment"
-                    stage: null
-                    createdAt: "2026-05-16T08:00:00Z"
-                    updatedAt: "2026-05-16T08:00:00Z"
+                    registration:
+                      id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                      userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      teamName: "Hengker Keputih"
+                      schoolName: "SMA Negeri 1 Surabaya"
+                      isAgreed: true
+                      leaderName: "Andi"
+                      leaderCityId: 1
+                      leaderGrade: "grade_12"
+                      leaderEmail: "andi@gmail.com"
+                      leaderPhone: "08123456789"
+                      leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                      leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                      leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                      leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                      leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                      memberName: "Budi"
+                      memberCityId: 1
+                      memberGrade: "grade_12"
+                      memberEmail: "budi@gmail.com"
+                      memberPhone: "08123456780"
+                      memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
+                      memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
+                      memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
+                      memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg?..."
+                      memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg?..."
+                      status: "pending_payment"
+                      stage: null
+                      createdAt: "2026-05-16T08:00:00Z"
+                      updatedAt: "2026-05-16T08:00:00Z"
+                    payment:
+                      snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
+                      redirectUrl: "https://app.sandbox.midtrans.com/snap/v2/vtweb/8687a100-84a1-42cb-b72e-d00922849568"
                   message: "Registration submitted successfully."
       '400':
         description: Bad request. Syntax error or invalid format.
