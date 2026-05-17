@@ -256,6 +256,13 @@ registrations-draft:
           schema:
             type: object
             additionalProperties: true
+          examples:
+            DraftPayload:
+              summary: Arbitrary JSON data
+              value:
+                teamName: "Hengker Keputih"
+                schoolName: "SMA Negeri 1 Surabaya"
+                isAgreed: true
     responses:
       '200':
         description: Draft saved successfully.
@@ -271,6 +278,15 @@ registrations-draft:
                 message:
                   type: string
                   example: "Draft saved successfully."
+            examples:
+              DraftSaved:
+                summary: Draft Saved
+                value:
+                  data:
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                  message: "Draft saved successfully."
   get:
     operationId: getEventRegistrationDraft
     summary: Get event registration draft
@@ -300,9 +316,14 @@ registrations-draft:
                 message:
                   type: string
                   example: "Draft retrieved successfully."
-      '404':
-        description: Draft not found
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              DraftRetrieved:
+                summary: Draft Retrieved
+                value:
+                  data:
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                  message: "Draft retrieved successfully."
+      '204':
+        description: No draft has been saved yet.
