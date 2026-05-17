@@ -38,7 +38,7 @@ register:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiUser.yaml'
+                  $ref: "../components/schemas/ApiUser.yaml"
                 message:
                   type: string
                   example: "User registered successfully."
@@ -51,14 +51,16 @@ register:
                     email: user@example.com
                     name: John Doe
                     permissions: ["user"]
+                    isEmailVerified: false
                     createdAt: "2026-03-06T11:00:00Z"
+                    updatedAt: "2026-03-06T11:00:00Z"
                   message: "User registered successfully."
       "422":
         description: Validation failed
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               ValidationError:
                 summary: Password too short
@@ -73,7 +75,7 @@ register:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               DuplicateEmail:
                 summary: Email already exists
@@ -85,7 +87,7 @@ register:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               BadRequest:
                 summary: Bad request
@@ -156,7 +158,7 @@ login:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               InvalidCredentials:
                 summary: Wrong email or password
@@ -168,7 +170,7 @@ login:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               ValidationError:
                 summary: Invalid email format
@@ -183,7 +185,7 @@ login:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               BadRequest:
                 summary: Bad request
@@ -242,7 +244,7 @@ refresh:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               TokenInvalid:
                 summary: Refresh token expired
@@ -254,7 +256,7 @@ refresh:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               BadRequest:
                 summary: Bad request
@@ -293,7 +295,7 @@ logout:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               SessionExpired:
                 summary: User session invalid
@@ -344,7 +346,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               AlreadyVerified:
                 summary: Account already verified
@@ -356,7 +358,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             example:
               message: Validation failed.
               errors:
@@ -368,7 +370,7 @@ email-resend:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               ResendFailed:
                 summary: Internal server error
@@ -379,7 +381,7 @@ email-resend:
 email-verify:
   get:
     operationId: verifyEmail
-    description: Verify email of a user who has not been verified yet. 
+    description: Verify email of a user who has not been verified yet.
     summary: Verify email
     tags: [Auth]
     security: []
@@ -413,7 +415,7 @@ email-verify:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               InvalidToken:
                 summary: Token invalid or expired
@@ -462,7 +464,7 @@ forgot-password:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               ValidationError:
                 summary: Invalid email format
@@ -518,7 +520,7 @@ password-reset:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               InvalidToken:
                 summary: Token invalid or expired
@@ -530,7 +532,7 @@ password-reset:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               ValidationError:
                 summary: Password too short
@@ -575,10 +577,11 @@ password-reset-validate:
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/ApiError.yaml'
+              $ref: "../components/schemas/ApiError.yaml"
             examples:
               TokenExpired:
                 summary: Reset token has expired
                 value:
                   message: "Reset token is invalid or has expired."
                   requestId: req-val-400
+

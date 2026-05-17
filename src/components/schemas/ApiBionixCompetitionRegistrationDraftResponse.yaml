@@ -1,0 +1,119 @@
+title: ApiBionixCompetitionRegistrationDraftResponse
+type: object
+properties:
+  teamName:
+    type: string
+    nullable: true
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    nullable: true
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    nullable: true
+    example: true
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    nullable: true
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    nullable: true
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    nullable: true
+    example: "08123456789"
+  leaderStudentCardUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg?..."
+  leaderPosterProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg?..."
+  leaderInstagramProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg?..."
+  leaderTiktokProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tt.jpg?..."
+  leaderTwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg?..."
+
+  # Member Identity
+  memberName:
+    type: string
+    nullable: true
+    example: "Budi"
+  memberCityId:
+    type: integer
+    nullable: true
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    nullable: true
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    nullable: true
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    nullable: true
+    example: "08123456780"
+  memberStudentCardUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg?..."
+  memberPosterProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg?..."
+  memberInstagramProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg?..."
+  memberTiktokProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tt.jpg?..."
+  memberTwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg?..."
+  
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T09:00:00Z"

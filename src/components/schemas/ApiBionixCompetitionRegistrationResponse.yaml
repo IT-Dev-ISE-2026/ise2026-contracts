@@ -1,0 +1,135 @@
+title: ApiBionixCompetitionRegistrationResponse
+type: object
+required: [id, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderInstagramProofUrl, leaderTiktokProofUrl, leaderTwibbonProofUrl, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardUrl, memberPosterProofUrl, memberInstagramProofUrl, memberTiktokProofUrl, memberTwibbonProofUrl, status, stage, createdAt, updatedAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  userId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+  
+  # Team Identity
+  teamName:
+    type: string
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    example: true
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    example: "08123456789"
+  leaderStudentCardUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/id/ktp.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  leaderPosterProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/poster/p.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  leaderInstagramProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ig/i.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  leaderTiktokProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/tt/t.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  leaderTwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/tw/t.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+
+  # Member Identity
+  memberName:
+    type: string
+    example: "Budi"
+  memberCityId:
+    type: integer
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    example: "08123456780"
+  memberStudentCardUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/id/ktp.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  memberPosterProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/poster/p.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  memberInstagramProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ig/i.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  memberTiktokProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/tt/t.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+  memberTwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    example: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/tw/t.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&..."
+
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    readOnly: true
+    example: pending_payment
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    nullable: true
+    readOnly: true
+    example: null
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T08:00:00Z"
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T09:00:00Z"

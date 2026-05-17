@@ -74,7 +74,6 @@ me:
                     name: John Student
                     email: john.student@example.com
                     phoneNumber: '08123456789'
-                    educationLevel: null
                     referralSource: ['instagram', 'others: whatsapp']
                     isEmailVerified: true
                     permissions: ['user']

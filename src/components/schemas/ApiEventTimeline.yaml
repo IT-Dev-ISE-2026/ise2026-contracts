@@ -1,10 +1,13 @@
 title: ApiEventTimeline
 type: object
-required: [id, name, date, sequenceOrder]
+required: [id, slug, name, date]
 properties:
   id:
     type: integer
     example: 1
+  slug:
+    type: string
+    example: opreg-1
   name:
     type: string
     example: Pendaftaran Gelombang 1
@@ -12,6 +15,3 @@ properties:
     type: string
     format: date-time
     example: "2026-05-01T00:00:00Z"
-  sequenceOrder:
-    type: integer
-    example: 1

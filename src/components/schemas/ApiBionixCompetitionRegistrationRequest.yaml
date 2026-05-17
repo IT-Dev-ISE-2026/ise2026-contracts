@@ -1,0 +1,114 @@
+title: ApiBionixCompetitionRegistrationRequest
+type: object
+required: [teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderInstagramProofPath, leaderTiktokProofPath, leaderTwibbonProofPath, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardPath, memberPosterProofPath, memberInstagramProofPath, memberTiktokProofPath, memberTwibbonProofPath, paymentPlan]
+properties:
+  # Team Identity
+  teamName:
+    type: string
+    example: "Hengker Keputih"
+  schoolName:
+    type: string
+    example: "SMA Negeri 1 Surabaya"
+  isAgreed:
+    type: boolean
+    example: true
+    description: "Must be true to submit registration."
+  
+  # Leader Identity
+  leaderName:
+    type: string
+    example: "Andi"
+  leaderCityId:
+    type: integer
+    example: 1
+  leaderGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  leaderEmail:
+    type: string
+    format: email
+    example: "andi@gmail.com"
+  leaderPhone:
+    type: string
+    example: "08123456789"
+  leaderStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-id-7a1b.jpg"
+  leaderPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-poster-8b2c.jpg"
+  leaderInstagramProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-ig-9c3d.jpg"
+  leaderTiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tt-0d4e.jpg"
+  leaderTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tw-1e5f.jpg"
+
+  # Member Identity
+  memberName:
+    type: string
+    example: "Budi"
+  memberCityId:
+    type: integer
+    example: 1
+  memberGrade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  memberEmail:
+    type: string
+    format: email
+    example: "budi@gmail.com"
+  memberPhone:
+    type: string
+    example: "08123456780"
+  memberStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-id-2f6a.jpg"
+  memberPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-poster-3g7b.jpg"
+  memberInstagramProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-ig-4h8c.jpg"
+  memberTiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tt-5i9d.jpg"
+  memberTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tw-6j0e.jpg"
+  
+  # Payment Details
+  voucherCode:
+    type: string
+    example: "ISEJAYA2026"
+    description: "Optional voucher code for discount."
+  paymentPlan:
+    type: string
+    enum: [dp, full]
+    example: "dp"
+    description: "Choose payment scheme: 'dp' for Down Payment, 'full' for full payment."

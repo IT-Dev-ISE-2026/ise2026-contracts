@@ -1,0 +1,20 @@
+title: ApiUploadPresignedUrl
+type: object
+required: [filename, contentType, size]
+properties:
+  filename:
+    type: string
+    maxLength: 255
+    description: "The original name of the file."
+    example: "bukti-pembayaran.jpg"
+  contentType:
+    type: string
+    maxLength: 100
+    description: "The MIME type of the file. Must be an image type (e.g., image/jpeg, image/png). This must be sent as the Content-Type header when uploading."
+    example: "image/jpeg"
+  size:
+    type: integer
+    format: int64
+    description: "The exact size of the file in bytes. The presigned URL will be locked to this exact size."
+    maximum: 5242880
+    example: 1048576

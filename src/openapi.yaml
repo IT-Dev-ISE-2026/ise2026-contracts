@@ -1,8 +1,8 @@
-openapi: '3.0.3'
+openapi: "3.0.3"
 info:
   title: ISE 2026 Backend API
   description: Backend API for ISE 2026 — contract-first with oapi-codegen.
-  version: '1.9.1'
+  version: "1.8.3"
   contact:
     name: IT Dev ISE!2026 Team
     email: ise.itdev@gmail.com
@@ -26,6 +26,8 @@ tags:
     description: Simulation and tests endpoints.
   - name: Events
     description: Event management and information endpoints.
+  - name: Events/Bionix Competition
+    description: Registration and management endpoints for Bionix Competition.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
@@ -33,83 +35,101 @@ tags:
   - name: Uploads
     description: File upload and storage management endpoints.
 
-
 paths:
   /api/sys/ping:
-    $ref: 'paths/sys.yaml#/ping'
+    $ref: "paths/sys.yaml#/ping"
   /api/sys/health:
-    $ref: 'paths/sys.yaml#/health'
+    $ref: "paths/sys.yaml#/health"
   /api/auth/register:
-    $ref: 'paths/auth.yaml#/register'
+    $ref: "paths/auth.yaml#/register"
   /api/auth/login:
-    $ref: 'paths/auth.yaml#/login'
+    $ref: "paths/auth.yaml#/login"
   /api/auth/refresh:
-    $ref: 'paths/auth.yaml#/refresh'
+    $ref: "paths/auth.yaml#/refresh"
   /api/auth/logout:
-    $ref: 'paths/auth.yaml#/logout'
+    $ref: "paths/auth.yaml#/logout"
   /api/auth/email/resend:
-    $ref: 'paths/auth.yaml#/email-resend'
+    $ref: "paths/auth.yaml#/email-resend"
   /api/auth/email/verify:
-    $ref: 'paths/auth.yaml#/email-verify'
+    $ref: "paths/auth.yaml#/email-verify"
   /api/auth/password/forgot:
-    $ref: 'paths/auth.yaml#/forgot-password'
+    $ref: "paths/auth.yaml#/forgot-password"
   /api/auth/password/reset:
-    $ref: 'paths/auth.yaml#/password-reset'
+    $ref: "paths/auth.yaml#/password-reset"
   /api/auth/password/reset/validate:
-    $ref: 'paths/auth.yaml#/password-reset-validate'
+    $ref: "paths/auth.yaml#/password-reset-validate"
   /api/users/me:
-    $ref: 'paths/users.yaml#/me'
+    $ref: "paths/users.yaml#/me"
   /api/staff/{id}:
-    $ref: 'paths/staff.yaml#/get-staff-by-id'
+    $ref: "paths/staff.yaml#/get-staff-by-id"
   /api/sys/permissions:
-    $ref: 'paths/sys.yaml#/set-permissions'
+    $ref: "paths/sys.yaml#/set-permissions"
   /api/tests/email-verification:
-    $ref: 'paths/tests.yaml#/test-email-verification'
+    $ref: "paths/tests.yaml#/test-email-verification"
   /api/tests/orders:
-    $ref: 'paths/tests.yaml#/test-orders'
+    $ref: "paths/tests.yaml#/test-orders"
   /api/tests/admin:
-    $ref: 'paths/tests.yaml#/test-admin'
+    $ref: "paths/tests.yaml#/test-admin"
   /api/tests/admin/bionix:
-    $ref: 'paths/tests.yaml#/test-admin-bionix'
+    $ref: "paths/tests.yaml#/test-admin-bionix"
   /api/tests/events/{slug}/vouchers:
-    $ref: 'paths/tests.yaml#/test-voucher-guard'
+    $ref: "paths/tests.yaml#/test-voucher-guard"
   /api/users:
-    $ref: 'paths/users.yaml#/list'
+    $ref: "paths/users.yaml#/list"
   /api/users/stats:
-    $ref: 'paths/users.yaml#/stats'
+    $ref: "paths/users.yaml#/stats"
   /api/events/{slug}/stats:
-    $ref: 'paths/events.yaml#/stats'
+    $ref: "paths/events.yaml#/stats"
   /api/events/{slug}:
-    $ref: 'paths/events.yaml#/get-event-by-slug'
+    $ref: "paths/events.yaml#/get-event-by-slug"
   /api/short-links:
-    $ref: 'paths/short-links.yaml#/collection'
+    $ref: "paths/short-links.yaml#/collection"
   /api/short-links/{id}:
-    $ref: 'paths/short-links.yaml#/item'
+    $ref: "paths/short-links.yaml#/item"
   /go/{shortCode}:
-    $ref: 'paths/short-links.yaml#/redirect'
+    $ref: "paths/short-links.yaml#/redirect"
   /api/events/{slug}/vouchers:
-    $ref: 'paths/vouchers.yaml#/collection'
+    $ref: "paths/vouchers.yaml#/collection"
   /api/events/{slug}/vouchers/verify:
-    $ref: 'paths/vouchers.yaml#/verify'
+    $ref: "paths/vouchers.yaml#/verify"
   /api/events/{slug}/vouchers/{id}:
-    $ref: 'paths/vouchers.yaml#/item'
+    $ref: "paths/vouchers.yaml#/item"
   /api/events/{slug}/uploads/presigned-url:
-    $ref: 'paths/uploads.yaml#/get-presigned-url'
-
+    $ref: "paths/uploads.yaml#/get-presigned-url"
+  /api/events/bionix-competition/registrations:
+    $ref: "paths/bionix-competition.yaml#/registrations"
+  /api/events/{slug}/registrations/draft:
+    $ref: "paths/events.yaml#/registrations-draft"
+  /api/events/bionix-competition/registrations/me:
+    $ref: "paths/bionix-competition.yaml#/registrations-me"
+  /api/events/bionix-competition/registrations/check-team:
+    $ref: "paths/bionix-competition.yaml#/check-team"
+  /api/sys/cities:
+    $ref: "paths/sys.yaml#/list-cities"
 
 components:
   securitySchemes:
     BearerAuth:
-      $ref: 'components/security-schemes/bearer-auth.yaml'
+      $ref: "components/security-schemes/bearer-auth.yaml"
   schemas:
     Error:
-      $ref: 'components/schemas/ApiError.yaml'
+      $ref: "components/schemas/ApiError.yaml"
+    City:
+      $ref: "components/schemas/ApiCity.yaml"
     User:
-      $ref: 'components/schemas/ApiUser.yaml'
+      $ref: "components/schemas/ApiUser.yaml"
     Event:
-      $ref: 'components/schemas/ApiEvent.yaml'
+      $ref: "components/schemas/ApiEvent.yaml"
     ShortLink:
-      $ref: 'components/schemas/ApiShortLink.yaml'
+      $ref: "components/schemas/ApiShortLink.yaml"
     Voucher:
-      $ref: 'components/schemas/ApiVoucher.yaml'
+      $ref: "components/schemas/ApiVoucher.yaml"
+    BionixCompetitionRegistrationRequest:
+      $ref: "components/schemas/ApiBionixCompetitionRegistrationRequest.yaml"
+    BionixCompetitionRegistrationResponse:
+      $ref: "components/schemas/ApiBionixCompetitionRegistrationResponse.yaml"
+    BionixCompetitionRegistrationDraftRequest:
+      $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml"
+    BionixCompetitionRegistrationDraftResponse:
+      $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml"
 
