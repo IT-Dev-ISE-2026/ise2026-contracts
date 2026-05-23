@@ -442,7 +442,7 @@ registrations-me:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ApiBionixCompetitionRegistrationRequest.yaml'
+            $ref: '../components/schemas/ApiBionixCompetitionRegistrationUpdateRequest.yaml'
     responses:
       '200':
         description: Registration updated successfully.
