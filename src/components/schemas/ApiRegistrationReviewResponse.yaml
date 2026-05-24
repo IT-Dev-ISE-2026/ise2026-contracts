@@ -1,0 +1,33 @@
+title: ApiRegistrationReviewResponse
+type: object
+required: [id, registrationId, reviewerId, status, notes, createdAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "b123e456-789a-bcde-f012-3456789abcde"
+  registrationId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  reviewerId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "c789d012-3456-789a-bcde-f01234567890"
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    readOnly: true
+    example: verified
+  notes:
+    type: string
+    readOnly: true
+    example: "Bukti valid dan sesuai."
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-24T17:30:00Z"

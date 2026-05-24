@@ -327,3 +327,189 @@ registrations-draft:
                   message: "Draft retrieved successfully."
       '204':
         description: No draft has been saved yet.
+
+registration-reviews:
+  get:
+    operationId: listRegistrationReviews
+    summary: List registration reviews
+    description: "[admin] Get the review history for a specific registration."
+    tags: ["Events"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    responses:
+      '200':
+        description: Registration reviews retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiRegistrationReviewResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    - id: "b123e456-789a-bcde-f012-3456789abcde"
+                      registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                      reviewerId: "c789d012-3456-789a-bcde-f01234567890"
+                      status: "verified"
+                      notes: "Bukti valid dan sesuai."
+                      createdAt: "2026-05-24T17:30:00Z"
+                  message: "Registration reviews retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Registration not found
+                value:
+                  message: "Registration not found."
+                  requestId: req-reviews-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-reviews-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-reviews-403
+  post:
+    operationId: submitRegistrationReview
+    summary: Submit registration review
+    description: "[admin] Submit a new review for a registration, updating its status."
+    tags: ["Events"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event.
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRegistrationReviewRequest.yaml'
+    responses:
+      '201':
+        description: Review submitted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRegistrationReviewResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessSubmission:
+                summary: Success
+                value:
+                  data:
+                    id: "b123e456-789a-bcde-f012-3456789abcde"
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    reviewerId: "c789d012-3456-789a-bcde-f01234567890"
+                    status: "verified"
+                    notes: "Bukti valid dan sesuai."
+                    createdAt: "2026-05-24T17:30:00Z"
+                  message: "Review submitted successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Registration not found
+                value:
+                  message: "Registration not found."
+                  requestId: req-reviews-post-404
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Error
+                value:
+                  message: "Invalid status or missing notes."
+                  requestId: req-reviews-post-422
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-reviews-post-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-reviews-post-403
