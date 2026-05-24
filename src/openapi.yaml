@@ -100,6 +100,8 @@ paths:
     $ref: "paths/bionix-competition.yaml#/registrations"
   /api/events/{slug}/registrations/draft:
     $ref: "paths/events.yaml#/registrations-draft"
+  /api/events/{slug}/registrations/{id}/reviews:
+    $ref: "paths/events.yaml#/registration-reviews"
   /api/events/bionix-competition/registrations/me:
     $ref: "paths/bionix-competition.yaml#/registrations-me"
   /api/events/bionix-competition/registrations/check-team:
@@ -142,4 +144,8 @@ components:
       $ref: "components/schemas/ApiBionixIsClassRegistrationResponse.yaml"
     BionixIsClassRegistrationUpdateRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationUpdateRequest.yaml"
+    RegistrationReviewRequest:
+      $ref: "components/schemas/ApiRegistrationReviewRequest.yaml"
+    RegistrationReviewResponse:
+      $ref: "components/schemas/ApiRegistrationReviewResponse.yaml"
 

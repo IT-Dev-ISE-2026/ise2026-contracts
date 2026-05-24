@@ -1,0 +1,11 @@
+title: ApiRegistrationReviewRequest
+type: object
+required: [status, notes]
+properties:
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    example: verified
+  notes:
+    type: string
+    example: "Bukti valid dan sesuai."
