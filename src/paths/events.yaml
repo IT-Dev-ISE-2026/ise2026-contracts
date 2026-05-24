@@ -332,7 +332,7 @@ registration-reviews:
   get:
     operationId: listRegistrationReviews
     summary: List registration reviews
-    description: "[staff] Get the review history for a specific registration."
+    description: "[admin] Get the review history for a specific registration."
     tags: ["Events"]
     security:
       - BearerAuth: []
@@ -416,7 +416,7 @@ registration-reviews:
   post:
     operationId: submitRegistrationReview
     summary: Submit registration review
-    description: "[staff] Submit a new review for a registration, updating its status."
+    description: "[admin] Submit a new review for a registration, updating its status."
     tags: ["Events"]
     security:
       - BearerAuth: []

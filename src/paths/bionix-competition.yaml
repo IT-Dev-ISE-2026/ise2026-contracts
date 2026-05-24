@@ -1,4 +1,129 @@
 registrations:
+  get:
+    operationId: listBionixRegistrations
+    summary: List all Bionix Competition registrations (Admin)
+    description: "[admin] Retrieve a list of all Bionix Competition registrations. Requires admin permissions."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        description: Page number to retrieve.
+        schema:
+          type: integer
+          default: 1
+          example: 1
+      - name: limit
+        in: query
+        description: Number of items per page.
+        schema:
+          type: integer
+          default: 10
+          example: 10
+      - name: search
+        in: query
+        description: Search by team name, leader name, or school name.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by registration status.
+        schema:
+          type: string
+          enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+      - name: stage
+        in: query
+        description: Filter by competition stage.
+        schema:
+          type: string
+          enum: [penyisihan, semifinal, final]
+    responses:
+      '200':
+        description: List of registrations retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    items:
+                      - id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                        teamName: "Hengker Keputih"
+                        schoolName: "SMA Negeri 1 Surabaya"
+                        isAgreed: true
+                        leaderName: "Andi"
+                        leaderCityId: 1
+                        leaderGrade: "grade_12"
+                        leaderEmail: "andi@gmail.com"
+                        leaderPhone: "08123456789"
+                        leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                        leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                        leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                        leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                        leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                        memberName: "Budi"
+                        memberCityId: 1
+                        memberGrade: "grade_12"
+                        memberEmail: "budi@gmail.com"
+                        memberPhone: "08123456780"
+                        memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                        memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                        memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                        memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                        memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                        status: "pending_payment"
+                        stage: null
+                        createdAt: "2026-05-16T08:00:00Z"
+                        updatedAt: "2026-05-16T08:00:00Z"
+                    meta:
+                      totalItems: 1
+                      totalPages: 1
+                      currentPage: 1
+                      limit: 10
+                  message: "List of registrations retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-bionix-list-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-bionix-list-403
   post:
     operationId: submitBionixRegistration
     summary: Submit Bionix Competition registration
@@ -587,3 +712,104 @@ check-team:
                 value:
                   message: "Unauthorized access."
                   requestId: "req-bionix-check-401"
+
+registration-by-id:
+  get:
+    operationId: getBionixRegistrationById
+    summary: Get Bionix registration by ID (Admin)
+    description: "[admin] Retrieve a specific Bionix Competition registration by its ID. Requires admin permissions."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    responses:
+      '200':
+        description: Registration details retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                    status: "pending_payment"
+                    stage: null
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Registration not found
+                value:
+                  message: "Registration not found."
+                  requestId: req-bionix-get-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-bionix-get-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-bionix-get-403
