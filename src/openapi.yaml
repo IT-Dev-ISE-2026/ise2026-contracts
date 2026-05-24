@@ -104,6 +104,10 @@ paths:
     $ref: "paths/bionix-competition.yaml#/registrations-me"
   /api/events/bionix-competition/registrations/check-team:
     $ref: "paths/bionix-competition.yaml#/check-team"
+  /api/events/bionix-is-class/registrations:
+    $ref: "paths/bionix-is-class.yaml#/registrations"
+  /api/events/bionix-is-class/registrations/me:
+    $ref: "paths/bionix-is-class.yaml#/registrations-me"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
 
@@ -132,4 +136,10 @@ components:
       $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml"
     BionixCompetitionRegistrationDraftResponse:
       $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml"
+    BionixIsClassRegistrationRequest:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationRequest.yaml"
+    BionixIsClassRegistrationResponse:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationResponse.yaml"
+    BionixIsClassRegistrationUpdateRequest:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationUpdateRequest.yaml"
 
