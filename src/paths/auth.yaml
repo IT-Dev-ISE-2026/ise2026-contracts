@@ -193,6 +193,70 @@ login:
                   message: "Bad request."
                   requestId: req-bad-login
 
+google:
+  post:
+    operationId: googleLogin
+    description: Login or register using Google access token. Returns access and refresh tokens.
+    summary: Google Login
+    tags: [Auth]
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [accessToken]
+            properties:
+              accessToken:
+                type: string
+                example: ya29.a0AfB_by...
+          example:
+            accessToken: ya29.a0AfB_by...
+    responses:
+      "200":
+        description: Google login successful. Access token is returned in the body, and refresh token is set as an HttpOnly cookie.
+        headers:
+          Set-Cookie:
+            description: Contains the refresh token. HttpOnly; Secure; SameSite=Lax
+            schema:
+              type: string
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [accessToken]
+                  properties:
+                    accessToken:
+                      type: string
+                      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
+                message:
+                  type: string
+                  example: "Google login successful."
+            examples:
+              LoginSuccess:
+                summary: Google login successful
+                value:
+                  data:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
+                  message: "Google login successful."
+      "401":
+        description: Invalid token
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+      "400":
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+
 refresh:
   post:
     operationId: refreshToken

@@ -44,6 +44,8 @@ paths:
     $ref: "paths/auth.yaml#/register"
   /api/auth/login:
     $ref: "paths/auth.yaml#/login"
+  /api/auth/google:
+    $ref: "paths/auth.yaml#/google"
   /api/auth/refresh:
     $ref: "paths/auth.yaml#/refresh"
   /api/auth/logout:
