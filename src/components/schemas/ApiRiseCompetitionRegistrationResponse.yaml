@@ -1,0 +1,128 @@
+title: ApiRiseCompetitionRegistrationResponse
+type: object
+required: [id, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, createdAt, updatedAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  userId:
+    type: string
+    format: uuid
+    readOnly: true
+  teamName:
+    type: string
+  memberCount:
+    type: integer
+  bundleType:
+    type: string
+  isAgreed:
+    type: boolean
+  leaderName:
+    type: string
+  leaderInstitution:
+    type: string
+  leaderEmail:
+    type: string
+    format: email
+  leaderPhone:
+    type: string
+  leaderStudentCardUrl:
+    type: string
+    format: uri
+    readOnly: true
+  leaderPosterProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+  leaderIgFollowProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+  leaderTwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+  member1Name:
+    type: string
+    nullable: true
+  member1Institution:
+    type: string
+    nullable: true
+  member1Email:
+    type: string
+    format: email
+    nullable: true
+  member1Phone:
+    type: string
+    nullable: true
+  member1StudentCardUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member1PosterProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member1IgFollowProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member1TwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member2Name:
+    type: string
+    nullable: true
+  member2Institution:
+    type: string
+    nullable: true
+  member2Email:
+    type: string
+    format: email
+    nullable: true
+  member2Phone:
+    type: string
+    nullable: true
+  member2StudentCardUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member2PosterProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member2IgFollowProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member2TwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    readOnly: true
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    nullable: true
+    readOnly: true
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true

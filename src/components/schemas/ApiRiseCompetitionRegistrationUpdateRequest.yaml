@@ -1,0 +1,74 @@
+title: ApiRiseCompetitionRegistrationUpdateRequest
+type: object
+properties:
+  teamName:
+    type: string
+  memberCount:
+    type: integer
+    enum: [1, 2, 3]
+  bundleType:
+    type: string
+    enum: [none, bundle]
+  leaderName:
+    type: string
+  leaderInstitution:
+    type: string
+  leaderEmail:
+    type: string
+    format: email
+  leaderPhone:
+    type: string
+  leaderStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+  leaderPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  leaderIgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  leaderTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member1Name:
+    type: string
+  member1Institution:
+    type: string
+  member1Email:
+    type: string
+    format: email
+  member1Phone:
+    type: string
+  member1StudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+  member1PosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member1IgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member1TwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member2Name:
+    type: string
+  member2Institution:
+    type: string
+  member2Email:
+    type: string
+    format: email
+  member2Phone:
+    type: string
+  member2StudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+  member2PosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member2IgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member2TwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"

@@ -1,0 +1,726 @@
+registrations:
+  get:
+    operationId: listRiseRegistrations
+    summary: List all Rise Competition registrations (Admin)
+    description: "[admin] Retrieve a list of all Rise Competition registrations. Requires admin permissions."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        description: Page number to retrieve.
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        description: Number of items per page.
+        schema:
+          type: integer
+          default: 10
+      - name: search
+        in: query
+        description: Search by team name or leader name.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by registration status.
+        schema:
+          type: string
+          enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+      - name: stage
+        in: query
+        description: Filter by competition stage.
+        schema:
+          type: string
+          enum: [penyisihan, semifinal, final]
+    responses:
+      '200':
+        description: List of registrations retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    items:
+                      - id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                        teamName: "Hengker Keputih"
+                        memberCount: 3
+                        bundleType: "bundle"
+                        isAgreed: true
+                        leaderName: "Andi"
+                        leaderInstitution: "SMA Negeri 1 Surabaya"
+                        leaderEmail: "andi@gmail.com"
+                        leaderPhone: "08123456789"
+                        leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                        leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                        leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                        leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                        member1Name: "Budi"
+                        member1Institution: "SMA Negeri 1 Surabaya"
+                        member1Email: "budi@gmail.com"
+                        member1Phone: "08123456780"
+                        member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                        member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                        member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                        member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                        member2Name: "Caca"
+                        member2Institution: "SMA Negeri 1 Surabaya"
+                        member2Email: "caca@gmail.com"
+                        member2Phone: "08123456781"
+                        member2StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                        member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                        member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                        member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                        status: "pending_payment"
+                        stage: null
+                        createdAt: "2026-05-16T08:00:00Z"
+                        updatedAt: "2026-05-16T08:00:00Z"
+                    meta:
+                      totalItems: 1
+                      totalPages: 1
+                      currentPage: 1
+                      limit: 10
+                  message: "List of registrations retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-rise-list-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-rise-list-403
+  post:
+    operationId: submitRiseRegistration
+    summary: Submit Rise Competition registration
+    description: "[user] Register a team for the Rise Competition. Requires authenticated user. All file paths must start with temp/."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRiseCompetitionRegistrationRequest.yaml'
+    responses:
+      '201':
+        description: Registration submitted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  properties:
+                    registration:
+                      $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                    payment:
+                      type: object
+                      properties:
+                        amount:
+                          type: integer
+                        sequence:
+                          type: integer
+                        paymentDeadline:
+                          type: string
+                          format: date-time
+                        snapToken:
+                          type: string
+                        redirectUrl:
+                          type: string
+                message:
+                  type: string
+            examples:
+              RegistrationSuccess:
+                summary: Successful Registration
+                value:
+                  data:
+                    registration:
+                      id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                      userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      teamName: "Hengker Keputih"
+                      memberCount: 3
+                      bundleType: "bundle"
+                      isAgreed: true
+                      leaderName: "Andi"
+                      leaderInstitution: "SMA Negeri 1 Surabaya"
+                      leaderEmail: "andi@gmail.com"
+                      leaderPhone: "08123456789"
+                      leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                      leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                      leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                      leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                      member1Name: "Budi"
+                      member1Institution: "SMA Negeri 1 Surabaya"
+                      member1Email: "budi@gmail.com"
+                      member1Phone: "08123456780"
+                      member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                      member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                      member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                      member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                      member2Name: "Caca"
+                      member2Institution: "SMA Negeri 1 Surabaya"
+                      member2Email: "caca@gmail.com"
+                      member2Phone: "08123456781"
+                      member2StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                      member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                      member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                      member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                      status: "pending_payment"
+                      stage: null
+                      createdAt: "2026-05-16T08:00:00Z"
+                      updatedAt: "2026-05-16T08:00:00Z"
+                    payment:
+                      amount: 75000
+                      sequence: 1
+                      paymentDeadline: "2026-05-17T08:00:00Z"
+                      snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
+                      redirectUrl: "https://app.sandbox.midtrans.com/snap/v2/vtweb/8687a100-84a1-42cb-b72e-d00922849568"
+                  message: "Registration submitted successfully."
+      '400':
+        description: Bad request. Syntax error or invalid format.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad Request
+                value:
+                  message: "Invalid request format."
+                  requestId: "req-rise-sub-400"
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-rise-sub-422"
+                  errors:
+                    teamName: ["teamName is a required field"]
+                    isAgreed: ["isAgreed must be true"]
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-rise-sub-401"
+      '409':
+        description: Conflict. Team name, email, or phone already registered.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              TeamNameTaken:
+                summary: Team Name Already Exists
+                value:
+                  message: "Team name is already taken. Please choose another team name."
+                  requestId: "req-rise-sub-409"
+
+registrations-me:
+  get:
+    operationId: getMyRiseRegistration
+    summary: Get current user's Rise registration
+    description: "[user] Retrieve the Rise Competition registration details for the authenticated user."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Registration details retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              PendingPayment:
+                summary: Registration Pending Payment
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 3
+                    bundleType: "bundle"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: "Budi"
+                    member1Institution: "SMA Negeri 1 Surabaya"
+                    member1Email: "budi@gmail.com"
+                    member1Phone: "08123456780"
+                    member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member2Name: "Caca"
+                    member2Institution: "SMA Negeri 1 Surabaya"
+                    member2Email: "caca@gmail.com"
+                    member2Phone: "08123456781"
+                    member2StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    status: "pending_payment"
+                    stage: null
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
+              TeamOf1Penyisihan:
+                summary: Solo Team (Penyisihan)
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 1
+                    bundleType: "none"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: null
+                    member1Institution: null
+                    member1Email: null
+                    member1Phone: null
+                    member1StudentCardUrl: null
+                    member1PosterProofUrl: null
+                    member1IgFollowProofUrl: null
+                    member1TwibbonProofUrl: null
+                    member2Name: null
+                    member2Institution: null
+                    member2Email: null
+                    member2Phone: null
+                    member2StudentCardUrl: null
+                    member2PosterProofUrl: null
+                    member2IgFollowProofUrl: null
+                    member2TwibbonProofUrl: null
+                    status: "verified"
+                    stage: "penyisihan"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+              TeamOf2Semifinal:
+                summary: 2-Person Team (Semifinal)
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 2
+                    bundleType: "none"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: "Budi"
+                    member1Institution: "SMA Negeri 1 Surabaya"
+                    member1Email: "budi@gmail.com"
+                    member1Phone: "08123456780"
+                    member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member2Name: null
+                    member2Institution: null
+                    member2Email: null
+                    member2Phone: null
+                    member2StudentCardUrl: null
+                    member2PosterProofUrl: null
+                    member2IgFollowProofUrl: null
+                    member2TwibbonProofUrl: null
+                    status: "verified"
+                    stage: "semifinal"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+              TeamOf3Final:
+                summary: 3-Person Team (Final)
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 3
+                    bundleType: "bundle"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: "Budi"
+                    member1Institution: "SMA Negeri 1 Surabaya"
+                    member1Email: "budi@gmail.com"
+                    member1Phone: "08123456780"
+                    member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member2Name: "Caca"
+                    member2Institution: "SMA Negeri 1 Surabaya"
+                    member2Email: "caca@gmail.com"
+                    member2Phone: "08123456781"
+                    member2StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    status: "verified"
+                    stage: "final"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Not Found
+                value:
+                  message: "You haven't registered for Rise Competition yet."
+                  requestId: "req-rise-me-404"
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-rise-me-get-401"
+  patch:
+    operationId: updateMyRiseRegistration
+    summary: Update Rise registration
+    description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRiseCompetitionRegistrationUpdateRequest.yaml'
+    responses:
+      '200':
+        description: Registration updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              UpdateSuccess:
+                summary: Registration Updated
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih Revised"
+                    memberCount: 1
+                    bundleType: "none"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: null
+                    member1Institution: null
+                    member1Email: null
+                    member1Phone: null
+                    member1StudentCardUrl: null
+                    member1PosterProofUrl: null
+                    member1IgFollowProofUrl: null
+                    member1TwibbonProofUrl: null
+                    member2Name: null
+                    member2Institution: null
+                    member2Email: null
+                    member2Phone: null
+                    member2StudentCardUrl: null
+                    member2PosterProofUrl: null
+                    member2IgFollowProofUrl: null
+                    member2TwibbonProofUrl: null
+                    status: "pending_payment"
+                    stage: null
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T15:00:00Z"
+                  message: "Registration updated successfully."
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-rise-me-patch-401"
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-rise-me-422"
+                  errors:
+                    teamName: ["teamName is already taken"]
+      '403':
+        description: Forbidden. Registration cannot be updated in current status.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ForbiddenUpdate:
+                summary: Cannot Update Approved Registration
+                value:
+                  message: "Registration cannot be updated because it is already approved."
+                  requestId: "req-rise-up-403"
+
+check-team:
+  get:
+    operationId: checkRiseTeamName
+    summary: Check team name availability
+    description: "[user] Check if a team name is already taken for Rise Competition."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: name
+        in: query
+        required: true
+        description: Team name to check.
+        schema:
+          type: string
+          minLength: 3
+    responses:
+      '200':
+        description: Availability status retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [isAvailable]
+                  properties:
+                    isAvailable:
+                      type: boolean
+            examples:
+              Available:
+                summary: Team Name Available
+                value:
+                  data:
+                    isAvailable: true
+              Taken:
+                summary: Team Name Already Taken
+                value:
+                  data:
+                    isAvailable: false
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-rise-check-401"
+
+registration-by-id:
+  get:
+    operationId: getRiseRegistrationById
+    summary: Get Rise registration by ID (Admin)
+    description: "[admin] Retrieve a specific Rise Competition registration by its ID. Requires admin permissions."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    responses:
+      '200':
+        description: Registration details retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 3
+                    bundleType: "bundle"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member1Name: "Budi"
+                    member1Institution: "SMA Negeri 1 Surabaya"
+                    member1Email: "budi@gmail.com"
+                    member1Phone: "08123456780"
+                    member1StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    member2Name: "Caca"
+                    member2Institution: "SMA Negeri 1 Surabaya"
+                    member2Email: "caca@gmail.com"
+                    member2Phone: "08123456781"
+                    member2StudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    status: "pending_payment"
+                    stage: null
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Registration not found
+                value:
+                  message: "Registration not found."
+                  requestId: req-rise-get-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-rise-get-401
