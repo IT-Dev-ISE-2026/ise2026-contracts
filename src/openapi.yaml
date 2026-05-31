@@ -28,6 +28,8 @@ tags:
     description: Event management and information endpoints.
   - name: Events/Bionix Competition
     description: Registration and management endpoints for Bionix Competition.
+  - name: Events/Rise Competition
+    description: Registration and management endpoints for Rise Competition.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
@@ -114,6 +116,14 @@ paths:
     $ref: "paths/bionix-is-class.yaml#/registrations"
   /api/events/bionix-is-class/registrations/me:
     $ref: "paths/bionix-is-class.yaml#/registrations-me"
+  /api/events/rise/registrations:
+    $ref: "paths/rise-competition.yaml#/registrations"
+  /api/events/rise/registrations/{id}:
+    $ref: "paths/rise-competition.yaml#/registration-by-id"
+  /api/events/rise/registrations/me:
+    $ref: "paths/rise-competition.yaml#/registrations-me"
+  /api/events/rise/registrations/check-team:
+    $ref: "paths/rise-competition.yaml#/check-team"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
 
@@ -152,4 +162,14 @@ components:
       $ref: "components/schemas/ApiRegistrationReviewRequest.yaml"
     RegistrationReviewResponse:
       $ref: "components/schemas/ApiRegistrationReviewResponse.yaml"
+    RiseCompetitionRegistrationRequest:
+      $ref: "components/schemas/ApiRiseCompetitionRegistrationRequest.yaml"
+    RiseCompetitionRegistrationResponse:
+      $ref: "components/schemas/ApiRiseCompetitionRegistrationResponse.yaml"
+    RiseCompetitionRegistrationUpdateRequest:
+      $ref: "components/schemas/ApiRiseCompetitionRegistrationUpdateRequest.yaml"
+    RiseCompetitionRegistrationDraftRequest:
+      $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftRequest.yaml"
+    RiseCompetitionRegistrationDraftResponse:
+      $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftResponse.yaml"
 

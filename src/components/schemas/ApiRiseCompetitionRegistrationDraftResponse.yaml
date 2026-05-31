@@ -1,0 +1,108 @@
+title: ApiRiseCompetitionRegistrationDraftResponse
+type: object
+properties:
+  teamName:
+    type: string
+    nullable: true
+  memberCount:
+    type: integer
+    enum: [1, 2, 3]
+    nullable: true
+  bundleType:
+    type: string
+    enum: [none, bundle]
+    nullable: true
+  isAgreed:
+    type: boolean
+    nullable: true
+  leaderName:
+    type: string
+    nullable: true
+  leaderInstitution:
+    type: string
+    nullable: true
+  leaderEmail:
+    type: string
+    format: email
+    nullable: true
+  leaderPhone:
+    type: string
+    nullable: true
+  leaderStudentCardUrl:
+    type: string
+    format: uri
+    nullable: true
+  leaderPosterProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  leaderIgFollowProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  leaderTwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member1Name:
+    type: string
+    nullable: true
+  member1Institution:
+    type: string
+    nullable: true
+  member1Email:
+    type: string
+    format: email
+    nullable: true
+  member1Phone:
+    type: string
+    nullable: true
+  member1StudentCardUrl:
+    type: string
+    format: uri
+    nullable: true
+  member1PosterProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member1IgFollowProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member1TwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member2Name:
+    type: string
+    nullable: true
+  member2Institution:
+    type: string
+    nullable: true
+  member2Email:
+    type: string
+    format: email
+    nullable: true
+  member2Phone:
+    type: string
+    nullable: true
+  member2StudentCardUrl:
+    type: string
+    format: uri
+    nullable: true
+  member2PosterProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member2IgFollowProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member2TwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true

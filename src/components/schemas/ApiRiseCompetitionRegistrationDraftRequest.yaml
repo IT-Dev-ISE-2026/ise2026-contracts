@@ -1,0 +1,104 @@
+title: ApiRiseCompetitionRegistrationDraftRequest
+type: object
+properties:
+  teamName:
+    type: string
+    nullable: true
+  memberCount:
+    type: integer
+    enum: [1, 2, 3]
+    nullable: true
+  bundleType:
+    type: string
+    enum: [none, bundle]
+    nullable: true
+  isAgreed:
+    type: boolean
+    nullable: true
+  leaderName:
+    type: string
+    nullable: true
+  leaderInstitution:
+    type: string
+    nullable: true
+  leaderEmail:
+    type: string
+    format: email
+    nullable: true
+  leaderPhone:
+    type: string
+    nullable: true
+  leaderStudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  leaderPosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  leaderIgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  leaderTwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member1Name:
+    type: string
+    nullable: true
+  member1Institution:
+    type: string
+    nullable: true
+  member1Email:
+    type: string
+    format: email
+    nullable: true
+  member1Phone:
+    type: string
+    nullable: true
+  member1StudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member1PosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member1IgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member1TwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member2Name:
+    type: string
+    nullable: true
+  member2Institution:
+    type: string
+    nullable: true
+  member2Email:
+    type: string
+    format: email
+    nullable: true
+  member2Phone:
+    type: string
+    nullable: true
+  member2StudentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member2PosterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member2IgFollowProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
+  member2TwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    nullable: true
