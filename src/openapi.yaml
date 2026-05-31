@@ -114,13 +114,13 @@ paths:
     $ref: "paths/bionix-is-class.yaml#/registrations"
   /api/events/bionix-is-class/registrations/me:
     $ref: "paths/bionix-is-class.yaml#/registrations-me"
-  /api/events/rise-competition/registrations:
+  /api/events/rise/registrations:
     $ref: "paths/rise-competition.yaml#/registrations"
-  /api/events/rise-competition/registrations/{id}:
+  /api/events/rise/registrations/{id}:
     $ref: "paths/rise-competition.yaml#/registration-by-id"
-  /api/events/rise-competition/registrations/me:
+  /api/events/rise/registrations/me:
     $ref: "paths/rise-competition.yaml#/registrations-me"
-  /api/events/rise-competition/registrations/check-team:
+  /api/events/rise/registrations/check-team:
     $ref: "paths/rise-competition.yaml#/check-team"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
