@@ -244,6 +244,18 @@ registrations:
                   errors:
                     teamName: ["teamName is a required field"]
                     isAgreed: ["isAgreed must be true"]
+      '403':
+        description: Forbidden. Registration is closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationClosed:
+                summary: Registration Closed
+                value:
+                  message: "Registration for Rise Competition has been closed."
+                  requestId: "req-rise-sub-403"
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
