@@ -7,6 +7,7 @@ properties:
     example: 1
   shortCode:
     type: string
+    pattern: "^[A-Za-z0-9_-]+$"
     example: "bionix"
   originalUrl:
     type: string
