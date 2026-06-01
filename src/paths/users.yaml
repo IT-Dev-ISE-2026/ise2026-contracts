@@ -125,51 +125,7 @@ me:
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
-              UserProfileAdminShortenlinkRead:
-                summary: Admin Shortlink Read Profile
-                value:
-                  data:
-                    id: 00000000-0000-0000-0000-000000000003
-                    name: Shortlink Admin
-                    email: shortlink@ise-its.com
-                    phoneNumber: '08123456789'
-                    educationLevel: university
-                    referralSource: ['instagram']
-                    isEmailVerified: true
-                    permissions: ['admin:shortenlink:read']
-                    createdAt: '2026-01-01T00:00:00Z'
-                    updatedAt: '2026-01-01T00:00:00Z'
-                  message: "User profile retrieved successfully."
-              UserProfileAdminShortenlinkWrite:
-                summary: Admin Shortlink Write Profile
-                value:
-                  data:
-                    id: 00000000-0000-0000-0000-000000000003
-                    name: Shortlink Admin
-                    email: shortlink@ise-its.com
-                    phoneNumber: '08123456789'
-                    educationLevel: university
-                    referralSource: ['instagram']
-                    isEmailVerified: true
-                    permissions: ['admin:shortenlink:write']
-                    createdAt: '2026-01-01T00:00:00Z'
-                    updatedAt: '2026-01-01T00:00:00Z'
-                  message: "User profile retrieved successfully."
-              UserProfileAdminShortenlinkOwn:
-                summary: Admin Shortlink Owner Profile
-                value:
-                  data:
-                    id: 00000000-0000-0000-0000-000000000003
-                    name: Shortlink Admin
-                    email: shortlink@ise-its.com
-                    phoneNumber: '08123456789'
-                    educationLevel: university
-                    referralSource: ['instagram']
-                    isEmailVerified: true
-                    permissions: ['admin:shortenlink:own']
-                    createdAt: '2026-01-01T00:00:00Z'
-                    updatedAt: '2026-01-01T00:00:00Z'
-                  message: "User profile retrieved successfully."
+
               UserProfileAdminBionixCompetitionRead:
                 summary: Admin Bionix Competition Read Profile
                 value:
