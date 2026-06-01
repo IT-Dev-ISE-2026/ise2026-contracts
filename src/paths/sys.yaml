@@ -82,7 +82,7 @@ set-permissions:
   post:
     operationId: setPermissions
     description: Internal tool to manually update user permissions. Requires X-Internal-Token header.
-    summary: "(public) Set user permissions (Internal)"
+    summary: "(internal) Set user permissions"
     tags: [Internal]
     parameters:
       - in: header
