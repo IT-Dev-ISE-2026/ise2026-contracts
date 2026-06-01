@@ -2,6 +2,7 @@ type: string
 enum:
   - user
   - admin
+  - admin:user:read
   - admin:bionix-competition:read
   - admin:bionix-competition:write
   - admin:bionix-competition:voucher:read
@@ -14,13 +15,13 @@ enum:
   - admin:rise:write
   - admin:rise:voucher:read
   - admin:rise:voucher:write
-  - admin:user:read
 description: |
   User permissions for attribute-based access control.
 
   **Penjelasan Akses:**
   * `user`: Akses standar untuk pengguna/peserta reguler.
   * `admin`: Akses admin dasar (*basic admin*).
+  * `admin:user:read`: Akses untuk melihat statistik pengguna pada sistem.
   * `admin:bionix-competition:read`: Akses untuk melihat data Bionix Competition.
   * `admin:bionix-competition:write`: Akses untuk mengubah/mengelola data Bionix Competition.
   * `admin:bionix-competition:voucher:read`: Akses untuk melihat voucher pada Bionix Competition.
@@ -33,10 +34,10 @@ description: |
   * `admin:rise:write`: Akses untuk mengubah/mengelola data RISE Competition.
   * `admin:rise:voucher:read`: Akses untuk melihat voucher pada RISE Competition.
   * `admin:rise:voucher:write`: Akses untuk mengelola voucher pada RISE Competition.
-  * `admin:user:read`: Akses untuk melihat seluruh data pengguna pada sistem.
 x-enum-descriptions:
   - Akses standar untuk pengguna/peserta reguler.
   - Akses admin dasar (basic admin).
+  - Akses untuk melihat statistik pengguna pada sistem.
   - Akses untuk melihat data Bionix Competition.
   - Akses untuk mengubah/mengelola data Bionix Competition.
   - Akses untuk melihat voucher pada Bionix Competition.
@@ -49,4 +50,3 @@ x-enum-descriptions:
   - Akses untuk mengubah/mengelola data RISE Competition.
   - Akses untuk melihat voucher pada RISE Competition.
   - Akses untuk mengelola voucher pada RISE Competition.
-  - Akses untuk melihat seluruh data pengguna pada sistem.

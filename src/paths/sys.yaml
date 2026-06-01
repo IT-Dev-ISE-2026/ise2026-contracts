@@ -91,30 +91,25 @@ set-permissions:
         schema:
           type: string
         description: Secret token for internal access.
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [email, permissions]
-            properties:
-              email:
-                type: string
-                format: email
-                example: dev@example.com
-              permissions:
-                type: array
-                items:
-                  $ref: '../components/schemas/ApiPermission.yaml'
-                example: ["admin", "user"]
-          examples:
-            SetAdmin:
-              summary: Assign Admin Permissions
-              value:
-                email: dev@example.com
-                permissions: ["admin:bionix:read", "user"]
-  
+      - in: query
+        name: email
+        required: true
+        schema:
+          type: string
+          format: email
+        description: User email to update permissions for.
+        example: dev@example.com
+      - in: query
+        name: permissions
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            $ref: '../components/schemas/ApiPermission.yaml'
+        description: List of permissions to assign.
+        example: ["admin", "user"]
     responses:
       '200':
         description: Permissions updated successfully
