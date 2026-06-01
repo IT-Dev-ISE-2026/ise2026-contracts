@@ -115,8 +115,6 @@ login:
                 example: user@example.com
               password:
                 type: string
-                minLength: 8
-                maxLength: 72
                 example: P@ssw0rd123
           example:
             email: user@example.com
