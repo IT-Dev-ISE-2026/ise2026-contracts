@@ -2,7 +2,7 @@ test-email-verification:
   post:
     operationId: testEmailVerification
     description: Test email verification workflow
-    summary: Test email verification
+    summary: "(public) Test email verification"
     tags: [Tests]
     requestBody:
       required: true
@@ -39,7 +39,7 @@ test-orders:
   post:
     operationId: testOrder
     description: Create a dummy order for testing. Requires authentication and user permission.
-    summary: Test order
+    summary: "(user) Test order"
     tags: [Tests]
     security:
       - BearerAuth: []
@@ -81,7 +81,7 @@ test-admin:
   get:
     operationId: testAdminAccess
     description: Test admin access level. Requires authentication and admin permission.
-    summary: Test admin access
+    summary: "(admin) Test admin access"
     tags: [Tests]
     security:
       - BearerAuth: []
@@ -118,7 +118,7 @@ test-admin-bionix:
   get:
     operationId: testAdminBionixRead
     description: Test Bionix admin read access.
-    summary: Test Bionix admin read
+    summary: "(admin) Test Bionix admin read"
     tags: [Tests]
     security:
       - BearerAuth: []
@@ -141,7 +141,7 @@ test-admin-bionix:
   post:
     operationId: testAdminBionixWrite
     description: Test Bionix admin write access.
-    summary: Test Bionix admin write
+    summary: "(admin) Test Bionix admin write"
     tags: [Tests]
     security:
       - BearerAuth: []
@@ -166,7 +166,7 @@ test-voucher-guard:
   get:
     operationId: testVoucherGuardRead
     description: Test dynamic voucher read permission for an event slug.
-    summary: Test Voucher Guard Read
+    summary: "(user) Test Voucher Guard Read"
     tags: [Tests]
     security:
       - BearerAuth: []
@@ -196,7 +196,7 @@ test-voucher-guard:
   post:
     operationId: testVoucherGuardWrite
     description: Test dynamic voucher write permission for an event slug.
-    summary: Test Voucher Guard Write
+    summary: "(user) Test Voucher Guard Write"
     tags: [Tests]
     security:
       - BearerAuth: []

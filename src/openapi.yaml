@@ -138,6 +138,8 @@ components:
       $ref: "components/schemas/ApiCity.yaml"
     User:
       $ref: "components/schemas/ApiUser.yaml"
+    Permission:
+      $ref: "components/schemas/ApiPermission.yaml"
     Event:
       $ref: "components/schemas/ApiEvent.yaml"
     ShortLink:

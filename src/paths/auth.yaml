@@ -2,7 +2,7 @@ register:
   post:
     operationId: registerUser
     description: Register a new user with name, email, and password. Returns the created user data.
-    summary: Register a new user
+    summary: "(public) Register a new user"
     tags: [Auth]
     requestBody:
       required: true
@@ -99,7 +99,7 @@ login:
   post:
     operationId: loginUser
     description: Login with email and password. Returns access and refresh tokens.
-    summary: Login and get tokens
+    summary: "(public) Login and get tokens"
     tags: [Auth]
     requestBody:
       required: true
@@ -115,8 +115,6 @@ login:
                 example: user@example.com
               password:
                 type: string
-                minLength: 8
-                maxLength: 72
                 example: P@ssw0rd123
           example:
             email: user@example.com
@@ -261,7 +259,7 @@ refresh:
   post:
     operationId: refreshToken
     description: Refresh access token using a valid refresh token. Returns new access and refresh tokens.
-    summary: Refresh access token
+    summary: "(public) Refresh access token"
     tags: [Auth]
     parameters:
       - in: cookie
@@ -332,7 +330,7 @@ logout:
   post:
     operationId: logoutUser
     description: Logout and clear access and refresh tokens.
-    summary: Logout user
+    summary: "(public) Logout user"
     tags: [Auth]
     responses:
       "200":
@@ -371,7 +369,7 @@ email-resend:
   post:
     operationId: resendVerificationEmail
     description: Resend verification email to a user who has not been verified yet. Public endpoint to avoid information disclosure.
-    summary: Resend verification email
+    summary: "(public) Resend verification email"
     tags: [Auth]
     security: []
     requestBody:
@@ -446,7 +444,7 @@ email-verify:
   get:
     operationId: verifyEmail
     description: Verify email of a user who has not been verified yet.
-    summary: Verify email
+    summary: "(public) Verify email"
     tags: [Auth]
     security: []
     parameters:
@@ -491,7 +489,7 @@ forgot-password:
   post:
     operationId: forgotPassword
     description: Send a reset password link to the user's email if it exists. Returns a generic success response to prevent user enumeration.
-    summary: Forgot password
+    summary: "(public) Forgot password"
     tags: [Auth]
     security: []
     requestBody:
@@ -543,7 +541,7 @@ password-reset:
   post:
     operationId: resetPassword
     description: Reset the user's password using a valid reset token.
-    summary: Reset password
+    summary: "(public) Reset password"
     tags: [Auth]
     security: []
     requestBody:
@@ -611,7 +609,7 @@ password-reset-validate:
   get:
     operationId: validateResetToken
     description: Validate the reset password token before showing the reset form.
-    summary: Validate reset password token
+    summary: "(public) Validate reset password token"
     tags: [Auth]
     security: []
     parameters:

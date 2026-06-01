@@ -2,7 +2,7 @@ ping:
   get:
     operationId: sysPing
     description: Endpoint for connectivity check
-    summary: Ping for connectivity check
+    summary: "(public) Ping for connectivity check"
     tags: [System]
     responses:
       '200':
@@ -31,7 +31,7 @@ health:
   get:
     operationId: sysHealth
     description: Endpoint for health check
-    summary: Health check
+    summary: "(public) Health check"
     tags: [System]
     responses:
       '200':
@@ -82,7 +82,7 @@ set-permissions:
   post:
     operationId: setPermissions
     description: Internal tool to manually update user permissions. Requires X-Internal-Token header.
-    summary: Set user permissions (Internal)
+    summary: "(internal) Set user permissions"
     tags: [Internal]
     parameters:
       - in: header
@@ -91,30 +91,41 @@ set-permissions:
         schema:
           type: string
         description: Secret token for internal access.
-    requestBody:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            required: [email, permissions]
-            properties:
-              email:
-                type: string
-                format: email
-                example: dev@example.com
-              permissions:
-                type: array
-                items:
-                  type: string
-                example: ["admin", "user"]
-          examples:
-            SetAdmin:
-              summary: Assign Admin Permissions
-              value:
-                email: dev@example.com
-                permissions: ["admin:bionix:read", "user"]
-  
+      - in: query
+        name: email
+        required: true
+        schema:
+          type: string
+          format: email
+        description: User email to update permissions for.
+        example: dev@example.com
+      - in: query
+        name: permissions
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+              - user
+              - admin
+              - admin:user:read
+              - admin:bionix-competition:read
+              - admin:bionix-competition:write
+              - admin:bionix-competition:voucher:read
+              - admin:bionix-competition:voucher:write
+              - admin:bionix-isclass:read
+              - admin:bionix-isclass:write
+              - admin:bionix-isclass:voucher:read
+              - admin:bionix-isclass:voucher:write
+              - admin:rise:read
+              - admin:rise:write
+              - admin:rise:voucher:read
+              - admin:rise:voucher:write
+        description: List of permissions to assign.
+        example: ["admin", "user"]
     responses:
       '200':
         description: Permissions updated successfully
@@ -160,7 +171,7 @@ set-permissions:
 list-cities:
   get:
     operationId: listCities
-    summary: Get list of cities
+    summary: "(public) Get list of cities"
     description: "Get master data of cities for registration forms. No authentication required."
     tags: [System]
     parameters:

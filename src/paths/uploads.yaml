@@ -1,7 +1,7 @@
 get-presigned-url:
   post:
     operationId: getEventUploadPresignedUrl
-    summary: "[user] Get a presigned URL for file upload"
+    summary: "(user) Get a presigned URL for file upload"
     description: |
       Returns a presigned URL that can be used to upload a file directly to the object storage (R2/MinIO).
       The file will be uploaded using an HTTP PUT request to the returned `uploadUrl`.

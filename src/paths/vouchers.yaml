@@ -2,7 +2,7 @@ collection:
   get:
     operationId: listVouchers
     description: "[admin:{slug}:voucher:read] Get a list of all vouchers for a specific event."
-    summary: List vouchers
+    summary: "(admin:{slug}:voucher:read) List vouchers"
     tags: [Vouchers]
     security:
       - BearerAuth: []
@@ -121,7 +121,7 @@ collection:
   post:
     operationId: createVoucher
     description: "[admin:{slug}:voucher:write] Create a new voucher for a specific event."
-    summary: Create voucher
+    summary: "(admin:{slug}:voucher:write) Create voucher"
     tags: [Vouchers]
     security:
       - BearerAuth: []
@@ -265,7 +265,7 @@ verify:
   get:
     operationId: verifyVoucher
     description: "[user] Verify a voucher code for a specific event slug."
-    summary: Verify voucher
+    summary: "(user) Verify voucher"
     tags: [Vouchers]
     security:
       - BearerAuth: []
@@ -359,7 +359,7 @@ item:
   get:
     operationId: getVoucherById
     description: "[admin:{slug}:voucher:read] Get a voucher by ID."
-    summary: Get voucher
+    summary: "(admin:{slug}:voucher:read) Get voucher"
     tags: [Vouchers]
     security:
       - BearerAuth: []
@@ -451,7 +451,7 @@ item:
   patch:
     operationId: patchVoucher
     description: "[admin:{slug}:voucher:write] Update an existing voucher. Code is immutable and cannot be changed."
-    summary: Update voucher
+    summary: "(admin:{slug}:voucher:write) Update voucher"
     tags: [Vouchers]
     security:
       - BearerAuth: []
@@ -596,7 +596,7 @@ item:
   delete:
     operationId: deleteVoucher
     description: "[admin:{slug}:voucher:write] Delete a voucher."
-    summary: Delete voucher
+    summary: "(admin:{slug}:voucher:write) Delete voucher"
     tags: [Vouchers]
     security:
       - BearerAuth: []
