@@ -154,6 +154,12 @@ collection:
         description: Search by short_code or original_url.
         schema:
           type: string
+      - name: sort
+        in: query
+        description: "Sort by field:asc or field:desc. Available fields: createdAt, clickCount"
+        schema:
+          type: string
+          example: "createdAt:desc"
     responses:
       "200":
         description: List of short links with pagination metadata
