@@ -16,6 +16,7 @@ collection:
             properties:
               shortCode:
                 type: string
+                pattern: "^[A-Za-z0-9_-]+$"
                 example: "bionix"
               originalUrl:
                 type: string
@@ -125,7 +126,7 @@ collection:
                     originalUrl:
                       - "Field originalUrl must be a valid URI"
                     shortCode:
-                      - "Field shortCode must be alphanumeric"
+                      - "Field shortCode must be alphanumeric, dash, or underscore."
   get:
     operationId: listShortLinks
     description: "[admin] List all short links"
