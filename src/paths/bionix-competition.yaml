@@ -1,8 +1,8 @@
 registrations:
   get:
     operationId: listBionixRegistrations
-    summary: List all Bionix Competition registrations (Admin)
-    description: "[admin] Retrieve a list of all Bionix Competition registrations. Requires admin permissions."
+    summary: "(admin) List all Bionix Competition registrations"
+    description: "Retrieve a list of all Bionix Competition registrations. Requires admin permissions."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -126,7 +126,7 @@ registrations:
                   requestId: req-bionix-list-403
   post:
     operationId: submitBionixRegistration
-    summary: Submit Bionix Competition registration
+    summary: "(user) Submit Bionix Competition registration"
     description: "[user] Register a team for the Bionix Competition. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Bionix Competition"]
 
@@ -271,7 +271,7 @@ registrations:
 registrations-me:
   get:
     operationId: getMyBionixRegistration
-    summary: Get current user's Bionix registration
+    summary: "(user) Get current user's Bionix registration"
     description: "[user] Retrieve the Bionix Competition registration details for the authenticated user."
     tags: ["Events/Bionix Competition"]
 
@@ -556,7 +556,7 @@ registrations-me:
                   requestId: "req-bionix-me-get-401"
   patch:
     operationId: updateMyBionixRegistration
-    summary: Update Bionix registration
+    summary: "(user) Update Bionix registration"
     description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
     tags: ["Events/Bionix Competition"]
 
@@ -659,7 +659,7 @@ registrations-me:
 check-team:
   get:
     operationId: checkBionixTeamName
-    summary: Check team name availability
+    summary: "(user) Check team name availability"
     description: "[user] Check if a team name is already taken for Bionix Competition."
     tags: ["Events/Bionix Competition"]
 
@@ -716,7 +716,7 @@ check-team:
 registration-by-id:
   get:
     operationId: getBionixRegistrationById
-    summary: Get Bionix registration by ID (Admin)
+    summary: "(admin) Get Bionix registration by ID"
     description: "[admin] Retrieve a specific Bionix Competition registration by its ID. Requires admin permissions."
     tags: ["Events/Bionix Competition"]
     security:

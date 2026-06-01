@@ -1,7 +1,7 @@
 registrations:
   post:
     operationId: submitBionixIsClassRegistration
-    summary: Submit Bionix IS Class registration
+    summary: "(user) Submit Bionix IS Class registration"
     description: "[user] Register for Bionix IS Class. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Bionix IS Class"]
 
@@ -97,7 +97,7 @@ registrations:
 registrations-me:
   get:
     operationId: getMyBionixIsClassRegistration
-    summary: Get current user's Bionix IS Class registration
+    summary: "(user) Get current user's Bionix IS Class registration"
     description: "[user] Retrieve the Bionix IS Class registration details for the authenticated user."
     tags: ["Events/Bionix IS Class"]
 
@@ -152,7 +152,7 @@ registrations-me:
               $ref: '../components/schemas/ApiError.yaml'
   patch:
     operationId: updateMyBionixIsClassRegistration
-    summary: Update Bionix IS Class registration
+    summary: "(user) Update Bionix IS Class registration"
     description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
     tags: ["Events/Bionix IS Class"]
 

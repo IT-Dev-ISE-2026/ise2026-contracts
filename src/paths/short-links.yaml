@@ -2,7 +2,7 @@ collection:
   post:
     operationId: createShortLink
     description: "[admin] Create a new short link"
-    summary: Create short link
+    summary: "(admin) Create short link"
     tags: [ShortLinks]
     security:
       - BearerAuth: []
@@ -129,7 +129,7 @@ collection:
   get:
     operationId: listShortLinks
     description: "[admin] List all short links"
-    summary: List short links
+    summary: "(admin) List short links"
     tags: [ShortLinks]
     security:
       - BearerAuth: []
@@ -246,7 +246,7 @@ item:
   delete:
     operationId: deleteShortLink
     description: "[admin] Delete short link by id"
-    summary: Delete short link
+    summary: "(admin) Delete short link"
     tags: [ShortLinks]
     security:
       - BearerAuth: []
@@ -331,7 +331,7 @@ redirect:
   get:
     operationId: redirectShortLink
     description: Redirect to the original URL by its short code and increment the click count
-    summary: Redirect short link
+    summary: "(public) Redirect short link"
     tags: [ShortLinks]
     security: []
     parameters:

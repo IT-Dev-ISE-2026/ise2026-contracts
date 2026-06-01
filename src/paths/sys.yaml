@@ -2,7 +2,7 @@ ping:
   get:
     operationId: sysPing
     description: Endpoint for connectivity check
-    summary: Ping for connectivity check
+    summary: "(public) Ping for connectivity check"
     tags: [System]
     responses:
       '200':
@@ -31,7 +31,7 @@ health:
   get:
     operationId: sysHealth
     description: Endpoint for health check
-    summary: Health check
+    summary: "(public) Health check"
     tags: [System]
     responses:
       '200':
@@ -82,7 +82,7 @@ set-permissions:
   post:
     operationId: setPermissions
     description: Internal tool to manually update user permissions. Requires X-Internal-Token header.
-    summary: Set user permissions (Internal)
+    summary: "(public) Set user permissions (Internal)"
     tags: [Internal]
     parameters:
       - in: header
@@ -155,7 +155,7 @@ set-permissions:
 list-cities:
   get:
     operationId: listCities
-    summary: Get list of cities
+    summary: "(public) Get list of cities"
     description: "Get master data of cities for registration forms. No authentication required."
     tags: [System]
     parameters:

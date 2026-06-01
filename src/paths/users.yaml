@@ -2,7 +2,7 @@ me:
   get:
     operationId: getMe
     description: "[user] Get the profile of the currently authenticated user."
-    summary: Get user profile
+    summary: "(user) Get user profile"
     tags: [Users]
     security:
       - BearerAuth: []
@@ -442,7 +442,7 @@ me:
   patch:
     operationId: updateMe
     description: "[user] Update the profile of the currently authenticated user."
-    summary: Update user profile
+    summary: "(user) Update user profile"
     tags: [Users]
     security:
       - BearerAuth: []
@@ -569,7 +569,7 @@ list:
   get:
     operationId: listUsers
     description: "[admin:user:read] Get a list of all users."
-    summary: Get all users
+    summary: "(admin:user:read) Get all users"
     tags: [Users]
     security:
       - BearerAuth: []
@@ -700,7 +700,7 @@ stats:
   get:
     operationId: getUsersStats
     description: Get user statistics. Requires `admin:users:read` permission.
-    summary: Get user statistics
+    summary: "(admin:user:read) Get user statistics"
     tags: [Stats]
     security:
       - BearerAuth: []

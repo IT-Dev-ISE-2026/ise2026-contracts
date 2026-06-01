@@ -2,7 +2,7 @@ get-staff-by-id:
   get:
     operationId: getStaffById
     description: Get staff registration data by ID. Returns staff details if found.
-    summary: Get staff by ID
+    summary: "(public) Get staff by ID"
     tags: [Staff]
     parameters:
       - name: id

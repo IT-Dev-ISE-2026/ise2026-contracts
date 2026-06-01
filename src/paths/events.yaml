@@ -2,7 +2,7 @@ get-event-by-slug:
   get:
     operationId: getEventBySlug
     description: Get event details including its timelines by event slug.
-    summary: Get event by slug
+    summary: "(public) Get event by slug"
     tags: [Events]
     security: []
     parameters:
@@ -163,7 +163,7 @@ stats:
   get:
     operationId: getEventStatsBySlug
     description: Get registration statistics for a specific event. Requires `admin:{slug}:read` permission.
-    summary: Get event registration statistics
+    summary: "(admin) Get event registration statistics"
     tags: [Stats]
     security:
       - BearerAuth: []
@@ -237,7 +237,7 @@ stats:
 registrations-draft:
   put:
     operationId: saveEventRegistrationDraft
-    summary: Save event registration draft
+    summary: "(user) Save event registration draft"
     description: "[user] Save or overwrite a draft of an event registration form. Payload can be any JSON object."
     tags: ["Events"]
     security:
@@ -289,7 +289,7 @@ registrations-draft:
                   message: "Draft saved successfully."
   get:
     operationId: getEventRegistrationDraft
-    summary: Get event registration draft
+    summary: "(user) Get event registration draft"
     description: "[user] Get a previously saved draft for an event registration."
     tags: ["Events"]
     security:
@@ -331,7 +331,7 @@ registrations-draft:
 registration-reviews:
   get:
     operationId: listRegistrationReviews
-    summary: List registration reviews
+    summary: "(admin) List registration reviews"
     description: "[admin] Get the review history for a specific registration."
     tags: ["Events"]
     security:
@@ -415,7 +415,7 @@ registration-reviews:
                   requestId: req-reviews-403
   post:
     operationId: submitRegistrationReview
-    summary: Submit registration review
+    summary: "(admin) Submit registration review"
     description: "[admin] Submit a new review for a registration, updating its status."
     tags: ["Events"]
     security:

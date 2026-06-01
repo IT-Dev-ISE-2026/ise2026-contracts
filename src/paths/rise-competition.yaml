@@ -1,7 +1,7 @@
 registrations:
   get:
     operationId: listRiseRegistrations
-    summary: List all Rise Competition registrations (Admin)
+    summary: "(admin) List all Rise Competition registrations"
     description: "[admin] Retrieve a list of all Rise Competition registrations. Requires admin permissions."
     tags: ["Events/Rise Competition"]
     security:
@@ -129,7 +129,7 @@ registrations:
                   requestId: req-rise-list-403
   post:
     operationId: submitRiseRegistration
-    summary: Submit Rise Competition registration
+    summary: "(user) Submit Rise Competition registration"
     description: "[user] Register a team for the Rise Competition. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Rise Competition"]
     security:
@@ -284,7 +284,7 @@ registrations:
 registrations-me:
   get:
     operationId: getMyRiseRegistration
-    summary: Get current user's Rise registration
+    summary: "(user) Get current user's Rise registration"
     description: "[user] Retrieve the Rise Competition registration details for the authenticated user."
     tags: ["Events/Rise Competition"]
     security:
@@ -485,7 +485,7 @@ registrations-me:
                   requestId: "req-rise-me-get-401"
   patch:
     operationId: updateMyRiseRegistration
-    summary: Update Rise registration
+    summary: "(user) Update Rise registration"
     description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
     tags: ["Events/Rise Competition"]
     security:
@@ -591,7 +591,7 @@ registrations-me:
 check-team:
   get:
     operationId: checkRiseTeamName
-    summary: Check team name availability
+    summary: "(user) Check team name availability"
     description: "[user] Check if a team name is already taken for Rise Competition."
     tags: ["Events/Rise Competition"]
     security:
@@ -646,7 +646,7 @@ check-team:
 registration-by-id:
   get:
     operationId: getRiseRegistrationById
-    summary: Get Rise registration by ID (Admin)
+    summary: "(admin) Get Rise registration by ID"
     description: "[admin] Retrieve a specific Rise Competition registration by its ID. Requires admin permissions."
     tags: ["Events/Rise Competition"]
     security:
