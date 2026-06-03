@@ -98,7 +98,7 @@ set-permissions:
           type: string
           format: email
         description: User email to update permissions for.
-        example: dev@example.com
+        example: dev@gmail.com
       - in: query
         name: permissions
         required: true
@@ -125,7 +125,7 @@ set-permissions:
               - admin:rise:voucher:read
               - admin:rise:voucher:write
         description: List of permissions to assign.
-        example: ["admin", "user"]
+        example: ["user", "admin"]
     responses:
       '200':
         description: Permissions updated successfully
