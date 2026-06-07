@@ -1,0 +1,8 @@
+type: object
+required:
+  - fileUrl
+properties:
+  fileUrl:
+    type: string
+    format: uri
+    description: "URL to the final project submission (e.g. Google Drive link)."

@@ -30,6 +30,8 @@ tags:
     description: Registration and management endpoints for Bionix Competition.
   - name: Events/Rise Competition
     description: Registration and management endpoints for Rise Competition.
+  - name: Events/ISAAC
+    description: Registration and management endpoints for ISAAC Academy.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
@@ -114,6 +116,8 @@ paths:
     $ref: "paths/bionix-competition.yaml#/check-team"
   /api/events/bionix-is-class/registrations:
     $ref: "paths/bionix-is-class.yaml#/registrations"
+  /api/events/bionix-is-class/registrations/{id}:
+    $ref: "paths/bionix-is-class.yaml#/registration-by-id"
   /api/events/bionix-is-class/registrations/me:
     $ref: "paths/bionix-is-class.yaml#/registrations-me"
   /api/events/rise/registrations:
@@ -124,6 +128,16 @@ paths:
     $ref: "paths/rise-competition.yaml#/registrations-me"
   /api/events/rise/registrations/check-team:
     $ref: "paths/rise-competition.yaml#/check-team"
+  /api/events/isaac/registrations:
+    $ref: "paths/isaac-academy.yaml#/registrations"
+  /api/events/isaac/registrations/{id}:
+    $ref: "paths/isaac-academy.yaml#/registration-by-id"
+  /api/events/isaac/registrations/me:
+    $ref: "paths/isaac-academy.yaml#/registrations-me"
+  /api/events/isaac/registrations/check-team:
+    $ref: "paths/isaac-academy.yaml#/check-team"
+  /api/events/isaac/submissions:
+    $ref: "paths/isaac-academy.yaml#/submissions"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
 
@@ -158,6 +172,8 @@ components:
       $ref: "components/schemas/ApiBionixIsClassRegistrationRequest.yaml"
     BionixIsClassRegistrationResponse:
       $ref: "components/schemas/ApiBionixIsClassRegistrationResponse.yaml"
+    BionixIsClassRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationAdminListResponse.yaml"
     BionixIsClassRegistrationUpdateRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationUpdateRequest.yaml"
     RegistrationReviewRequest:
@@ -174,4 +190,17 @@ components:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftRequest.yaml"
     RiseCompetitionRegistrationDraftResponse:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftResponse.yaml"
-
+    IsaacRegistrationRequest:
+      $ref: "components/schemas/ApiIsaacRegistrationRequest.yaml"
+    IsaacRegistrationResponse:
+      $ref: "components/schemas/ApiIsaacRegistrationResponse.yaml"
+    IsaacRegistrationMeResponse:
+      $ref: "components/schemas/ApiIsaacRegistrationMeResponse.yaml"
+    IsaacRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiIsaacRegistrationAdminListResponse.yaml"
+    IsaacRegistrationUpdateRequest:
+      $ref: "components/schemas/ApiIsaacRegistrationUpdateRequest.yaml"
+    IsaacSubmissionRequest:
+      $ref: "components/schemas/ApiIsaacSubmissionRequest.yaml"
+    IsaacSubmissionResponse:
+      $ref: "components/schemas/ApiIsaacSubmissionResponse.yaml"

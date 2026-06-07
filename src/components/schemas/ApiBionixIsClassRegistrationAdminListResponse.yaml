@@ -1,0 +1,50 @@
+title: ApiBionixIsClassRegistrationAdminListResponse
+type: object
+required: [id, userId, name, gender, cityId, schoolName, grade, isAgreed, status, createdAt, updatedAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  userId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+  name:
+    type: string
+    example: "Andi"
+  gender:
+    type: string
+    enum: [male, female]
+    example: male
+  cityId:
+    type: integer
+    example: 1
+  schoolName:
+    type: string
+    example: "SMA Negeri 1 Surabaya"
+  grade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  isAgreed:
+    type: boolean
+    example: true
+    readOnly: true
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    readOnly: true
+    example: pending_payment
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T08:00:00Z"
+  updatedAt:
+    type: string
+    format: date-time
+    readOnly: true
+    example: "2026-05-16T09:00:00Z"

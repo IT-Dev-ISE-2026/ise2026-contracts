@@ -1,0 +1,30 @@
+type: object
+properties:
+  name:
+    type: string
+  phone:
+    type: string
+  institution:
+    type: string
+  major:
+    type: string
+  studentCardPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  twibbonProofPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  posterProofPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  instagramProofPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  tiktokProofPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  linkedinProofPath:
+    type: string
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  ewalletNumber:
+    type: string
