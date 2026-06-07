@@ -112,6 +112,8 @@ paths:
     $ref: "paths/bionix-competition.yaml#/check-team"
   /api/events/bionix-is-class/registrations:
     $ref: "paths/bionix-is-class.yaml#/registrations"
+  /api/events/bionix-is-class/registrations/{id}:
+    $ref: "paths/bionix-is-class.yaml#/registration-by-id"
   /api/events/bionix-is-class/registrations/me:
     $ref: "paths/bionix-is-class.yaml#/registrations-me"
   /api/events/rise/registrations:

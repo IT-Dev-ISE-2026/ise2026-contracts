@@ -1,4 +1,108 @@
 registrations:
+  get:
+    operationId: listBionixIsClassRegistrations
+    summary: "(admin) List all Bionix IS Class registrations"
+    description: "[admin] Retrieve a list of all Bionix IS Class registrations. Requires admin permissions."
+    tags: ["Events/Bionix IS Class"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: page
+        in: query
+        description: Page number to retrieve.
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        description: Number of items per page.
+        schema:
+          type: integer
+          default: 10
+      - name: search
+        in: query
+        description: Search by name or email.
+        schema:
+          type: string
+      - name: status
+        in: query
+        description: Filter by registration status.
+        schema:
+          type: string
+          enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    responses:
+      '200':
+        description: List of registrations retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [items, meta]
+                  properties:
+                    items:
+                      type: array
+                      items:
+                        $ref: '../components/schemas/ApiBionixIsClassRegistrationResponse.yaml'
+                    meta:
+                      $ref: '../components/schemas/ApiPaginationMeta.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    items:
+                      - id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                        name: "Andi"
+                        gender: "male"
+                        cityId: 1
+                        schoolName: "SMA Negeri 1 Surabaya"
+                        grade: "grade_12"
+                        studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg"
+                        posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg"
+                        instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg"
+                        tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg"
+                        twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg"
+                        isAgreed: true
+                        status: "pending_payment"
+                        createdAt: "2026-05-16T08:00:00Z"
+                        updatedAt: "2026-05-16T08:00:00Z"
+                    meta:
+                      totalItems: 1
+                      totalPages: 1
+                      currentPage: 1
+                      limit: 10
+                  message: "List of registrations retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-bionix-is-class-list-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-bionix-is-class-list-403
   post:
     operationId: submitBionixIsClassRegistration
     summary: "(user) Submit Bionix IS Class registration"
@@ -81,18 +185,38 @@ registrations:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad Request
+                value:
+                  message: "Invalid request format."
+                  requestId: "req-bionix-is-class-sub-400"
       '422':
         description: Unprocessable Entity. Validation failed.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-is-class-sub-422"
+                  errors:
+                    isAgreed: ["isAgreed must be true"]
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-is-class-sub-401"
 
 registrations-me:
   get:
@@ -138,18 +262,114 @@ registrations-me:
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
+              PendingReview:
+                summary: Registration Pending Review
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    gender: "male"
+                    cityId: 1
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg?..."
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg?..."
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg?..."
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg?..."
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg?..."
+                    isAgreed: true
+                    status: "pending_review"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
+              Verified:
+                summary: Registration Verified
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    gender: "male"
+                    cityId: 1
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg?..."
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg?..."
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg?..."
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg?..."
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg?..."
+                    isAgreed: true
+                    status: "verified"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T10:00:00Z"
+                  message: "Registration retrieved successfully."
+              RevisionRequested:
+                summary: Revision Requested
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    gender: "male"
+                    cityId: 1
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg?..."
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg?..."
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg?..."
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg?..."
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg?..."
+                    isAgreed: true
+                    status: "revision_requested"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T11:00:00Z"
+                  message: "Registration retrieved successfully."
+              Rejected:
+                summary: Registration Rejected
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    gender: "male"
+                    cityId: 1
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg?..."
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg?..."
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg?..."
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg?..."
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg?..."
+                    isAgreed: true
+                    status: "rejected"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-17T12:00:00Z"
+                  message: "Registration retrieved successfully."
       '404':
         description: Registration not found.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Not Found
+                value:
+                  message: "You haven't registered for Bionix IS Class yet."
+                  requestId: "req-bionix-is-class-me-404"
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-is-class-me-get-401"
   patch:
     operationId: updateMyBionixIsClassRegistration
     summary: "(user) Update Bionix IS Class registration"
@@ -205,15 +425,111 @@ registrations-me:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-is-class-me-patch-401"
       '422':
         description: Unprocessable Entity.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-is-class-me-422"
+                  errors:
+                    schoolName: ["schoolName must be at least 3 characters"]
       '403':
         description: Forbidden. Cannot update approved registration.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ForbiddenUpdate:
+                summary: Cannot Update Approved Registration
+                value:
+                  message: "Registration cannot be updated because it is already approved."
+                  requestId: "req-bionix-is-class-up-403"
+
+registration-by-id:
+  get:
+    operationId: getBionixIsClassRegistrationById
+    summary: "(admin) Get Bionix IS Class registration by ID"
+    description: "[admin] Retrieve a specific Bionix IS Class registration by its ID. Requires admin permissions."
+    tags: ["Events/Bionix IS Class"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    responses:
+      '200':
+        description: Registration details retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixIsClassRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    gender: "male"
+                    cityId: 1
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg"
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg"
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg"
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg"
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg"
+                    isAgreed: true
+                    status: "pending_payment"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-05-16T08:00:00Z"
+                  message: "Registration retrieved successfully."
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Registration not found
+                value:
+                  message: "Registration not found."
+                  requestId: req-bionix-is-class-get-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-bionix-is-class-get-401
