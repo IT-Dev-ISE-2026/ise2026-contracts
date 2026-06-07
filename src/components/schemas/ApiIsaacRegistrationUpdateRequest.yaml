@@ -8,23 +8,23 @@ properties:
     type: string
   major:
     type: string
-  studentCardUrl:
+  studentCardPath:
     type: string
-    description: "Must start with temp/"
-  twibbonProofUrl:
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  twibbonProofPath:
     type: string
-    description: "Must start with temp/"
-  posterProofUrl:
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  posterProofPath:
     type: string
-    description: "Must start with temp/"
-  instagramProofUrl:
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  instagramProofPath:
     type: string
-    description: "Must start with temp/"
-  tiktokProofUrl:
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  tiktokProofPath:
     type: string
-    description: "Must start with temp/"
-  linkedinProofUrl:
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
+  linkedinProofPath:
     type: string
-    description: "Must start with temp/"
+    description: "If it starts with temp/, the file will be processed. Otherwise, it will be ignored."
   ewalletNumber:
     type: string
