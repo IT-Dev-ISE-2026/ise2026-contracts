@@ -73,6 +73,7 @@ registrations:
                         status: "pending_payment"
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
+                        reviews: []
                     meta:
                       totalItems: 1
                       totalPages: 1
@@ -176,6 +177,7 @@ registrations:
                       status: "pending_payment"
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
+                      reviews: []
                     payment:
                       amount: 50000
                       sequence: 1
@@ -271,6 +273,7 @@ registrations-me:
                       status: "pending_payment"
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
+                      reviews: []
                     team: null
                   message: "Registration retrieved successfully."
               LeaderRegistration:
@@ -300,6 +303,7 @@ registrations-me:
                       status: "verified"
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
+                      reviews: []
                     team:
                       details:
                         id: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
@@ -329,6 +333,7 @@ registrations-me:
                         status: "verified"
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
+                        reviews: []
                       member1:
                         id: "bde1e466-24ba-4475-8495-2aa73b5bd5ff"
                         userId: "7de1e466-24ba-4475-8495-2aa73b5bd5fb"
@@ -346,6 +351,7 @@ registrations-me:
                         status: "verified"
                         createdAt: "2026-05-16T08:10:00Z"
                         updatedAt: "2026-05-16T08:10:00Z"
+                        reviews: []
                       member2: null
                   message: "Registration retrieved successfully."
               MemberRegistration:
@@ -375,6 +381,7 @@ registrations-me:
                       status: "verified"
                       createdAt: "2026-05-16T08:10:00Z"
                       updatedAt: "2026-05-16T08:10:00Z"
+                      reviews: []
                     team:
                       details:
                         id: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
@@ -404,6 +411,7 @@ registrations-me:
                         status: "verified"
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
+                        reviews: []
                       member1:
                         id: "bde1e466-24ba-4475-8495-2aa73b5bd5ff"
                         userId: "7de1e466-24ba-4475-8495-2aa73b5bd5fb"
@@ -427,6 +435,7 @@ registrations-me:
                         status: "verified"
                         createdAt: "2026-05-16T08:10:00Z"
                         updatedAt: "2026-05-16T08:10:00Z"
+                        reviews: []
                       member2: null
                   message: "Registration retrieved successfully."
       '404':
@@ -574,6 +583,7 @@ registration-by-id:
                     status: "pending_payment"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
+                    reviews: []
                   message: "Registration retrieved successfully."
       '404':
         description: Registration not found.
