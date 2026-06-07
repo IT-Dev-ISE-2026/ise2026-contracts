@@ -1,0 +1,81 @@
+type: object
+required:
+  - id
+  - userId
+  - course
+  - registrationType
+  - name
+  - email
+  - phone
+  - institution
+  - major
+  - studentCardUrl
+  - twibbonProofUrl
+  - posterProofUrl
+  - instagramProofUrl
+  - tiktokProofUrl
+  - linkedinProofUrl
+  - ewalletNumber
+  - status
+  - createdAt
+  - updatedAt
+properties:
+  id:
+    type: string
+    format: uuid
+  userId:
+    type: string
+    format: uuid
+  teamId:
+    type: string
+    format: uuid
+    nullable: true
+  teamName:
+    type: string
+    nullable: true
+  invitationCode:
+    type: string
+    nullable: true
+  course:
+    type: string
+    enum: [data_science, digital_product]
+  registrationType:
+    type: string
+    enum: [leader, member, individual]
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  phone:
+    type: string
+  institution:
+    type: string
+  major:
+    type: string
+  studentCardUrl:
+    type: string
+  twibbonProofUrl:
+    type: string
+  posterProofUrl:
+    type: string
+  instagramProofUrl:
+    type: string
+  tiktokProofUrl:
+    type: string
+  linkedinProofUrl:
+    type: string
+  ewalletNumber:
+    type: string
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+  notes:
+    type: string
+    nullable: true
+  createdAt:
+    type: string
+    format: date-time
+  updatedAt:
+    type: string
+    format: date-time

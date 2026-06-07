@@ -1,0 +1,30 @@
+type: object
+properties:
+  name:
+    type: string
+  phone:
+    type: string
+  institution:
+    type: string
+  major:
+    type: string
+  studentCardUrl:
+    type: string
+    description: "Must start with temp/"
+  twibbonProofUrl:
+    type: string
+    description: "Must start with temp/"
+  posterProofUrl:
+    type: string
+    description: "Must start with temp/"
+  instagramProofUrl:
+    type: string
+    description: "Must start with temp/"
+  tiktokProofUrl:
+    type: string
+    description: "Must start with temp/"
+  linkedinProofUrl:
+    type: string
+    description: "Must start with temp/"
+  ewalletNumber:
+    type: string

@@ -1,0 +1,64 @@
+type: object
+required:
+  - registrationType
+  - course
+  - name
+  - email
+  - phone
+  - institution
+  - major
+  - studentCardUrl
+  - twibbonProofUrl
+  - posterProofUrl
+  - instagramProofUrl
+  - tiktokProofUrl
+  - linkedinProofUrl
+  - ewalletNumber
+  - isAgreed
+properties:
+  registrationType:
+    type: string
+    enum: [leader, member, individual]
+    description: "The type of registration."
+  course:
+    type: string
+    enum: [data_science, digital_product]
+    description: "The selected course."
+  invitationCode:
+    type: string
+    description: "Required if registrationType is member."
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  phone:
+    type: string
+  institution:
+    type: string
+  major:
+    type: string
+  studentCardUrl:
+    type: string
+    description: "URL path to student card. Must start with temp/"
+  twibbonProofUrl:
+    type: string
+    description: "URL path to twibbon proof. Must start with temp/"
+  posterProofUrl:
+    type: string
+    description: "URL path to poster proof. Must start with temp/"
+  instagramProofUrl:
+    type: string
+    description: "URL path to instagram proof. Must start with temp/"
+  tiktokProofUrl:
+    type: string
+    description: "URL path to tiktok proof. Must start with temp/"
+  linkedinProofUrl:
+    type: string
+    description: "URL path to linkedin proof. Must start with temp/"
+  ewalletNumber:
+    type: string
+    description: "E-Wallet number for commitment fee refund."
+  isAgreed:
+    type: boolean
+    description: "Must be true. Indicates agreement to terms and conditions."

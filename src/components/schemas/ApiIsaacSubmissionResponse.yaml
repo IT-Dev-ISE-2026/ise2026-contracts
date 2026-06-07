@@ -1,0 +1,19 @@
+type: object
+required:
+  - id
+  - teamId
+  - fileUrl
+  - createdAt
+properties:
+  id:
+    type: string
+    format: uuid
+  teamId:
+    type: string
+    format: uuid
+  fileUrl:
+    type: string
+    format: uri
+  createdAt:
+    type: string
+    format: date-time
