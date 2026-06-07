@@ -38,6 +38,8 @@ tags:
     description: Voucher management endpoints for events.
   - name: Uploads
     description: File upload and storage management endpoints.
+  - name: Payments
+    description: Payment processing and synchronization endpoints.
 
 paths:
   /api/sys/ping:
@@ -128,18 +130,32 @@ paths:
     $ref: "paths/rise-competition.yaml#/registrations-me"
   /api/events/rise/registrations/check-team:
     $ref: "paths/rise-competition.yaml#/check-team"
-  /api/events/isaac/registrations:
-    $ref: "paths/isaac-academy.yaml#/registrations"
-  /api/events/isaac/registrations/{id}:
-    $ref: "paths/isaac-academy.yaml#/registration-by-id"
-  /api/events/isaac/registrations/me:
-    $ref: "paths/isaac-academy.yaml#/registrations-me"
-  /api/events/isaac/registrations/check-team:
-    $ref: "paths/isaac-academy.yaml#/check-team"
-  /api/events/isaac/submissions:
-    $ref: "paths/isaac-academy.yaml#/submissions"
+  /api/events/isaac-ds/registrations:
+    $ref: "paths/isaac-ds-academy.yaml#/registrations"
+  /api/events/isaac-ds/registrations/{id}:
+    $ref: "paths/isaac-ds-academy.yaml#/registration-by-id"
+  /api/events/isaac-ds/registrations/me:
+    $ref: "paths/isaac-ds-academy.yaml#/registrations-me"
+  /api/events/isaac-ds/registrations/check-team:
+    $ref: "paths/isaac-ds-academy.yaml#/check-team"
+  /api/events/isaac-ds/submissions:
+    $ref: "paths/isaac-ds-academy.yaml#/submissions"
+  /api/events/isaac-dpd/registrations:
+    $ref: "paths/isaac-dpd-academy.yaml#/registrations"
+  /api/events/isaac-dpd/registrations/{id}:
+    $ref: "paths/isaac-dpd-academy.yaml#/registration-by-id"
+  /api/events/isaac-dpd/registrations/me:
+    $ref: "paths/isaac-dpd-academy.yaml#/registrations-me"
+  /api/events/isaac-dpd/registrations/check-team:
+    $ref: "paths/isaac-dpd-academy.yaml#/check-team"
+  /api/events/isaac-dpd/submissions:
+    $ref: "paths/isaac-dpd-academy.yaml#/submissions"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
+  /api/payments/webhook:
+    $ref: "paths/payments.yaml#/webhook"
+  /api/payments/{orderId}/sync:
+    $ref: "paths/payments.yaml#/sync"
 
 components:
   securitySchemes:

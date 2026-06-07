@@ -79,3 +79,8 @@ properties:
   updatedAt:
     type: string
     format: date-time
+  reviews:
+    type: array
+    items:
+      $ref: './ApiRegistrationReviewResponse.yaml'
+    readOnly: true
