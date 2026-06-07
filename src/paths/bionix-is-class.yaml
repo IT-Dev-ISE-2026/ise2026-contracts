@@ -46,7 +46,7 @@ registrations:
                     items:
                       type: array
                       items:
-                        $ref: '../components/schemas/ApiBionixIsClassRegistrationResponse.yaml'
+                        $ref: '../components/schemas/ApiBionixIsClassRegistrationAdminListResponse.yaml'
                     meta:
                       $ref: '../components/schemas/ApiPaginationMeta.yaml'
                 message:
@@ -64,11 +64,6 @@ registrations:
                         cityId: 1
                         schoolName: "SMA Negeri 1 Surabaya"
                         grade: "grade_12"
-                        studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg"
-                        posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg"
-                        instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg"
-                        tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg"
-                        twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg"
                         isAgreed: true
                         status: "pending_payment"
                         createdAt: "2026-05-16T08:00:00Z"

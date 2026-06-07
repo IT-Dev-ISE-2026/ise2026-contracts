@@ -170,6 +170,8 @@ components:
       $ref: "components/schemas/ApiBionixIsClassRegistrationRequest.yaml"
     BionixIsClassRegistrationResponse:
       $ref: "components/schemas/ApiBionixIsClassRegistrationResponse.yaml"
+    BionixIsClassRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationAdminListResponse.yaml"
     BionixIsClassRegistrationUpdateRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationUpdateRequest.yaml"
     RegistrationReviewRequest:
@@ -192,6 +194,8 @@ components:
       $ref: "components/schemas/ApiIsaacRegistrationResponse.yaml"
     IsaacRegistrationMeResponse:
       $ref: "components/schemas/ApiIsaacRegistrationMeResponse.yaml"
+    IsaacRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiIsaacRegistrationAdminListResponse.yaml"
     IsaacRegistrationUpdateRequest:
       $ref: "components/schemas/ApiIsaacRegistrationUpdateRequest.yaml"
     IsaacSubmissionRequest:
