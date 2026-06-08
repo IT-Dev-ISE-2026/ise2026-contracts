@@ -29,29 +29,34 @@ get-presigned-url:
           application/json:
             schema:
               type: object
-              required: [uploadUrl, key]
+              required: [data]
               properties:
-                uploadUrl:
-                  type: string
-                  format: uri
-                  description: "The presigned URL to which the file should be uploaded via HTTP PUT."
-                  example: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
-                key:
-                  type: string
-                  description: "The unique object key/path assigned to the file. Use this key in subsequent API calls to reference the uploaded file."
-                  example: "temp/uuid-file.jpg"
-                publicUrl:
-                  type: string
-                  format: uri
-                  description: "The public URL where the file can be accessed (only if the file is public)."
-                  example: "https://cdn.example.com/temp/uuid-file.jpg"
+                data:
+                  type: object
+                  required: [uploadUrl, key]
+                  properties:
+                    uploadUrl:
+                      type: string
+                      format: uri
+                      description: "The presigned URL to which the file should be uploaded via HTTP PUT."
+                      example: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
+                    key:
+                      type: string
+                      description: "The unique object key/path assigned to the file. Use this key in subsequent API calls to reference the uploaded file."
+                      example: "temp/uuid-file.jpg"
+                    publicUrl:
+                      type: string
+                      format: uri
+                      description: "The public URL where the file can be accessed (only if the file is public)."
+                      example: "https://cdn.example.com/temp/uuid-file.jpg"
             examples:
               PresignedUrlGenerated:
                 summary: Presigned URL successfully generated
                 value:
-                  uploadUrl: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
-                  key: "temp/uuid-file.jpg"
-                  publicUrl: "https://cdn.example.com/temp/uuid-file.jpg"
+                  data:
+                    uploadUrl: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
+                    key: "temp/uuid-file.jpg"
+                    publicUrl: "https://cdn.example.com/temp/uuid-file.jpg"
       "400":
         description: Invalid request parameters
         content:
@@ -103,3 +108,74 @@ get-presigned-url:
                 value:
                   message: "Internal server error."
                   requestId: "req-upload-500"
+
+get-presigned-download-url:
+  post:
+    operationId: getEventUploadPresignedDownloadUrl
+    summary: "(user) Get a presigned download URL for a given object key"
+    description: |
+      Returns a presigned URL that can be used to securely download a private file from object storage (R2/MinIO) using an object key.
+    tags: [Uploads]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: slug
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The slug of the event (e.g., bionix-competition).
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [key]
+            properties:
+              key:
+                type: string
+                description: The object key of the file in storage.
+                example: "temp/uuid-file.jpg"
+    responses:
+      "200":
+        description: Presigned download URL generated successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [downloadUrl]
+                  properties:
+                    downloadUrl:
+                      type: string
+                      format: uri
+                      description: "The presigned URL that can be used to download the file via HTTP GET."
+                      example: "https://r2.example.com/temp/uuid-file.jpg?X-Amz-Algorithm=..."
+      "400":
+        description: Invalid request parameters
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+      "401":
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+      "403":
+        description: Forbidden
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
+      "500":
+        description: Internal server error
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/ApiError.yaml"
