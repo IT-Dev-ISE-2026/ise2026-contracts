@@ -104,10 +104,14 @@ paths:
     $ref: "paths/vouchers.yaml#/item"
   /api/events/{slug}/uploads/presigned-url:
     $ref: "paths/uploads.yaml#/get-presigned-url"
+  /api/events/{slug}/uploads/presigned-download-url:
+    $ref: "paths/uploads.yaml#/get-presigned-download-url"
   /api/events/bionix-competition/registrations:
     $ref: "paths/bionix-competition.yaml#/registrations"
   /api/events/bionix-competition/registrations/{id}:
     $ref: "paths/bionix-competition.yaml#/registration-by-id"
+  /api/events/bionix-competition/registrations/validate:
+    $ref: "paths/bionix-competition.yaml#/registrations-validate"
   /api/events/{slug}/registrations/draft:
     $ref: "paths/events.yaml#/registrations-draft"
   /api/events/{slug}/registrations/{id}/reviews:
