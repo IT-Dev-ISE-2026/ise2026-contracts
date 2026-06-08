@@ -787,7 +787,6 @@ registration-by-id:
               NotFound:
                 summary: Registration not found
                 value:
-                  message: "Registration not found."
                   requestId: req-bionix-get-404
       '401':
         description: Unauthorized.
@@ -813,3 +812,71 @@ registration-by-id:
                 value:
                   message: "Insufficient permissions."
                   requestId: req-bionix-get-403
+
+registrations-validate:
+  post:
+    operationId: validateOrderBionix
+    summary: "(user) Validate Bionix registration order"
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixCompetitionRegistrationRequest.yaml'
+    responses:
+      '200':
+        description: Registration payload is valid and order details are calculated.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [orderDetails, total]
+                  properties:
+                    orderDetails:
+                      type: array
+                      items:
+                        type: object
+                        required: [name, amount]
+                        properties:
+                          name:
+                            type: string
+                          amount:
+                            type: integer
+                    total:
+                      type: integer
+                message:
+                  type: string
+            examples:
+              SuccessValidation:
+                summary: Validation Success
+                value:
+                  data:
+                    orderDetails:
+                      - name: "Pendaftaran Bionix Competition"
+                        amount: 100000
+                      - name: "Potongan Voucher (KODE)"
+                        amount: -10000
+                      - name: "Biaya Layanan"
+                        amount: 630
+                    total: 90630
+                  message: "Validation successful."
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'

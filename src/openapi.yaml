@@ -108,6 +108,8 @@ paths:
     $ref: "paths/bionix-competition.yaml#/registrations"
   /api/events/bionix-competition/registrations/{id}:
     $ref: "paths/bionix-competition.yaml#/registration-by-id"
+  /api/events/bionix-competition/registrations/validate:
+    $ref: "paths/bionix-competition.yaml#/registrations-validate"
   /api/events/{slug}/registrations/draft:
     $ref: "paths/events.yaml#/registrations-draft"
   /api/events/{slug}/registrations/{id}/reviews:
