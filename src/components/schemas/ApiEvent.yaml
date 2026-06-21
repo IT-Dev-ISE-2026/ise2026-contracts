@@ -1,6 +1,6 @@
 title: ApiEvent
 type: object
-required: [id, slug, name, price, isActive, timelines, links]
+required: [id, slug, name, price, isActive, timelines]
 properties:
   id:
     type: integer
@@ -25,10 +25,6 @@ properties:
     type: array
     items:
       $ref: './ApiEventTimeline.yaml'
-  links:
-    type: array
-    items:
-      $ref: './ApiEventLink.yaml'
   subEvents:
     type: array
     items:
