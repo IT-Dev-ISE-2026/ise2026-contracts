@@ -424,6 +424,7 @@ registrations-me:
                     submissions:
                       - id: "bfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "penyisihan"
+                        fileType: "proposal"
                         fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/penyisihan.pdf"
                         createdAt: "2026-06-10T10:00:00Z"
                     createdAt: "2026-05-16T08:00:00Z"
@@ -468,10 +469,12 @@ registrations-me:
                     submissions:
                       - id: "cfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "penyisihan"
+                        fileType: "proposal"
                         fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/penyisihan.pdf"
                         createdAt: "2026-06-10T10:00:00Z"
                       - id: "dfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "semifinal"
+                        fileType: "proposal"
                         fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/semifinal.zip"
                         createdAt: "2026-06-15T10:00:00Z"
                     createdAt: "2026-05-16T08:00:00Z"
@@ -791,6 +794,7 @@ submissions:
                   data:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     stage: "penyisihan"
+                    fileType: "proposal"
                     fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/file.pdf"
                     createdAt: "2026-06-10T10:00:00Z"
                   message: "Project submitted successfully."

@@ -1,6 +1,6 @@
 title: ApiRiseCompetitionSubmissionResponse
 type: object
-required: [id, stage, fileUrl, createdAt]
+required: [id, stage, fileType, fileUrl, createdAt]
 properties:
   id:
     type: string
@@ -9,6 +9,10 @@ properties:
   stage:
     type: string
     enum: [penyisihan, semifinal, final]
+    readOnly: true
+  fileType:
+    type: string
+    enum: [proposal, presentation, rta]
     readOnly: true
   fileUrl:
     type: string
