@@ -19,7 +19,6 @@ properties:
           - id
           - teamName
           - invitationCode
-          - course
         properties:
           id:
             type: string
@@ -28,9 +27,6 @@ properties:
             type: string
           invitationCode:
             type: string
-          course:
-            type: string
-            enum: [data_science, digital_product]
       leader:
         $ref: './ApiIsaacRegistrationResponse.yaml'
       member1:

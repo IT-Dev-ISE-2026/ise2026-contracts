@@ -2,7 +2,6 @@ type: object
 required:
   - id
   - userId
-  - course
   - registrationType
   - name
   - email
@@ -36,9 +35,6 @@ properties:
   invitationCode:
     type: string
     nullable: true
-  course:
-    type: string
-    enum: [data_science, digital_product]
   registrationType:
     type: string
     enum: [leader, member, individual]

@@ -1,7 +1,6 @@
 type: object
 required:
   - registrationType
-  - course
   - name
   - email
   - phone
@@ -20,10 +19,6 @@ properties:
     type: string
     enum: [leader, member, individual]
     description: "The type of registration."
-  course:
-    type: string
-    enum: [data_science, digital_product]
-    description: "The selected course."
   invitationCode:
     type: string
     description: "Required if registrationType is member."

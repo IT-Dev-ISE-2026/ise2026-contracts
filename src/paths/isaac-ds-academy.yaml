@@ -62,7 +62,6 @@ registrations:
                         teamId: null
                         teamName: null
                         invitationCode: null
-                        course: "digital_product"
                         registrationType: "individual"
                         name: "Andi"
                         email: "andi@gmail.com"
@@ -160,7 +159,6 @@ registrations:
                       teamId: null
                       teamName: null
                       invitationCode: null
-                      course: "digital_product"
                       registrationType: "individual"
                       name: "Andi"
                       email: "andi@gmail.com"
@@ -256,7 +254,6 @@ registrations-me:
                       teamId: null
                       teamName: null
                       invitationCode: null
-                      course: "digital_product"
                       registrationType: "individual"
                       name: "Andi"
                       email: "andi@gmail.com"
@@ -286,7 +283,6 @@ registrations-me:
                       teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                       teamName: "Hore Team"
                       invitationCode: "HORE123"
-                      course: "digital_product"
                       registrationType: "leader"
                       name: "Andi (Leader)"
                       email: "andi@gmail.com"
@@ -309,14 +305,12 @@ registrations-me:
                         id: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                       leader:
                         id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                         userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                         teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                         registrationType: "leader"
                         name: "Andi (Leader)"
                         email: "andi@gmail.com"
@@ -340,7 +334,6 @@ registrations-me:
                         teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                         registrationType: "member"
                         name: "Budi (Member)"
                         email: "budi@gmail.com"
@@ -364,7 +357,6 @@ registrations-me:
                       teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                       teamName: "Hore Team"
                       invitationCode: "HORE123"
-                      course: "digital_product"
                       registrationType: "member"
                       name: "Budi (Member)"
                       email: "budi@gmail.com"
@@ -387,14 +379,12 @@ registrations-me:
                         id: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                       leader:
                         id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                         userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                         teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                         registrationType: "leader"
                         name: "Andi (Leader)"
                         email: "andi@gmail.com"
@@ -418,7 +408,6 @@ registrations-me:
                         teamId: "b8450123-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hore Team"
                         invitationCode: "HORE123"
-                        course: "digital_product"
                         registrationType: "member"
                         name: "Budi (Member)"
                         email: "budi@gmail.com"
@@ -566,7 +555,6 @@ registration-by-id:
                     teamId: null
                     teamName: null
                     invitationCode: null
-                    course: "digital_product"
                     registrationType: "individual"
                     name: "Andi"
                     email: "andi@gmail.com"
@@ -637,8 +625,6 @@ check-team:
                       type: string
                       format: uuid
                     teamName:
-                      type: string
-                    course:
                       type: string
                 message:
                   type: string
