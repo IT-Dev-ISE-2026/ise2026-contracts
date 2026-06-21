@@ -1,0 +1,9 @@
+title: ApiRiseCompetitionSubmissionRequest
+type: object
+required:
+  - filePath
+properties:
+  filePath:
+    type: string
+    description: "The unique storage path/key of the uploaded competition file (starts with temp/)."
+    example: "temp/123e4567-e89b-12d3-a456-426614174000.pdf"

@@ -1,6 +1,6 @@
 title: ApiRiseCompetitionRegistrationResponse
 type: object
-required: [id, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, createdAt, updatedAt]
+required: [id, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, submissions, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -118,6 +118,10 @@ properties:
     enum: [penyisihan, semifinal, final]
     nullable: true
     readOnly: true
+  submissions:
+    type: array
+    items:
+      $ref: './ApiRiseCompetitionSubmissionResponse.yaml'
   createdAt:
     type: string
     format: date-time

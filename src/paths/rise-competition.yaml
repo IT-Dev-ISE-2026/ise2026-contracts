@@ -95,6 +95,7 @@ registrations:
                         member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
                         status: "pending_payment"
                         stage: null
+                        submissions: []
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
                     meta:
@@ -208,6 +209,7 @@ registrations:
                       member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
                       status: "pending_payment"
                       stage: null
+                      submissions: []
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
                     payment:
@@ -339,6 +341,7 @@ registrations-me:
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
                     status: "pending_payment"
                     stage: null
+                    submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
@@ -378,6 +381,7 @@ registrations-me:
                     member2TwibbonProofUrl: null
                     status: "verified"
                     stage: "penyisihan"
+                    submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
                   message: "Registration retrieved successfully."
@@ -417,6 +421,11 @@ registrations-me:
                     member2TwibbonProofUrl: null
                     status: "verified"
                     stage: "semifinal"
+                    submissions:
+                      - id: "bfe1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        stage: "penyisihan"
+                        fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/penyisihan.pdf"
+                        createdAt: "2026-06-10T10:00:00Z"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
                   message: "Registration retrieved successfully."
@@ -456,6 +465,15 @@ registrations-me:
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
                     status: "verified"
                     stage: "final"
+                    submissions:
+                      - id: "cfe1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        stage: "penyisihan"
+                        fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/penyisihan.pdf"
+                        createdAt: "2026-06-10T10:00:00Z"
+                      - id: "dfe1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        stage: "semifinal"
+                        fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/semifinal.zip"
+                        createdAt: "2026-06-15T10:00:00Z"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
                   message: "Registration retrieved successfully."
@@ -546,6 +564,7 @@ registrations-me:
                     member2TwibbonProofUrl: null
                     status: "pending_payment"
                     stage: null
+                    submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T15:00:00Z"
                   message: "Registration updated successfully."
@@ -709,6 +728,7 @@ registration-by-id:
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
                     status: "pending_payment"
                     stage: null
+                    submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
@@ -736,3 +756,92 @@ registration-by-id:
                 value:
                   message: "Unauthorized access."
                   requestId: req-rise-get-401
+
+submissions:
+  post:
+    operationId: submitRiseCompetitionProject
+    summary: "(user) Submit Rise Competition Project"
+    description: "[user] Timely submit project/file for the current active stage of Rise Competition. Requires team to be verified."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRiseCompetitionSubmissionRequest.yaml'
+    responses:
+      '201':
+        description: Submission accepted.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionSubmissionResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessSubmission:
+                summary: Success
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    stage: "penyisihan"
+                    fileUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/rise/submissions/file.pdf"
+                    createdAt: "2026-06-10T10:00:00Z"
+                  message: "Project submitted successfully."
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad Request
+                value:
+                  message: "Invalid file path format."
+                  requestId: req-rise-sub-400
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-rise-sub-401
+      '403':
+        description: Forbidden. Team not verified, not active in any stage, or timeline closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "You are not allowed to submit at this stage."
+                  requestId: req-rise-sub-403
+      '422':
+        description: Unprocessable Entity. Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Validation Failed
+                value:
+                  message: "Validation failed."
+                  requestId: req-rise-sub-422
+                  errors:
+                    filePath: ["filePath is a required field"]
+

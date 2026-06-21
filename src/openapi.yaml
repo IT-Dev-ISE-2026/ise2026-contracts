@@ -134,6 +134,9 @@ paths:
     $ref: "paths/rise-competition.yaml#/registrations-me"
   /api/events/rise/registrations/check-team:
     $ref: "paths/rise-competition.yaml#/check-team"
+  /api/events/rise/submissions:
+    $ref: "paths/rise-competition.yaml#/submissions"
+
   /api/events/isaac-ds/registrations:
     $ref: "paths/isaac-ds-academy.yaml#/registrations"
   /api/events/isaac-ds/registrations/{id}:
@@ -210,6 +213,11 @@ components:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftRequest.yaml"
     RiseCompetitionRegistrationDraftResponse:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftResponse.yaml"
+    RiseCompetitionSubmissionRequest:
+      $ref: "components/schemas/ApiRiseCompetitionSubmissionRequest.yaml"
+    RiseCompetitionSubmissionResponse:
+      $ref: "components/schemas/ApiRiseCompetitionSubmissionResponse.yaml"
+
     IsaacRegistrationRequest:
       $ref: "components/schemas/ApiIsaacRegistrationRequest.yaml"
     IsaacRegistrationResponse:
