@@ -1,0 +1,20 @@
+title: ApiRiseCompetitionSubmissionResponse
+type: object
+required: [id, stage, fileUrl, createdAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    readOnly: true
+  fileUrl:
+    type: string
+    format: uri
+    readOnly: true
+  createdAt:
+    type: string
+    format: date-time
+    readOnly: true
