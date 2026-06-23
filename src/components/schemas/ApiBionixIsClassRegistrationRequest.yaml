@@ -1,6 +1,6 @@
 title: ApiBionixIsClassRegistrationRequest
 type: object
-required: [name, gender, cityId, schoolName, grade, studentCardPath, posterProofPath, instagramProofPath, tiktokProofPath, twibbonProofPath, isAgreed]
+required: [name, gender, cityId, schoolName, grade, studentCardPath, posterProofPath, instagramProofPath, tiktokProofPath, twibbonProofPath, isAgreed, paymentPlan]
 properties:
   name:
     type: string
@@ -56,3 +56,8 @@ properties:
     type: string
     example: "ISEJAYA2026"
     description: "Optional voucher code for discount."
+  paymentPlan:
+    type: string
+    enum: [dp, full]
+    example: "dp"
+    description: "Choose payment scheme: 'dp' for Down Payment, 'full' for full payment."
