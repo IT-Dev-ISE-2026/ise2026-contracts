@@ -158,6 +158,9 @@ registrations:
                     payment:
                       type: object
                       properties:
+                        orderId:
+                          type: string
+                          format: uuid
                         amount:
                           type: integer
                         sequence:

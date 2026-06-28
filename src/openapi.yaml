@@ -163,6 +163,8 @@ paths:
     $ref: "paths/payments.yaml#/webhook"
   /api/payments/{orderId}/sync:
     $ref: "paths/payments.yaml#/sync"
+  /api/payments/{orderId}/active:
+    $ref: "paths/payments.yaml#/active"
 
 components:
   securitySchemes:
