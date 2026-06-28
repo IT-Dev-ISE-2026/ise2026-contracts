@@ -600,8 +600,64 @@ registration-by-id:
 
 check-team:
   get:
-    operationId: checkIsaacDpdTeam
-    summary: "(user) Check ISAAC Team"
+    operationId: checkIsaacDpdTeamName
+    summary: "(user) Check team name availability"
+    description: "[user] Check if a team name is already taken for ISAAC DPD."
+    tags: ["Events/ISAAC"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: name
+        in: query
+        required: true
+        description: Team name to check.
+        schema:
+          type: string
+          minLength: 3
+    responses:
+      '200':
+        description: Availability status retrieved.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: object
+                  required: [isAvailable]
+                  properties:
+                    isAvailable:
+                      type: boolean
+                      example: true
+            examples:
+              Available:
+                summary: Team Name Available
+                value:
+                  data:
+                    isAvailable: true
+              Taken:
+                summary: Team Name Already Taken
+                value:
+                  data:
+                    isAvailable: false
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token Missing or Invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-isaac-check-401"
+
+check-invitation:
+  get:
+    operationId: checkIsaacDpdInvitation
+    summary: "(user) Check ISAAC Team Invitation"
     description: "[user] Check team details before a member joins by submitting the invitation code."
     tags: ["Events/ISAAC"]
     parameters:
@@ -628,6 +684,14 @@ check-team:
                       type: string
                 message:
                   type: string
+            examples:
+              SuccessRetrieval:
+                summary: Team Found
+                value:
+                  data:
+                    teamId: "bde1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Tim Ajaib DPD"
+                  message: "Team found successfully."
       '404':
         description: Team not found or code invalid.
         content:
@@ -713,3 +777,154 @@ submissions:
                 value:
                   message: "You are not allowed to submit because your team is not verified."
                   requestId: req-isaac-sub-403
+
+teams:
+  post:
+    operationId: createIsaacDpdTeam
+    summary: "(admin) Create ISAAC Team"
+    description: "[admin] Create a new team and assign individuals to it. Requires admin permissions."
+    tags: ["Events/ISAAC"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiIsaacCreateTeamRequest.yaml'
+    responses:
+      '201':
+        description: Team created successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiIsaacCreateTeamResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessCreation:
+                summary: Team Created Successfully
+                value:
+                  data:
+                    teamId: "cde1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Tim Alpha DPD"
+                    invitationCode: "ADM-DPD123"
+                    leaderId: "1de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    member1Id: "2de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    member2Id: "3de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    createdAt: "2026-06-15T10:00:00Z"
+                  message: "Team created and members assigned successfully."
+      '400':
+        description: Bad request. Invalid validation rules.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Validation Failed
+                value:
+                  message: "Leader ID is required and must be an individual registration."
+                  requestId: req-isaac-team-400
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-isaac-team-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-isaac-team-403
+
+candidates:
+  get:
+    operationId: listIsaacDpdCandidates
+    summary: "(admin) List ISAAC individual candidates"
+    description: "[admin] Retrieve a list of individual registrations without a team. Requires admin permissions."
+    tags: ["Events/ISAAC"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: search
+        in: query
+        description: Search by name or email.
+        schema:
+          type: string
+    responses:
+      '200':
+        description: List of candidates retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiIsaacCandidateListResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessList:
+                summary: Candidates List
+                value:
+                  data:
+                    - id: "1de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      userId: "u1e1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      name: "Budi Santoso"
+                      email: "budi@gmail.com"
+                      institution: "Institut Teknologi Sepuluh Nopember"
+                      major: "Sistem Informasi"
+                      status: "verified"
+                    - id: "2de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      userId: "u2e1e466-24ba-4475-8495-2aa73b5bd5fb"
+                      name: "Siti Rahma"
+                      email: "siti@gmail.com"
+                      institution: "Institut Teknologi Sepuluh Nopember"
+                      major: "Teknik Informatika"
+                      status: "verified"
+                  message: "Candidates retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-isaac-cand-401
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Insufficient permissions."
+                  requestId: req-isaac-cand-403

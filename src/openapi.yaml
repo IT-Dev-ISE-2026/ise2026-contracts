@@ -145,6 +145,8 @@ paths:
     $ref: "paths/isaac-ds-academy.yaml#/registrations-me"
   /api/events/isaac-ds/registrations/check-team:
     $ref: "paths/isaac-ds-academy.yaml#/check-team"
+  /api/events/isaac-ds/registrations/check-invitation:
+    $ref: "paths/isaac-ds-academy.yaml#/check-invitation"
   /api/events/isaac-ds/submissions:
     $ref: "paths/isaac-ds-academy.yaml#/submissions"
   /api/events/isaac-dpd/registrations:
@@ -155,8 +157,18 @@ paths:
     $ref: "paths/isaac-dpd-academy.yaml#/registrations-me"
   /api/events/isaac-dpd/registrations/check-team:
     $ref: "paths/isaac-dpd-academy.yaml#/check-team"
+  /api/events/isaac-dpd/registrations/check-invitation:
+    $ref: "paths/isaac-dpd-academy.yaml#/check-invitation"
   /api/events/isaac-dpd/submissions:
     $ref: "paths/isaac-dpd-academy.yaml#/submissions"
+  /api/events/isaac-ds/teams:
+    $ref: "paths/isaac-ds-academy.yaml#/teams"
+  /api/events/isaac-dpd/teams:
+    $ref: "paths/isaac-dpd-academy.yaml#/teams"
+  /api/events/isaac-ds/candidates:
+    $ref: "paths/isaac-ds-academy.yaml#/candidates"
+  /api/events/isaac-dpd/candidates:
+    $ref: "paths/isaac-dpd-academy.yaml#/candidates"
   /api/sys/cities:
     $ref: "paths/sys.yaml#/list-cities"
   /api/payments/webhook:
@@ -234,3 +246,9 @@ components:
       $ref: "components/schemas/ApiIsaacSubmissionRequest.yaml"
     IsaacSubmissionResponse:
       $ref: "components/schemas/ApiIsaacSubmissionResponse.yaml"
+    IsaacCreateTeamRequest:
+      $ref: "components/schemas/ApiIsaacCreateTeamRequest.yaml"
+    IsaacCreateTeamResponse:
+      $ref: "components/schemas/ApiIsaacCreateTeamResponse.yaml"
+    IsaacCandidateListResponse:
+      $ref: "components/schemas/ApiIsaacCandidateListResponse.yaml"

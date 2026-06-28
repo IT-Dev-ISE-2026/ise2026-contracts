@@ -1,0 +1,28 @@
+type: object
+required:
+  - id
+  - userId
+  - name
+  - email
+  - institution
+  - major
+  - status
+properties:
+  id:
+    type: string
+    format: uuid
+  userId:
+    type: string
+    format: uuid
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  institution:
+    type: string
+  major:
+    type: string
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]

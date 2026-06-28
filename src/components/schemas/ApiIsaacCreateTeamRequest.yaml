@@ -1,0 +1,22 @@
+type: object
+required:
+  - teamName
+  - leaderRegistrationId
+properties:
+  teamName:
+    type: string
+    description: Name of the team to be created.
+  leaderRegistrationId:
+    type: string
+    format: uuid
+    description: Registration ID of the individual assigned as the team leader.
+  member1RegistrationId:
+    type: string
+    format: uuid
+    nullable: true
+    description: Registration ID of the individual assigned as member 1.
+  member2RegistrationId:
+    type: string
+    format: uuid
+    nullable: true
+    description: Registration ID of the individual assigned as member 2.
