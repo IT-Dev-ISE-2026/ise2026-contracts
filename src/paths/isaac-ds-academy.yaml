@@ -704,6 +704,18 @@ check-invitation:
                 value:
                   message: "Team with the provided invitation code was not found."
                   requestId: req-isaac-check-404
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-isaac-sub-401
 
 submissions:
   post:
