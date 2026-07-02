@@ -111,6 +111,9 @@ set-permissions:
             enum:
               - user
               - admin
+              - '*'
+              - admin*
+              - admin:*
               - admin:user:read
               - admin:bionix-competition:read
               - admin:bionix-competition:write
@@ -124,8 +127,16 @@ set-permissions:
               - admin:rise:write
               - admin:rise:voucher:read
               - admin:rise:voucher:write
+              - admin:isaac-ds:read
+              - admin:isaac-ds:write
+              - admin:isaac-ds:voucher:read
+              - admin:isaac-ds:voucher:write
+              - admin:isaac-dpd:read
+              - admin:isaac-dpd:write
+              - admin:isaac-dpd:voucher:read
+              - admin:isaac-dpd:voucher:write
         description: List of permissions to assign.
-        example: ["user", "admin"]
+        example: ["admin"]
     responses:
       '200':
         description: Permissions updated successfully

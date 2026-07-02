@@ -3,6 +3,9 @@ type: string
 enum:
   - user
   - admin
+  - '*'
+  - admin*
+  - admin:*
   - admin:user:read
   - admin:bionix-competition:read
   - admin:bionix-competition:write
@@ -16,5 +19,13 @@ enum:
   - admin:rise:write
   - admin:rise:voucher:read
   - admin:rise:voucher:write
+  - admin:isaac-ds:read
+  - admin:isaac-ds:write
+  - admin:isaac-ds:voucher:read
+  - admin:isaac-ds:voucher:write
+  - admin:isaac-dpd:read
+  - admin:isaac-dpd:write
+  - admin:isaac-dpd:voucher:read
+  - admin:isaac-dpd:voucher:write
 description: |
   User permissions for attribute-based access control.
