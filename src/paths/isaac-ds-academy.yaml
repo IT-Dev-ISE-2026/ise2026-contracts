@@ -692,6 +692,18 @@ check-invitation:
                     teamId: "bde1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Tim Ajaib DS"
                   message: "Team found successfully."
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad Request
+                value:
+                  message: "Invitation code is required."
+                  requestId: req-isaac-check-400
       '404':
         description: Team not found or code invalid.
         content:
