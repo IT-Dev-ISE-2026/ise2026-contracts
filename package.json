@@ -7,9 +7,10 @@
     "dev": "nodemon --ext yaml --watch src --exec \"pnpm run bundle\"",
     "validate": "pnpm run bundle && pnpm exec orval --config orval.config.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:distribute:all": "pnpm run bundle && cp dist/openapi.yaml ../ise2026-fe/contracts/openapi.yaml && cp dist/openapi.yaml ../ise2026-be/contracts/openapi.yaml",
-    "dev:distribute:fe": "pnpm run bundle && cp dist/openapi.yaml ../ise2026-fe/contracts/openapi.yaml",
-    "dev:distribute:be": "pnpm run bundle && cp dist/openapi.yaml ../ise2026-be/contracts/openapi.yaml",
+    "dist:all": "cp dist/openapi.yaml ../ise2026-fe/contracts/openapi.yaml && cp dist/openapi.yaml ../ise2026-be/contracts/openapi.yaml && cp dist/openapi.yaml ../ise2026-qa/contracts/openapi.yaml",
+    "dist:fe": "cp dist/openapi.yaml ../ise2026-fe/contracts/openapi.yaml",
+    "dist:be": "cp dist/openapi.yaml ../ise2026-be/contracts/openapi.yaml",
+    "dist:qa": "cp dist/openapi.yaml ../ise2026-qa/contracts/openapi.yaml",
     "prepare": "husky"
   },
   "repository": {

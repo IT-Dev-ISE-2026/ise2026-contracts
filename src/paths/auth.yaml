@@ -24,10 +24,15 @@ register:
                 minLength: 8
                 maxLength: 72
                 example: P@ssw0rd123
+              from:
+                type: string
+                description: Optional path to return to after email verification and login.
+                example: /bionix/competition/registration
           example:
             name: John Doe
             email: user@example.com
             password: P@ssw0rd123
+            from: /bionix/competition/registration
     responses:
       "201":
         description: User created
@@ -646,4 +651,3 @@ password-reset-validate:
                 value:
                   message: "Reset token is invalid or has expired."
                   requestId: req-val-400
-
