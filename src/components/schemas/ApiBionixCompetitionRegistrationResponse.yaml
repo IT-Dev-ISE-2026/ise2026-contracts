@@ -1,6 +1,6 @@
 title: ApiBionixCompetitionRegistrationResponse
 type: object
-required: [id, registrationNumber, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderInstagramProofUrl, leaderTiktokProofUrl, leaderTwibbonProofUrl, memberName, memberCityId, memberGrade, memberEmail, memberPhone, memberStudentCardUrl, memberPosterProofUrl, memberInstagramProofUrl, memberTiktokProofUrl, memberTwibbonProofUrl, status, stage, createdAt, updatedAt]
+required: [id, registrationNumber, userId, teamName, schoolName, isAgreed, leaderName, leaderCityId, leaderCityName, leaderGrade, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderInstagramProofUrl, leaderTiktokProofUrl, leaderTwibbonProofUrl, memberName, memberCityId, memberCityName, memberGrade, memberEmail, memberPhone, memberStudentCardUrl, memberPosterProofUrl, memberInstagramProofUrl, memberTiktokProofUrl, memberTwibbonProofUrl, status, stage, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -36,6 +36,10 @@ properties:
   leaderCityId:
     type: integer
     example: 1
+  leaderCityName:
+    type: string
+    readOnly: true
+    example: "Surabaya"
   leaderGrade:
     type: string
     enum: [grade_10, grade_11, grade_12]
@@ -80,6 +84,10 @@ properties:
   memberCityId:
     type: integer
     example: 1
+  memberCityName:
+    type: string
+    readOnly: true
+    example: "Surabaya"
   memberGrade:
     type: string
     enum: [grade_10, grade_11, grade_12]

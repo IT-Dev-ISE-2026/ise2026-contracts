@@ -1,6 +1,6 @@
 title: ApiBionixIsClassRegistrationAdminListResponse
 type: object
-required: [id, registrationNumber, userId, name, gender, cityId, schoolName, grade, isAgreed, status, createdAt, updatedAt]
+required: [id, registrationNumber, userId, name, email, gender, cityId, cityName, schoolName, grade, isAgreed, status, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -20,6 +20,11 @@ properties:
   name:
     type: string
     example: "Andi"
+  email:
+    type: string
+    format: email
+    readOnly: true
+    example: "andi@gmail.com"
   gender:
     type: string
     enum: [male, female]
@@ -27,6 +32,10 @@ properties:
   cityId:
     type: integer
     example: 1
+  cityName:
+    type: string
+    readOnly: true
+    example: "Surabaya"
   schoolName:
     type: string
     example: "SMA Negeri 1 Surabaya"
