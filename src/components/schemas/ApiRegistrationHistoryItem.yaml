@@ -1,0 +1,43 @@
+title: ApiRegistrationHistoryItem
+type: object
+required: [id, type, actorType, createdAt]
+properties:
+  id:
+    type: string
+    description: Stable ID for this history item.
+    example: "review-b2c3d4e5-f6a7-8901-bcde-f12345678901"
+  type:
+    type: string
+    enum: [submitted, updated, reviewed, payment_updated, stage_updated]
+    example: reviewed
+  actorType:
+    type: string
+    enum: [user, admin, system]
+    example: admin
+  actorId:
+    type: string
+    format: uuid
+    nullable: true
+    example: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+  actorName:
+    type: string
+    nullable: true
+    example: "Admin ISE"
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    nullable: true
+    example: verified
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    nullable: true
+    example: penyisihan
+  notes:
+    type: string
+    nullable: true
+    example: "Accepted"
+  createdAt:
+    type: string
+    format: date-time
+    example: "2026-05-17T10:00:00Z"

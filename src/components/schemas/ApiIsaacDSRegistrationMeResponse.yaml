@@ -1,0 +1,37 @@
+type: object
+required:
+  - details
+properties:
+  details:
+    $ref: './ApiIsaacDSRegistrationResponse.yaml'
+    description: "The currently authenticated user's registration details."
+  team:
+    type: object
+    nullable: true
+    description: "Team context if the user is in a team. Null if individual."
+    required:
+      - details
+      - leader
+    properties:
+      details:
+        type: object
+        required:
+          - id
+          - teamName
+          - invitationCode
+        properties:
+          id:
+            type: string
+            format: uuid
+          teamName:
+            type: string
+          invitationCode:
+            type: string
+      leader:
+        $ref: './ApiIsaacDSRegistrationResponse.yaml'
+      member1:
+        $ref: './ApiIsaacDSRegistrationResponse.yaml'
+        nullable: true
+      member2:
+        $ref: './ApiIsaacDSRegistrationResponse.yaml'
+        nullable: true

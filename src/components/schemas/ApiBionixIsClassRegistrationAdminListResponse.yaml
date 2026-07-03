@@ -1,12 +1,17 @@
 title: ApiBionixIsClassRegistrationAdminListResponse
 type: object
-required: [id, userId, name, gender, cityId, schoolName, grade, isAgreed, status, createdAt, updatedAt]
+required: [id, registrationNumber, userId, name, gender, cityId, schoolName, grade, isAgreed, status, createdAt, updatedAt]
 properties:
   id:
     type: string
     format: uuid
     readOnly: true
     example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  registrationNumber:
+    type: integer
+    readOnly: true
+    description: Permanent registration sequence number for this event. Soft-deleted registrations keep their number, so gaps are expected.
+    example: 42
   userId:
     type: string
     format: uuid

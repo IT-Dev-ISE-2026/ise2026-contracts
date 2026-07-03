@@ -110,6 +110,8 @@ paths:
     $ref: "paths/bionix-competition.yaml#/registrations"
   /api/events/bionix-competition/registrations/{id}:
     $ref: "paths/bionix-competition.yaml#/registration-by-id"
+  /api/events/bionix-competition/registrations/{id}/stage:
+    $ref: "paths/bionix-competition.yaml#/registration-stage"
   /api/events/bionix-competition/registrations/validate:
     $ref: "paths/bionix-competition.yaml#/registrations-validate"
   /api/events/{slug}/registrations/draft:
@@ -130,6 +132,8 @@ paths:
     $ref: "paths/rise-competition.yaml#/registrations"
   /api/events/rise/registrations/{id}:
     $ref: "paths/rise-competition.yaml#/registration-by-id"
+  /api/events/rise/registrations/{id}/stage:
+    $ref: "paths/rise-competition.yaml#/registration-stage"
   /api/events/rise/registrations/me:
     $ref: "paths/rise-competition.yaml#/registrations-me"
   /api/events/rise/registrations/check-team:
@@ -223,6 +227,8 @@ components:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationResponse.yaml"
     RiseCompetitionRegistrationUpdateRequest:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationUpdateRequest.yaml"
+    CompetitionStageUpdateRequest:
+      $ref: "components/schemas/ApiCompetitionStageUpdateRequest.yaml"
     RiseCompetitionRegistrationDraftRequest:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftRequest.yaml"
     RiseCompetitionRegistrationDraftResponse:
@@ -240,6 +246,22 @@ components:
       $ref: "components/schemas/ApiIsaacRegistrationMeResponse.yaml"
     IsaacRegistrationAdminListResponse:
       $ref: "components/schemas/ApiIsaacRegistrationAdminListResponse.yaml"
+    IsaacDSRegistrationResponse:
+      $ref: "components/schemas/ApiIsaacDSRegistrationResponse.yaml"
+    IsaacDSRegistrationMeResponse:
+      $ref: "components/schemas/ApiIsaacDSRegistrationMeResponse.yaml"
+    IsaacDSRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiIsaacDSRegistrationAdminListResponse.yaml"
+    IsaacDSCreateTeamResponse:
+      $ref: "components/schemas/ApiIsaacDSCreateTeamResponse.yaml"
+    IsaacDPDRegistrationResponse:
+      $ref: "components/schemas/ApiIsaacDPDRegistrationResponse.yaml"
+    IsaacDPDRegistrationMeResponse:
+      $ref: "components/schemas/ApiIsaacDPDRegistrationMeResponse.yaml"
+    IsaacDPDRegistrationAdminListResponse:
+      $ref: "components/schemas/ApiIsaacDPDRegistrationAdminListResponse.yaml"
+    IsaacDPDCreateTeamResponse:
+      $ref: "components/schemas/ApiIsaacDPDCreateTeamResponse.yaml"
     IsaacRegistrationUpdateRequest:
       $ref: "components/schemas/ApiIsaacRegistrationUpdateRequest.yaml"
     IsaacSubmissionRequest:
@@ -252,3 +274,9 @@ components:
       $ref: "components/schemas/ApiIsaacCreateTeamResponse.yaml"
     IsaacCandidateListResponse:
       $ref: "components/schemas/ApiIsaacCandidateListResponse.yaml"
+    OrderSummary:
+      $ref: "components/schemas/ApiOrderSummary.yaml"
+    PaymentHistoryItem:
+      $ref: "components/schemas/ApiPaymentHistoryItem.yaml"
+    RegistrationHistoryItem:
+      $ref: "components/schemas/ApiRegistrationHistoryItem.yaml"

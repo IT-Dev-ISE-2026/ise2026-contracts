@@ -763,6 +763,98 @@ registration-by-id:
                   message: "Unauthorized access."
                   requestId: req-rise-get-401
 
+registration-stage:
+  patch:
+    operationId: updateRiseRegistrationStage
+    summary: "(admin) Update Rise registration stage"
+    description: "[admin] Move a verified Rise Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiCompetitionStageUpdateRequest.yaml'
+    responses:
+      '200':
+        description: Registration stage updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              StageUpdated:
+                summary: Stage updated
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    registrationNumber: 42
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 3
+                    bundleType: "bundle"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    status: "verified"
+                    stage: "semifinal"
+                    submissions: []
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-06-15T10:00:00Z"
+                  message: "Registration stage updated successfully."
+      '400':
+        description: Bad request. Invalid ID format.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Registration is not verified or permissions are insufficient.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 submissions:
   post:
     operationId: submitRiseCompetitionProject

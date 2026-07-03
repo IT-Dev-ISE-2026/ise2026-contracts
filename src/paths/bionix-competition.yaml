@@ -816,6 +816,108 @@ registration-by-id:
                   message: "Insufficient permissions."
                   requestId: req-bionix-get-403
 
+registration-stage:
+  patch:
+    operationId: updateBionixRegistrationStage
+    summary: "(admin) Update Bionix Competition registration stage"
+    description: "[admin] Move a verified Bionix Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiCompetitionStageUpdateRequest.yaml'
+    responses:
+      '200':
+        description: Registration stage updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              StageUpdated:
+                summary: Stage updated
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    registrationNumber: 42
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderCityId: 1
+                    leaderGrade: "grade_12"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "08123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                    leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                    memberName: "Budi"
+                    memberCityId: 1
+                    memberGrade: "grade_12"
+                    memberEmail: "budi@gmail.com"
+                    memberPhone: "08123456780"
+                    memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
+                    memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
+                    memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
+                    memberTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/tiktok-proof/t.jpg"
+                    memberTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/twibbon-proof/t.jpg"
+                    status: "verified"
+                    stage: "semifinal"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-06-15T10:00:00Z"
+                  message: "Registration stage updated successfully."
+      '400':
+        description: Bad request. Invalid ID format.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Registration is not verified or permissions are insufficient.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 registrations-validate:
   post:
     operationId: validateOrderBionix

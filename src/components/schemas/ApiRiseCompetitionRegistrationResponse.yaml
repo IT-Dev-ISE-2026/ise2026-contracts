@@ -1,11 +1,16 @@
 title: ApiRiseCompetitionRegistrationResponse
 type: object
-required: [id, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, submissions, createdAt, updatedAt]
+required: [id, registrationNumber, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, submissions, createdAt, updatedAt]
 properties:
   id:
     type: string
     format: uuid
     readOnly: true
+  registrationNumber:
+    type: integer
+    readOnly: true
+    description: Permanent registration sequence number for this event. Soft-deleted registrations keep their number, so gaps are expected.
+    example: 42
   userId:
     type: string
     format: uuid
@@ -122,6 +127,24 @@ properties:
     type: array
     items:
       $ref: './ApiRiseCompetitionSubmissionResponse.yaml'
+  order:
+    nullable: true
+    readOnly: true
+    allOf:
+      - $ref: './ApiOrderSummary.yaml'
+  paymentHistory:
+    type: array
+    nullable: true
+    readOnly: true
+    items:
+      $ref: './ApiPaymentHistoryItem.yaml'
+  registrationHistory:
+    type: array
+    nullable: true
+    readOnly: true
+    description: Admin-facing registration timeline. Present on admin detail responses.
+    items:
+      $ref: './ApiRegistrationHistoryItem.yaml'
   createdAt:
     type: string
     format: date-time

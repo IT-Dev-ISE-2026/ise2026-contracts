@@ -1,0 +1,66 @@
+title: ApiOrderSummary
+type: object
+required: [id, status, amount, finalPrice, sequence]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  status:
+    type: string
+    enum: [pending, partially_paid, paid, expired]
+    readOnly: true
+    example: "partially_paid"
+  amount:
+    type: integer
+    description: Amount for the active payment sequence.
+    example: 50000
+  originalPrice:
+    type: integer
+    description: Event price before voucher discount.
+    example: 100000
+  discountAmount:
+    type: integer
+    description: Voucher discount applied to this order. Zero when no voucher is used.
+    example: 10000
+  finalPrice:
+    type: integer
+    description: Total final price of the order after discounts.
+    example: 90000
+  voucher:
+    type: object
+    nullable: true
+    description: Voucher used by this order. Null when no voucher is used.
+    required: [id, code, discountAmount, allowDp]
+    properties:
+      id:
+        type: integer
+        format: int32
+        example: 1
+      code:
+        type: string
+        example: SURABAYA
+      discountAmount:
+        type: integer
+        example: 10000
+      allowDp:
+        type: boolean
+        example: true
+  sequence:
+    type: integer
+    description: Active payment sequence. For DP flow, 1 is DP and 2 is settlement.
+    example: 2
+  snapToken:
+    type: string
+    nullable: true
+    example: "8687a100-84a1-42cb-b72e-d00922849568"
+  redirectUrl:
+    type: string
+    nullable: true
+    example: "https://app.sandbox.midtrans.com/snap/v2/vtweb/8687a100-84a1-42cb-b72e-d00922849568"
+  paymentDeadline:
+    type: string
+    format: date-time
+    nullable: true
+    example: "2026-05-17T08:00:00Z"

@@ -3,7 +3,7 @@ registrations:
     operationId: listIsaacDpdRegistrations
     summary: "(admin) List all ISAAC registrations"
     description: "[admin] Retrieve a list of all ISAAC registrations. Requires admin permissions."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     parameters:
@@ -46,7 +46,7 @@ registrations:
                     items:
                       type: array
                       items:
-                        $ref: '../components/schemas/ApiIsaacRegistrationAdminListResponse.yaml'
+                        $ref: '../components/schemas/ApiIsaacDPDRegistrationAdminListResponse.yaml'
                     meta:
                       $ref: '../components/schemas/ApiPaginationMeta.yaml'
                 message:
@@ -107,7 +107,7 @@ registrations:
     operationId: submitIsaacDpdRegistration
     summary: "(user) Submit ISAAC registration"
     description: "[user] Register for ISAAC. Requires authenticated user. All file paths must start with temp/."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     requestBody:
@@ -129,7 +129,7 @@ registrations:
                   type: object
                   properties:
                     registration:
-                      $ref: '../components/schemas/ApiIsaacRegistrationResponse.yaml'
+                      $ref: '../components/schemas/ApiIsaacDPDRegistrationResponse.yaml'
                     payment:
                       type: object
                       properties:
@@ -227,7 +227,7 @@ registrations-me:
     operationId: getMyIsaacDpdRegistration
     summary: "(user) Get current user's ISAAC registration"
     description: "[user] Retrieve the ISAAC registration details for the authenticated user."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     responses:
@@ -240,7 +240,7 @@ registrations-me:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiIsaacRegistrationMeResponse.yaml'
+                  $ref: '../components/schemas/ApiIsaacDPDRegistrationMeResponse.yaml'
                 message:
                   type: string
             examples:
@@ -455,7 +455,7 @@ registrations-me:
     operationId: updateMyIsaacDpdRegistration
     summary: "(user) Update ISAAC registration"
     description: "[user] Update registration details. Only sends changed fields. File paths must start with temp/."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     requestBody:
@@ -474,7 +474,7 @@ registrations-me:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiIsaacRegistrationResponse.yaml'
+                  $ref: '../components/schemas/ApiIsaacDPDRegistrationResponse.yaml'
                 message:
                   type: string
       '401':
@@ -521,7 +521,7 @@ registration-by-id:
     operationId: getIsaacDpdRegistrationById
     summary: "(admin) Get ISAAC registration by ID"
     description: "[admin] Retrieve a specific ISAAC registration by its ID. Requires admin permissions."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     parameters:
@@ -542,7 +542,7 @@ registration-by-id:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiIsaacRegistrationResponse.yaml'
+                  $ref: '../components/schemas/ApiIsaacDPDRegistrationResponse.yaml'
                 message:
                   type: string
             examples:
@@ -603,7 +603,7 @@ check-team:
     operationId: checkIsaacDpdTeamName
     summary: "(user) Check team name availability"
     description: "[user] Check if a team name is already taken for ISAAC DPD."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     parameters:
@@ -659,7 +659,7 @@ check-invitation:
     operationId: checkIsaacDpdInvitation
     summary: "(user) Check ISAAC Team Invitation"
     description: "[user] Check team details before a member joins by submitting the invitation code."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     parameters:
       - name: invitationCode
         in: query
@@ -734,7 +734,7 @@ submissions:
     operationId: submitIsaacDpdProject
     summary: "(user) Submit ISAAC Final Project"
     description: "[user] Timely submit final project for ISAAC. Requires team to be verified."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     requestBody:
@@ -807,7 +807,7 @@ teams:
     operationId: createIsaacDpdTeam
     summary: "(admin) Create ISAAC Team"
     description: "[admin] Create a new team and assign individuals to it. Requires admin permissions."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     requestBody:
@@ -826,7 +826,7 @@ teams:
               required: [data, message]
               properties:
                 data:
-                  $ref: '../components/schemas/ApiIsaacCreateTeamResponse.yaml'
+                  $ref: '../components/schemas/ApiIsaacDPDCreateTeamResponse.yaml'
                 message:
                   type: string
             examples:
@@ -884,7 +884,7 @@ candidates:
     operationId: listIsaacDpdCandidates
     summary: "(admin) List ISAAC individual candidates"
     description: "[admin] Retrieve a list of individual registrations without a team. Requires admin permissions."
-    tags: ["Events/ISAAC"]
+    tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
     parameters:

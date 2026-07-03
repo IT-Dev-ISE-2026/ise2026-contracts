@@ -1,0 +1,38 @@
+title: ApiPaymentHistoryItem
+type: object
+required: [id, orderId, amount, sequence, status, createdAt]
+properties:
+  id:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+  orderId:
+    type: string
+    format: uuid
+    readOnly: true
+    example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  amount:
+    type: integer
+    example: 50000
+  sequence:
+    type: integer
+    description: Payment sequence. For DP flow, 1 is DP and 2 is settlement.
+    example: 1
+  status:
+    type: string
+    enum: [pending, settlement, expire, cancel, deny]
+    example: settlement
+  paymentType:
+    type: string
+    nullable: true
+    example: "bank_transfer"
+  paidAt:
+    type: string
+    format: date-time
+    nullable: true
+    example: "2026-05-16T10:00:00Z"
+  createdAt:
+    type: string
+    format: date-time
+    example: "2026-05-16T08:00:00Z"

@@ -1,0 +1,8 @@
+title: ApiCompetitionStageUpdateRequest
+type: object
+required: [stage]
+properties:
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    example: semifinal
