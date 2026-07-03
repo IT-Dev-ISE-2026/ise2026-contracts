@@ -30,8 +30,10 @@ tags:
     description: Registration and management endpoints for Bionix Competition.
   - name: Events/Rise Competition
     description: Registration and management endpoints for Rise Competition.
-  - name: Events/ISAAC
-    description: Registration and management endpoints for ISAAC Academy.
+  - name: Events/Isaac Data Science
+    description: Registration and management endpoints for ISAAC Data Science.
+  - name: Events/Isaac Digital Product Development
+    description: Registration and management endpoints for ISAAC Digital Product Development.
   - name: ShortLinks
     description: URL Shortener management and redirection endpoints.
   - name: Vouchers
