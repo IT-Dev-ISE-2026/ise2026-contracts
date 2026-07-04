@@ -30,6 +30,9 @@ properties:
   leaderTwibbonProofPath:
     type: string
     pattern: "^temp/.+$"
+  leaderTiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
   member1Name:
     type: string
   member1Institution:
@@ -49,6 +52,9 @@ properties:
     type: string
     pattern: "^temp/.+$"
   member1TwibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+  member1TiktokProofPath:
     type: string
     pattern: "^temp/.+$"
   member2Name:
@@ -72,3 +78,7 @@ properties:
   member2TwibbonProofPath:
     type: string
     pattern: "^temp/.+$"
+  member2TiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+

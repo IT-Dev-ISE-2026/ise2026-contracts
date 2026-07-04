@@ -1,6 +1,6 @@
 title: ApiRiseCompetitionRegistrationResponse
 type: object
-required: [id, registrationNumber, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, status, stage, submissions, createdAt, updatedAt]
+required: [id, registrationNumber, userId, teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardUrl, leaderPosterProofUrl, leaderIgFollowProofUrl, leaderTwibbonProofUrl, leaderTiktokProofUrl, status, stage, submissions, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -48,6 +48,10 @@ properties:
     type: string
     format: uri
     readOnly: true
+  leaderTiktokProofUrl:
+    type: string
+    format: uri
+    readOnly: true
   member1Name:
     type: string
     nullable: true
@@ -77,6 +81,11 @@ properties:
     readOnly: true
     nullable: true
   member1TwibbonProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
+  member1TiktokProofUrl:
     type: string
     format: uri
     readOnly: true
@@ -114,6 +123,11 @@ properties:
     format: uri
     readOnly: true
     nullable: true
+  member2TiktokProofUrl:
+    type: string
+    format: uri
+    readOnly: true
+    nullable: true
   status:
     type: string
     enum: [pending_payment, pending_review, revision_requested, verified, rejected]
@@ -127,6 +141,7 @@ properties:
     type: array
     items:
       $ref: './ApiRiseCompetitionSubmissionResponse.yaml'
+
   order:
     nullable: true
     readOnly: true

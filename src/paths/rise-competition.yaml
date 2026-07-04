@@ -77,6 +77,8 @@ registrations:
                         leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                         leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                         leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                        leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                         member1Name: "Budi"
                         member1Institution: "SMA Negeri 1 Surabaya"
                         member1Email: "budi@gmail.com"
@@ -85,6 +87,8 @@ registrations:
                         member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                         member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                         member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                        member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                         member2Name: "Caca"
                         member2Institution: "SMA Negeri 1 Surabaya"
                         member2Email: "caca@gmail.com"
@@ -93,6 +97,8 @@ registrations:
                         member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                         member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                         member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                        member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                         status: "pending_payment"
                         stage: null
                         submissions: []
@@ -194,6 +200,8 @@ registrations:
                       leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                       leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                       leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                      leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                       member1Name: "Budi"
                       member1Institution: "SMA Negeri 1 Surabaya"
                       member1Email: "budi@gmail.com"
@@ -202,6 +210,8 @@ registrations:
                       member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                       member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                       member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                      member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                       member2Name: "Caca"
                       member2Institution: "SMA Negeri 1 Surabaya"
                       member2Email: "caca@gmail.com"
@@ -210,6 +220,8 @@ registrations:
                       member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                       member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                       member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                      member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                       status: "pending_payment"
                       stage: null
                       submissions: []
@@ -326,6 +338,8 @@ registrations-me:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: "Budi"
                     member1Institution: "SMA Negeri 1 Surabaya"
                     member1Email: "budi@gmail.com"
@@ -334,6 +348,8 @@ registrations-me:
                     member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member2Name: "Caca"
                     member2Institution: "SMA Negeri 1 Surabaya"
                     member2Email: "caca@gmail.com"
@@ -342,6 +358,8 @@ registrations-me:
                     member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "pending_payment"
                     stage: null
                     submissions: []
@@ -366,6 +384,8 @@ registrations-me:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: null
                     member1Institution: null
                     member1Email: null
@@ -374,6 +394,8 @@ registrations-me:
                     member1PosterProofUrl: null
                     member1IgFollowProofUrl: null
                     member1TwibbonProofUrl: null
+
+                    member1TiktokProofUrl: null
                     member2Name: null
                     member2Institution: null
                     member2Email: null
@@ -382,6 +404,8 @@ registrations-me:
                     member2PosterProofUrl: null
                     member2IgFollowProofUrl: null
                     member2TwibbonProofUrl: null
+
+                    member2TiktokProofUrl: null
                     status: "verified"
                     stage: "penyisihan"
                     submissions: []
@@ -406,6 +430,8 @@ registrations-me:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: "Budi"
                     member1Institution: "SMA Negeri 1 Surabaya"
                     member1Email: "budi@gmail.com"
@@ -414,6 +440,8 @@ registrations-me:
                     member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member2Name: null
                     member2Institution: null
                     member2Email: null
@@ -422,6 +450,8 @@ registrations-me:
                     member2PosterProofUrl: null
                     member2IgFollowProofUrl: null
                     member2TwibbonProofUrl: null
+
+                    member2TiktokProofUrl: null
                     status: "verified"
                     stage: "semifinal"
                     submissions:
@@ -451,6 +481,8 @@ registrations-me:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: "Budi"
                     member1Institution: "SMA Negeri 1 Surabaya"
                     member1Email: "budi@gmail.com"
@@ -459,6 +491,8 @@ registrations-me:
                     member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member2Name: "Caca"
                     member2Institution: "SMA Negeri 1 Surabaya"
                     member2Email: "caca@gmail.com"
@@ -467,6 +501,8 @@ registrations-me:
                     member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "final"
                     submissions:
@@ -552,6 +588,8 @@ registrations-me:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: null
                     member1Institution: null
                     member1Email: null
@@ -560,6 +598,8 @@ registrations-me:
                     member1PosterProofUrl: null
                     member1IgFollowProofUrl: null
                     member1TwibbonProofUrl: null
+
+                    member1TiktokProofUrl: null
                     member2Name: null
                     member2Institution: null
                     member2Email: null
@@ -568,6 +608,8 @@ registrations-me:
                     member2PosterProofUrl: null
                     member2IgFollowProofUrl: null
                     member2TwibbonProofUrl: null
+
+                    member2TiktokProofUrl: null
                     status: "pending_payment"
                     stage: null
                     submissions: []
@@ -716,6 +758,8 @@ registration-by-id:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member1Name: "Budi"
                     member1Institution: "SMA Negeri 1 Surabaya"
                     member1Email: "budi@gmail.com"
@@ -724,6 +768,8 @@ registration-by-id:
                     member1PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member1IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member1TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member1TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     member2Name: "Caca"
                     member2Institution: "SMA Negeri 1 Surabaya"
                     member2Email: "caca@gmail.com"
@@ -732,6 +778,8 @@ registration-by-id:
                     member2PosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     member2IgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     member2TwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "pending_payment"
                     stage: null
                     submissions: []
@@ -818,6 +866,8 @@ registration-stage:
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
                     leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
                     leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "semifinal"
                     submissions: []

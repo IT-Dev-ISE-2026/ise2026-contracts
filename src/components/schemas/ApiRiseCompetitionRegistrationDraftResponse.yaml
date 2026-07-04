@@ -44,6 +44,10 @@ properties:
     type: string
     format: uri
     nullable: true
+  leaderTiktokProofUrl:
+    type: string
+    format: uri
+    nullable: true
   member1Name:
     type: string
     nullable: true
@@ -70,6 +74,10 @@ properties:
     format: uri
     nullable: true
   member1TwibbonProofUrl:
+    type: string
+    format: uri
+    nullable: true
+  member1TiktokProofUrl:
     type: string
     format: uri
     nullable: true
@@ -102,6 +110,11 @@ properties:
     type: string
     format: uri
     nullable: true
+  member2TiktokProofUrl:
+    type: string
+    format: uri
+    nullable: true
+
   updatedAt:
     type: string
     format: date-time
