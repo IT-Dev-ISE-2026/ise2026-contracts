@@ -60,6 +60,8 @@ registrations:
                       - id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                         userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                         name: "Andi"
+                        email: "andi@gmail.com"
+                        phone: "08123456789"
                         gender: "male"
                         cityId: 1
                         schoolName: "SMA Negeri 1 Surabaya"
@@ -157,6 +159,8 @@ registrations:
                       id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                       userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                       name: "Andi"
+                      email: "andi@gmail.com"
+                      phone: "08123456789"
                       gender: "male"
                       cityId: 1
                       schoolName: "SMA Negeri 1 Surabaya"
@@ -246,6 +250,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -267,6 +273,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -288,6 +296,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -309,6 +319,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -330,6 +342,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -403,6 +417,8 @@ registrations-me:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"
@@ -493,6 +509,8 @@ registration-by-id:
                     id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
                     name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "08123456789"
                     gender: "male"
                     cityId: 1
                     schoolName: "SMA Negeri 1 Surabaya"

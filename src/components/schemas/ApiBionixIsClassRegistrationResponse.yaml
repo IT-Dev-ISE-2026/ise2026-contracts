@@ -1,6 +1,6 @@
 title: ApiBionixIsClassRegistrationResponse
 type: object
-required: [id, registrationNumber, userId, name, email, gender, cityId, cityName, schoolName, grade, studentCardUrl, posterProofUrl, instagramProofUrl, tiktokProofUrl, twibbonProofUrl, isAgreed, status, createdAt, updatedAt]
+required: [id, registrationNumber, userId, name, email, phone, gender, cityId, cityName, schoolName, grade, studentCardUrl, posterProofUrl, instagramProofUrl, tiktokProofUrl, twibbonProofUrl, isAgreed, status, createdAt, updatedAt]
 properties:
   id:
     type: string
@@ -24,8 +24,10 @@ properties:
   email:
     type: string
     format: email
-    readOnly: true
     example: "andi@gmail.com"
+  phone:
+    type: string
+    example: "08123456789"
   gender:
     type: string
     enum: [male, female]

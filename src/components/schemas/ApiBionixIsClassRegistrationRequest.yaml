@@ -1,10 +1,17 @@
 title: ApiBionixIsClassRegistrationRequest
 type: object
-required: [name, gender, cityId, schoolName, grade, studentCardPath, posterProofPath, instagramProofPath, tiktokProofPath, twibbonProofPath, isAgreed, paymentPlan]
+required: [name, email, phone, gender, cityId, schoolName, grade, studentCardPath, posterProofPath, instagramProofPath, tiktokProofPath, twibbonProofPath, isAgreed, paymentPlan]
 properties:
   name:
     type: string
     example: "Andi"
+  email:
+    type: string
+    format: email
+    example: "andi@gmail.com"
+  phone:
+    type: string
+    example: "08123456789"
   gender:
     type: string
     enum: [male, female]
