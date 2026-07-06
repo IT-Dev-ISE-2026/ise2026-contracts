@@ -166,7 +166,7 @@ collection:
                 type: string
                 format: date-time
                 nullable: true
-                description: The date and time when the voucher expires.
+                description: The date and time when the voucher expires. Defaults to 24 hours after creation when omitted.
               isActive:
                 type: boolean
                 default: false
@@ -486,7 +486,7 @@ item:
               expiredAt:
                 type: string
                 format: date-time
-                nullable: true
+                nullable: false
               isActive:
                 type: boolean
                 example: true

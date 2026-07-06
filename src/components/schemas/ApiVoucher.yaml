@@ -1,6 +1,6 @@
 title: ApiVoucher
 type: object
-required: [id, eventSlug, createdBy, code, discountAmount, usedCount, isActive, allowDp, createdAt, updatedAt]
+required: [id, eventSlug, createdBy, code, discountAmount, usedCount, expiredAt, isActive, allowDp, createdAt, updatedAt]
 properties:
   id:
     type: integer
@@ -46,7 +46,7 @@ properties:
   expiredAt:
     type: string
     format: date-time
-    nullable: true
+    nullable: false
     example: '2026-04-06T11:00:00Z'
   isActive:
     type: boolean
