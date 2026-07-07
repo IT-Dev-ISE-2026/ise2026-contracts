@@ -53,44 +53,55 @@ properties:
   # Member Identity
   memberName:
     type: string
+    nullable: true
+    description: "Optional on patch. If the effective registration has any member field or member file, all member fields and files must be complete."
     example: "Budi"
   memberCityId:
     type: integer
+    nullable: true
     example: 1
   memberGrade:
     type: string
     enum: [grade_10, grade_11, grade_12]
+    nullable: true
     example: grade_12
   memberEmail:
     type: string
     format: email
+    nullable: true
     example: "budi@gmail.com"
   memberPhone:
     type: string
+    nullable: true
     example: "08123456780"
   memberStudentCardPath:
     type: string
     pattern: "^temp/.+$"
+    nullable: true
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-id-2f6a.jpg"
   memberPosterProofPath:
     type: string
     pattern: "^temp/.+$"
+    nullable: true
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-poster-3g7b.jpg"
   memberInstagramProofPath:
     type: string
     pattern: "^temp/.+$"
+    nullable: true
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-ig-4h8c.jpg"
   memberTiktokProofPath:
     type: string
     pattern: "^temp/.+$"
+    nullable: true
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-tt-5i9d.jpg"
   memberTwibbonProofPath:
     type: string
     pattern: "^temp/.+$"
+    nullable: true
     description: "Must be a temporary path starting with temp/"
     example: "temp/ade1e466-tw-6j0e.jpg"
 
