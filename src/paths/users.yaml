@@ -306,63 +306,63 @@ me:
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
-              UserProfileAdminIsacRead:
-                summary: Admin ISAC Read Profile
+              UserProfileAdminIsaacDsRead:
+                summary: Admin Isaac DS Read Profile
                 value:
                   data:
                     id: 00000000-0000-0000-0000-000000000006
-                    name: ISAC Admin
-                    email: isac@ise-its.com
+                    name: Isaac DS Admin
+                    email: isaac-ds@ise-its.com
                     phoneNumber: '08123456789'
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:isac:read']
+                    permissions: ['admin:isaac-ds:read']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
-              UserProfileAdminIsacWrite:
-                summary: Admin ISAC Write Profile
+              UserProfileAdminIsaacDsWrite:
+                summary: Admin Isaac DS Write Profile
                 value:
                   data:
                     id: 00000000-0000-0000-0000-000000000006
-                    name: ISAC Admin
-                    email: isac@ise-its.com
+                    name: Isaac DS Admin
+                    email: isaac-ds@ise-its.com
                     phoneNumber: '08123456789'
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:isac:write']
+                    permissions: ['admin:isaac-ds:write']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
-              UserProfileAdminIsacVoucherRead:
-                summary: Admin ISAC Voucher Read Profile
+              UserProfileAdminIsaacDsVoucherRead:
+                summary: Admin Isaac DS Voucher Read Profile
                 value:
                   data:
                     id: 00000000-0000-0000-0000-000000000006
-                    name: ISAC Admin
-                    email: isac@ise-its.com
+                    name: Isaac DS Admin
+                    email: isaac-ds@ise-its.com
                     phoneNumber: '08123456789'
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:isac:voucher:read']
+                    permissions: ['admin:isaac-ds:voucher:read']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
-              UserProfileAdminIsacVoucherWrite:
-                summary: Admin ISAC Voucher Write Profile
+              UserProfileAdminIsaacDsVoucherWrite:
+                summary: Admin Isaac DS Voucher Write Profile
                 value:
                   data:
                     id: 00000000-0000-0000-0000-000000000006
-                    name: ISAC Admin
-                    email: isac@ise-its.com
+                    name: Isaac DS Admin
+                    email: isaac-ds@ise-its.com
                     phoneNumber: '08123456789'
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:isac:voucher:write']
+                    permissions: ['admin:isaac-ds:voucher:write']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."

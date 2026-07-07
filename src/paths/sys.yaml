@@ -107,34 +107,7 @@ set-permissions:
         schema:
           type: array
           items:
-            type: string
-            enum:
-              - user
-              - admin
-              - '*'
-              - admin*
-              - admin:*
-              - admin:user:read
-              - admin:bionix-competition:read
-              - admin:bionix-competition:write
-              - admin:bionix-competition:voucher:read
-              - admin:bionix-competition:voucher:write
-              - admin:bionix-isclass:read
-              - admin:bionix-isclass:write
-              - admin:bionix-isclass:voucher:read
-              - admin:bionix-isclass:voucher:write
-              - admin:rise:read
-              - admin:rise:write
-              - admin:rise:voucher:read
-              - admin:rise:voucher:write
-              - admin:isaac-ds:read
-              - admin:isaac-ds:write
-              - admin:isaac-ds:voucher:read
-              - admin:isaac-ds:voucher:write
-              - admin:isaac-dpd:read
-              - admin:isaac-dpd:write
-              - admin:isaac-dpd:voucher:read
-              - admin:isaac-dpd:voucher:write
+            $ref: '../components/schemas/ApiPermission.yaml'
         description: List of permissions to assign.
         example: ["admin"]
     responses:
