@@ -35,6 +35,9 @@ properties:
     example: "andi@gmail.com"
   leaderPhone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
     example: "08123456789"
   leaderStudentCardPath:
@@ -84,6 +87,9 @@ properties:
     example: "budi@gmail.com"
   memberPhone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
     example: "08123456780"
   memberStudentCardPath:

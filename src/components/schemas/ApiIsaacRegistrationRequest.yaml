@@ -29,6 +29,9 @@ properties:
     format: email
   phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
   institution:
     type: string
   major:

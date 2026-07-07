@@ -21,6 +21,9 @@ properties:
     format: email
   leaderPhone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
   leaderStudentCardPath:
     type: string
     pattern: "^temp/.+$"
@@ -45,6 +48,9 @@ properties:
     format: email
   member1Phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
   member1StudentCardPath:
     type: string
     pattern: "^temp/.+$"
@@ -69,6 +75,9 @@ properties:
     format: email
   member2Phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
   member2StudentCardPath:
     type: string
     pattern: "^temp/.+$"
@@ -86,4 +95,3 @@ properties:
     pattern: "^temp/.+$"
   voucherCode:
     type: string
-

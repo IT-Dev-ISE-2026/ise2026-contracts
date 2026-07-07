@@ -11,6 +11,9 @@ properties:
     example: "andi@gmail.com"
   phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     example: "08123456789"
   gender:
     type: string

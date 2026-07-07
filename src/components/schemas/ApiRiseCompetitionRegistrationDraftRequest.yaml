@@ -27,6 +27,9 @@ properties:
     nullable: true
   leaderPhone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
   leaderStudentCardPath:
     type: string
@@ -60,6 +63,9 @@ properties:
     nullable: true
   member1Phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
   member1StudentCardPath:
     type: string
@@ -93,6 +99,9 @@ properties:
     nullable: true
   member2Phone:
     type: string
+    minLength: 10
+    maxLength: 15
+    pattern: '^[0-9]+$'
     nullable: true
   member2StudentCardPath:
     type: string
@@ -114,4 +123,3 @@ properties:
     type: string
     pattern: "^temp/.+$"
     nullable: true
-
