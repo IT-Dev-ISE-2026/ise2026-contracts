@@ -37,6 +37,17 @@ properties:
     type: string
     nullable: true
     example: "Accepted"
+  paymentSequence:
+    type: integer
+    nullable: true
+    description: Payment sequence related to this history item. Present for payment history events.
+    example: 1
+  paymentRole:
+    type: string
+    enum: [payment, down_payment, remaining]
+    nullable: true
+    description: Payment role related to this history item. `down_payment` means DP, `remaining` means pelunasan, and `payment` means normal/full payment.
+    example: down_payment
   createdAt:
     type: string
     format: date-time
