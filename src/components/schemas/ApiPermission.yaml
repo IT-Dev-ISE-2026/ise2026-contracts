@@ -11,10 +11,10 @@ enum:
   - admin:bionix-competition:write
   - admin:bionix-competition:voucher:read
   - admin:bionix-competition:voucher:write
-  - admin:bionix-isclass:read
-  - admin:bionix-isclass:write
-  - admin:bionix-isclass:voucher:read
-  - admin:bionix-isclass:voucher:write
+  - admin:bionix-is-class:read
+  - admin:bionix-is-class:write
+  - admin:bionix-is-class:voucher:read
+  - admin:bionix-is-class:voucher:write
   - admin:rise:read
   - admin:rise:write
   - admin:rise:voucher:read

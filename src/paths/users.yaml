@@ -197,7 +197,7 @@ me:
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:bionix-isclass:read']
+                    permissions: ['admin:bionix-is-class:read']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
@@ -212,7 +212,7 @@ me:
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:bionix-isclass:write']
+                    permissions: ['admin:bionix-is-class:write']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
@@ -227,7 +227,7 @@ me:
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:bionix-isclass:voucher:read']
+                    permissions: ['admin:bionix-is-class:voucher:read']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
@@ -242,7 +242,7 @@ me:
                     educationLevel: university
                     referralSource: ['instagram']
                     isEmailVerified: true
-                    permissions: ['admin:bionix-isclass:voucher:write']
+                    permissions: ['admin:bionix-is-class:voucher:write']
                     createdAt: '2026-01-01T00:00:00Z'
                     updatedAt: '2026-01-01T00:00:00Z'
                   message: "User profile retrieved successfully."
