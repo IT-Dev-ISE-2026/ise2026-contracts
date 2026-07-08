@@ -462,13 +462,26 @@ email-verify:
         description: The verification token sent to the user's email.
     responses:
       "200":
-        description: Email successfully verified.
+        description: Email successfully verified. Auto-login access token is returned, and refresh token is set as an HttpOnly cookie.
+        headers:
+          Set-Cookie:
+            description: Contains the refresh token. HttpOnly; Secure; SameSite=Lax
+            schema:
+              type: string
+              example: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Lax
         content:
           application/json:
             schema:
               type: object
-              required: [message]
+              required: [data, message]
               properties:
+                data:
+                  type: object
+                  required: [accessToken]
+                  properties:
+                    accessToken:
+                      type: string
+                      example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
                 message:
                   type: string
                   example: Email successfully verified.
@@ -476,6 +489,8 @@ email-verify:
               VerificationSuccess:
                 summary: Email verified successfully
                 value:
+                  data:
+                    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1NTBlODQwMC1lMjliLTQxZDQtYTcxNi00NDY2NTU0NDAwMDAiLCJleHAiOjE3NDEyNjQ4MDB9.abc123
                   message: Email successfully verified.
       "400":
         description: Invalid or expired token.
