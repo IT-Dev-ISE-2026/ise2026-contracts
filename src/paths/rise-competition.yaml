@@ -261,6 +261,11 @@ registrations:
                   errors:
                     teamName: ["teamName is a required field"]
                     isAgreed: ["isAgreed must be true"]
+              FileUploadNotFound:
+                summary: Uploaded File Not Found
+                value:
+                  message: "File upload tidak ditemukan. Silakan unggah ulang berkas pendaftaran."
+                  requestId: "req-rise-sub-422-file"
       '403':
         description: Forbidden. Registration is closed.
         content:

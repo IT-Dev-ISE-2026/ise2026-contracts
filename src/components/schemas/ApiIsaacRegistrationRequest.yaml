@@ -22,6 +22,12 @@ properties:
   invitationCode:
     type: string
     description: "Required if registrationType is member."
+  teamName:
+    type: string
+    nullable: true
+    minLength: 3
+    pattern: '^[\x20-\x7E]+$'
+    description: "Optional by schema. Required by business rule when registrationType is leader. Emoji and non-ASCII characters are not allowed."
   name:
     type: string
   email:

@@ -209,6 +209,11 @@ registrations:
                   requestId: "req-isaac-sub-422"
                   errors:
                     isAgreed: ["isAgreed must be true"]
+              FileUploadNotFound:
+                summary: Uploaded File Not Found
+                value:
+                  message: "File upload tidak ditemukan. Silakan unggah ulang berkas pendaftaran."
+                  requestId: "req-isaac-sub-422-file"
       '401':
         description: Unauthorized.
         content:
