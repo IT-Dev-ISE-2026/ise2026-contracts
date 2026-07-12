@@ -298,6 +298,74 @@ registrations:
                   message: "Team name is already taken. Please choose another team name."
                   requestId: "req-rise-sub-409"
 
+registrations-validate:
+  post:
+    operationId: validateOrderRise
+    summary: "(user) Validate Rise registration order"
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRiseCompetitionRegistrationRequest.yaml'
+    responses:
+      '200':
+        description: Registration payload is valid and order details are calculated.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [orderDetails, total]
+                  properties:
+                    orderDetails:
+                      type: array
+                      items:
+                        type: object
+                        required: [name, amount]
+                        properties:
+                          name:
+                            type: string
+                          amount:
+                            type: integer
+                    total:
+                      type: integer
+                message:
+                  type: string
+            examples:
+              SuccessValidation:
+                summary: Validation Success
+                value:
+                  data:
+                    orderDetails:
+                      - name: "Pendaftaran RISE Competition"
+                        amount: 100000
+                      - name: "Potongan Voucher (KODE)"
+                        amount: -10000
+                      - name: "Biaya Layanan"
+                        amount: 630
+                    total: 90630
+                  message: "Validation successful."
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 registrations-me:
   get:
     operationId: getMyRiseRegistration
@@ -993,4 +1061,3 @@ submissions:
                   requestId: req-rise-sub-422
                   errors:
                     filePath: ["filePath is a required field"]
-

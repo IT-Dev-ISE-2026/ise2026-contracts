@@ -222,6 +222,74 @@ registrations:
                   message: "Unauthorized access."
                   requestId: "req-isaac-sub-401"
 
+registrations-validate:
+  post:
+    operationId: validateOrderIsaacDs
+    summary: "(user) Validate ISAAC Data Science registration order"
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total."
+    tags: ["Events/Isaac Data Science"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiIsaacRegistrationRequest.yaml'
+    responses:
+      '200':
+        description: Registration payload is valid and order details are calculated.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [orderDetails, total]
+                  properties:
+                    orderDetails:
+                      type: array
+                      items:
+                        type: object
+                        required: [name, amount]
+                        properties:
+                          name:
+                            type: string
+                          amount:
+                            type: integer
+                    total:
+                      type: integer
+                message:
+                  type: string
+            examples:
+              SuccessValidation:
+                summary: Validation Success
+                value:
+                  data:
+                    orderDetails:
+                      - name: "Commitment Fee ISAAC Data Science"
+                        amount: 50000
+                      - name: "Potongan Voucher (KODE)"
+                        amount: -10000
+                      - name: "Biaya Layanan"
+                        amount: 280
+                    total: 40280
+                  message: "Validation successful."
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 registrations-me:
   get:
     operationId: getMyIsaacDsRegistration

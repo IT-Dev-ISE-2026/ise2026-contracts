@@ -60,3 +60,7 @@ properties:
   isAgreed:
     type: boolean
     description: "Must be true. Indicates agreement to terms and conditions."
+  voucherCode:
+    type: string
+    example: "ISEJAYA2026"
+    description: "Optional voucher code for discount."

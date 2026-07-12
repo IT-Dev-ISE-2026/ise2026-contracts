@@ -136,6 +136,8 @@ paths:
     $ref: "paths/rise-competition.yaml#/registration-by-id"
   /api/events/rise/registrations/{id}/stage:
     $ref: "paths/rise-competition.yaml#/registration-stage"
+  /api/events/rise/registrations/validate:
+    $ref: "paths/rise-competition.yaml#/registrations-validate"
   /api/events/rise/registrations/me:
     $ref: "paths/rise-competition.yaml#/registrations-me"
   /api/events/rise/registrations/check-team:
@@ -147,6 +149,8 @@ paths:
     $ref: "paths/isaac-ds-academy.yaml#/registrations"
   /api/events/isaac-ds/registrations/{id}:
     $ref: "paths/isaac-ds-academy.yaml#/registration-by-id"
+  /api/events/isaac-ds/registrations/validate:
+    $ref: "paths/isaac-ds-academy.yaml#/registrations-validate"
   /api/events/isaac-ds/registrations/me:
     $ref: "paths/isaac-ds-academy.yaml#/registrations-me"
   /api/events/isaac-ds/registrations/check-team:
@@ -159,6 +163,8 @@ paths:
     $ref: "paths/isaac-dpd-academy.yaml#/registrations"
   /api/events/isaac-dpd/registrations/{id}:
     $ref: "paths/isaac-dpd-academy.yaml#/registration-by-id"
+  /api/events/isaac-dpd/registrations/validate:
+    $ref: "paths/isaac-dpd-academy.yaml#/registrations-validate"
   /api/events/isaac-dpd/registrations/me:
     $ref: "paths/isaac-dpd-academy.yaml#/registrations-me"
   /api/events/isaac-dpd/registrations/check-team:

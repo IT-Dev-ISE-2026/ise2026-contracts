@@ -95,3 +95,5 @@ properties:
     pattern: "^temp/.+$"
   voucherCode:
     type: string
+    example: "ISEJAYA2026"
+    description: "Optional voucher code for discount."
