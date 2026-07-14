@@ -927,7 +927,7 @@ registrations-validate:
   post:
     operationId: validateOrderBionix
     summary: "(user) Validate Bionix registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total."
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -975,8 +975,8 @@ registrations-validate:
                       - name: "Potongan Voucher (KODE)"
                         amount: -10000
                       - name: "Biaya Layanan"
-                        amount: 630
-                    total: 90630
+                        amount: 1000
+                    total: 91000
                   message: "Validation successful."
       '422':
         description: Validation failed.

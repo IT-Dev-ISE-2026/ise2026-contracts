@@ -477,6 +477,74 @@ registrations-me:
                   message: "Registration cannot be updated because it is already approved."
                   requestId: "req-bionix-is-class-up-403"
 
+registrations-validate:
+  post:
+    operationId: validateOrderBionixIsClass
+    summary: "(user) Validate Bionix IS Class registration order"
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
+    tags: ["Events/Bionix IS Class"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixIsClassRegistrationRequest.yaml'
+    responses:
+      '200':
+        description: Registration payload is valid and order details are calculated.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: object
+                  required: [orderDetails, total]
+                  properties:
+                    orderDetails:
+                      type: array
+                      items:
+                        type: object
+                        required: [name, amount]
+                        properties:
+                          name:
+                            type: string
+                          amount:
+                            type: integer
+                    total:
+                      type: integer
+                message:
+                  type: string
+            examples:
+              SuccessValidation:
+                summary: Validation Success
+                value:
+                  data:
+                    orderDetails:
+                      - name: "Pendaftaran Bionix IS Class"
+                        amount: 100000
+                      - name: "Potongan Voucher (KODE)"
+                        amount: -10000
+                      - name: "Biaya Layanan"
+                        amount: 1000
+                    total: 91000
+                  message: "Validation successful."
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 registration-by-id:
   get:
     operationId: getBionixIsClassRegistrationById

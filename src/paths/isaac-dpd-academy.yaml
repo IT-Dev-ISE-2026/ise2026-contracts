@@ -231,7 +231,7 @@ registrations-validate:
   post:
     operationId: validateOrderIsaacDpd
     summary: "(user) Validate ISAAC Digital Product Development registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total."
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
     tags: ["Events/Isaac Digital Product Development"]
     security:
       - BearerAuth: []
@@ -279,8 +279,8 @@ registrations-validate:
                       - name: "Potongan Voucher (KODE)"
                         amount: -10000
                       - name: "Biaya Layanan"
-                        amount: 280
-                    total: 40280
+                        amount: 1000
+                    total: 41000
                   message: "Validation successful."
       '422':
         description: Validation failed.
