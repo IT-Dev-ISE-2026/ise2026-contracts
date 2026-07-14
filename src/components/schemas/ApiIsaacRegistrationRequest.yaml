@@ -5,7 +5,6 @@ required:
   - email
   - phone
   - institution
-  - major
   - studentCardPath
   - twibbonProofPath
   - posterProofPath
@@ -42,6 +41,7 @@ properties:
     type: string
   major:
     type: string
+    description: "Optional participant major or field of study."
   studentCardPath:
     type: string
     description: "URL path to student card. Must start with temp/"
