@@ -1,0 +1,28 @@
+title: ApiIsaacTeamMemberSummary
+type: object
+required:
+  - registrationId
+  - userId
+  - name
+  - email
+  - registrationType
+  - status
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    description: ISAAC registration ID used when updating team assignments.
+  userId:
+    type: string
+    format: uuid
+  name:
+    type: string
+  email:
+    type: string
+    format: email
+  registrationType:
+    type: string
+    enum: [leader, member]
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]

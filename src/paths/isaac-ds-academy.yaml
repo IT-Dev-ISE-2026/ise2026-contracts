@@ -876,6 +876,38 @@ submissions:
                   requestId: req-isaac-sub-403
 
 teams:
+  get:
+    operationId: listIsaacDsTeams
+    summary: "(admin) List all ISAAC teams"
+    description: "[admin] Retrieve all Data Science teams with compact member data for team management forms. Requires admin permissions."
+    tags: ["Events/Isaac Data Science"]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Teams retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiIsaacTeamListItem.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
   post:
     operationId: createIsaacDsTeam
     summary: "(admin) Create ISAAC Team"

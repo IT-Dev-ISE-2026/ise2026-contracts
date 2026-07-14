@@ -876,6 +876,38 @@ submissions:
                   requestId: req-isaac-sub-403
 
 teams:
+  get:
+    operationId: listIsaacDpdTeams
+    summary: "(admin) List all ISAAC teams"
+    description: "[admin] Retrieve all Digital Product Development teams with compact member data for team management forms. Requires admin permissions."
+    tags: ["Events/Isaac Digital Product Development"]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Teams retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiIsaacTeamListItem.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
   post:
     operationId: createIsaacDpdTeam
     summary: "(admin) Create ISAAC Team"

@@ -1,6 +1,6 @@
 title: ApiPaymentHistoryItem
 type: object
-required: [id, orderId, amount, sequence, status, createdAt]
+required: [id, orderId, midtransOrderId, amount, sequence, status, createdAt]
 properties:
   id:
     type: string
@@ -12,6 +12,11 @@ properties:
     format: uuid
     readOnly: true
     example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+  midtransOrderId:
+    type: string
+    readOnly: true
+    description: Midtrans transaction order ID. Use this as the user-facing payment ID.
+    example: "ISE-ISAAC-2026-a1b2c3d4-1"
   amount:
     type: integer
     example: 50000

@@ -282,6 +282,10 @@ components:
       $ref: "components/schemas/ApiIsaacCreateTeamRequest.yaml"
     IsaacCreateTeamResponse:
       $ref: "components/schemas/ApiIsaacCreateTeamResponse.yaml"
+    IsaacTeamListItem:
+      $ref: "components/schemas/ApiIsaacTeamListItem.yaml"
+    IsaacTeamMemberSummary:
+      $ref: "components/schemas/ApiIsaacTeamMemberSummary.yaml"
     IsaacCandidateListResponse:
       $ref: "components/schemas/ApiIsaacCandidateListResponse.yaml"
     OrderSummary:
