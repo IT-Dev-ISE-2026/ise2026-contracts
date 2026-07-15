@@ -6,6 +6,7 @@ required:
   - name
   - email
   - registrationType
+  - teamRole
   - status
 properties:
   registrationId:
@@ -22,7 +23,12 @@ properties:
     format: email
   registrationType:
     type: string
+    enum: [leader, member, individual]
+    description: Original immutable registration type.
+  teamRole:
+    type: string
     enum: [leader, member]
+    description: Current role of this participant in the team.
   status:
     type: string
     enum: [pending_payment, pending_review, revision_requested, verified, rejected]

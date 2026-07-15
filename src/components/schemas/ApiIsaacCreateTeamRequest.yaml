@@ -9,14 +9,14 @@ properties:
   leaderRegistrationId:
     type: string
     format: uuid
-    description: Registration ID of the individual assigned as the team leader.
+    description: Registration ID of an eligible individual registration placed as the team leader. Its original registrationType remains individual.
   member1RegistrationId:
     type: string
     format: uuid
     nullable: true
-    description: Registration ID of the individual assigned as member 1.
+    description: Registration ID of an eligible individual registration placed as the first team member. Its original registrationType remains individual.
   member2RegistrationId:
     type: string
     format: uuid
     nullable: true
-    description: Registration ID of the individual assigned as member 2.
+    description: Registration ID of an eligible individual registration placed as the second team member. Its original registrationType remains individual.

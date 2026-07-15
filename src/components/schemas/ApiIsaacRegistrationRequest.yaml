@@ -17,7 +17,7 @@ properties:
   registrationType:
     type: string
     enum: [leader, member, individual]
-    description: "The type of registration."
+    description: Original registration type chosen by the participant. The backend must keep this value unchanged when an admin later assigns or removes the participant from a team.
   invitationCode:
     type: string
     description: "Required if registrationType is member."

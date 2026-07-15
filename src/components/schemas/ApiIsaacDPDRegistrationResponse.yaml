@@ -4,6 +4,7 @@ required:
   - registrationNumber
   - userId
   - registrationType
+  - teamRole
   - name
   - email
   - phone
@@ -44,6 +45,14 @@ properties:
   registrationType:
     type: string
     enum: [leader, member, individual]
+    readOnly: true
+    description: Original registration type selected at registration time. This value is immutable when an admin assigns or removes the participant from a team.
+  teamRole:
+    type: string
+    enum: [leader, member]
+    nullable: true
+    readOnly: true
+    description: Current role inside the assigned team. Null when the participant is not currently assigned to a team.
   name:
     type: string
   email:

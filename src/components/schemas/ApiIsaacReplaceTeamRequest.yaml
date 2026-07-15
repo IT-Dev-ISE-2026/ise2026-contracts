@@ -13,14 +13,14 @@ properties:
   leaderRegistrationId:
     type: string
     format: uuid
-    description: Registration ID assigned as leader. This field cannot be empty.
+    description: Registration ID placed as the team leader. This field cannot be empty. Assignment must not change the participant's original registrationType.
   member1RegistrationId:
     type: string
     format: uuid
     nullable: true
-    description: Registration ID assigned as member 1. Send null to remove member 1 from the team.
+    description: Registration ID placed as the first team member. Send null to remove member 1 from the team. Assignment or removal must not change the original registrationType.
   member2RegistrationId:
     type: string
     format: uuid
     nullable: true
-    description: Registration ID assigned as member 2. Send null to remove member 2 from the team.
+    description: Registration ID placed as the second team member. Send null to remove member 2 from the team. Assignment or removal must not change the original registrationType.

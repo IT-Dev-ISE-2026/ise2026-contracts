@@ -4,6 +4,7 @@ required:
   - registrationNumber
   - userId
   - registrationType
+  - teamRole
   - name
   - email
   - phone
@@ -38,6 +39,14 @@ properties:
   registrationType:
     type: string
     enum: [leader, member, individual]
+    readOnly: true
+    description: Original immutable registration type.
+  teamRole:
+    type: string
+    enum: [leader, member]
+    nullable: true
+    readOnly: true
+    description: Current role in the assigned team, or null when not assigned.
   name:
     type: string
   email:
