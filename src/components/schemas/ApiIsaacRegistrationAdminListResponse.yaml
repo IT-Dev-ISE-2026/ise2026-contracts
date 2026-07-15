@@ -54,6 +54,10 @@ properties:
     format: email
   phone:
     type: string
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
   institution:
     type: string
   major:

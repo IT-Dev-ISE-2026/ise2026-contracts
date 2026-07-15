@@ -27,9 +27,10 @@ properties:
     nullable: true
   leaderPhone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
   leaderStudentCardPath:
     type: string
@@ -63,9 +64,10 @@ properties:
     nullable: true
   member1Phone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
   member1StudentCardPath:
     type: string
@@ -99,9 +101,10 @@ properties:
     nullable: true
   member2Phone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
   member2StudentCardPath:
     type: string

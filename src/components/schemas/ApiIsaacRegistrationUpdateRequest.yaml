@@ -4,9 +4,10 @@ properties:
     type: string
   phone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
   institution:
     type: string
   major:

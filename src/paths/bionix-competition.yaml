@@ -74,7 +74,7 @@ registrations:
                         leaderCityId: 1
                         leaderGrade: "grade_12"
                         leaderEmail: "andi@gmail.com"
-                        leaderPhone: "08123456789"
+                        leaderPhone: "+628123456789"
                         leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                         leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                         leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
@@ -84,7 +84,7 @@ registrations:
                         memberCityId: 1
                         memberGrade: "grade_12"
                         memberEmail: "budi@gmail.com"
-                        memberPhone: "08123456780"
+                        memberPhone: "+628123456780"
                         memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                         memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                         memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
@@ -189,7 +189,7 @@ registrations:
                       leaderCityId: 1
                       leaderGrade: "grade_12"
                       leaderEmail: "andi@gmail.com"
-                      leaderPhone: "08123456789"
+                      leaderPhone: "+628123456789"
                       leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                       leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                       leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -199,7 +199,7 @@ registrations:
                       memberCityId: 1
                       memberGrade: "grade_12"
                       memberEmail: "budi@gmail.com"
-                      memberPhone: "08123456780"
+                      memberPhone: "+628123456780"
                       memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                       memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                       memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -312,7 +312,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -322,7 +322,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -346,7 +346,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -356,7 +356,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -380,7 +380,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -390,7 +390,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -414,7 +414,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -424,7 +424,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -448,7 +448,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -458,7 +458,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -482,7 +482,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -492,7 +492,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -516,7 +516,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -526,7 +526,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -603,7 +603,7 @@ registrations-me:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -613,7 +613,7 @@ registrations-me:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg?..."
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg?..."
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg?..."
@@ -764,7 +764,7 @@ registration-by-id:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
@@ -774,7 +774,7 @@ registration-by-id:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
@@ -871,7 +871,7 @@ registration-stage:
                     leaderCityId: 1
                     leaderGrade: "grade_12"
                     leaderEmail: "andi@gmail.com"
-                    leaderPhone: "08123456789"
+                    leaderPhone: "+628123456789"
                     leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                     leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                     leaderInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"
@@ -881,7 +881,7 @@ registration-stage:
                     memberCityId: 1
                     memberGrade: "grade_12"
                     memberEmail: "budi@gmail.com"
-                    memberPhone: "08123456780"
+                    memberPhone: "+628123456780"
                     memberStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/id/ktp.jpg"
                     memberPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/poster-proof/p.jpg"
                     memberInstagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix/ade1e466/instagram-proof/i.jpg"

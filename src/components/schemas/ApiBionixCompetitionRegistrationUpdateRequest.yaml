@@ -23,10 +23,11 @@ properties:
     example: "andi@gmail.com"
   leaderPhone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
-    example: "08123456789"
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
+    example: "+628123456789"
   leaderStudentCardPath:
     type: string
     pattern: "^temp/.+$"
@@ -75,11 +76,12 @@ properties:
     example: "budi@gmail.com"
   memberPhone:
     type: string
-    minLength: 10
-    maxLength: 15
-    pattern: '^[0-9]+$'
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
-    example: "08123456780"
+    example: "+628123456780"
   memberStudentCardPath:
     type: string
     pattern: "^temp/.+$"

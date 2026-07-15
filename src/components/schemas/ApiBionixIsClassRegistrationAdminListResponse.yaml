@@ -26,7 +26,11 @@ properties:
     example: "andi@gmail.com"
   phone:
     type: string
-    example: "08123456789"
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
+    example: "+628123456789"
   gender:
     type: string
     enum: [male, female]

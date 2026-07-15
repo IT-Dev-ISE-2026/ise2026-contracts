@@ -35,8 +35,12 @@ properties:
     example: "andi@gmail.com"
   leaderPhone:
     type: string
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
-    example: "08123456789"
+    example: "+628123456789"
   leaderStudentCardUrl:
     type: string
     format: uri
@@ -84,8 +88,12 @@ properties:
     example: "budi@gmail.com"
   memberPhone:
     type: string
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
     nullable: true
-    example: "08123456780"
+    example: "+628123456780"
   memberStudentCardUrl:
     type: string
     format: uri
