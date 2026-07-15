@@ -179,6 +179,10 @@ paths:
     $ref: "paths/isaac-ds-academy.yaml#/teams"
   /api/events/isaac-dpd/teams:
     $ref: "paths/isaac-dpd-academy.yaml#/teams"
+  /api/events/isaac-ds/teams/{teamId}:
+    $ref: "paths/isaac-ds-academy.yaml#/team-by-id"
+  /api/events/isaac-dpd/teams/{teamId}:
+    $ref: "paths/isaac-dpd-academy.yaml#/team-by-id"
   /api/events/isaac-ds/candidates:
     $ref: "paths/isaac-ds-academy.yaml#/candidates"
   /api/events/isaac-dpd/candidates:
@@ -280,6 +284,8 @@ components:
       $ref: "components/schemas/ApiIsaacSubmissionResponse.yaml"
     IsaacCreateTeamRequest:
       $ref: "components/schemas/ApiIsaacCreateTeamRequest.yaml"
+    IsaacReplaceTeamRequest:
+      $ref: "components/schemas/ApiIsaacReplaceTeamRequest.yaml"
     IsaacCreateTeamResponse:
       $ref: "components/schemas/ApiIsaacCreateTeamResponse.yaml"
     IsaacTeamListItem:

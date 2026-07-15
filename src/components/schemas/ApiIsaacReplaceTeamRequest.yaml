@@ -1,0 +1,26 @@
+title: ApiIsaacReplaceTeamRequest
+type: object
+required:
+  - teamName
+  - leaderRegistrationId
+  - member1RegistrationId
+  - member2RegistrationId
+properties:
+  teamName:
+    type: string
+    minLength: 1
+    description: Complete replacement name for the team.
+  leaderRegistrationId:
+    type: string
+    format: uuid
+    description: Registration ID assigned as leader. This field cannot be empty.
+  member1RegistrationId:
+    type: string
+    format: uuid
+    nullable: true
+    description: Registration ID assigned as member 1. Send null to remove member 1 from the team.
+  member2RegistrationId:
+    type: string
+    format: uuid
+    nullable: true
+    description: Registration ID assigned as member 2. Send null to remove member 2 from the team.

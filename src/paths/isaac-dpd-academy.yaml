@@ -984,6 +984,77 @@ teams:
                   message: "Insufficient permissions."
                   requestId: req-isaac-team-403
 
+team-by-id:
+  put:
+    operationId: replaceIsaacDpdTeam
+    summary: "(admin) Replace ISAAC team composition"
+    description: "[admin] Replace the complete Digital Product Development team composition. Existing registrations in this team may be retained; newly assigned registrations must be individual registrations without a team. Set a member registration ID to null to remove that member. Requires admin permissions."
+    tags: ["Events/Isaac Digital Product Development"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiIsaacReplaceTeamRequest.yaml'
+    responses:
+      '200':
+        description: Team composition replaced successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiIsaacTeamListItem.yaml'
+                message:
+                  type: string
+      '400':
+        description: Invalid request or duplicate registration IDs.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: Team or registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '409':
+        description: Team name already exists or a registration already belongs to another team.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '422':
+        description: A newly assigned registration is not an eligible individual registration.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
 candidates:
   get:
     operationId: listIsaacDpdCandidates
