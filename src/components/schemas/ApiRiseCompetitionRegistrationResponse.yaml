@@ -149,6 +149,7 @@ properties:
     enum: [penyisihan, semifinal, final]
     nullable: true
     readOnly: true
+    description: Competition achievement stage. Promoting a registration to final idempotently creates its final payment order.
   submissions:
     type: array
     items:
@@ -157,6 +158,13 @@ properties:
   order:
     nullable: true
     readOnly: true
+    description: Initial registration payment order.
+    allOf:
+      - $ref: './ApiOrderSummary.yaml'
+  finalOrder:
+    nullable: true
+    readOnly: true
+    description: Final-round payment order backed by the rise-final-payment event. Its status is the source of truth for final payment state.
     allOf:
       - $ref: './ApiOrderSummary.yaml'
   paymentHistory:

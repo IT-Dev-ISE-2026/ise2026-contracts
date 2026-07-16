@@ -578,6 +578,20 @@ registrations-me:
                     member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "final"
+                    order:
+                      id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                      status: "paid"
+                      amount: 50000
+                      finalPrice: 50000
+                      sequence: 1
+                    finalOrder:
+                      id: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
+                      status: "pending"
+                      amount: 100000
+                      finalPrice: 100000
+                      sequence: 1
+                      snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
+                      paymentDeadline: "2026-10-19T00:00:00Z"
                     submissions:
                       - id: "cfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "penyisihan"
@@ -888,7 +902,7 @@ registration-stage:
   patch:
     operationId: updateRiseRegistrationStage
     summary: "(admin) Update Rise registration stage"
-    description: "[admin] Move a verified Rise Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed."
+    description: "[admin] Move a verified Rise Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed. Promoting to final idempotently creates a payment order using the rise-final-payment event price and rise-final-round-starts as its deadline."
     tags: ["Events/Rise Competition"]
     security:
       - BearerAuth: []
@@ -943,6 +957,8 @@ registration-stage:
                     leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "semifinal"
+                    order: null
+                    finalOrder: null
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-06-15T10:00:00Z"
