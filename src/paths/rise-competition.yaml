@@ -169,6 +169,9 @@ registrations:
                           format: uuid
                         amount:
                           type: integer
+                        paymentMethod:
+                          type: string
+                          enum: [qris, bank_transfer]
                         sequence:
                           type: integer
                         paymentDeadline:
@@ -229,6 +232,7 @@ registrations:
                       updatedAt: "2026-05-16T08:00:00Z"
                     payment:
                       amount: 75000
+                      paymentMethod: "qris"
                       sequence: 1
                       paymentDeadline: "2026-05-17T08:00:00Z"
                       snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
@@ -307,7 +311,7 @@ registrations-validate:
   post:
     operationId: validateOrderRise
     summary: "(user) Validate Rise registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
+    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. QRIS uses 0.7%; bank transfer uses IDR 4,000. Midtrans VAT of 11% is added to the channel fee, then the result is rounded up to the nearest IDR 1,000."
     tags: ["Events/Rise Competition"]
     security:
       - BearerAuth: []
@@ -328,7 +332,7 @@ registrations-validate:
               properties:
                 data:
                   type: object
-                  required: [orderDetails, total]
+                  required: [orderDetails, paymentMethod, total]
                   properties:
                     orderDetails:
                       type: array
@@ -342,6 +346,9 @@ registrations-validate:
                             type: integer
                     total:
                       type: integer
+                    paymentMethod:
+                      type: string
+                      enum: [qris, bank_transfer]
                 message:
                   type: string
             examples:
@@ -349,6 +356,7 @@ registrations-validate:
                 summary: Validation Success
                 value:
                   data:
+                    paymentMethod: "qris"
                     orderDetails:
                       - name: "Pendaftaran RISE Competition"
                         amount: 100000

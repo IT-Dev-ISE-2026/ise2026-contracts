@@ -1,0 +1,30 @@
+title: ApiUserActivity
+type: object
+required: [eventSlug, registrationId, status, createdAt]
+properties:
+  eventSlug:
+    type: string
+    enum: [bionix-competition, bionix-is-class, rise, isaac-ds, isaac-dpd]
+    description: Event identifier used by the frontend to resolve the activity card and destination.
+    example: bionix-competition
+  registrationId:
+    type: string
+    format: uuid
+    description: Active registration ID for this event.
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  status:
+    type: string
+    enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+    description: Current status of the active registration.
+    example: verified
+  stage:
+    type: string
+    enum: [penyisihan, semifinal, final]
+    nullable: true
+    description: Current competition stage. Null for events without competition stages.
+    example: penyisihan
+  createdAt:
+    type: string
+    format: date-time
+    description: Registration creation timestamp including its UTC offset or timezone designator.
+    example: "2026-05-16T08:00:00Z"

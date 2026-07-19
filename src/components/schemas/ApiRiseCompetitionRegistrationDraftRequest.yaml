@@ -12,6 +12,10 @@ properties:
     type: string
     enum: [none, bundle]
     nullable: true
+  paymentMethod:
+    type: string
+    enum: [qris, bank_transfer]
+    nullable: true
   isAgreed:
     type: boolean
     nullable: true

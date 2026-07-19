@@ -70,6 +70,8 @@ paths:
     $ref: "paths/auth.yaml#/password-reset-validate"
   /api/users/me:
     $ref: "paths/users.yaml#/me"
+  /api/users/me/activities:
+    $ref: "paths/users.yaml#/my-activities"
   /api/staff/{id}:
     $ref: "paths/staff.yaml#/get-staff-by-id"
   /api/sys/permissions:
@@ -207,6 +209,8 @@ components:
       $ref: "components/schemas/ApiCity.yaml"
     User:
       $ref: "components/schemas/ApiUser.yaml"
+    UserActivity:
+      $ref: "components/schemas/ApiUserActivity.yaml"
     Permission:
       $ref: "components/schemas/ApiPermission.yaml"
     Event:

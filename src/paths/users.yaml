@@ -522,6 +522,78 @@ me:
                 value:
                   message: "Bad request."
                   requestId: req-bad-me-patch
+
+my-activities:
+  get:
+    operationId: getMyActivities
+    description: >-
+      [user] Get the authenticated user's active event registrations for the My Activity dashboard section.
+      Cancelled registrations and soft-deleted registration records are excluded from this response.
+    summary: "(user) Get my event activities"
+    tags: [Users]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Returns the user's active event registrations, ordered from newest to oldest.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiUserActivity.yaml'
+                message:
+                  type: string
+                  example: "User activities retrieved successfully."
+            examples:
+              ActivitiesFound:
+                summary: Active event registrations found
+                value:
+                  data:
+                    - eventSlug: bionix-competition
+                      registrationId: ade1e466-24ba-4475-8495-2aa73b5bd5ff
+                      status: verified
+                      stage: penyisihan
+                      createdAt: '2026-05-16T08:00:00Z'
+                    - eventSlug: bionix-is-class
+                      registrationId: bde1e466-24ba-4475-8495-2aa73b5bd5ff
+                      status: pending_payment
+                      createdAt: '2026-05-15T08:00:00Z'
+                  message: "User activities retrieved successfully."
+              NoActivities:
+                summary: No active event registrations found
+                value:
+                  data: []
+                  message: "User activities retrieved successfully."
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-my-activities-401
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Bad request."
+                  requestId: req-my-activities-400
+
 list:
   get:
     operationId: listUsers

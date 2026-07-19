@@ -1,6 +1,6 @@
 title: ApiRiseCompetitionRegistrationRequest
 type: object
-required: [teamName, memberCount, bundleType, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderIgFollowProofPath, leaderTwibbonProofPath, leaderTiktokProofPath]
+required: [teamName, memberCount, bundleType, paymentMethod, isAgreed, leaderName, leaderInstitution, leaderEmail, leaderPhone, leaderStudentCardPath, leaderPosterProofPath, leaderIgFollowProofPath, leaderTwibbonProofPath, leaderTiktokProofPath]
 properties:
   teamName:
     type: string
@@ -10,6 +10,10 @@ properties:
   bundleType:
     type: string
     enum: [none, bundle]
+  paymentMethod:
+    type: string
+    enum: [qris, bank_transfer]
+    description: Payment channel selected in the registration form. The backend restricts Midtrans Snap to this channel and calculates its service fee.
   isAgreed:
     type: boolean
   leaderName:
