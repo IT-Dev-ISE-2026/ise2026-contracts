@@ -214,6 +214,17 @@ registrations:
                 value:
                   message: "File upload tidak ditemukan. Silakan unggah ulang berkas pendaftaran."
                   requestId: "req-isaac-sub-422-file"
+      '403':
+        description: Forbidden. Registration has not opened yet or has closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotOpen:
+                value: { message: "Registration has not opened yet." }
+              RegistrationClosed:
+                value: { message: "Registration has closed." }
       '401':
         description: Unauthorized.
         content:
@@ -282,6 +293,17 @@ registrations-validate:
                         amount: 1000
                     total: 41000
                   message: "Validation successful."
+      '403':
+        description: Forbidden. Registration has not opened yet or has closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotOpen:
+                value: { message: "Registration has not opened yet." }
+              RegistrationClosed:
+                value: { message: "Registration has closed." }
       '422':
         description: Validation failed.
         content:

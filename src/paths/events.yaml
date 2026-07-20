@@ -50,6 +50,14 @@ get-event-by-slug:
                         slug: "bionix-competition-registration-closes"
                         name: "Pendaftaran Bionix Competition Ditutup"
                         date: "2026-09-13T23:59:59Z"
+                      - id: 42
+                        slug: "bionix-competition-extended-registration-ends"
+                        name: "Extended Registration Ends"
+                        date: "2026-09-13T23:59:59Z"
+                      - id: 43
+                        slug: "bionix-is-class-extended-registration-ends"
+                        name: "Extended Registration Ends"
+                        date: "2026-08-23T23:59:59Z"
                       - id: 5
                         slug: "bionix-is-class-event-starts"
                         name: "IS Class Dimulai"
@@ -99,6 +107,10 @@ get-event-by-slug:
                             slug: "bionix-competition-registration-closes"
                             name: "Pendaftaran Bionix Competition Ditutup"
                             date: "2026-09-13T23:59:59Z"
+                          - id: 42
+                            slug: "bionix-competition-extended-registration-ends"
+                            name: "Extended Registration Ends"
+                            date: "2026-09-13T23:59:59Z"
                           - id: 7
                             slug: "bionix-competition-tryout-1-starts"
                             name: "Try Out 1"
@@ -137,6 +149,10 @@ get-event-by-slug:
                           - id: 3
                             slug: "bionix-is-class-registration-closes"
                             name: "Pendaftaran IS Class Ditutup"
+                            date: "2026-08-23T23:59:59Z"
+                          - id: 43
+                            slug: "bionix-is-class-extended-registration-ends"
+                            name: "Extended Registration Ends"
                             date: "2026-08-23T23:59:59Z"
                           - id: 5
                             slug: "bionix-is-class-event-starts"
