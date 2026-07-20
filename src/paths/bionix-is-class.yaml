@@ -103,7 +103,7 @@ registrations:
   post:
     operationId: submitBionixIsClassRegistration
     summary: "(user) Submit Bionix IS Class registration"
-    description: "[user] Register for Bionix IS Class. Requires authenticated user. All file paths must start with temp/."
+    description: "[user] Register for Bionix IS Class. Available from bionix-is-class-registration-opens through bionix-is-class-extended-registration-ends. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Bionix IS Class"]
 
     security:
@@ -481,7 +481,7 @@ registrations-validate:
   post:
     operationId: validateOrderBionixIsClass
     summary: "(user) Validate Bionix IS Class registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
+    description: "[user] Validates the registration payload during the registration window, from bionix-is-class-registration-opens through bionix-is-class-extended-registration-ends, and returns the calculated order details."
     tags: ["Events/Bionix IS Class"]
     security:
       - BearerAuth: []

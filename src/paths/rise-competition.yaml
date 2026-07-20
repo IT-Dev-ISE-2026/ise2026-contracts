@@ -137,7 +137,7 @@ registrations:
   post:
     operationId: submitRiseRegistration
     summary: "(user) Submit Rise Competition registration"
-    description: "[user] Register a team for the Rise Competition. Requires authenticated user. All file paths must start with temp/."
+    description: "[user] Register a team for the Rise Competition. Available from rise-early-bird-starts through rise-extended-registration-ends. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Rise Competition"]
     security:
       - BearerAuth: []
@@ -271,17 +271,22 @@ registrations:
                   message: "File upload tidak ditemukan. Silakan unggah ulang berkas pendaftaran."
                   requestId: "req-rise-sub-422-file"
       '403':
-        description: Forbidden. Registration is closed.
+        description: Forbidden. Registration has not opened yet or has closed.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
+              RegistrationNotOpen:
+                summary: Registration Not Open
+                value:
+                  message: "Registration has not opened yet."
+                  requestId: "req-rise-sub-403-open"
               RegistrationClosed:
                 summary: Registration Closed
                 value:
-                  message: "Registration for Rise Competition has been closed."
-                  requestId: "req-rise-sub-403"
+                  message: "Registration has closed."
+                  requestId: "req-rise-sub-403-closed"
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -311,7 +316,7 @@ registrations-validate:
   post:
     operationId: validateOrderRise
     summary: "(user) Validate Rise registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. QRIS uses 0.7%; bank transfer uses IDR 4,000. Midtrans VAT of 11% is added to the channel fee, then the result is rounded up to the nearest IDR 1,000."
+    description: "[user] Validates the registration payload during the registration window, from rise-early-bird-starts through rise-extended-registration-ends, and returns the calculated order details."
     tags: ["Events/Rise Competition"]
     security:
       - BearerAuth: []

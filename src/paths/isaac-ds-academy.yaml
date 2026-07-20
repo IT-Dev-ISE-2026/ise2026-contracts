@@ -106,7 +106,7 @@ registrations:
   post:
     operationId: submitIsaacDsRegistration
     summary: "(user) Submit ISAAC registration"
-    description: "[user] Register for ISAAC. Requires authenticated user. All file paths must start with temp/."
+    description: "[user] Register for ISAAC. Available from isaac-registration-opens through isaac-extended-registration-ends. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Isaac Data Science"]
     security:
       - BearerAuth: []
@@ -231,7 +231,7 @@ registrations-validate:
   post:
     operationId: validateOrderIsaacDs
     summary: "(user) Validate ISAAC Data Science registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
+    description: "[user] Validates the registration payload during the registration window, from isaac-registration-opens through isaac-extended-registration-ends, and returns the calculated order details."
     tags: ["Events/Isaac Data Science"]
     security:
       - BearerAuth: []

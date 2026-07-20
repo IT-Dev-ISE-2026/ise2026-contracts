@@ -127,7 +127,7 @@ registrations:
   post:
     operationId: submitBionixRegistration
     summary: "(user) Submit Bionix Competition registration"
-    description: "[user] Register a team for the Bionix Competition. Requires authenticated user. All file paths must start with temp/."
+    description: "[user] Register a team for the Bionix Competition. Available from bionix-competition-registration-opens through bionix-competition-extended-registration-ends. Requires authenticated user. All file paths must start with temp/."
     tags: ["Events/Bionix Competition"]
 
     security:
@@ -249,6 +249,17 @@ registrations:
                   message: "File upload tidak ditemukan. Silakan unggah ulang berkas pendaftaran."
                   requestId: "req-bionix-sub-422-file"
 
+      '403':
+        description: Forbidden. Registration has not opened yet or has closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotOpen:
+                value: { message: "Registration has not opened yet.", requestId: "req-bionix-sub-403-open" }
+              RegistrationClosed:
+                value: { message: "Registration has closed.", requestId: "req-bionix-sub-403-closed" }
       '401':
         description: Unauthorized. Invalid or missing access token.
         content:
@@ -927,7 +938,7 @@ registrations-validate:
   post:
     operationId: validateOrderBionix
     summary: "(user) Validate Bionix registration order"
-    description: "[user] Validates the registration payload and returns the calculated order details including base price, voucher discount, service fee, and total. The QRIS service fee is calculated at 0.7% and rounded up to the nearest IDR 1,000."
+    description: "[user] Validates the registration payload during the registration window, from bionix-competition-registration-opens through bionix-competition-extended-registration-ends, and returns the calculated order details."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
