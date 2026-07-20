@@ -1,15 +1,10 @@
 title: ApiIsaacReplaceTeamRequest
 type: object
 required:
-  - teamName
   - leaderRegistrationId
   - member1RegistrationId
   - member2RegistrationId
 properties:
-  teamName:
-    type: string
-    minLength: 1
-    description: Complete replacement name for the team.
   leaderRegistrationId:
     type: string
     format: uuid

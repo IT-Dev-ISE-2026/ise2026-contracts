@@ -988,7 +988,7 @@ team-by-id:
   put:
     operationId: replaceIsaacDsTeam
     summary: "(admin) Replace ISAAC team composition"
-    description: "[admin] Replace the complete Data Science team composition. Existing registrations in this team may be retained; newly assigned registrations must be individual registrations without a team. Set a member registration ID to null to remove that member. Requires admin permissions."
+    description: "[admin] Replace the Data Science team member composition for a team created by an administrator. The team name is immutable through this endpoint. Participant-created teams cannot be modified. Existing registrations in this team may be retained; newly assigned registrations must be verified individual registrations without a team. Set a member registration ID to null to remove that member. Requires admin permissions."
     tags: ["Events/Isaac Data Science"]
     security:
       - BearerAuth: []
@@ -1031,7 +1031,7 @@ team-by-id:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
       '403':
-        description: Forbidden. Insufficient permissions.
+        description: Forbidden. Insufficient permissions or participant-created team.
         content:
           application/json:
             schema:
@@ -1043,13 +1043,63 @@ team-by-id:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
       '409':
-        description: Team name already exists or a registration already belongs to another team.
+        description: A registration already belongs to another team.
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
       '422':
         description: A newly assigned registration is not an eligible individual registration.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+  delete:
+    operationId: deleteIsaacDsTeam
+    summary: "(admin) Delete an administrator-created ISAAC team"
+    description: "[admin] Soft-delete an administrator-created Data Science team and release all members back to individual registrations. Participant-created teams cannot be deleted. Teams with submissions cannot be deleted."
+    tags: ["Events/Isaac Data Science"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: Team deleted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: Team deleted successfully.
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions or participant-created team.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: Team not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '409':
+        description: Team cannot be deleted because it already has a submission.
         content:
           application/json:
             schema:

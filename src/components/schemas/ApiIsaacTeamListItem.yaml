@@ -4,6 +4,7 @@ required:
   - teamId
   - teamName
   - invitationCode
+  - creationSource
   - members
 properties:
   teamId:
@@ -13,6 +14,10 @@ properties:
     type: string
   invitationCode:
     type: string
+  creationSource:
+    type: string
+    enum: [participant, admin]
+    description: Indicates whether the team was created through participant registration or by an administrator.
   members:
     type: array
     minItems: 1

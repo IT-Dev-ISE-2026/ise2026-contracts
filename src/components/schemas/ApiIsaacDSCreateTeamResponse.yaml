@@ -9,6 +9,7 @@ properties:
       - id
       - teamName
       - invitationCode
+      - creationSource
     properties:
       id:
         type: string
@@ -17,6 +18,9 @@ properties:
         type: string
       invitationCode:
         type: string
+      creationSource:
+        type: string
+        enum: [participant, admin]
   leader:
     $ref: './ApiIsaacDSRegistrationResponse.yaml'
   member1:
