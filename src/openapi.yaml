@@ -229,6 +229,8 @@ components:
       $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml"
     BionixIsClassRegistrationRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationRequest.yaml"
+    BionixIsClassRegistrationValidationRequest:
+      $ref: "components/schemas/ApiBionixIsClassRegistrationValidationRequest.yaml"
     BionixIsClassRegistrationResponse:
       $ref: "components/schemas/ApiBionixIsClassRegistrationResponse.yaml"
     BionixIsClassRegistrationAdminListResponse:

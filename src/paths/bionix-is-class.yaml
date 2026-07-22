@@ -501,7 +501,7 @@ registrations-validate:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/ApiBionixIsClassRegistrationRequest.yaml'
+            $ref: '../components/schemas/ApiBionixIsClassRegistrationValidationRequest.yaml'
     responses:
       '200':
         description: Registration payload is valid and order details are calculated.

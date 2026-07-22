@@ -1,0 +1,70 @@
+title: ApiBionixIsClassRegistrationValidationRequest
+type: object
+required: [name, email, phone, gender, cityId, schoolName, grade, studentCardPath, posterProofPath, instagramProofPath, tiktokProofPath, twibbonProofPath, paymentPlan]
+properties:
+  name:
+    type: string
+    example: "Andi"
+  email:
+    type: string
+    format: email
+    example: "andi@gmail.com"
+  phone:
+    type: string
+    minLength: 2
+    maxLength: 16
+    pattern: '^\+[1-9][0-9]{1,14}$'
+    description: Phone number in E.164 format
+    example: "+628123456789"
+  gender:
+    type: string
+    enum: [male, female]
+    example: male
+  cityId:
+    type: integer
+    example: 1
+  schoolName:
+    type: string
+    example: "SMA Negeri 1 Surabaya"
+  grade:
+    type: string
+    enum: [grade_10, grade_11, grade_12]
+    example: grade_12
+  studentCardPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-id-7a1b.jpg"
+  posterProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-poster-8b2c.jpg"
+  instagramProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-ig-9c3d.jpg"
+  tiktokProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tt-0d4e.jpg"
+  twibbonProofPath:
+    type: string
+    pattern: "^temp/.+$"
+    description: "Must be a temporary path starting with temp/"
+    example: "temp/ade1e466-tw-1e5f.jpg"
+  isAgreed:
+    type: boolean
+    example: false
+    description: "Optional when calculating the order; still required when submitting registration."
+  voucherCode:
+    type: string
+    example: "ISEJAYA2026"
+    description: "Optional voucher code for discount."
+  paymentPlan:
+    type: string
+    enum: [dp, full]
+    example: "dp"
+    description: "Choose payment scheme: 'dp' for Down Payment, 'full' for full payment."
