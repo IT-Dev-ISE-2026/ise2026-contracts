@@ -63,4 +63,9 @@ properties:
     type: string
     format: date-time
     nullable: true
+    description: >-
+      Business deadline by which the order must be paid. This is the deadline
+      shown in payment countdowns and is independent from the expiry of an
+      individual Midtrans transaction. The value may change after a down
+      payment is settled and the order enters the settlement phase.
     example: "2026-05-17T08:00:00Z"

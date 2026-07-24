@@ -28,7 +28,11 @@ sync:
     tags:
       - Payments
     summary: Manual Payment Sync
-    description: Manually triggers a synchronization of the payment status with Midtrans API for a specific order.
+    description: >-
+      Manually synchronizes pending payment attempts with Midtrans and
+      reconciles the order against its business payment deadline. A failed
+      Midtrans attempt does not invalidate an order while the order payment
+      deadline is still active.
     operationId: syncPaymentStatus
     security:
       - BearerAuth: []
@@ -77,7 +81,12 @@ active:
     tags:
       - Payments
     summary: Ensure Active Payment
-    description: Returns the active Midtrans Snap transaction for an unpaid order, or creates a replacement transaction when none is active.
+    description: >-
+      Synchronizes pending payment attempts and returns an active Midtrans Snap
+      transaction for an unpaid order. If the previous attempt has expired,
+      been cancelled, or been denied, a replacement transaction is created
+      without extending the order payment deadline. The operation is rejected
+      once the business payment deadline has passed.
     operationId: ensureActivePayment
     security:
       - BearerAuth: []
@@ -152,6 +161,12 @@ active:
               $ref: '../components/schemas/ApiError.yaml'
       '409':
         description: Order is already paid.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '410':
+        description: The order payment deadline has passed.
         content:
           application/json:
             schema:
