@@ -10,6 +10,6 @@ properties:
     example: "temp/123e4567-e89b-12d3-a456-426614174000.pdf"
   fileType:
     type: string
-    enum: [proposal, presentation, rta]
+    enum: [proposal, presentation, rta, executive_summary, paper, pitch_deck]
     description: "The type of the submission file."
     example: "proposal"

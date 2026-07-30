@@ -12,7 +12,7 @@ properties:
     readOnly: true
   fileType:
     type: string
-    enum: [proposal, presentation, rta]
+    enum: [proposal, presentation, rta, executive_summary, paper, pitch_deck]
     readOnly: true
   fileUrl:
     type: string
