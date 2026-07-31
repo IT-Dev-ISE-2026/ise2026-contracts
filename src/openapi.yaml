@@ -148,6 +148,8 @@ paths:
     $ref: "paths/rise-competition.yaml#/check-team"
   /api/events/rise/submissions:
     $ref: "paths/rise-competition.yaml#/submissions"
+  /api/events/rise/submissions/{submissionId}:
+    $ref: "paths/rise-competition.yaml#/submission-item"
 
   /api/events/isaac-ds/registrations:
     $ref: "paths/isaac-ds-academy.yaml#/registrations"

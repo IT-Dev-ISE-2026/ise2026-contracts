@@ -1106,3 +1106,79 @@ submissions:
                   requestId: req-rise-sub-422
                   errors:
                     filePath: ["filePath is a required field"]
+
+submission-item:
+  delete:
+    operationId: deleteRiseCompetitionSubmission
+    summary: "(user) Delete Rise Competition Submission"
+    description: "[user] Delete an existing file submission for Rise Competition by ID. Requires team to be verified and stage submission timeline to be open."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The unique UUID of the submission to delete.
+    responses:
+      '200':
+        description: Submission deleted successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+            examples:
+              SuccessDelete:
+                summary: Success
+                value:
+                  message: "Submission deleted successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized
+                value:
+                  message: "Unauthorized access."
+                  requestId: req-rise-del-sub-401
+      '403':
+        description: Forbidden. Team not verified or timeline closed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Forbidden
+                value:
+                  message: "Submission timeline is closed or team not verified."
+                  requestId: req-rise-del-sub-403
+      '404':
+        description: Submission not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFound:
+                summary: Not Found
+                value:
+                  message: "Submission not found."
+                  requestId: req-rise-del-sub-404
+      '500':
+        description: Internal server error.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
