@@ -97,6 +97,22 @@ properties:
     format: date-time
     readOnly: true
     example: "2026-05-16T09:00:00Z"
+  selectedClassOptionId:
+    type: integer
+    nullable: true
+    readOnly: true
+    example: 1
+  selectedClassOption:
+    nullable: true
+    readOnly: true
+    allOf:
+      - $ref: './ApiBionixIsClassOption.yaml'
+  classSelectedAt:
+    type: string
+    format: date-time
+    nullable: true
+    readOnly: true
+    example: "2026-08-25T10:00:00Z"
   order:
     nullable: true
     readOnly: true

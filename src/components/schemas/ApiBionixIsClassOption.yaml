@@ -1,0 +1,27 @@
+title: ApiBionixIsClassOption
+type: object
+required: [id, name, description, quota, takenCount, startsAt, endsAt]
+properties:
+  id:
+    type: integer
+    example: 1
+  name:
+    type: string
+    example: "Pemrograman Web (PWEB)"
+  description:
+    type: string
+    example: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website."
+  quota:
+    type: integer
+    example: 50
+  takenCount:
+    type: integer
+    example: 12
+  startsAt:
+    type: string
+    format: date-time
+    example: "2026-09-05T09:00:00Z"
+  endsAt:
+    type: string
+    format: date-time
+    example: "2026-09-05T12:00:00Z"

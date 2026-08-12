@@ -67,7 +67,17 @@ registrations:
                         schoolName: "SMA Negeri 1 Surabaya"
                         grade: "grade_12"
                         isAgreed: true
-                        status: "pending_payment"
+                        status: "verified"
+                        selectedClassOptionId: 1
+                        selectedClassOption:
+                          id: 1
+                          name: "Pemrograman Web (PWEB)"
+                          description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website."
+                          quota: 50
+                          takenCount: 13
+                          startsAt: "2026-09-05T09:00:00Z"
+                          endsAt: "2026-09-05T12:00:00Z"
+                        classSelectedAt: "2026-08-25T10:00:00Z"
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
                     meta:
@@ -616,7 +626,17 @@ registration-by-id:
                     tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg"
                     twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg"
                     isAgreed: true
-                    status: "pending_payment"
+                    status: "verified"
+                    selectedClassOptionId: 1
+                    selectedClassOption:
+                      id: 1
+                      name: "Pemrograman Web (PWEB)"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      quota: 50
+                      takenCount: 13
+                      startsAt: "2026-09-05T09:00:00Z"
+                      endsAt: "2026-09-05T12:00:00Z"
+                    classSelectedAt: "2026-08-25T10:00:00Z"
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
                   message: "Registration retrieved successfully."
@@ -644,3 +664,174 @@ registration-by-id:
                 value:
                   message: "Unauthorized access."
                   requestId: req-bionix-is-class-get-401
+
+options:
+  get:
+    operationId: listBionixIsClassOptions
+    summary: "(user) List available Bionix IS Class options"
+    description: "[user] Retrieve the list of available class options for Bionix IS Class along with current quota, schedule, and description."
+    tags: ["Events/Bionix IS Class"]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: List of class options retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '../components/schemas/ApiBionixIsClassOption.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessRetrieval:
+                summary: Success
+                value:
+                  data:
+                    - id: 1
+                      name: "Pemrograman Web (PWEB)"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      quota: 50
+                      takenCount: 12
+                      startsAt: "2026-09-05T09:00:00Z"
+                      endsAt: "2026-09-05T12:00:00Z"
+                    - id: 2
+                      name: "Manajemen Proses Bisnis (MPB)"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana proses kerja sebuah bisnis dijalankan dari awal sampai akhir supaya lebih efisien. Di sini, kalian akan belajar tentang alur kerja dalam suatu bisnis. Misalnya, mulai dari pelanggan memesan produk sampai barang dikirim ke tangan mereka dan gimana caranya supaya proses itu bisa dibuat lebih cepat, hemat biaya, dan tertata rapi. MPB cocok banget buat kalian yang penasaran gimana bisnis bisa jalan dengan lancar dan sistematis."
+                      quota: 50
+                      takenCount: 0
+                      startsAt: "2026-09-05T13:00:00Z"
+                      endsAt: "2026-09-05T16:00:00Z"
+                  message: "Class options retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized access
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-is-class-options-401"
+
+select-class:
+  post:
+    operationId: selectBionixIsClassOption
+    summary: "(user) Select a class option for Bionix IS Class"
+    description: "[user] Select a class option for the authenticated user's verified Bionix IS Class registration."
+    tags: ["Events/Bionix IS Class"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixIsClassSelectOptionRequest.yaml'
+    responses:
+      '200':
+        description: Class option selected successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixIsClassRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              SuccessSelection:
+                summary: Class option selected successfully
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    registrationNumber: 42
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    name: "Andi"
+                    email: "andi@gmail.com"
+                    phone: "+628123456789"
+                    gender: "male"
+                    cityId: 1
+                    cityName: "Surabaya"
+                    schoolName: "SMA Negeri 1 Surabaya"
+                    grade: "grade_12"
+                    studentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/id/ktp.jpg"
+                    posterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/poster/p.jpg"
+                    instagramProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/ig/i.jpg"
+                    tiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tt/t.jpg"
+                    twibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/bionix-is-class/tw/t.jpg"
+                    isAgreed: true
+                    status: "verified"
+                    selectedClassOptionId: 1
+                    selectedClassOption:
+                      id: 1
+                      name: "Pemrograman Web (PWEB)"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      quota: 50
+                      takenCount: 13
+                      startsAt: "2026-09-05T09:00:00Z"
+                      endsAt: "2026-09-05T12:00:00Z"
+                    classSelectedAt: "2026-08-25T10:00:00Z"
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-08-25T10:00:00Z"
+                  message: "Class option selected successfully."
+      '400':
+        description: Bad request (e.g. Quota full, selection closed, invalid option, or already selected).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              QuotaFull:
+                summary: Quota Full
+                value:
+                  message: "Kuota kelas ini sudah penuh."
+                  requestId: "req-bionix-is-class-select-400-quota"
+              SelectionNotOpen:
+                summary: Selection Not Open or Closed
+                value:
+                  message: "Periode pemilihan kelas belum dibuka atau sudah ditutup."
+                  requestId: "req-bionix-is-class-select-400-closed"
+              AlreadySelected:
+                summary: Class Already Selected
+                value:
+                  message: "Anda sudah memilih kelas dan tidak dapat mengubah pilihan."
+                  requestId: "req-bionix-is-class-select-400-already"
+              InvalidOption:
+                summary: Invalid Class Option
+                value:
+                  message: "Opsi kelas tidak ditemukan."
+                  requestId: "req-bionix-is-class-select-400-invalid"
+      '403':
+        description: Forbidden (Registration not verified).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotVerified:
+                summary: Registration Not Verified
+                value:
+                  message: "Pendaftaran Anda belum terverifikasi."
+                  requestId: "req-bionix-is-class-select-403"
+      '401':
+        description: Unauthorized. Invalid or missing access token.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Unauthorized access
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-is-class-select-401"

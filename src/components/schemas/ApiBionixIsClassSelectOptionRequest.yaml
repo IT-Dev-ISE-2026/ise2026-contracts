@@ -1,0 +1,7 @@
+title: ApiBionixIsClassSelectOptionRequest
+type: object
+required: [optionId]
+properties:
+  optionId:
+    type: integer
+    example: 1

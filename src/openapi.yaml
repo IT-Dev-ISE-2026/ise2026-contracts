@@ -134,6 +134,10 @@ paths:
     $ref: "paths/bionix-is-class.yaml#/registration-by-id"
   /api/events/bionix-is-class/registrations/me:
     $ref: "paths/bionix-is-class.yaml#/registrations-me"
+  /api/events/bionix-is-class/options:
+    $ref: "paths/bionix-is-class.yaml#/options"
+  /api/events/bionix-is-class/select-class:
+    $ref: "paths/bionix-is-class.yaml#/select-class"
   /api/events/rise/registrations:
     $ref: "paths/rise-competition.yaml#/registrations"
   /api/events/rise/registrations/{id}:
@@ -239,6 +243,10 @@ components:
       $ref: "components/schemas/ApiBionixIsClassRegistrationAdminListResponse.yaml"
     BionixIsClassRegistrationUpdateRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationUpdateRequest.yaml"
+    BionixIsClassOption:
+      $ref: "components/schemas/ApiBionixIsClassOption.yaml"
+    BionixIsClassSelectOptionRequest:
+      $ref: "components/schemas/ApiBionixIsClassSelectOptionRequest.yaml"
     RegistrationReviewRequest:
       $ref: "components/schemas/ApiRegistrationReviewRequest.yaml"
     RegistrationReviewResponse:
