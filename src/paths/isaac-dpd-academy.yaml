@@ -30,6 +30,12 @@ registrations:
         schema:
           type: string
           enum: [pending_payment, pending_review, revision_requested, verified, rejected]
+      - name: registrationType
+        in: query
+        description: Filter by registration type.
+        schema:
+          type: string
+          enum: [leader, member, individual]
     responses:
       '200':
         description: List of registrations retrieved successfully.
