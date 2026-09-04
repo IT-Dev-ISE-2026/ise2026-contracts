@@ -7,10 +7,10 @@ properties:
     example: 1
   name:
     type: string
-    example: "Pemrograman Web (PWEB)"
+    example: "Visualisasi Data"
   description:
     type: string
-    example: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website."
+    example: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana data diolah dan disajikan menjadi informasi yang mudah dipahami."
   quota:
     type: integer
     example: 50

@@ -71,8 +71,8 @@ registrations:
                         selectedClassOptionId: 1
                         selectedClassOption:
                           id: 1
-                          name: "Pemrograman Web (PWEB)"
-                          description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website."
+                          name: "Visualisasi Data"
+                          description: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana data diolah dan disajikan menjadi informasi yang mudah dipahami."
                           quota: 50
                           takenCount: 13
                           startsAt: "2026-09-05T09:00:00Z"
@@ -630,8 +630,8 @@ registration-by-id:
                     selectedClassOptionId: 1
                     selectedClassOption:
                       id: 1
-                      name: "Pemrograman Web (PWEB)"
-                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      name: "Visualisasi Data"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana data diolah dan disajikan menjadi informasi yang mudah dipahami. Di mata kuliah ini, kalian akan belajar mengolah data menggunakan Microsoft Excel dan membuat visualisasi dalam bentuk dashboard yang informatif dan menarik. Kalian juga akan mencoba mengembangkan dashboard dari data yang tersedia dan mengenal bagaimana hasilnya dapat diintegrasikan ke Power BI. Cocok banget buat kalian yang penasaran gimana data yang awalnya berupa angka dan tabel bisa diubah menjadi visualisasi yang lebih menarik dan mudah dipahami."
                       quota: 50
                       takenCount: 13
                       startsAt: "2026-09-05T09:00:00Z"
@@ -694,8 +694,8 @@ options:
                 value:
                   data:
                     - id: 1
-                      name: "Pemrograman Web (PWEB)"
-                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      name: "Visualisasi Data"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana data diolah dan disajikan menjadi informasi yang mudah dipahami. Di mata kuliah ini, kalian akan belajar mengolah data menggunakan Microsoft Excel dan membuat visualisasi dalam bentuk dashboard yang informatif dan menarik. Kalian juga akan mencoba mengembangkan dashboard dari data yang tersedia dan mengenal bagaimana hasilnya dapat diintegrasikan ke Power BI. Cocok banget buat kalian yang penasaran gimana data yang awalnya berupa angka dan tabel bisa diubah menjadi visualisasi yang lebih menarik dan mudah dipahami."
                       quota: 50
                       takenCount: 12
                       startsAt: "2026-09-05T09:00:00Z"
@@ -774,8 +774,8 @@ select-class:
                     selectedClassOptionId: 1
                     selectedClassOption:
                       id: 1
-                      name: "Pemrograman Web (PWEB)"
-                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang mengajarkan cara membuat dan mengembangkan website. Di mata kuliah ini, kita akan belajar bahasa pemrograman seperti HTML untuk membuat isi dan susunan page, CSS untuk membuat tampilan yang menarik, dan JavaScript untuk menambahkan fitur-fitur interaktif. Cocok banget buat kalian yang ingin bisa buat website atau platform online."
+                      name: "Visualisasi Data"
+                      description: "Salah satu mata kuliah di jurusan Sistem Informasi yang membahas bagaimana data diolah dan disajikan menjadi informasi yang mudah dipahami. Di mata kuliah ini, kalian akan belajar mengolah data menggunakan Microsoft Excel dan membuat visualisasi dalam bentuk dashboard yang informatif dan menarik. Kalian juga akan mencoba mengembangkan dashboard dari data yang tersedia dan mengenal bagaimana hasilnya dapat diintegrasikan ke Power BI. Cocok banget buat kalian yang penasaran gimana data yang awalnya berupa angka dan tabel bisa diubah menjadi visualisasi yang lebih menarik dan mudah dipahami."
                       quota: 50
                       takenCount: 13
                       startsAt: "2026-09-05T09:00:00Z"
