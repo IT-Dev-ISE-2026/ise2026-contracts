@@ -1,0 +1,14 @@
+title: ApiTerritoryClashActionRequest
+type: object
+required: [tileCoordinate, teamId]
+properties:
+  tileCoordinate:
+    type: string
+    pattern: "^[A-C][1-5]$"
+    example: "B3"
+    description: "Tile coordinate to claim or capture (rows A-C, cols 1-5)."
+  teamId:
+    type: string
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440001"
+    description: "Registration ID of the active team claiming the tile."

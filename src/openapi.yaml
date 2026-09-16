@@ -42,6 +42,8 @@ tags:
     description: File upload and storage management endpoints.
   - name: Payments
     description: Payment processing and synchronization endpoints.
+  - name: Territory Clash
+    description: Territory Clash BIONIX Final real-time game board and operator management endpoints.
 
 paths:
   /api/sys/ping:
@@ -203,6 +205,18 @@ paths:
     $ref: "paths/payments.yaml#/sync"
   /api/payments/{orderId}/active:
     $ref: "paths/payments.yaml#/active"
+  /api/territory-clash/session:
+    $ref: "paths/territory-clash.yaml#/session"
+  /api/territory-clash/action:
+    $ref: "paths/territory-clash.yaml#/action"
+  /api/territory-clash/undo:
+    $ref: "paths/territory-clash.yaml#/undo"
+  /api/territory-clash/redo:
+    $ref: "paths/territory-clash.yaml#/redo"
+  /api/territory-clash/reset:
+    $ref: "paths/territory-clash.yaml#/reset"
+  /api/territory-clash/finish:
+    $ref: "paths/territory-clash.yaml#/finish"
 
 components:
   securitySchemes:
@@ -316,3 +330,17 @@ components:
       $ref: "components/schemas/ApiPaymentHistoryItem.yaml"
     RegistrationHistoryItem:
       $ref: "components/schemas/ApiRegistrationHistoryItem.yaml"
+    TerritoryClashTile:
+      $ref: "components/schemas/ApiTerritoryClashTile.yaml"
+    TerritoryClashTeam:
+      $ref: "components/schemas/ApiTerritoryClashTeam.yaml"
+    TerritoryClashWinningLine:
+      $ref: "components/schemas/ApiTerritoryClashWinningLine.yaml"
+    TerritoryClashSessionResponse:
+      $ref: "components/schemas/ApiTerritoryClashSessionResponse.yaml"
+    TerritoryClashActionRequest:
+      $ref: "components/schemas/ApiTerritoryClashActionRequest.yaml"
+    TerritoryClashBoardResponse:
+      $ref: "components/schemas/ApiTerritoryClashBoardResponse.yaml"
+    TerritoryClashFinishResponse:
+      $ref: "components/schemas/ApiTerritoryClashFinishResponse.yaml"

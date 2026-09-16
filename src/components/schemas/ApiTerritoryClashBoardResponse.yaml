@@ -1,0 +1,22 @@
+title: ApiTerritoryClashBoardResponse
+type: object
+required: [board, canUndo, canRedo]
+properties:
+  board:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTile.yaml'
+    description: "Current snapshot of 15 board tiles."
+  canUndo:
+    type: boolean
+    example: true
+    description: "Whether an undo action can currently be performed."
+  canRedo:
+    type: boolean
+    example: false
+    description: "Whether a redo action can currently be performed."
+  teams:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTeam.yaml'
+    description: "List of 5 finalist teams with updated scores (present on reset)."

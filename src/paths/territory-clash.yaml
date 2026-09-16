@@ -1,0 +1,523 @@
+session:
+  get:
+    operationId: getTerritoryClashSession
+    summary: "(operator) Get active Territory Clash session"
+    description: "[operator] Retrieve active game session data from Redis (or initialize a new session with 5 finalist teams from database if none exists). Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Active session retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashSessionResponse.yaml'
+                message:
+                  type: string
+                  example: "Territory clash session retrieved successfully."
+            examples:
+              ActiveSession:
+                summary: Active session with ongoing game
+                value:
+                  message: "Territory clash session retrieved successfully."
+                  data:
+                    sessionId: "550e8400-e29b-41d4-a716-446655440000"
+                    isFinished: false
+                    canUndo: true
+                    canRedo: false
+                    teams:
+                      - id: "550e8400-e29b-41d4-a716-446655440001"
+                        teamNumber: 1
+                        teamName: "Tim Alpha"
+                        colorHex: "#EF4444"
+                        bonusPoints: 0
+                        rank: 1
+                      - id: "550e8400-e29b-41d4-a716-446655440002"
+                        teamNumber: 2
+                        teamName: "Tim Beta"
+                        colorHex: "#EAB308"
+                        bonusPoints: 0
+                        rank: 2
+                      - id: "550e8400-e29b-41d4-a716-446655440003"
+                        teamNumber: 3
+                        teamName: "Tim Gamma"
+                        colorHex: "#22C55E"
+                        bonusPoints: 0
+                        rank: 3
+                      - id: "550e8400-e29b-41d4-a716-446655440004"
+                        teamNumber: 4
+                        teamName: "Tim Delta"
+                        colorHex: "#3B82F6"
+                        bonusPoints: 0
+                        rank: 4
+                      - id: "550e8400-e29b-41d4-a716-446655440005"
+                        teamNumber: 5
+                        teamName: "Tim Epsilon"
+                        colorHex: "#A855F7"
+                        bonusPoints: 0
+                        rank: 5
+                    board:
+                      - coordinate: "A1"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                      - coordinate: "A2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A3"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A5"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B3"
+                        teamId: "550e8400-e29b-41d4-a716-446655440002"
+                        colorHex: "#EAB308"
+                      - coordinate: "B4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B5"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C3"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C5"
+                        teamId: null
+                        colorHex: null
+                    winningLines: null
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+action:
+  post:
+    operationId: postTerritoryClashAction
+    summary: "(operator) Record board move action"
+    description: "[operator] Select or capture a board tile for the active team. Discards forward redo branch, updates Redis history (capped at 2 moves), and advances pointer. Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiTerritoryClashActionRequest.yaml'
+          examples:
+            ClaimTileB3:
+              summary: Claim tile B3 by team Alpha
+              value:
+                tileCoordinate: "B3"
+                teamId: "550e8400-e29b-41d4-a716-446655440001"
+    responses:
+      '200':
+        description: Move action recorded successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashBoardResponse.yaml'
+                message:
+                  type: string
+                  example: "Move action recorded successfully."
+            examples:
+              ActionSuccess:
+                summary: Move action applied
+                value:
+                  message: "Move action recorded successfully."
+                  data:
+                    canUndo: true
+                    canRedo: false
+                    board:
+                      - coordinate: "A1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B3"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+      '400':
+        description: Bad request (invalid payload or game already finished).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              GameFinished:
+                summary: Game already finished
+                value:
+                  message: "Permainan sudah selesai."
+                  requestId: "req-tc-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+undo:
+  post:
+    operationId: postTerritoryClashUndo
+    summary: "(operator) Undo last board move action"
+    description: "[operator] Revert board to the previous state snapshot in Redis without deleting top state (enables redo). Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Undo action successful.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashBoardResponse.yaml'
+                message:
+                  type: string
+                  example: "Undo action successful."
+            examples:
+              UndoSuccess:
+                summary: Undo completed
+                value:
+                  message: "Undo action successful."
+                  data:
+                    canUndo: false
+                    canRedo: true
+                    board:
+                      - coordinate: "B3"
+                        teamId: null
+                        colorHex: null
+      '400':
+        description: Bad request (no action to undo or game already finished).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              CannotUndo:
+                summary: No action to undo
+                value:
+                  message: "Tidak ada aksi yang dapat dibatalkan."
+                  requestId: "req-tc-undo-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+redo:
+  post:
+    operationId: postTerritoryClashRedo
+    summary: "(operator) Redo last board move action"
+    description: "[operator] Advance board to the latest snapshot state in Redis before undo. Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Redo action successful.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashBoardResponse.yaml'
+                message:
+                  type: string
+                  example: "Redo action successful."
+            examples:
+              RedoSuccess:
+                summary: Redo completed
+                value:
+                  message: "Redo action successful."
+                  data:
+                    canUndo: true
+                    canRedo: false
+                    board:
+                      - coordinate: "B3"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+      '400':
+        description: Bad request (no action to redo or game already finished).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              CannotRedo:
+                summary: No action to redo
+                value:
+                  message: "Tidak ada aksi yang dapat di-redo."
+                  requestId: "req-tc-redo-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+reset:
+  post:
+    operationId: postTerritoryClashReset
+    summary: "(operator) Reset board to initial state"
+    description: "[operator] Reset all 15 tiles to neutral/empty, set bonus points to 0, and clear history stack in Redis. Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Board reset successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashBoardResponse.yaml'
+                message:
+                  type: string
+                  example: "Board reset successfully."
+            examples:
+              ResetSuccess:
+                summary: Reset board completed
+                value:
+                  message: "Board reset successfully."
+                  data:
+                    canUndo: false
+                    canRedo: false
+                    teams:
+                      - id: "550e8400-e29b-41d4-a716-446655440001"
+                        teamNumber: 1
+                        teamName: "Tim Alpha"
+                        colorHex: "#EF4444"
+                        bonusPoints: 0
+                        rank: 1
+                    board:
+                      - coordinate: "A1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A3"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "A5"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B3"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "B5"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C1"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C2"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C3"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C4"
+                        teamId: null
+                        colorHex: null
+                      - coordinate: "C5"
+                        teamId: null
+                        colorHex: null
+      '400':
+        description: Bad request (game already finished).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+finish:
+  post:
+    operationId: postTerritoryClashFinish
+    summary: "(operator) Finish game and persist results"
+    description: "[operator] Lock board interaction, calculate Bingo bonus points (5 horizontal = +75, 4 horizontal = +45, 3 h/v/d = +15), persist session snapshot and team bonus points to PostgreSQL in a transaction, and clean up Redis session. Requires operator:territory-clash:* permission."
+    tags: [Territory Clash]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Territory clash game finished successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiTerritoryClashFinishResponse.yaml'
+                message:
+                  type: string
+                  example: "Territory clash game finished successfully."
+            examples:
+              FinishSuccess:
+                summary: Game finished and scores persisted
+                value:
+                  message: "Territory clash game finished successfully."
+                  data:
+                    sessionId: "550e8400-e29b-41d4-a716-446655440000"
+                    isFinished: true
+                    teams:
+                      - id: "550e8400-e29b-41d4-a716-446655440001"
+                        teamNumber: 1
+                        teamName: "Tim Alpha"
+                        colorHex: "#EF4444"
+                        bonusPoints: 75
+                        rank: 1
+                      - id: "550e8400-e29b-41d4-a716-446655440002"
+                        teamNumber: 2
+                        teamName: "Tim Beta"
+                        colorHex: "#EAB308"
+                        bonusPoints: 30
+                        rank: 2
+                      - id: "550e8400-e29b-41d4-a716-446655440003"
+                        teamNumber: 3
+                        teamName: "Tim Gamma"
+                        colorHex: "#22C55E"
+                        bonusPoints: 15
+                        rank: 3
+                      - id: "550e8400-e29b-41d4-a716-446655440004"
+                        teamNumber: 4
+                        teamName: "Tim Delta"
+                        colorHex: "#3B82F6"
+                        bonusPoints: 0
+                        rank: 4
+                      - id: "550e8400-e29b-41d4-a716-446655440005"
+                        teamNumber: 5
+                        teamName: "Tim Epsilon"
+                        colorHex: "#A855F7"
+                        bonusPoints: 0
+                        rank: 5
+                    board:
+                      - coordinate: "A1"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                      - coordinate: "A2"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                      - coordinate: "A3"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                      - coordinate: "A4"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                      - coordinate: "A5"
+                        teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        colorHex: "#EF4444"
+                    winningLines:
+                      - teamId: "550e8400-e29b-41d4-a716-446655440001"
+                        pattern: "horizontal_5"
+                        points: 75
+                        coordinates: ["A1", "A2", "A3", "A4", "A5"]
+      '400':
+        description: Bad request (no active session to finish or already finished).
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NoActiveSession:
+                summary: No active session
+                value:
+                  message: "Tidak ada sesi aktif."
+                  requestId: "req-tc-finish-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'

@@ -1,0 +1,20 @@
+title: ApiTerritoryClashTile
+type: object
+required: [coordinate, teamId, colorHex]
+properties:
+  coordinate:
+    type: string
+    pattern: "^[A-C][1-5]$"
+    example: "B3"
+    description: "Tile coordinate on the 3x5 board (rows A-C, cols 1-5)."
+  teamId:
+    type: string
+    format: uuid
+    nullable: true
+    example: "550e8400-e29b-41d4-a716-446655440001"
+    description: "ID of the team that currently owns the tile, or null if neutral/empty."
+  colorHex:
+    type: string
+    nullable: true
+    example: "#EF4444"
+    description: "Hex color of the owner team, or null if neutral/empty."

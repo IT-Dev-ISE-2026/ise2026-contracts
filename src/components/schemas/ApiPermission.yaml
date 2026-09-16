@@ -27,5 +27,6 @@ enum:
   - admin:isaac-dpd:write
   - admin:isaac-dpd:voucher:read
   - admin:isaac-dpd:voucher:write
+  - 'operator:territory-clash:*'
 description: |
   User permissions for attribute-based access control.

@@ -1,0 +1,37 @@
+title: ApiTerritoryClashSessionResponse
+type: object
+required: [sessionId, isFinished, canUndo, canRedo, teams, board]
+properties:
+  sessionId:
+    type: string
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440000"
+    description: "Active game session ID."
+  isFinished:
+    type: boolean
+    example: false
+    description: "Whether the session has been finished and locked."
+  canUndo:
+    type: boolean
+    example: false
+    description: "Whether undo can be triggered."
+  canRedo:
+    type: boolean
+    example: false
+    description: "Whether redo can be triggered."
+  teams:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTeam.yaml'
+    description: "The 5 finalist teams participating in the session."
+  board:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTile.yaml'
+    description: "The 15 tiles of the 3x5 board."
+  winningLines:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashWinningLine.yaml'
+    nullable: true
+    description: "Highlighted winning Bingo lines if the session is finished."
