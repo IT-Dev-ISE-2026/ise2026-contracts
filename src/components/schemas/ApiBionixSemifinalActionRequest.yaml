@@ -1,0 +1,19 @@
+title: ApiBionixSemifinalActionRequest
+type: object
+required: [registrationId, suit, action]
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    description: "ID of the team registration performing the action."
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  suit:
+    type: string
+    description: "Playing card suit / lab category."
+    enum: [hearts, diamonds, clubs, spades]
+    example: "hearts"
+  action:
+    type: string
+    description: "Scoring decision for the currently active card."
+    enum: [correct, skip]
+    example: "correct"

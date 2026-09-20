@@ -126,6 +126,18 @@ paths:
     $ref: "paths/bionix-competition.yaml#/registrations-me"
   /api/events/bionix-competition/registrations/check-team:
     $ref: "paths/bionix-competition.yaml#/check-team"
+  /api/events/bionix-competition/leaderboard/semifinal:
+    $ref: "paths/bionix-semifinal.yaml#/leaderboard"
+  /api/events/bionix-competition/leaderboard/semifinal/round/{suit}:
+    $ref: "paths/bionix-semifinal.yaml#/round-by-suit"
+  /api/events/bionix-competition/leaderboard/semifinal/action:
+    $ref: "paths/bionix-semifinal.yaml#/action"
+  /api/events/bionix-competition/leaderboard/semifinal/undo:
+    $ref: "paths/bionix-semifinal.yaml#/undo"
+  /api/events/bionix-competition/leaderboard/semifinal/redo:
+    $ref: "paths/bionix-semifinal.yaml#/redo"
+  /api/events/bionix-competition/leaderboard/semifinal/reset:
+    $ref: "paths/bionix-semifinal.yaml#/reset"
   /api/events/bionix-is-class/registrations:
     $ref: "paths/bionix-is-class.yaml#/registrations"
   /api/events/bionix-is-class/registrations/validate:
@@ -233,6 +245,24 @@ components:
       $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftRequest.yaml"
     BionixCompetitionRegistrationDraftResponse:
       $ref: "components/schemas/ApiBionixCompetitionRegistrationDraftResponse.yaml"
+    BionixSemifinalLeaderboardResponse:
+      $ref: "components/schemas/ApiBionixSemifinalLeaderboardResponse.yaml"
+    BionixSemifinalCumulativeItem:
+      $ref: "components/schemas/ApiBionixSemifinalCumulativeItem.yaml"
+    BionixSemifinalSuitItem:
+      $ref: "components/schemas/ApiBionixSemifinalSuitItem.yaml"
+    BionixSemifinalRoundResponse:
+      $ref: "components/schemas/ApiBionixSemifinalRoundResponse.yaml"
+    BionixSemifinalTeamRoundItem:
+      $ref: "components/schemas/ApiBionixSemifinalTeamRoundItem.yaml"
+    BionixSemifinalActionRequest:
+      $ref: "components/schemas/ApiBionixSemifinalActionRequest.yaml"
+    BionixSemifinalUndoRequest:
+      $ref: "components/schemas/ApiBionixSemifinalUndoRequest.yaml"
+    BionixSemifinalRedoRequest:
+      $ref: "components/schemas/ApiBionixSemifinalRedoRequest.yaml"
+    BionixSemifinalResetRequest:
+      $ref: "components/schemas/ApiBionixSemifinalResetRequest.yaml"
     BionixIsClassRegistrationRequest:
       $ref: "components/schemas/ApiBionixIsClassRegistrationRequest.yaml"
     BionixIsClassRegistrationValidationRequest:

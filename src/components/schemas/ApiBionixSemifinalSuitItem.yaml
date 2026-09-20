@@ -1,0 +1,33 @@
+title: ApiBionixSemifinalSuitItem
+type: object
+required: [registrationId, teamName, rank, basePoints, currentStreak, highestStreak, streakBonus, totalPoints]
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  teamName:
+    type: string
+    example: "Tim Juara IT"
+  teamLogo:
+    type: string
+    nullable: true
+    example: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+  rank:
+    type: integer
+    example: 1
+  basePoints:
+    type: integer
+    example: 22
+  currentStreak:
+    type: integer
+    example: 4
+  highestStreak:
+    type: integer
+    example: 5
+  streakBonus:
+    type: integer
+    example: 3
+  totalPoints:
+    type: integer
+    example: 25

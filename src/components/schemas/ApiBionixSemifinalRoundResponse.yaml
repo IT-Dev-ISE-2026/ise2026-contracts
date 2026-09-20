@@ -1,0 +1,13 @@
+title: ApiBionixSemifinalRoundResponse
+type: object
+required: [suit, teams]
+properties:
+  suit:
+    type: string
+    enum: [hearts, diamonds, clubs, spades]
+    example: "hearts"
+  teams:
+    type: array
+    description: "State of all 15 competing teams for this suit/lab."
+    items:
+      $ref: './ApiBionixSemifinalTeamRoundItem.yaml'

@@ -1,0 +1,43 @@
+title: ApiBionixSemifinalCumulativeItem
+type: object
+required: [registrationId, teamName, rank, totalPoints, highestStreak, basePoints, suitPoints]
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  teamName:
+    type: string
+    example: "Tim Juara IT"
+  teamLogo:
+    type: string
+    nullable: true
+    example: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+  rank:
+    type: integer
+    example: 1
+  totalPoints:
+    type: integer
+    example: 85
+  highestStreak:
+    type: integer
+    example: 8
+  basePoints:
+    type: integer
+    example: 79
+  suitPoints:
+    type: object
+    required: [hearts, diamonds, clubs, spades]
+    properties:
+      hearts:
+        type: integer
+        example: 25
+      diamonds:
+        type: integer
+        example: 20
+      clubs:
+        type: integer
+        example: 18
+      spades:
+        type: integer
+        example: 22

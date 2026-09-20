@@ -1,0 +1,30 @@
+title: ApiBionixSemifinalLeaderboardResponse
+type: object
+required: [cumulative, suits]
+properties:
+  cumulative:
+    type: array
+    description: "Ranked list of all 15 teams sorted by cumulative total score across all 4 suits."
+    items:
+      $ref: './ApiBionixSemifinalCumulativeItem.yaml'
+  suits:
+    type: object
+    description: "Top 5 teams for each of the 4 playing card suits/labs."
+    required: [hearts, diamonds, clubs, spades]
+    properties:
+      hearts:
+        type: array
+        items:
+          $ref: './ApiBionixSemifinalSuitItem.yaml'
+      diamonds:
+        type: array
+        items:
+          $ref: './ApiBionixSemifinalSuitItem.yaml'
+      clubs:
+        type: array
+        items:
+          $ref: './ApiBionixSemifinalSuitItem.yaml'
+      spades:
+        type: array
+        items:
+          $ref: './ApiBionixSemifinalSuitItem.yaml'

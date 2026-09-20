@@ -1,0 +1,834 @@
+leaderboard:
+  get:
+    operationId: getBionixSemifinalLeaderboard
+    summary: "(admin) Get BIONIX Semifinal Leaderboard"
+    description: "Retrieve real-time cumulative rankings (all 15 teams) and 4-suit sub-leaderboards (Top 5 per suit) for the projector display. Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    responses:
+      '200':
+        description: Leaderboard data retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixSemifinalLeaderboardResponse.yaml'
+                message:
+                  type: string
+                  example: "Leaderboard retrieved successfully."
+            examples:
+              LeaderboardSuccess:
+                summary: Semifinal cumulative standings and 4-suit top 5
+                value:
+                  data:
+                    cumulative:
+                      - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        teamName: "Hengker Keputih"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                        rank: 1
+                        totalPoints: 88
+                        highestStreak: 8
+                        basePoints: 82
+                        suitPoints:
+                          hearts: 24
+                          diamonds: 22
+                          clubs: 18
+                          spades: 24
+                      - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
+                        teamName: "Garuda Cyber"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
+                        rank: 2
+                        totalPoints: 82
+                        highestStreak: 6
+                        basePoints: 78
+                        suitPoints:
+                          hearts: 20
+                          diamonds: 25
+                          clubs: 17
+                          spades: 20
+                      - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
+                        teamName: "Informatika Juara"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team3"
+                        rank: 3
+                        totalPoints: 75
+                        highestStreak: 5
+                        basePoints: 72
+                        suitPoints:
+                          hearts: 18
+                          diamonds: 19
+                          clubs: 20
+                          spades: 18
+                    suits:
+                      hearts:
+                        - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                          teamName: "Hengker Keputih"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                          rank: 1
+                          basePoints: 21
+                          currentStreak: 4
+                          highestStreak: 5
+                          streakBonus: 3
+                          totalPoints: 24
+                        - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
+                          teamName: "Garuda Cyber"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
+                          rank: 2
+                          basePoints: 19
+                          currentStreak: 0
+                          highestStreak: 3
+                          streakBonus: 1
+                          totalPoints: 20
+                      diamonds:
+                        - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
+                          teamName: "Garuda Cyber"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
+                          rank: 1
+                          basePoints: 21
+                          currentStreak: 6
+                          highestStreak: 6
+                          streakBonus: 4
+                          totalPoints: 25
+                        - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                          teamName: "Hengker Keputih"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                          rank: 2
+                          basePoints: 20
+                          currentStreak: 2
+                          highestStreak: 4
+                          streakBonus: 2
+                          totalPoints: 22
+                      clubs:
+                        - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
+                          teamName: "Informatika Juara"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team3"
+                          rank: 1
+                          basePoints: 18
+                          currentStreak: 3
+                          highestStreak: 4
+                          streakBonus: 2
+                          totalPoints: 20
+                        - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                          teamName: "Hengker Keputih"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                          rank: 2
+                          basePoints: 17
+                          currentStreak: 1
+                          highestStreak: 3
+                          streakBonus: 1
+                          totalPoints: 18
+                      spades:
+                        - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                          teamName: "Hengker Keputih"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                          rank: 1
+                          basePoints: 21
+                          currentStreak: 5
+                          highestStreak: 5
+                          streakBonus: 3
+                          totalPoints: 24
+                        - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
+                          teamName: "Garuda Cyber"
+                          teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
+                          rank: 2
+                          basePoints: 19
+                          currentStreak: 0
+                          highestStreak: 3
+                          streakBonus: 1
+                          totalPoints: 20
+                  message: "Leaderboard retrieved successfully."
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-lb-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-lb-403"
+
+round-by-suit:
+  get:
+    operationId: getBionixSemifinalRound
+    summary: "(admin) Get BIONIX Semifinal round state for a suit"
+    description: "Retrieve the current state of all 15 competing teams for the specified card suit / lab (hearts, diamonds, clubs, spades). Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: suit
+        in: path
+        required: true
+        description: "Card suit / lab category (hearts, diamonds, clubs, spades)."
+        schema:
+          type: string
+          enum: [hearts, diamonds, clubs, spades]
+    responses:
+      '200':
+        description: Round state retrieved successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixSemifinalRoundResponse.yaml'
+                message:
+                  type: string
+                  example: "Round state retrieved successfully."
+            examples:
+              RoundSuccess:
+                summary: Lab round state with competing teams
+                value:
+                  data:
+                    suit: "hearts"
+                    teams:
+                      - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                        teamName: "Hengker Keputih"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                        orderIndex: 1
+                        cardsState: ["correct", "correct", "correct", "skipped", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                        currentCardIndex: 4
+                        basePoints: 6
+                        currentStreak: 0
+                        highestStreak: 3
+                        streakBonus: 1
+                        totalPoints: 7
+                        jokerUsed: false
+                        jokersUsedTotal: 1
+                        isJokerDisabled: false
+                        canUndo: true
+                        canRedo: false
+                      - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
+                        teamName: "Garuda Cyber"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
+                        orderIndex: 2
+                        cardsState: ["correct", "correct", "correct", "correct", "correct", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                        currentCardIndex: 5
+                        basePoints: 15
+                        currentStreak: 5
+                        highestStreak: 5
+                        streakBonus: 3
+                        totalPoints: 18
+                        jokerUsed: false
+                        jokersUsedTotal: 2
+                        isJokerDisabled: true
+                        canUndo: true
+                        canRedo: false
+                      - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
+                        teamName: "Informatika Juara"
+                        teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team3"
+                        orderIndex: 3
+                        cardsState: ["pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                        currentCardIndex: 0
+                        basePoints: 0
+                        currentStreak: 0
+                        highestStreak: 0
+                        streakBonus: 0
+                        totalPoints: 0
+                        jokerUsed: false
+                        jokersUsedTotal: 0
+                        isJokerDisabled: false
+                        canUndo: false
+                        canRedo: false
+                  message: "Round state retrieved successfully."
+      '400':
+        description: Invalid suit parameter.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              InvalidSuit:
+                summary: Invalid suit parameter
+                value:
+                  message: "Invalid suit parameter. Allowed values are hearts, diamonds, clubs, spades."
+                  requestId: "req-bionix-round-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-round-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-round-403"
+
+action:
+  post:
+    operationId: submitBionixSemifinalAction
+    summary: "(admin) Submit correct or skip action for a team"
+    description: "Execute a correct or skip scoring action on the currently active card for a team in a suit. Single-click execution. Enforces Joker 2-lab limit. Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixSemifinalActionRequest.yaml'
+          examples:
+            CorrectAction:
+              summary: Submit correct answer on active card
+              value:
+                registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                suit: "hearts"
+                action: "correct"
+            SkipAction:
+              summary: Submit skip on active card
+              value:
+                registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                suit: "hearts"
+                action: "skip"
+    responses:
+      '200':
+        description: Action executed successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixSemifinalTeamRoundItem.yaml'
+                message:
+                  type: string
+                  example: "Action executed successfully."
+            examples:
+              CorrectActionSuccess:
+                summary: Correct answer recorded (streak +1, base points added)
+                value:
+                  data:
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                    orderIndex: 1
+                    cardsState: ["correct", "correct", "correct", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                    currentCardIndex: 3
+                    basePoints: 6
+                    currentStreak: 3
+                    highestStreak: 3
+                    streakBonus: 1
+                    totalPoints: 7
+                    jokerUsed: false
+                    jokersUsedTotal: 0
+                    isJokerDisabled: false
+                    canUndo: true
+                    canRedo: false
+                  message: "Action executed successfully."
+              SkipActionSuccess:
+                summary: Skip action recorded (streak resets to 0, advance card)
+                value:
+                  data:
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                    orderIndex: 1
+                    cardsState: ["correct", "correct", "correct", "skipped", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                    currentCardIndex: 4
+                    basePoints: 6
+                    currentStreak: 0
+                    highestStreak: 3
+                    streakBonus: 1
+                    totalPoints: 7
+                    jokerUsed: false
+                    jokersUsedTotal: 0
+                    isJokerDisabled: false
+                    canUndo: true
+                    canRedo: false
+                  message: "Action executed successfully."
+              JokerCorrectSuccess:
+                summary: Joker card answered correctly (card 14, +9 base points)
+                value:
+                  data:
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                    orderIndex: 1
+                    cardsState: ["correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct", "correct"]
+                    currentCardIndex: 14
+                    basePoints: 100
+                    currentStreak: 14
+                    highestStreak: 14
+                    streakBonus: 11
+                    totalPoints: 111
+                    jokerUsed: true
+                    jokersUsedTotal: 2
+                    isJokerDisabled: false
+                    canUndo: true
+                    canRedo: false
+                  message: "Action executed successfully."
+      '400':
+        description: Bad request or rule violation.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              JokerLimitExceeded:
+                summary: Joker quota exceeded
+                value:
+                  message: "Joker quota exceeded. Team has already used Joker in 2 other suits."
+                  requestId: "req-bionix-action-400-joker"
+              RoundAlreadyCompleted:
+                summary: All cards already completed
+                value:
+                  message: "All 14 cards have already been played for this team in this suit."
+                  requestId: "req-bionix-action-400-completed"
+              InvalidAction:
+                summary: Invalid scoring action
+                value:
+                  message: "Invalid scoring action specified."
+                  requestId: "req-bionix-action-400-invalid"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-action-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-action-403"
+      '404':
+        description: Team or round not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotFound:
+                summary: Team registration not found
+                value:
+                  message: "Team registration not found or not in semifinal stage."
+                  requestId: "req-bionix-action-404"
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Request body validation failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-action-422"
+                  errors:
+                    registrationId:
+                      - "registrationId must be a valid UUID"
+                    suit:
+                      - "suit must be one of: hearts, diamonds, clubs, spades"
+                    action:
+                      - "action must be one of: correct, skip"
+
+undo:
+  post:
+    operationId: undoBionixSemifinalAction
+    summary: "(admin) Undo last action for a team in a suit"
+    description: "Rollback the last scoring action on a team, restoring previous card status, streaks, points, and Joker quota. Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixSemifinalUndoRequest.yaml'
+          examples:
+            UndoRequest:
+              summary: Undo request for a team in a suit
+              value:
+                registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                suit: "hearts"
+    responses:
+      '200':
+        description: Undo executed successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixSemifinalTeamRoundItem.yaml'
+                message:
+                  type: string
+                  example: "Undo executed successfully."
+            examples:
+              UndoSuccess:
+                summary: Last action successfully rolled back
+                value:
+                  data:
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                    orderIndex: 1
+                    cardsState: ["correct", "correct", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                    currentCardIndex: 2
+                    basePoints: 3
+                    currentStreak: 2
+                    highestStreak: 2
+                    streakBonus: 0
+                    totalPoints: 3
+                    jokerUsed: false
+                    jokersUsedTotal: 0
+                    isJokerDisabled: false
+                    canUndo: true
+                    canRedo: true
+                  message: "Undo executed successfully."
+      '400':
+        description: Nothing to undo or invalid request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NothingToUndo:
+                summary: No actions to undo
+                value:
+                  message: "No action history available to undo for this team in this suit."
+                  requestId: "req-bionix-undo-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-undo-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-undo-403"
+      '404':
+        description: Team or round not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotFound:
+                summary: Team registration not found
+                value:
+                  message: "Team registration not found or not in semifinal stage."
+                  requestId: "req-bionix-undo-404"
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Request body validation failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-undo-422"
+                  errors:
+                    registrationId:
+                      - "registrationId must be a valid UUID"
+                    suit:
+                      - "suit must be one of: hearts, diamonds, clubs, spades"
+
+redo:
+  post:
+    operationId: redoBionixSemifinalAction
+    summary: "(admin) Redo previously undone action for a team in a suit"
+    description: "Reapply the last undone action for a team. Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixSemifinalRedoRequest.yaml'
+          examples:
+            RedoRequest:
+              summary: Redo request for a team in a suit
+              value:
+                registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                suit: "hearts"
+    responses:
+      '200':
+        description: Redo executed successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiBionixSemifinalTeamRoundItem.yaml'
+                message:
+                  type: string
+                  example: "Redo executed successfully."
+            examples:
+              RedoSuccess:
+                summary: Undone action successfully reapplied
+                value:
+                  data:
+                    registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    teamName: "Hengker Keputih"
+                    teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+                    orderIndex: 1
+                    cardsState: ["correct", "correct", "correct", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+                    currentCardIndex: 3
+                    basePoints: 6
+                    currentStreak: 3
+                    highestStreak: 3
+                    streakBonus: 1
+                    totalPoints: 7
+                    jokerUsed: false
+                    jokersUsedTotal: 0
+                    isJokerDisabled: false
+                    canUndo: true
+                    canRedo: false
+                  message: "Redo executed successfully."
+      '400':
+        description: Nothing to redo or invalid request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NothingToRedo:
+                summary: No actions to redo
+                value:
+                  message: "No undone action available to redo for this team in this suit."
+                  requestId: "req-bionix-redo-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-redo-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-redo-403"
+      '404':
+        description: Team or round not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotFound:
+                summary: Team registration not found
+                value:
+                  message: "Team registration not found or not in semifinal stage."
+                  requestId: "req-bionix-redo-404"
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Request body validation failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-redo-422"
+                  errors:
+                    registrationId:
+                      - "registrationId must be a valid UUID"
+                    suit:
+                      - "suit must be one of: hearts, diamonds, clubs, spades"
+
+reset:
+  post:
+    operationId: resetBionixSemifinal
+    summary: "(admin) Reset BIONIX Semifinal round data"
+    description: "Reset progress data for a suit or all suits. Retained for internal IT Dev operations (dry runs, testing, simulation). Requires admin permission."
+    tags: ["Events/Bionix Competition"]
+    security:
+      - BearerAuth: []
+    requestBody:
+      required: false
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiBionixSemifinalResetRequest.yaml'
+          examples:
+            ResetAllSuits:
+              summary: Reset all suits and all teams
+              value: {}
+            ResetSuitOnly:
+              summary: Reset all teams for a specific suit
+              value:
+                suit: "hearts"
+            ResetSpecificTeam:
+              summary: Reset a single team for a specific suit
+              value:
+                suit: "hearts"
+                registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+    responses:
+      '200':
+        description: Reset executed successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                message:
+                  type: string
+                  example: "Semifinal data reset successfully."
+            examples:
+              ResetAllSuitsSuccess:
+                summary: All semifinal round data reset
+                value:
+                  message: "All semifinal round data reset successfully."
+              ResetSpecificSuitSuccess:
+                summary: Specific suit data reset
+                value:
+                  message: "Semifinal data for suit 'hearts' reset successfully."
+              ResetSpecificTeamSuccess:
+                summary: Specific team in a suit reset
+                value:
+                  message: "Semifinal data for team 'ade1e466-24ba-4475-8495-2aa73b5bd5ff' in suit 'hearts' reset successfully."
+      '400':
+        description: Bad request.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              BadRequest:
+                summary: Bad request
+                value:
+                  message: "Invalid suit or parameters supplied."
+                  requestId: "req-bionix-reset-400"
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Unauthorized:
+                summary: Token missing or invalid
+                value:
+                  message: "Unauthorized access."
+                  requestId: "req-bionix-reset-401"
+      '403':
+        description: Forbidden. Insufficient permissions.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              Forbidden:
+                summary: Insufficient permissions
+                value:
+                  message: "Access denied. Insufficient permissions."
+                  requestId: "req-bionix-reset-403"
+      '404':
+        description: Team not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              RegistrationNotFound:
+                summary: Team registration not found
+                value:
+                  message: "Team registration not found for the specified registrationId."
+                  requestId: "req-bionix-reset-404"
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              ValidationError:
+                summary: Request body validation failed
+                value:
+                  message: "Validation failed."
+                  requestId: "req-bionix-reset-422"
+                  errors:
+                    registrationId:
+                      - "registrationId must be a valid UUID"
+                    suit:
+                      - "suit must be one of: hearts, diamonds, clubs, spades"

@@ -1,0 +1,12 @@
+title: ApiBionixSemifinalRedoRequest
+type: object
+required: [registrationId, suit]
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  suit:
+    type: string
+    enum: [hearts, diamonds, clubs, spades]
+    example: "hearts"

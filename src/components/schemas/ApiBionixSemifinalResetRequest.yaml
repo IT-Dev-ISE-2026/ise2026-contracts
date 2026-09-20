@@ -1,0 +1,13 @@
+title: ApiBionixSemifinalResetRequest
+type: object
+properties:
+  suit:
+    type: string
+    enum: [hearts, diamonds, clubs, spades]
+    description: "Optional suit to reset. If omitted, all suits are reset."
+    example: "hearts"
+  registrationId:
+    type: string
+    format: uuid
+    description: "Optional registration ID of the team to reset. If omitted, all teams in the suit are reset."
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"

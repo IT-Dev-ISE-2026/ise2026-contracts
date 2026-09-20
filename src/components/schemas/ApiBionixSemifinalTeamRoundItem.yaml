@@ -1,0 +1,79 @@
+title: ApiBionixSemifinalTeamRoundItem
+type: object
+required:
+  - registrationId
+  - teamName
+  - cardsState
+  - currentCardIndex
+  - basePoints
+  - currentStreak
+  - highestStreak
+  - streakBonus
+  - totalPoints
+  - jokerUsed
+  - jokersUsedTotal
+  - isJokerDisabled
+  - canUndo
+  - canRedo
+properties:
+  registrationId:
+    type: string
+    format: uuid
+    example: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+  teamName:
+    type: string
+    example: "Tim Juara IT"
+  teamLogo:
+    type: string
+    nullable: true
+    example: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
+  orderIndex:
+    type: integer
+    description: "Row order index from 1 to 15."
+    example: 1
+  cardsState:
+    type: array
+    description: "Array of exactly 14 card statuses corresponding to A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, Joker."
+    items:
+      type: string
+      enum: [pending, correct, skipped]
+    example: ["correct", "correct", "skipped", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending", "pending"]
+  currentCardIndex:
+    type: integer
+    description: "0-based index of the card currently in turn (0 to 14). 14 means all cards answered."
+    example: 3
+  basePoints:
+    type: integer
+    example: 3
+  currentStreak:
+    type: integer
+    example: 0
+  highestStreak:
+    type: integer
+    example: 2
+  streakBonus:
+    type: integer
+    example: 0
+  totalPoints:
+    type: integer
+    example: 3
+  jokerUsed:
+    type: boolean
+    description: "Whether Joker was answered/used in this specific suit."
+    example: false
+  jokersUsedTotal:
+    type: integer
+    description: "Total number of Jokers answered/used by this team across all 4 suits (max 2)."
+    example: 1
+  isJokerDisabled:
+    type: boolean
+    description: "True if team already used Joker in 2 other suits and Joker is not yet used in this suit."
+    example: false
+  canUndo:
+    type: boolean
+    description: "True if there is an action to undo."
+    example: true
+  canRedo:
+    type: boolean
+    description: "True if there is an undone action to redo."
+    example: false
