@@ -1,0 +1,28 @@
+title: ApiTerritoryClashFinishResponse
+type: object
+required: [sessionId, isFinished, board, teams, winningLines]
+properties:
+  sessionId:
+    type: string
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440000"
+    description: "Session ID of the concluded match."
+  isFinished:
+    type: boolean
+    example: true
+    description: "Game completion status."
+  board:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTile.yaml'
+    description: "Final persisted 15 tiles snapshot."
+  teams:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashTeam.yaml'
+    description: "Final leaderboard of 5 teams sorted descending by bonus points."
+  winningLines:
+    type: array
+    items:
+      $ref: 'ApiTerritoryClashWinningLine.yaml'
+    description: "All formed winning Bingo lines with points and tile coordinates for visual highlight."

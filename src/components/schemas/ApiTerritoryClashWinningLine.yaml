@@ -1,0 +1,25 @@
+title: ApiTerritoryClashWinningLine
+type: object
+required: [teamId, pattern, points, coordinates]
+properties:
+  teamId:
+    type: string
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440001"
+    description: "ID of the team forming the winning line."
+  pattern:
+    type: string
+    enum: [horizontal_5, horizontal_4, horizontal_3, vertical_3, diagonal_3]
+    example: "horizontal_5"
+    description: "Bingo pattern type."
+  points:
+    type: integer
+    example: 75
+    description: "Bonus points awarded for this pattern."
+  coordinates:
+    type: array
+    items:
+      type: string
+      pattern: "^[A-C][1-5]$"
+    example: ["A1", "A2", "A3", "A4", "A5"]
+    description: "Coordinates of tiles forming this winning line."

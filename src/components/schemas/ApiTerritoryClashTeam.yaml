@@ -1,0 +1,35 @@
+title: ApiTerritoryClashTeam
+type: object
+required: [id, teamNumber, teamName, colorHex, bonusPoints]
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "550e8400-e29b-41d4-a716-446655440001"
+    description: "Bionix competition registration ID."
+  teamNumber:
+    type: integer
+    minimum: 1
+    maximum: 5
+    example: 1
+    description: "Team sequence number (1 to 5)."
+  teamName:
+    type: string
+    example: "Tim Alpha"
+    description: "Team name from competition registration."
+  colorHex:
+    type: string
+    example: "#EF4444"
+    description: "Static color assigned to the team (1-Merah, 2-Kuning, 3-Hijau, 4-Biru, 5-Ungu)."
+  bonusPoints:
+    type: integer
+    default: 0
+    example: 0
+    description: "Accumulated Bingo bonus points."
+  rank:
+    type: integer
+    nullable: true
+    minimum: 1
+    maximum: 5
+    example: 1
+    description: "Leaderboard ranking position."
