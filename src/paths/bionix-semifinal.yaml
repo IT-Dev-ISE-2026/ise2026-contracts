@@ -38,6 +38,7 @@ leaderboard:
                           diamonds: 22
                           clubs: 18
                           spades: 24
+                        cardsPlayed: 44
                       - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                         teamName: "Garuda Cyber"
                         teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
@@ -50,6 +51,7 @@ leaderboard:
                           diamonds: 25
                           clubs: 17
                           spades: 20
+                        cardsPlayed: 40
                       - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
                         teamName: "Informatika Juara"
                         teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team3"
@@ -62,6 +64,7 @@ leaderboard:
                           diamonds: 19
                           clubs: 20
                           spades: 18
+                        cardsPlayed: 38
                     suits:
                       hearts:
                         - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
@@ -73,6 +76,7 @@ leaderboard:
                           highestStreak: 5
                           streakBonus: 3
                           totalPoints: 24
+                          cardsPlayed: 14
                         - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                           teamName: "Garuda Cyber"
                           teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
@@ -82,6 +86,7 @@ leaderboard:
                           highestStreak: 3
                           streakBonus: 1
                           totalPoints: 20
+                          cardsPlayed: 12
                       diamonds:
                         - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                           teamName: "Garuda Cyber"
@@ -92,6 +97,7 @@ leaderboard:
                           highestStreak: 6
                           streakBonus: 4
                           totalPoints: 25
+                          cardsPlayed: 11
                         - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                           teamName: "Hengker Keputih"
                           teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
@@ -101,6 +107,7 @@ leaderboard:
                           highestStreak: 4
                           streakBonus: 2
                           totalPoints: 22
+                          cardsPlayed: 9
                       clubs:
                         - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
                           teamName: "Informatika Juara"
@@ -111,6 +118,7 @@ leaderboard:
                           highestStreak: 4
                           streakBonus: 2
                           totalPoints: 20
+                          cardsPlayed: 10
                         - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                           teamName: "Hengker Keputih"
                           teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
@@ -120,6 +128,7 @@ leaderboard:
                           highestStreak: 3
                           streakBonus: 1
                           totalPoints: 18
+                          cardsPlayed: 8
                       spades:
                         - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                           teamName: "Hengker Keputih"
@@ -130,6 +139,7 @@ leaderboard:
                           highestStreak: 5
                           streakBonus: 3
                           totalPoints: 24
+                          cardsPlayed: 13
                         - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                           teamName: "Garuda Cyber"
                           teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
@@ -139,6 +149,7 @@ leaderboard:
                           highestStreak: 3
                           streakBonus: 1
                           totalPoints: 20
+                          cardsPlayed: 14
                   message: "Leaderboard retrieved successfully."
       '401':
         description: Unauthorized.

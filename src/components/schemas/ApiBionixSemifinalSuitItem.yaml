@@ -1,6 +1,6 @@
 title: ApiBionixSemifinalSuitItem
 type: object
-required: [registrationId, teamName, rank, basePoints, currentStreak, highestStreak, streakBonus, totalPoints]
+required: [registrationId, teamName, rank, basePoints, currentStreak, highestStreak, streakBonus, totalPoints, cardsPlayed]
 properties:
   registrationId:
     type: string
@@ -31,3 +31,7 @@ properties:
   totalPoints:
     type: integer
     example: 25
+  cardsPlayed:
+    type: integer
+    description: "Number of the 14 cards the team has resolved (correct or skipped) in this suit. Drives the lab progress bar."
+    example: 9
