@@ -3,6 +3,8 @@ type: object
 required:
   - registrationId
   - teamName
+  - orderIndex
+  - rank
   - cardsState
   - currentCardIndex
   - basePoints
@@ -29,7 +31,11 @@ properties:
     example: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
   orderIndex:
     type: integer
-    description: "Row order index from 1 to 15."
+    description: "1-based row position of the team among semifinal teams ordered by team name ASC."
+    example: 1
+  rank:
+    type: integer
+    description: "1-based rank of the team within this suit, using the same order as the suit leaderboard (totalPoints DESC, highestStreak DESC, basePoints DESC, last update ASC). Unique per suit."
     example: 1
   cardsState:
     type: array

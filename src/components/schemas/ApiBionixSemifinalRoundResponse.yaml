@@ -8,6 +8,6 @@ properties:
     example: "hearts"
   teams:
     type: array
-    description: "State of all 15 competing teams for this suit/lab."
+    description: "State of all semifinal teams for this suit/lab, ordered by team name."
     items:
       $ref: './ApiBionixSemifinalTeamRoundItem.yaml'

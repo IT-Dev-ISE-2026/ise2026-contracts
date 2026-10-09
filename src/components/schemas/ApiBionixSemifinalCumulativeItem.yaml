@@ -21,6 +21,7 @@ properties:
     example: 85
   highestStreak:
     type: integer
+    description: "Highest streak reached in any single suit (max across the 4 suits)."
     example: 8
   basePoints:
     type: integer

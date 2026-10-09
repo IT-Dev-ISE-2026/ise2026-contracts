@@ -4,12 +4,12 @@ required: [cumulative, suits]
 properties:
   cumulative:
     type: array
-    description: "Ranked list of all 15 teams sorted by cumulative total score across all 4 suits."
+    description: "Ranked list of all semifinal teams sorted by cumulative total score across all 4 suits."
     items:
       $ref: './ApiBionixSemifinalCumulativeItem.yaml'
   suits:
     type: object
-    description: "Top 5 teams for each of the 4 playing card suits/labs."
+    description: "All semifinal teams for each of the 4 playing card suits/labs, ordered by rank."
     required: [hearts, diamonds, clubs, spades]
     properties:
       hearts:
