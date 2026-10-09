@@ -231,6 +231,7 @@ round-by-suit:
                         isJokerDisabled: false
                         canUndo: true
                         canRedo: false
+                        revision: 3
                       - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                         teamName: "Garuda Cyber"
                         schoolName: "SMAN 1 Malang"
@@ -249,6 +250,7 @@ round-by-suit:
                         isJokerDisabled: true
                         canUndo: true
                         canRedo: false
+                        revision: 5
                       - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
                         teamName: "Informatika Juara"
                         schoolName: "SMAN 2 Sidoarjo"
@@ -267,6 +269,7 @@ round-by-suit:
                         isJokerDisabled: false
                         canUndo: false
                         canRedo: false
+                        revision: 0
                   message: "Round state retrieved successfully."
       '400':
         description: Invalid suit parameter.
@@ -369,6 +372,7 @@ action:
                     isJokerDisabled: false
                     canUndo: true
                     canRedo: false
+                    revision: 3
                   message: "Action executed successfully."
               SkipActionSuccess:
                 summary: Skip action recorded (streak resets to 0, advance card)
@@ -392,6 +396,7 @@ action:
                     isJokerDisabled: false
                     canUndo: true
                     canRedo: false
+                    revision: 4
                   message: "Action executed successfully."
               JokerCorrectSuccess:
                 summary: Joker card answered correctly (card 14, +9 base points)
@@ -415,6 +420,7 @@ action:
                     isJokerDisabled: false
                     canUndo: true
                     canRedo: false
+                    revision: 14
                   message: "Action executed successfully."
       '400':
         description: Bad request or rule violation.
@@ -474,6 +480,18 @@ action:
                 value:
                   message: "Team registration not found or not in semifinal stage."
                   requestId: "req-bionix-action-404"
+      '409':
+        description: The team was changed by another operator since expectedRevision.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              StaleRevision:
+                summary: Another operator updated this team first
+                value:
+                  message: "This team was updated by another operator. Reload and try again."
+                  requestId: "req-bionix-action-409"
       '422':
         description: Validation failed.
         content:
@@ -551,6 +569,7 @@ undo:
                     isJokerDisabled: false
                     canUndo: true
                     canRedo: true
+                    revision: 2
                   message: "Undo executed successfully."
       '400':
         description: Nothing to undo or invalid request.
@@ -600,6 +619,18 @@ undo:
                 value:
                   message: "Team registration not found or not in semifinal stage."
                   requestId: "req-bionix-undo-404"
+      '409':
+        description: The team was changed by another operator since expectedRevision.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              StaleRevision:
+                summary: Another operator updated this team first
+                value:
+                  message: "This team was updated by another operator. Reload and try again."
+                  requestId: "req-bionix-undo-409"
       '422':
         description: Validation failed.
         content:
@@ -675,6 +706,7 @@ redo:
                     isJokerDisabled: false
                     canUndo: true
                     canRedo: false
+                    revision: 3
                   message: "Redo executed successfully."
       '400':
         description: Nothing to redo or invalid request.
@@ -724,6 +756,18 @@ redo:
                 value:
                   message: "Team registration not found or not in semifinal stage."
                   requestId: "req-bionix-redo-404"
+      '409':
+        description: The team was changed by another operator since expectedRevision.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              StaleRevision:
+                summary: Another operator updated this team first
+                value:
+                  message: "This team was updated by another operator. Reload and try again."
+                  requestId: "req-bionix-redo-409"
       '422':
         description: Validation failed.
         content:

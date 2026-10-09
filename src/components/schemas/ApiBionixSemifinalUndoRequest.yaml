@@ -10,3 +10,9 @@ properties:
     type: string
     enum: [hearts, diamonds, clubs, spades]
     example: "hearts"
+  expectedRevision:
+    type: integer
+    format: int64
+    minimum: 0
+    description: "Optional. The revision the operator is looking at; the request fails with 409 if the team was changed since."
+    example: 7

@@ -18,6 +18,7 @@ required:
   - isJokerDisabled
   - canUndo
   - canRedo
+  - revision
 properties:
   registrationId:
     type: string
@@ -88,3 +89,8 @@ properties:
     type: boolean
     description: "True if there is an undone action to redo."
     example: false
+  revision:
+    type: integer
+    format: int64
+    description: "Increases on every change to this team's state in this suit. Send it back as expectedRevision to reject the change if another operator updated the team in the meantime."
+    example: 7

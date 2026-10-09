@@ -17,3 +17,9 @@ properties:
     description: "Scoring decision for the currently active card."
     enum: [correct, skip]
     example: "correct"
+  expectedRevision:
+    type: integer
+    format: int64
+    minimum: 0
+    description: "Optional. The revision the operator is looking at; the request fails with 409 if the team was changed since."
+    example: 7
