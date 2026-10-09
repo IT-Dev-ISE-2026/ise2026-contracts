@@ -2,7 +2,7 @@ leaderboard:
   get:
     operationId: getBionixSemifinalLeaderboard
     summary: "(admin) Get BIONIX Semifinal Leaderboard"
-    description: "Retrieve real-time cumulative rankings (all teams in the semifinal stage) and 4-suit sub-leaderboards (all semifinal teams per suit, ranked) for the projector display. Suit ranking order: totalPoints DESC, highestStreak DESC, basePoints DESC, last update ASC. Cumulative ranking order: totalPoints DESC, highestStreak (max across suits) DESC, last update ASC. Ranks are unique (1..N). Served from a short-lived cache that is invalidated on every scoring mutation. Requires operator:bionix-competition:semifinal."
+    description: "Retrieve real-time cumulative rankings (all teams in the semifinal stage) and 4-suit sub-leaderboards (all semifinal teams per suit, ranked) for the projector display. Suit ranking order: totalPoints DESC, highestStreak DESC, basePoints DESC, last update ASC. Cumulative ranking order: totalPoints DESC, highestStreak (max across suits) DESC, last update ASC. Ranks are unique (1..N). Served from a short-lived cache that is invalidated on every scoring mutation. Requires admin:bionix-competition:semifinal:read (or :write)."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -169,7 +169,7 @@ round-by-suit:
   get:
     operationId: getBionixSemifinalRound
     summary: "(admin) Get BIONIX Semifinal round state for a suit"
-    description: "Retrieve the current state of all teams in the semifinal stage for the specified card suit / lab (hearts, diamonds, clubs, spades), ordered by team name. Requires operator:bionix-competition:semifinal."
+    description: "Retrieve the current state of all teams in the semifinal stage for the specified card suit / lab (hearts, diamonds, clubs, spades), ordered by team name. Requires admin:bionix-competition:semifinal:read (or :write)."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -295,7 +295,7 @@ action:
   post:
     operationId: submitBionixSemifinalAction
     summary: "(admin) Submit correct or skip action for a team"
-    description: "Execute a correct or skip scoring action on the currently active card for a team in a suit. Single-click execution. Enforces Joker 2-lab limit. Requires operator:bionix-competition:semifinal."
+    description: "Execute a correct or skip scoring action on the currently active card for a team in a suit. Single-click execution. Enforces Joker 2-lab limit. Requires admin:bionix-competition:semifinal:write."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -481,7 +481,7 @@ undo:
   post:
     operationId: undoBionixSemifinalAction
     summary: "(admin) Undo last action for a team in a suit"
-    description: "Rollback the last scoring action on a team, restoring previous card status, streaks, points, and Joker quota. Requires operator:bionix-competition:semifinal."
+    description: "Rollback the last scoring action on a team, restoring previous card status, streaks, points, and Joker quota. Requires admin:bionix-competition:semifinal:write."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -604,7 +604,7 @@ redo:
   post:
     operationId: redoBionixSemifinalAction
     summary: "(admin) Redo previously undone action for a team in a suit"
-    description: "Reapply the last undone action for a team (subject to the same Joker 2-lab limit). Requires operator:bionix-competition:semifinal."
+    description: "Reapply the last undone action for a team (subject to the same Joker 2-lab limit). Requires admin:bionix-competition:semifinal:write."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
@@ -727,7 +727,7 @@ reset:
   post:
     operationId: resetBionixSemifinal
     summary: "(admin) Reset BIONIX Semifinal round data"
-    description: "Reset progress data for a suit or all suits. Retained for internal IT Dev operations (dry runs, testing, simulation). Requires operator:bionix-competition:semifinal."
+    description: "Reset progress data for a suit or all suits. Retained for internal IT Dev operations (dry runs, testing, simulation). Requires admin:bionix-competition:semifinal:write."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
