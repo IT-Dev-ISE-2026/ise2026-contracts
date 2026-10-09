@@ -3,6 +3,7 @@ type: object
 required:
   - registrationId
   - teamName
+  - schoolName
   - orderIndex
   - rank
   - cardsState
@@ -25,6 +26,10 @@ properties:
   teamName:
     type: string
     example: "Tim Juara IT"
+  schoolName:
+    type: string
+    description: "School of the team registration."
+    example: "SMAN 1 Surabaya"
   teamLogo:
     type: string
     nullable: true

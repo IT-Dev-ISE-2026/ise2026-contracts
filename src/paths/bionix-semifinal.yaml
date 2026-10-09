@@ -204,6 +204,7 @@ round-by-suit:
                     teams:
                       - registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                         teamName: "Hengker Keputih"
+                        schoolName: "SMAN 5 Surabaya"
                         teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                         orderIndex: 1
                         rank: 2
@@ -221,6 +222,7 @@ round-by-suit:
                         canRedo: false
                       - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                         teamName: "Garuda Cyber"
+                        schoolName: "SMAN 1 Malang"
                         teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
                         orderIndex: 2
                         rank: 1
@@ -238,6 +240,7 @@ round-by-suit:
                         canRedo: false
                       - registrationId: "cde1e466-24ba-4475-8495-2aa73b5bd5fd"
                         teamName: "Informatika Juara"
+                        schoolName: "SMAN 2 Sidoarjo"
                         teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team3"
                         orderIndex: 3
                         rank: 3
@@ -339,6 +342,7 @@ action:
                   data:
                     registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Hengker Keputih"
+                    schoolName: "SMAN 5 Surabaya"
                     teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                     orderIndex: 1
                     rank: 1
@@ -361,6 +365,7 @@ action:
                   data:
                     registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Hengker Keputih"
+                    schoolName: "SMAN 5 Surabaya"
                     teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                     orderIndex: 1
                     rank: 1
@@ -383,6 +388,7 @@ action:
                   data:
                     registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Hengker Keputih"
+                    schoolName: "SMAN 5 Surabaya"
                     teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                     orderIndex: 1
                     rank: 1
@@ -518,6 +524,7 @@ undo:
                   data:
                     registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Hengker Keputih"
+                    schoolName: "SMAN 5 Surabaya"
                     teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                     orderIndex: 1
                     rank: 1
@@ -641,6 +648,7 @@ redo:
                   data:
                     registrationId: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
                     teamName: "Hengker Keputih"
+                    schoolName: "SMAN 5 Surabaya"
                     teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team1"
                     orderIndex: 1
                     rank: 1
