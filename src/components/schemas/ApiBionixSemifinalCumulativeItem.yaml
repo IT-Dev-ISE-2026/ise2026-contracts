@@ -44,5 +44,5 @@ properties:
         example: 22
   cardsPlayed:
     type: integer
-    description: "Number of the 56 cards (14 per suit) the team has resolved across all 4 suits. Drives the cumulative progress bar."
+    description: "Number of the 56 cards (14 per suit) the team has resolved across all 4 suits. A Joker the team can no longer answer (Joker already used in 2 other suits) counts as resolved. Drives the cumulative progress bar."
     example: 40

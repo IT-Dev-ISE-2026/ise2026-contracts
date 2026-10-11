@@ -33,5 +33,5 @@ properties:
     example: 25
   cardsPlayed:
     type: integer
-    description: "Number of the 14 cards the team has resolved (correct or skipped) in this suit. Drives the lab progress bar."
+    description: "Number of the 14 cards the team has resolved (correct or skipped) in this suit. A Joker the team can no longer answer (Joker already used in 2 other suits) counts as resolved. Drives the lab progress bar."
     example: 9
