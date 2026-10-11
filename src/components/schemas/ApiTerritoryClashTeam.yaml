@@ -32,4 +32,4 @@ properties:
     minimum: 1
     maximum: 5
     example: 1
-    description: "Leaderboard ranking position."
+    description: "Leaderboard ranking position (bonus points descending, ties broken by teamNumber)."

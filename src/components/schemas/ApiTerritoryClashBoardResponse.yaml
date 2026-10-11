@@ -19,4 +19,4 @@ properties:
     type: array
     items:
       $ref: 'ApiTerritoryClashTeam.yaml'
-    description: "List of 5 finalist teams with updated scores (present on reset)."
+    description: "Finalist teams reloaded for the new game, ordered by teamNumber with bonus points reset to 0 (present on reset only)."

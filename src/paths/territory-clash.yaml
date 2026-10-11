@@ -2,7 +2,7 @@ session:
   get:
     operationId: getTerritoryClashSession
     summary: "(operator) Get active Territory Clash session"
-    description: "[operator] Retrieve active game session data from Redis (or initialize a new session with 5 finalist teams from database if none exists). Requires operator:territory-clash:* permission."
+    description: "[operator] Retrieve the current game session from Redis, or initialize a new one with up to 5 finalist teams (stage 'final') from the database if none exists. A finished session is kept and returned as-is (isFinished=true with winningLines and final bonusPoints) until the operator starts a new game via reset. If there are no finalists yet, the response contains an empty teams array and no session is stored, so finalists set later are picked up on the next call. Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -125,7 +125,7 @@ action:
   post:
     operationId: postTerritoryClashAction
     summary: "(operator) Record board move action"
-    description: "[operator] Select or capture a board tile for the active team. Discards forward redo branch, updates Redis history (capped at 2 moves), and advances pointer. Requires operator:territory-clash:* permission."
+    description: "[operator] Claim a board tile for the given team, whether the tile is empty or owned by another team. Discards the forward redo branch, appends a snapshot to the Redis history (unlimited), and advances the pointer. Claiming a tile the team already owns is a no-op and does not add a history entry. Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -194,12 +194,24 @@ action:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: No active session. Call GET /api/territory-clash/session first.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              SessionNotFound:
+                summary: No active session
+                value:
+                  message: "Territory Clash active session not found."
+                  requestId: "req-tc-action-404"
 
 undo:
   post:
     operationId: postTerritoryClashUndo
     summary: "(operator) Undo last board move action"
-    description: "[operator] Revert board to the previous state snapshot in Redis without deleting top state (enables redo). Requires operator:territory-clash:* permission."
+    description: "[operator] Revert board to the previous state snapshot in Redis without deleting later snapshots (enables redo). Undo is unlimited back to the start of the game (or the last reset). Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -253,12 +265,24 @@ undo:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: No active session. Call GET /api/territory-clash/session first.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              SessionNotFound:
+                summary: No active session
+                value:
+                  message: "Territory Clash active session not found."
+                  requestId: "req-tc-undo-404"
 
 redo:
   post:
     operationId: postTerritoryClashRedo
     summary: "(operator) Redo last board move action"
-    description: "[operator] Advance board to the latest snapshot state in Redis before undo. Requires operator:territory-clash:* permission."
+    description: "[operator] Re-apply the most recently undone move by advancing the history pointer one step. Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -312,12 +336,24 @@ redo:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: No active session. Call GET /api/territory-clash/session first.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              SessionNotFound:
+                summary: No active session
+                value:
+                  message: "Territory Clash active session not found."
+                  requestId: "req-tc-redo-404"
 
 reset:
   post:
     operationId: postTerritoryClashReset
     summary: "(operator) Reset board to initial state"
-    description: "[operator] Reset all 15 tiles to neutral/empty, set bonus points to 0, and clear history stack in Redis. Requires operator:territory-clash:* permission."
+    description: "[operator] Start a new game: reload the finalist teams from the database, reset all 15 tiles to neutral/empty, set bonus points to 0, clear the history stack, and assign a new sessionId. Allowed both during a game and after it has been finished (results of a finished game are already persisted). Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -396,12 +432,6 @@ reset:
                       - coordinate: "C5"
                         teamId: null
                         colorHex: null
-      '400':
-        description: Bad request (game already finished).
-        content:
-          application/json:
-            schema:
-              $ref: '../components/schemas/ApiError.yaml'
       '401':
         description: Unauthorized.
         content:
@@ -414,12 +444,24 @@ reset:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: No active session. Call GET /api/territory-clash/session first.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              SessionNotFound:
+                summary: No active session
+                value:
+                  message: "Territory Clash active session not found."
+                  requestId: "req-tc-reset-404"
 
 finish:
   post:
     operationId: postTerritoryClashFinish
     summary: "(operator) Finish game and persist results"
-    description: "[operator] Lock board interaction, calculate Bingo bonus points (5 horizontal = +75, 4 horizontal = +45, 3 h/v/d = +15), persist session snapshot and team bonus points to PostgreSQL in a transaction, and clean up Redis session. Requires operator:territory-clash:* permission."
+    description: "[operator] Lock board interaction, calculate Bingo bonus points (5 horizontal = +75, 4 horizontal = +45, 3 h/v/d = +15; a horizontal run only scores its longest pattern, no double counting), persist session snapshot and team bonus points to PostgreSQL (idempotent per sessionId), then keep the session in Redis marked as finished so GET /session keeps returning the final result until a new game is started via reset. Requires operator:territory-clash:* permission."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -498,16 +540,16 @@ finish:
                         points: 75
                         coordinates: ["A1", "A2", "A3", "A4", "A5"]
       '400':
-        description: Bad request (no active session to finish or already finished).
+        description: Bad request (game already finished).
         content:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
             examples:
-              NoActiveSession:
-                summary: No active session
+              GameFinished:
+                summary: Game already finished
                 value:
-                  message: "Tidak ada sesi aktif."
+                  message: "Permainan sudah selesai."
                   requestId: "req-tc-finish-400"
       '401':
         description: Unauthorized.
@@ -521,3 +563,15 @@ finish:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: No active session. Call GET /api/territory-clash/session first.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              SessionNotFound:
+                summary: No active session
+                value:
+                  message: "Territory Clash active session not found."
+                  requestId: "req-tc-finish-404"

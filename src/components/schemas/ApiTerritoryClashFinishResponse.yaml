@@ -20,7 +20,7 @@ properties:
     type: array
     items:
       $ref: 'ApiTerritoryClashTeam.yaml'
-    description: "Final leaderboard of 5 teams sorted descending by bonus points."
+    description: "Final standings of the finalist teams, ordered by teamNumber; use rank for the leaderboard order (bonus points descending, ties broken by teamNumber)."
   winningLines:
     type: array
     items:
