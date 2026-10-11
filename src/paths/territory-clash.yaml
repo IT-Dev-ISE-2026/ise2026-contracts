@@ -1,8 +1,8 @@
 session:
   get:
     operationId: getTerritoryClashSession
-    summary: "(operator) Get active Territory Clash session"
-    description: "[operator] Retrieve the current game session from Redis, or initialize a new one with up to 5 finalist teams (stage 'final') from the database if none exists. A finished session is kept and returned as-is (isFinished=true with winningLines and final bonusPoints) until the operator starts a new game via reset. If there are no finalists yet, the response contains an empty teams array and no session is stored, so finalists set later are picked up on the next call. Requires operator:territory-clash:* permission."
+    summary: "(admin) Get active Territory Clash session"
+    description: "[admin] Retrieve the current game session from Redis, or initialize a new one with all finalist teams (stage 'final', ordered by registration number) from the database if none exists. The number of teams is not limited; the admin decides which teams reach the final stage. A finished session is kept and returned as-is (isFinished=true with winningLines and final bonusPoints) until the operator starts a new game via reset. If there are no finalists yet, the response contains an empty teams array and no session is stored, so finalists set later are picked up on the next call. Requires admin:bionix-competition:final:read (or :write)."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -124,8 +124,8 @@ session:
 action:
   post:
     operationId: postTerritoryClashAction
-    summary: "(operator) Record board move action"
-    description: "[operator] Claim a board tile for the given team, whether the tile is empty or owned by another team. Discards the forward redo branch, appends a snapshot to the Redis history (unlimited), and advances the pointer. Claiming a tile the team already owns is a no-op and does not add a history entry. Requires operator:territory-clash:* permission."
+    summary: "(admin) Record board move action"
+    description: "[admin] Claim a board tile for the given team, whether the tile is empty or owned by another team. Discards the forward redo branch, appends a snapshot to the Redis history (unlimited), and advances the pointer. Claiming a tile the team already owns is a no-op and does not add a history entry. Requires admin:bionix-competition:final:write."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -210,8 +210,8 @@ action:
 undo:
   post:
     operationId: postTerritoryClashUndo
-    summary: "(operator) Undo last board move action"
-    description: "[operator] Revert board to the previous state snapshot in Redis without deleting later snapshots (enables redo). Undo is unlimited back to the start of the game (or the last reset). Requires operator:territory-clash:* permission."
+    summary: "(admin) Undo last board move action"
+    description: "[admin] Revert board to the previous state snapshot in Redis without deleting later snapshots (enables redo). Undo is unlimited back to the start of the game (or the last reset). Requires admin:bionix-competition:final:write."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -281,8 +281,8 @@ undo:
 redo:
   post:
     operationId: postTerritoryClashRedo
-    summary: "(operator) Redo last board move action"
-    description: "[operator] Re-apply the most recently undone move by advancing the history pointer one step. Requires operator:territory-clash:* permission."
+    summary: "(admin) Redo last board move action"
+    description: "[admin] Re-apply the most recently undone move by advancing the history pointer one step. Requires admin:bionix-competition:final:write."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -352,8 +352,8 @@ redo:
 reset:
   post:
     operationId: postTerritoryClashReset
-    summary: "(operator) Reset board to initial state"
-    description: "[operator] Start a new game: reload the finalist teams from the database, reset all 15 tiles to neutral/empty, set bonus points to 0, clear the history stack, and assign a new sessionId. Allowed both during a game and after it has been finished (results of a finished game are already persisted). Requires operator:territory-clash:* permission."
+    summary: "(admin) Reset board to initial state"
+    description: "[admin] Start a new game: reload the finalist teams from the database, reset all 15 tiles to neutral/empty, set bonus points to 0, clear the history stack, and assign a new sessionId. Allowed both during a game and after it has been finished (results of a finished game are already persisted). Requires admin:bionix-competition:final:write."
     tags: [Territory Clash]
     security:
       - BearerAuth: []
@@ -460,8 +460,8 @@ reset:
 finish:
   post:
     operationId: postTerritoryClashFinish
-    summary: "(operator) Finish game and persist results"
-    description: "[operator] Lock board interaction, calculate Bingo bonus points (5 horizontal = +75, 4 horizontal = +45, 3 h/v/d = +15; a horizontal run only scores its longest pattern, no double counting), persist session snapshot and team bonus points to PostgreSQL (idempotent per sessionId), then keep the session in Redis marked as finished so GET /session keeps returning the final result until a new game is started via reset. Requires operator:territory-clash:* permission."
+    summary: "(admin) Finish game and persist results"
+    description: "[admin] Lock board interaction, calculate Bingo bonus points (5 horizontal = +75, 4 horizontal = +45, 3 h/v/d = +15; a horizontal run only scores its longest pattern, no double counting), persist session snapshot and team bonus points to PostgreSQL (idempotent per sessionId), then keep the session in Redis marked as finished so GET /session keeps returning the final result until a new game is started via reset. Requires admin:bionix-competition:final:write."
     tags: [Territory Clash]
     security:
       - BearerAuth: []

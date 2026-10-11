@@ -11,6 +11,10 @@ enum:
   - admin:bionix-competition:write
   - admin:bionix-competition:voucher:read
   - admin:bionix-competition:voucher:write
+  - admin:bionix-competition:semifinal:read
+  - admin:bionix-competition:semifinal:write
+  - admin:bionix-competition:final:read
+  - admin:bionix-competition:final:write
   - admin:bionix-is-class:read
   - admin:bionix-is-class:write
   - admin:bionix-is-class:voucher:read
@@ -27,6 +31,5 @@ enum:
   - admin:isaac-dpd:write
   - admin:isaac-dpd:voucher:read
   - admin:isaac-dpd:voucher:write
-  - 'operator:territory-clash:*'
 description: |
   User permissions for attribute-based access control.

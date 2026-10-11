@@ -10,9 +10,8 @@ properties:
   teamNumber:
     type: integer
     minimum: 1
-    maximum: 5
     example: 1
-    description: "Team sequence number (1 to 5)."
+    description: "Team sequence number (1-based), following the finalists order by registration number. The number of finalist teams is not limited; it is managed by the admin through the registration stage."
   teamName:
     type: string
     example: "Tim Alpha"
@@ -20,7 +19,7 @@ properties:
   colorHex:
     type: string
     example: "#EF4444"
-    description: "Static color assigned to the team (1-Merah, 2-Kuning, 3-Hijau, 4-Biru, 5-Ungu)."
+    description: "Static color assigned by team number from a 10-color palette (1-Merah, 2-Kuning, 3-Hijau, 4-Biru, 5-Ungu, 6-Oranye, 7-Merah muda, 8-Toska, 9-Cokelat, 10-Abu-abu); the palette repeats for teams beyond 10."
   bonusPoints:
     type: integer
     default: 0
@@ -30,6 +29,5 @@ properties:
     type: integer
     nullable: true
     minimum: 1
-    maximum: 5
     example: 1
     description: "Leaderboard ranking position (bonus points descending, ties broken by teamNumber)."

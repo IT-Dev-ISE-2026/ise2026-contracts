@@ -23,7 +23,7 @@ properties:
     type: array
     items:
       $ref: 'ApiTerritoryClashTeam.yaml'
-    description: "Up to 5 finalist teams, ordered by teamNumber. Empty when no team has reached the final stage yet."
+    description: "All finalist teams, ordered by teamNumber. Empty when no team has reached the final stage yet."
   board:
     type: array
     items:
