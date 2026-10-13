@@ -1,0 +1,8 @@
+title: ApiRiseFinalPaymentStatusUpdateRequest
+type: object
+required: [status]
+properties:
+  status:
+    type: string
+    enum: [unpaid, paid]
+    example: paid

@@ -101,6 +101,7 @@ registrations:
                         member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                         status: "pending_payment"
                         stage: null
+                        finalPaymentStatus: "unpaid"
                         submissions: []
                         createdAt: "2026-05-16T08:00:00Z"
                         updatedAt: "2026-05-16T08:00:00Z"
@@ -227,6 +228,7 @@ registrations:
                       member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                       status: "pending_payment"
                       stage: null
+                      finalPaymentStatus: "unpaid"
                       submissions: []
                       createdAt: "2026-05-16T08:00:00Z"
                       updatedAt: "2026-05-16T08:00:00Z"
@@ -459,6 +461,7 @@ registrations-me:
                     member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "pending_payment"
                     stage: null
+                    finalPaymentStatus: "unpaid"
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
@@ -505,6 +508,7 @@ registrations-me:
                     member2TiktokProofUrl: null
                     status: "verified"
                     stage: "penyisihan"
+                    finalPaymentStatus: "unpaid"
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T10:00:00Z"
@@ -551,6 +555,7 @@ registrations-me:
                     member2TiktokProofUrl: null
                     status: "verified"
                     stage: "semifinal"
+                    finalPaymentStatus: "unpaid"
                     submissions:
                       - id: "bfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "penyisihan"
@@ -602,20 +607,13 @@ registrations-me:
                     member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "final"
+                    finalPaymentStatus: "paid"
                     order:
                       id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
                       status: "paid"
                       amount: 50000
                       finalPrice: 50000
                       sequence: 1
-                    finalOrder:
-                      id: "b2c3d4e5-f6a7-8901-bcde-f12345678901"
-                      status: "pending"
-                      amount: 100000
-                      finalPrice: 100000
-                      sequence: 1
-                      snapToken: "8687a100-84a1-42cb-b72e-d00922849568"
-                      paymentDeadline: "2026-10-19T00:00:00Z"
                     submissions:
                       - id: "cfe1e466-24ba-4475-8495-2aa73b5bd5ff"
                         stage: "penyisihan"
@@ -723,6 +721,7 @@ registrations-me:
                     member2TiktokProofUrl: null
                     status: "pending_payment"
                     stage: null
+                    finalPaymentStatus: "unpaid"
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-17T15:00:00Z"
@@ -893,6 +892,7 @@ registration-by-id:
                     member2TiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "pending_payment"
                     stage: null
+                    finalPaymentStatus: "unpaid"
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-05-16T08:00:00Z"
@@ -926,7 +926,7 @@ registration-stage:
   patch:
     operationId: updateRiseRegistrationStage
     summary: "(admin) Update Rise registration stage"
-    description: "[admin] Move a verified Rise Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed. Promoting to final idempotently creates a payment order using the rise-final-payment event price and rise-final-round-starts as its deadline."
+    description: "[admin] Move a verified Rise Competition registration to penyisihan, semifinal, or final. Only verified registrations can have their stage changed. Promoting to final does not create any payment order; final re-registration payment is verified manually via the final-payment endpoint."
     tags: ["Events/Rise Competition"]
     security:
       - BearerAuth: []
@@ -981,8 +981,8 @@ registration-stage:
                     leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
                     status: "verified"
                     stage: "semifinal"
+                    finalPaymentStatus: "unpaid"
                     order: null
-                    finalOrder: null
                     submissions: []
                     createdAt: "2026-05-16T08:00:00Z"
                     updatedAt: "2026-06-15T10:00:00Z"
@@ -1011,6 +1011,123 @@ registration-stage:
           application/json:
             schema:
               $ref: '../components/schemas/ApiError.yaml'
+      '422':
+        description: Validation failed.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+
+registration-final-payment:
+  patch:
+    operationId: updateRiseFinalPaymentStatus
+    summary: "(admin) Update Rise final re-registration payment status"
+    description: "[admin] Manually set the final-round re-registration payment status of a Rise registration in the final stage. Final payment is collected outside the platform (re-registration form) and verified by the event division. Requires admin rise write permission."
+    tags: ["Events/Rise Competition"]
+    security:
+      - BearerAuth: []
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The ID of the registration.
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/ApiRiseFinalPaymentStatusUpdateRequest.yaml'
+          examples:
+            MarkPaid:
+              summary: Mark final payment as paid
+              value:
+                status: "paid"
+            MarkUnpaid:
+              summary: Revert final payment to unpaid
+              value:
+                status: "unpaid"
+    responses:
+      '200':
+        description: Final payment status updated successfully.
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [data, message]
+              properties:
+                data:
+                  $ref: '../components/schemas/ApiRiseCompetitionRegistrationResponse.yaml'
+                message:
+                  type: string
+            examples:
+              FinalPaymentUpdated:
+                summary: Final payment marked as paid
+                value:
+                  data:
+                    id: "ade1e466-24ba-4475-8495-2aa73b5bd5ff"
+                    registrationNumber: 42
+                    userId: "6de1e466-24ba-4475-8495-2aa73b5bd5fb"
+                    teamName: "Hengker Keputih"
+                    memberCount: 1
+                    bundleType: "bundle"
+                    isAgreed: true
+                    leaderName: "Andi"
+                    leaderInstitution: "SMA Negeri 1 Surabaya"
+                    leaderEmail: "andi@gmail.com"
+                    leaderPhone: "+628123456789"
+                    leaderStudentCardUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/id.jpg"
+                    leaderPosterProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/poster.jpg"
+                    leaderIgFollowProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/ig.jpg"
+                    leaderTwibbonProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/twibbon.jpg"
+                    leaderTiktokProofUrl: "https://s3.ap-southeast-1.amazonaws.com/ise-bucket/temp/tiktok.jpg"
+                    status: "verified"
+                    stage: "final"
+                    finalPaymentStatus: "paid"
+                    finalPaymentUpdatedAt: "2026-10-14T09:00:00Z"
+                    order: null
+                    submissions: []
+                    createdAt: "2026-05-16T08:00:00Z"
+                    updatedAt: "2026-10-14T09:00:00Z"
+                  message: "Final payment status updated successfully."
+      '400':
+        description: Bad request. Invalid ID format.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '401':
+        description: Unauthorized.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '403':
+        description: Forbidden. Permissions are insufficient.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '404':
+        description: Registration not found.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+      '409':
+        description: Registration is not in the final stage.
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/ApiError.yaml'
+            examples:
+              NotFinal:
+                summary: Registration is not a finalist
+                value:
+                  message: "Only registrations in the final stage can have their final payment status changed."
+                  requestId: req-rise-final-payment-409
       '422':
         description: Validation failed.
         content:
