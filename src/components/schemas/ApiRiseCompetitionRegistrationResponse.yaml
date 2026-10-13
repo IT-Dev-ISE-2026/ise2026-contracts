@@ -162,6 +162,13 @@ properties:
     nullable: true
     readOnly: true
     description: When an admin last changed finalPaymentStatus.
+  award:
+    type: string
+    enum: [winner, first_runner_up, second_runner_up, best_presentation, best_analysis, best_rta, best_paper, finalist]
+    nullable: true
+    readOnly: true
+    description: Final-round award set by an admin. Null until decided; only finalists can have an award. Participant dashboards reveal it from the rise-award-announcement timeline onward.
+    example: winner
   submissions:
     type: array
     items:

@@ -1,0 +1,10 @@
+title: ApiRiseAwardUpdateRequest
+type: object
+required: [award]
+properties:
+  award:
+    type: string
+    enum: [winner, first_runner_up, second_runner_up, best_presentation, best_analysis, best_rta, best_paper, finalist]
+    nullable: true
+    description: Award to set. Send null to clear the award.
+    example: winner

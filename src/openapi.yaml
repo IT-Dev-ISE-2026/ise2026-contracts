@@ -160,6 +160,8 @@ paths:
     $ref: "paths/rise-competition.yaml#/registration-stage"
   /api/events/rise/registrations/{id}/final-payment:
     $ref: "paths/rise-competition.yaml#/registration-final-payment"
+  /api/events/rise/registrations/{id}/award:
+    $ref: "paths/rise-competition.yaml#/registration-award"
   /api/events/rise/registrations/validate:
     $ref: "paths/rise-competition.yaml#/registrations-validate"
   /api/events/rise/registrations/me:
@@ -307,6 +309,8 @@ components:
       $ref: "components/schemas/ApiCompetitionStageUpdateRequest.yaml"
     RiseFinalPaymentStatusUpdateRequest:
       $ref: "components/schemas/ApiRiseFinalPaymentStatusUpdateRequest.yaml"
+    RiseAwardUpdateRequest:
+      $ref: "components/schemas/ApiRiseAwardUpdateRequest.yaml"
     RiseCompetitionRegistrationDraftRequest:
       $ref: "components/schemas/ApiRiseCompetitionRegistrationDraftRequest.yaml"
     RiseCompetitionRegistrationDraftResponse:
