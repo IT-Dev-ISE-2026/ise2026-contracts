@@ -71,15 +71,15 @@ properties:
     example: 3
   jokerUsed:
     type: boolean
-    description: "Whether Joker was answered/used in this specific suit."
+    description: "Whether the Joker was resolved (answered or skipped) in this specific suit."
     example: false
   jokersUsedTotal:
     type: integer
-    description: "Total number of Jokers answered/used by this team across all 4 suits (max 2)."
+    description: "Total number of suits in which this team resolved (answered or skipped) the Joker (max 2)."
     example: 1
   isJokerDisabled:
     type: boolean
-    description: "True if team already used Joker in 2 other suits and Joker is not yet used in this suit."
+    description: "True if the team already resolved (answered or skipped) the Joker in 2 other suits and it is not yet resolved in this suit. Both correct and skip are then rejected on the Joker card."
     example: false
   canUndo:
     type: boolean

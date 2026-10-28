@@ -76,7 +76,7 @@ leaderboard:
                           highestStreak: 5
                           streakBonus: 3
                           totalPoints: 24
-                          cardsPlayed: 14
+                          cardsPlayed: 13
                         - registrationId: "bde1e466-24ba-4475-8495-2aa73b5bd5fe"
                           teamName: "Garuda Cyber"
                           teamLogo: "https://api.dicebear.com/7.x/identicon/svg?seed=team2"
@@ -149,7 +149,7 @@ leaderboard:
                           highestStreak: 3
                           streakBonus: 1
                           totalPoints: 20
-                          cardsPlayed: 14
+                          cardsPlayed: 13
                   message: "Leaderboard retrieved successfully."
       '401':
         description: Unauthorized.
@@ -312,7 +312,7 @@ action:
   post:
     operationId: submitBionixSemifinalAction
     summary: "(admin) Submit correct or skip action for a team"
-    description: "Execute a correct or skip scoring action on the currently active card for a team in a suit. Single-click execution. Enforces Joker 2-lab limit. Requires admin:bionix-competition:semifinal:write."
+    description: "Execute a correct or skip scoring action on the currently active card for a team in a suit. Single-click execution. Enforces the Joker 2-lab limit (answering or skipping the Joker both count). Requires admin:bionix-competition:semifinal:write."
     tags: ["Events/Bionix Competition"]
     security:
       - BearerAuth: []
