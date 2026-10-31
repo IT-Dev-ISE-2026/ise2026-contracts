@@ -19,7 +19,7 @@ properties:
   colorHex:
     type: string
     example: "#EF4444"
-    description: "Static color assigned by team number from a 10-color palette (1-Merah, 2-Kuning, 3-Hijau, 4-Biru, 5-Ungu, 6-Oranye, 7-Merah muda, 8-Toska, 9-Cokelat, 10-Abu-abu); the palette repeats for teams beyond 10."
+    description: "Team color. Uses the per-team override set directly in the database when present; otherwise a static color assigned by team number from a 10-color palette (1-Merah, 2-Kuning, 3-Hijau, 4-Biru, 5-Ungu, 6-Oranye, 7-Merah muda, 8-Toska, 9-Cokelat, 10-Abu-abu); the palette repeats for teams beyond 10."
   bonusPoints:
     type: integer
     default: 0
